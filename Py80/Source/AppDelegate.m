@@ -15,6 +15,8 @@
 @interface AppDelegate () <KDEPy80ContextDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
+@property (nonatomic, readwrite, copy) NSString *currentFilePath;
+
 @end
 
 
@@ -40,6 +42,7 @@
                                             error:NULL];
     }
     self.codeView.string = code;
+    self.currentFilePath = @"untitled.py";
     
     [KDEPy80Context sharedContext].delegate = self;
     
@@ -47,7 +50,7 @@
     self.infoField.stringValue = @"Initializing Python...";
     [[KDEPython sharedPython] setupEnvironmentWithCompletion:^(BOOL result){
         self.runButton.enabled = YES;
-        self.infoField.stringValue = @"Py80: untitled.py";
+        [self updateInfoField];
     }];
 }
 
@@ -55,6 +58,87 @@
 {
     [[NSUserDefaults standardUserDefaults] setObject:self.codeView.string
                                               forKey:@"Py80Code"];
+}
+
+- (IBAction)newDocument:(id)sender
+{
+    NSString *defaultPath = [[NSBundle mainBundle] pathForResource:@"Default"
+                                                            ofType:@"py"];
+    self.codeView.string = [NSString stringWithContentsOfFile:defaultPath
+                                                     encoding:NSUTF8StringEncoding
+                                                        error:NULL];
+}
+
+- (IBAction)openDocument:(id)sender
+{
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowedFileTypes = @[ @"py"];
+    panel.allowsMultipleSelection = NO;
+    panel.canChooseDirectories = NO;
+    
+    [panel beginSheetModalForWindow:self.window
+                  completionHandler:^(NSInteger result){
+                      if (result == NSFileHandlingPanelOKButton)
+                      {
+                          self.currentFilePath = panel.URL.filePathURL.path;
+                          self.codeView.string = [NSString stringWithContentsOfFile:self.currentFilePath
+                                                                           encoding:NSUTF8StringEncoding
+                                                                              error:NULL];
+                          [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:panel.URL.filePathURL];
+                          [self updateInfoField];
+                      }
+                  }];
+}
+
+- (IBAction)saveDocument:(id)sender
+{
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    panel.allowedFileTypes = @[ @"py"];
+    panel.nameFieldStringValue = @"untitled.py";
+    [panel beginSheetModalForWindow:self.window
+                  completionHandler:^(NSInteger result){
+                      if (result == NSFileHandlingPanelOKButton)
+                      {
+                          self.currentFilePath = panel.URL.filePathURL.path;
+                          [self.codeView.string writeToURL:panel.URL.filePathURL
+                                                atomically:YES
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+                          [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:panel.URL.filePathURL];
+                          [self updateInfoField];
+                      }
+                  }];
+}
+
+- (IBAction)saveDocumentAs:(id)sender
+{
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    panel.allowedFileTypes = @[ @"py"];
+    panel.nameFieldStringValue = @"untitled.py";
+    [panel beginSheetModalForWindow:self.window
+                  completionHandler:^(NSInteger result){
+                      if (result == NSFileHandlingPanelOKButton)
+                      {
+                          self.currentFilePath = panel.URL.filePathURL.path;
+                          [self.codeView.string writeToURL:panel.URL.filePathURL
+                                                atomically:YES
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
+                          [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:panel.URL.filePathURL];
+                          [self updateInfoField];
+                      }
+                  }];
+}
+
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+{
+    self.currentFilePath = filename;
+    self.codeView.string = [NSString stringWithContentsOfFile:filename
+                                                     encoding:NSUTF8StringEncoding
+                                                        error:NULL];
+    [self updateInfoField];
+    
+    return YES;
 }
 
 - (IBAction) runCode:(id)sender
@@ -71,6 +155,11 @@
     textView.automaticSpellingCorrectionEnabled = NO;
     textView.font = [NSFont fontWithName:@"Monaco"
                                     size:11.0f];
+}
+
+- (void) updateInfoField
+{
+    self.infoField.stringValue = [NSString stringWithFormat:@"Py80: %@", self.currentFilePath.lastPathComponent];
 }
 
 #pragma mark - KDEPy80ContextDelegate

@@ -15,7 +15,7 @@
             <connections>
                 <outlet property="codeView" destination="3Ky-Bg-C7G" id="Xby-yg-sa1"/>
                 <outlet property="console" destination="vSn-P3-RRN" id="WCu-nf-q1C"/>
-                <outlet property="infoField" destination="fYU-zQ-g71" id="zm8-D9-NJm"/>
+                <outlet property="infoField" destination="0vi-7E-cOT" id="obU-yO-qp2"/>
                 <outlet property="outputView" destination="2gb-pG-ihC" id="hDx-gR-6di"/>
                 <outlet property="runButton" destination="bZ3-gu-STN" id="WsB-ZF-tpp"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -671,7 +671,7 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="Py80" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Py80" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="Py80MainWindow" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -838,14 +838,14 @@
                         </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="4D2E32D4-C859-43C3-ABAF-40001BC01C54" label="Center Spacer" paletteLabel="Toolbar Item" tag="-1" id="dBf-AF-I1m" customClass="TAAdaptiveSpaceItem"/>
-                    <toolbarItem implicitItemIdentifier="571D8AE3-D0CC-4D1E-8F70-1BB341B46A8C" label="Custom View" paletteLabel="Custom View" id="4by-6g-UNx">
+                    <toolbarItem implicitItemIdentifier="9D4A256E-7A25-4437-BF8D-7F1595687EAA" label="Custom View" paletteLabel="Custom View" id="TBo-7b-GmM">
                         <nil key="toolTip"/>
                         <size key="minSize" width="96" height="22"/>
-                        <size key="maxSize" width="300" height="22"/>
-                        <textField key="view" verticalHuggingPriority="750" id="fYU-zQ-g71">
+                        <size key="maxSize" width="400" height="22"/>
+                        <textField key="view" verticalHuggingPriority="750" id="0vi-7E-cOT">
                             <rect key="frame" x="0.0" y="0.0" width="96" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="Loading..." bezelStyle="round" id="ehV-cW-aD2">
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" bezelStyle="round" id="2Vu-YH-SP5">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -856,7 +856,7 @@
                 <defaultToolbarItems>
                     <toolbarItem reference="p6Y-Wd-k9J"/>
                     <toolbarItem reference="dBf-AF-I1m"/>
-                    <toolbarItem reference="4by-6g-UNx"/>
+                    <toolbarItem reference="TBo-7b-GmM"/>
                     <toolbarItem reference="boo-Sk-m8M"/>
                 </defaultToolbarItems>
             </toolbar>
