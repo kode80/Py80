@@ -17,6 +17,7 @@
 		203D56B11B0A657A00A7779E /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D56B01B0A657A00A7779E /* KDEPython.m */; };
 		203D56B31B0A716000A7779E /* Default.py in Resources */ = {isa = PBXBuildFile; fileRef = 203D56B21B0A716000A7779E /* Default.py */; };
 		207F18781B0A85C4009E2889 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 207F18771B0A85C4009E2889 /* KDEPy80Context.m */; };
+		20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F13AC91B0AD47600C30D2A /* KDEOutputView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		203D56B21B0A716000A7779E /* Default.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Default.py; sourceTree = "<group>"; };
 		207F18761B0A85C4009E2889 /* KDEPy80Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPy80Context.h; sourceTree = "<group>"; };
 		207F18771B0A85C4009E2889 /* KDEPy80Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPy80Context.m; sourceTree = "<group>"; };
+		20F13AC81B0AD47600C30D2A /* KDEOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputView.h; sourceTree = "<group>"; };
+		20F13AC91B0AD47600C30D2A /* KDEOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,7 @@
 		203D56A81B0A610D00A7779E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				20F13AC71B0AD45F00C30D2A /* Views */,
 				203D56A91B0A610D00A7779E /* AppDelegate.h */,
 				203D56AA1B0A610D00A7779E /* AppDelegate.m */,
 				203D56AF1B0A657A00A7779E /* KDEPython.h */,
@@ -145,6 +149,15 @@
 				203D56B21B0A716000A7779E /* Default.py */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		20F13AC71B0AD45F00C30D2A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20F13AC81B0AD47600C30D2A /* KDEOutputView.h */,
+				20F13AC91B0AD47600C30D2A /* KDEOutputView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */,
 				203D568C1B0A55EE00A7779E /* main.m in Sources */,
 				207F18781B0A85C4009E2889 /* KDEPy80Context.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,

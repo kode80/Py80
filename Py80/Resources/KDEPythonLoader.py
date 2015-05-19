@@ -31,7 +31,10 @@ class KDEPythonLoader(NSObject):
 class KDEPy80Context:
     def __init__( self):
         contextClass = objc.lookUpClass( "KDEPy80Context")
-        self.context = contextClass.new()
+        self.context = contextClass.sharedContext()
 
     def log( self, message):
         self.context.log_( message)
+
+    def clearLog( self):
+        self.context.clearLog()

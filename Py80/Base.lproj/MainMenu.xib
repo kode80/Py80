@@ -14,6 +14,8 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="codeView" destination="3Ky-Bg-C7G" id="Xby-yg-sa1"/>
+                <outlet property="console" destination="vSn-P3-RRN" id="WCu-nf-q1C"/>
+                <outlet property="outputView" destination="2gb-pG-ihC" id="hDx-gR-6di"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -719,9 +721,81 @@
                                     <constraint firstItem="fk5-yO-F8L" firstAttribute="leading" secondItem="Jff-8F-cvc" secondAttribute="leading" id="mYL-we-VcE"/>
                                 </constraints>
                             </customView>
-                            <customView fixedFrame="YES" id="gON-C6-MTX">
+                            <customView id="gON-C6-MTX">
                                 <rect key="frame" x="271" y="0.0" width="267" height="403"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <splitView dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Icu-7r-gn0">
+                                        <rect key="frame" x="0.0" y="0.0" width="267" height="403"/>
+                                        <subviews>
+                                            <customView id="5fj-RP-EZq">
+                                                <rect key="frame" x="0.0" y="0.0" width="267" height="196.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <subviews>
+                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="2gb-pG-ihC" customClass="KDEOutputView">
+                                                        <rect key="frame" x="0.0" y="0.0" width="267" height="196"/>
+                                                    </customView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="2gb-pG-ihC" secondAttribute="trailing" id="1Rc-Ew-kUO"/>
+                                                    <constraint firstItem="2gb-pG-ihC" firstAttribute="top" secondItem="5fj-RP-EZq" secondAttribute="top" id="3ZZ-VN-UdU"/>
+                                                    <constraint firstItem="2gb-pG-ihC" firstAttribute="leading" secondItem="5fj-RP-EZq" secondAttribute="leading" id="3bN-sr-RMZ"/>
+                                                    <constraint firstAttribute="bottom" secondItem="2gb-pG-ihC" secondAttribute="bottom" id="6BH-3G-mgl"/>
+                                                </constraints>
+                                            </customView>
+                                            <customView id="BXR-sC-F5e">
+                                                <rect key="frame" x="0.0" y="197.5" width="267" height="205.5"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <subviews>
+                                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czE-Ju-Nff">
+                                                        <rect key="frame" x="0.0" y="0.5" width="267" height="203.5"/>
+                                                        <clipView key="contentView" id="Mcf-Ma-x7j">
+                                                            <rect key="frame" x="1" y="1" width="223" height="133"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="vSn-P3-RRN">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <size key="minSize" width="265" height="201.5"/>
+                                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <size key="minSize" width="265" height="201.5"/>
+                                                                    <size key="maxSize" width="463" height="10000000"/>
+                                                                </textView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </clipView>
+                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Frs-kE-Job">
+                                                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </scroller>
+                                                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="IJT-yr-Iap">
+                                                            <rect key="frame" x="224" y="1" width="15" height="133"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </scroller>
+                                                    </scrollView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="czE-Ju-Nff" firstAttribute="top" secondItem="BXR-sC-F5e" secondAttribute="top" constant="0.5" id="9yl-LP-otf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="czE-Ju-Nff" secondAttribute="bottom" id="FrY-vK-yyT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="czE-Ju-Nff" secondAttribute="trailing" id="TQP-Mt-EZe"/>
+                                                    <constraint firstItem="czE-Ju-Nff" firstAttribute="leading" secondItem="BXR-sC-F5e" secondAttribute="leading" id="dnT-af-spM"/>
+                                                </constraints>
+                                            </customView>
+                                        </subviews>
+                                        <holdingPriorities>
+                                            <real value="250"/>
+                                            <real value="250"/>
+                                        </holdingPriorities>
+                                    </splitView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Icu-7r-gn0" secondAttribute="bottom" id="IlY-mv-izv"/>
+                                    <constraint firstItem="Icu-7r-gn0" firstAttribute="leading" secondItem="gON-C6-MTX" secondAttribute="leading" id="im4-io-pql"/>
+                                    <constraint firstItem="Icu-7r-gn0" firstAttribute="top" secondItem="gON-C6-MTX" secondAttribute="top" id="n4r-h6-dIZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Icu-7r-gn0" secondAttribute="trailing" id="yxT-Ft-j1h"/>
+                                </constraints>
                             </customView>
                         </subviews>
                         <holdingPriorities>

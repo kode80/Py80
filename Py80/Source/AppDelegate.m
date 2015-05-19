@@ -8,9 +8,10 @@
 
 #import "AppDelegate.h"
 #import "KDEPython.h"
+#import "KDEPy80Context.h"
 
 
-@interface AppDelegate ()
+@interface AppDelegate () <KDEPy80ContextDelegate>
 
 @property (weak) IBOutlet NSWindow *window;
 @end
@@ -22,19 +23,19 @@
 {
     self.window.titleVisibility = NSWindowTitleHidden;
     
+    [self applyDefaultsToTextView:self.codeView];
+    [self applyDefaultsToTextView:self.console];
+
+    self.console.editable = NO;
     
-    self.codeView.automaticQuoteSubstitutionEnabled = NO;
-    self.codeView.automaticDashSubstitutionEnabled = NO;
-    self.codeView.automaticTextReplacementEnabled = NO;
-    self.codeView.automaticSpellingCorrectionEnabled = NO;
-    self.codeView.font = [NSFont fontWithName:@"Monaco"
-                                         size:13.0f];
     
     NSString *defaultPath = [[NSBundle mainBundle] pathForResource:@"Default"
                                                             ofType:@"py"];
     self.codeView.string = [NSString stringWithContentsOfFile:defaultPath
                                                      encoding:NSUTF8StringEncoding
                                                         error:NULL];
+    
+    [KDEPy80Context sharedContext].delegate = self;
     
     [[KDEPython sharedPython] setupEnvironment];
 }
@@ -47,6 +48,30 @@
 {
     [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
                                              runFunction:@"main"];
+}
+
+- (void) applyDefaultsToTextView:(NSTextView *)textView
+{
+    textView.automaticQuoteSubstitutionEnabled = NO;
+    textView.automaticDashSubstitutionEnabled = NO;
+    textView.automaticTextReplacementEnabled = NO;
+    textView.automaticSpellingCorrectionEnabled = NO;
+    textView.font = [NSFont fontWithName:@"Monaco"
+                                    size:13.0f];
+}
+
+#pragma mark - KDEPy80ContextDelegate
+
+- (void) py80Context:(KDEPy80Context *)context logMessage:(NSString *)message
+{
+    NSString *formattedMessage = [NSString stringWithFormat:@"%@: %@\n", [NSDate date], message];
+    NSString *output = [self.console.string stringByAppendingString:formattedMessage];
+    self.console.string = output;
+}
+
+- (void) py80ContextClearLog:(KDEPy80Context *)context
+{
+    self.console.string = @"";
 }
 
 @end

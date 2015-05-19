@@ -8,9 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class KDEOutputView;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *codeView;
+@property (nonatomic, readwrite, strong) IBOutlet NSTextView *console;
+@property (nonatomic, readwrite, weak) IBOutlet KDEOutputView *outputView;
 
 - (IBAction) runCode:(id)sender;
 
