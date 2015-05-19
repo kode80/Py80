@@ -29,11 +29,16 @@
     self.console.editable = NO;
     
     
-    NSString *defaultPath = [[NSBundle mainBundle] pathForResource:@"Default"
-                                                            ofType:@"py"];
-    self.codeView.string = [NSString stringWithContentsOfFile:defaultPath
-                                                     encoding:NSUTF8StringEncoding
-                                                        error:NULL];
+    NSString *code = [[NSUserDefaults standardUserDefaults] stringForKey:@"Py80Code"];
+    if( code == nil)
+    {
+        NSString *defaultPath = [[NSBundle mainBundle] pathForResource:@"Default"
+                                                                ofType:@"py"];
+        code = [NSString stringWithContentsOfFile:defaultPath
+                                         encoding:NSUTF8StringEncoding
+                                            error:NULL];
+    }
+    self.codeView.string = code;
     
     [KDEPy80Context sharedContext].delegate = self;
     
@@ -42,6 +47,8 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
+    [[NSUserDefaults standardUserDefaults] setObject:self.codeView.string
+                                              forKey:@"Py80Code"];
 }
 
 - (IBAction) runCode:(id)sender
