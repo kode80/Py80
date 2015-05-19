@@ -15,6 +15,7 @@
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *codeView;
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *console;
 @property (nonatomic, readwrite, weak) IBOutlet KDEOutputView *outputView;
+@property (nonatomic, readwrite, strong) IBOutlet NSButton *runButton;
 
 - (IBAction) runCode:(id)sender;
 

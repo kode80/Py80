@@ -43,7 +43,13 @@
     
     [KDEPy80Context sharedContext].delegate = self;
     
-    [[KDEPython sharedPython] setupEnvironment];
+    self.runButton.enabled = NO;
+    dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[KDEPython sharedPython] setupEnvironment];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.runButton.enabled = YES;
+        });
+    });
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
@@ -65,7 +71,7 @@
     textView.automaticTextReplacementEnabled = NO;
     textView.automaticSpellingCorrectionEnabled = NO;
     textView.font = [NSFont fontWithName:@"Monaco"
-                                    size:13.0f];
+                                    size:11.0f];
 }
 
 #pragma mark - KDEPy80ContextDelegate

@@ -16,6 +16,7 @@
                 <outlet property="codeView" destination="3Ky-Bg-C7G" id="Xby-yg-sa1"/>
                 <outlet property="console" destination="vSn-P3-RRN" id="WCu-nf-q1C"/>
                 <outlet property="outputView" destination="2gb-pG-ihC" id="hDx-gR-6di"/>
+                <outlet property="runButton" destination="bZ3-gu-STN" id="WsB-ZF-tpp"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -754,7 +755,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="vSn-P3-RRN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="201.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="202"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <size key="minSize" width="265" height="202"/>
