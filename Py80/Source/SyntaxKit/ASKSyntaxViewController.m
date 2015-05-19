@@ -927,9 +927,13 @@ static void * const KVO = (void*)&KVO;
             [validKeywords addObject:keyword];
         }
     }
-    
-    *index = 0;
-    if( validKeywords.count) { self.lastPartialWord = validKeywords[0]; }
+    if( validKeywords.count)
+    {
+        *index = 0;
+        [validKeywords insertObject:partialString
+                            atIndex:0];
+        self.lastPartialWord = validKeywords[0];
+    }
     
     return [NSArray arrayWithArray:validKeywords];
 }
