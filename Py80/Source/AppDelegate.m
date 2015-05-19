@@ -99,7 +99,7 @@
 {
     NSSavePanel *panel = [NSSavePanel savePanel];
     panel.allowedFileTypes = @[ @"py"];
-    panel.nameFieldStringValue = @"untitled.py";
+    panel.nameFieldStringValue = self.currentFilePath.lastPathComponent;
     [panel beginSheetModalForWindow:self.window
                   completionHandler:^(NSInteger result){
                       if (result == NSFileHandlingPanelOKButton)
@@ -119,7 +119,7 @@
 {
     NSSavePanel *panel = [NSSavePanel savePanel];
     panel.allowedFileTypes = @[ @"py"];
-    panel.nameFieldStringValue = @"untitled.py";
+    panel.nameFieldStringValue = self.currentFilePath.lastPathComponent;
     [panel beginSheetModalForWindow:self.window
                   completionHandler:^(NSInteger result){
                       if (result == NSFileHandlingPanelOKButton)
