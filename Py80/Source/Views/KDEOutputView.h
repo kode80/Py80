@@ -10,4 +10,10 @@
 
 @interface KDEOutputView : NSView
 
+- (void) clear;
+- (void) setStrokeColor:(NSColor *)strokeColor;
+- (void) setFillColor:(NSColor *)fillColor;
+- (void) setStrokeWidth:(CGFloat)strokeWidth;
+- (void) addRectangle:(NSRect)rect;
+
 @end

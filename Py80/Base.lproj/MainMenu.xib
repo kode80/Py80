@@ -729,11 +729,11 @@
                                         <rect key="frame" x="0.0" y="0.0" width="267" height="403"/>
                                         <subviews>
                                             <customView id="5fj-RP-EZq">
-                                                <rect key="frame" x="0.0" y="0.0" width="267" height="196.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="267" height="197"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="2gb-pG-ihC" customClass="KDEOutputView">
-                                                        <rect key="frame" x="0.0" y="0.0" width="267" height="196"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="267" height="197"/>
                                                     </customView>
                                                 </subviews>
                                                 <constraints>
@@ -744,23 +744,23 @@
                                                 </constraints>
                                             </customView>
                                             <customView id="BXR-sC-F5e">
-                                                <rect key="frame" x="0.0" y="197.5" width="267" height="205.5"/>
+                                                <rect key="frame" x="0.0" y="198" width="267" height="205"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czE-Ju-Nff">
-                                                        <rect key="frame" x="0.0" y="0.5" width="267" height="203.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="267" height="204"/>
                                                         <clipView key="contentView" id="Mcf-Ma-x7j">
                                                             <rect key="frame" x="1" y="1" width="223" height="133"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="vSn-P3-RRN">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="201.5"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                    <size key="minSize" width="265" height="201.5"/>
+                                                                    <size key="minSize" width="265" height="202"/>
                                                                     <size key="maxSize" width="463" height="10000000"/>
                                                                     <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <size key="minSize" width="265" height="201.5"/>
+                                                                    <size key="minSize" width="265" height="202"/>
                                                                     <size key="maxSize" width="463" height="10000000"/>
                                                                 </textView>
                                                             </subviews>

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "KDEPython.h"
 #import "KDEPy80Context.h"
+#import "KDEOutputView.h"
 
 
 @interface AppDelegate () <KDEPy80ContextDelegate>
@@ -79,6 +80,49 @@
 - (void) py80ContextClearLog:(KDEPy80Context *)context
 {
     self.console.string = @"";
+}
+
+- (void) py80ContextClearDrawing:(KDEPy80Context *)context
+{
+    [self.outputView clear];
+}
+
+- (void) py80Context:(KDEPy80Context *)context
+        setStrokeRed:(CGFloat)red
+               green:(CGFloat)green
+                blue:(CGFloat)blue
+               alpha:(CGFloat)alpha
+{
+    self.outputView.strokeColor = [NSColor colorWithDeviceRed:red
+                                                        green:green
+                                                         blue:blue
+                                                        alpha:alpha];
+}
+
+- (void) py80Context:(KDEPy80Context *)context
+          setFillRed:(CGFloat)red
+               green:(CGFloat)green
+                blue:(CGFloat)blue
+               alpha:(CGFloat)alpha
+{
+    self.outputView.fillColor = [NSColor colorWithDeviceRed:red
+                                                      green:green
+                                                       blue:blue
+                                                      alpha:alpha];
+}
+
+- (void) py80Context:(KDEPy80Context *)context setStrokeWidth:(CGFloat)width
+{
+    self.outputView.strokeWidth = width;
+}
+
+- (void) py80Context:(KDEPy80Context *)context
+         drawRectAtX:(CGFloat)x
+                   y:(CGFloat)y
+           withWidth:(CGFloat)width
+              height:(CGFloat)height
+{
+    [self.outputView addRectangle:NSMakeRect( x, y, width, height)];
 }
 
 @end

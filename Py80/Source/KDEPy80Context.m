@@ -37,4 +37,66 @@
     }
 }
 
+- (void) clearDrawing
+{
+    if( [self.delegate respondsToSelector:@selector(py80ContextClearDrawing:)])
+    {
+        [self.delegate py80ContextClearDrawing:self];
+    }
+}
+
+- (void) setStrokeRed:(CGFloat)red
+                green:(CGFloat)green
+                 blue:(CGFloat)blue
+                alpha:(CGFloat)alpha
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:setStrokeRed:green:blue:alpha:)])
+    {
+        [self.delegate py80Context:self
+                      setStrokeRed:red
+                             green:green
+                              blue:blue
+                             alpha:alpha];
+    }
+}
+
+- (void) setFillRed:(CGFloat)red
+              green:(CGFloat)green
+               blue:(CGFloat)blue
+              alpha:(CGFloat)alpha
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:setFillRed:green:blue:alpha:)])
+    {
+        [self.delegate py80Context:self
+                        setFillRed:red
+                             green:green
+                              blue:blue
+                             alpha:alpha];
+    }
+}
+
+- (void) setStrokeWidth:(CGFloat)width
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:setStrokeWidth:)])
+    {
+        [self.delegate py80Context:self
+                    setStrokeWidth:width];
+    }
+}
+
+- (void) drawRectAtX:(CGFloat)x
+                   y:(CGFloat)y
+           withWidth:(CGFloat)width
+              height:(CGFloat)height
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:drawRectAtX:y:withWidth:height:)])
+    {
+        [self.delegate py80Context:self
+                       drawRectAtX:x
+                                 y:y
+                         withWidth:width
+                            height:height];
+    }
+}
+
 @end
