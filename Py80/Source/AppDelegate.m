@@ -11,6 +11,8 @@
 #import "KDEPy80Context.h"
 #import "KDEOutputView.h"
 
+#import "SyntaxKit.h"
+
 
 @interface AppDelegate () <KDEPy80ContextDelegate>
 
@@ -31,6 +33,9 @@
 
     self.console.editable = NO;
     
+    self.syntaxViewController.indentsWithSpaces = NO;
+    self.syntaxViewController.showsLineNumbers = YES;
+    self.syntaxViewController.syntax = [ASKSyntax syntaxForType:@"public.python-source"];
     
     NSString *code = [[NSUserDefaults standardUserDefaults] stringForKey:@"Py80Code"];
     if( code == nil)

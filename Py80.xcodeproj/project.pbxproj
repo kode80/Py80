@@ -9,6 +9,19 @@
 /* Begin PBXBuildFile section */
 		20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E7B1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m */; };
 		20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */; };
+		20082E991B0B8B240064DDA4 /* ASKLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E821B0B8B240064DDA4 /* ASKLineNumberMarker.m */; };
+		20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E841B0B8B240064DDA4 /* ASKLineNumberView.m */; };
+		20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E861B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m */; };
+		20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E881B0B8B240064DDA4 /* ASKSyntax.m */; };
+		20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E8A1B0B8B240064DDA4 /* ASKSyntaxViewController.m */; };
+		20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E8C1B0B8B240064DDA4 /* ASKTypesetter.m */; };
+		20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E8E1B0B8B240064DDA4 /* NSArray+Color.m */; };
+		20082EA01B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E901B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m */; };
+		20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E921B0B8B240064DDA4 /* NSTextView+SyntaxKit.m */; };
+		20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E951B0B8B240064DDA4 /* SyntaxKit.m */; };
+		20082EA31B0B8B240064DDA4 /* TDBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E971B0B8B240064DDA4 /* TDBindings.m */; };
+		20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */; };
+		20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */ = {isa = PBXBuildFile; fileRef = 20082EB41B0B91CA0064DDA4 /* Syntax Definitions */; };
 		203D568C1B0A55EE00A7779E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D568B1B0A55EE00A7779E /* main.m */; };
 		203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 203D568D1B0A55EE00A7779E /* Images.xcassets */; };
 		203D56911B0A55EE00A7779E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203D568F1B0A55EE00A7779E /* MainMenu.xib */; };
@@ -37,6 +50,32 @@
 		20082E7B1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAdaptiveSpaceItem.m; sourceTree = "<group>"; };
 		20082E7C1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAdaptiveSpaceItemView.h; sourceTree = "<group>"; };
 		20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAdaptiveSpaceItemView.m; sourceTree = "<group>"; };
+		20082E811B0B8B240064DDA4 /* ASKLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKLineNumberMarker.h; sourceTree = "<group>"; };
+		20082E821B0B8B240064DDA4 /* ASKLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKLineNumberMarker.m; sourceTree = "<group>"; };
+		20082E831B0B8B240064DDA4 /* ASKLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKLineNumberView.h; sourceTree = "<group>"; };
+		20082E841B0B8B240064DDA4 /* ASKLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKLineNumberView.m; sourceTree = "<group>"; };
+		20082E851B0B8B240064DDA4 /* ASKSyntax+syntaxForType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASKSyntax+syntaxForType.h"; sourceTree = "<group>"; };
+		20082E861B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ASKSyntax+syntaxForType.m"; sourceTree = "<group>"; };
+		20082E871B0B8B240064DDA4 /* ASKSyntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKSyntax.h; sourceTree = "<group>"; };
+		20082E881B0B8B240064DDA4 /* ASKSyntax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKSyntax.m; sourceTree = "<group>"; };
+		20082E891B0B8B240064DDA4 /* ASKSyntaxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKSyntaxViewController.h; sourceTree = "<group>"; };
+		20082E8A1B0B8B240064DDA4 /* ASKSyntaxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKSyntaxViewController.m; sourceTree = "<group>"; };
+		20082E8B1B0B8B240064DDA4 /* ASKTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKTypesetter.h; sourceTree = "<group>"; };
+		20082E8C1B0B8B240064DDA4 /* ASKTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKTypesetter.m; sourceTree = "<group>"; };
+		20082E8D1B0B8B240064DDA4 /* NSArray+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Color.h"; sourceTree = "<group>"; };
+		20082E8E1B0B8B240064DDA4 /* NSArray+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Color.m"; sourceTree = "<group>"; };
+		20082E8F1B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+SkipUpToCharset.h"; sourceTree = "<group>"; };
+		20082E901B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+SkipUpToCharset.m"; sourceTree = "<group>"; };
+		20082E911B0B8B240064DDA4 /* NSTextView+SyntaxKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+SyntaxKit.h"; sourceTree = "<group>"; };
+		20082E921B0B8B240064DDA4 /* NSTextView+SyntaxKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+SyntaxKit.m"; sourceTree = "<group>"; };
+		20082E941B0B8B240064DDA4 /* SyntaxKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxKit.h; sourceTree = "<group>"; };
+		20082E951B0B8B240064DDA4 /* SyntaxKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxKit.m; sourceTree = "<group>"; };
+		20082E961B0B8B240064DDA4 /* TDBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBindings.h; sourceTree = "<group>"; };
+		20082E971B0B8B240064DDA4 /* TDBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindings.m; sourceTree = "<group>"; };
+		20082E981B0B8B240064DDA4 /* UKHelperMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKHelperMacros.h; sourceTree = "<group>"; };
+		20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SyntaxColorDefaults.plist; sourceTree = "<group>"; };
+		20082EB11B0B8D570064DDA4 /* Py80.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Py80.pch; sourceTree = "<group>"; };
+		20082EB41B0B91CA0064DDA4 /* Syntax Definitions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Syntax Definitions"; sourceTree = "<group>"; };
 		203D56831B0A55EE00A7779E /* Py80.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Py80.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203D56871B0A55EE00A7779E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		203D568B1B0A55EE00A7779E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,6 +127,36 @@
 			path = TAAdaptiveSpaceItem;
 			sourceTree = "<group>";
 		};
+		20082E801B0B8B240064DDA4 /* SyntaxKit */ = {
+			isa = PBXGroup;
+			children = (
+				20082E811B0B8B240064DDA4 /* ASKLineNumberMarker.h */,
+				20082E821B0B8B240064DDA4 /* ASKLineNumberMarker.m */,
+				20082E831B0B8B240064DDA4 /* ASKLineNumberView.h */,
+				20082E841B0B8B240064DDA4 /* ASKLineNumberView.m */,
+				20082E851B0B8B240064DDA4 /* ASKSyntax+syntaxForType.h */,
+				20082E861B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m */,
+				20082E871B0B8B240064DDA4 /* ASKSyntax.h */,
+				20082E881B0B8B240064DDA4 /* ASKSyntax.m */,
+				20082E891B0B8B240064DDA4 /* ASKSyntaxViewController.h */,
+				20082E8A1B0B8B240064DDA4 /* ASKSyntaxViewController.m */,
+				20082E8B1B0B8B240064DDA4 /* ASKTypesetter.h */,
+				20082E8C1B0B8B240064DDA4 /* ASKTypesetter.m */,
+				20082E8D1B0B8B240064DDA4 /* NSArray+Color.h */,
+				20082E8E1B0B8B240064DDA4 /* NSArray+Color.m */,
+				20082E8F1B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.h */,
+				20082E901B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m */,
+				20082E911B0B8B240064DDA4 /* NSTextView+SyntaxKit.h */,
+				20082E921B0B8B240064DDA4 /* NSTextView+SyntaxKit.m */,
+				20082E941B0B8B240064DDA4 /* SyntaxKit.h */,
+				20082E951B0B8B240064DDA4 /* SyntaxKit.m */,
+				20082E961B0B8B240064DDA4 /* TDBindings.h */,
+				20082E971B0B8B240064DDA4 /* TDBindings.m */,
+				20082E981B0B8B240064DDA4 /* UKHelperMacros.h */,
+			);
+			path = SyntaxKit;
+			sourceTree = "<group>";
+		};
 		203D567A1B0A55EE00A7779E = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +193,7 @@
 			children = (
 				203D56871B0A55EE00A7779E /* Info.plist */,
 				203D568B1B0A55EE00A7779E /* main.m */,
+				20082EB11B0B8D570064DDA4 /* Py80.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -148,6 +218,7 @@
 		203D56A81B0A610D00A7779E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				20082E801B0B8B240064DDA4 /* SyntaxKit */,
 				20F13AC71B0AD45F00C30D2A /* Views */,
 				203D56A91B0A610D00A7779E /* AppDelegate.h */,
 				203D56AA1B0A610D00A7779E /* AppDelegate.m */,
@@ -162,6 +233,8 @@
 		203D56AC1B0A612100A7779E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				20082EB41B0B91CA0064DDA4 /* Syntax Definitions */,
+				20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */,
 				203D56AD1B0A649D00A7779E /* KDEPythonLoader.py */,
 				203D56B21B0A716000A7779E /* Default.py */,
 			);
@@ -260,6 +333,8 @@
 			files = (
 				203D56AE1B0A649D00A7779E /* KDEPythonLoader.py in Resources */,
 				203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */,
+				20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */,
+				20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */,
 				203D56B31B0A716000A7779E /* Default.py in Resources */,
 				203D56911B0A55EE00A7779E /* MainMenu.xib in Resources */,
 			);
@@ -279,12 +354,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */,
 				20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */,
+				20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */,
+				20082EA31B0B8B240064DDA4 /* TDBindings.m in Sources */,
+				20082EA01B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m in Sources */,
 				203D568C1B0A55EE00A7779E /* main.m in Sources */,
+				20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */,
+				20082E991B0B8B240064DDA4 /* ASKLineNumberMarker.m in Sources */,
 				20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */,
 				207F18781B0A85C4009E2889 /* KDEPy80Context.m in Sources */,
+				20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
+				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
+				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
+				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
+				20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */,
 				203D56B11B0A657A00A7779E /* KDEPython.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,6 +430,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREFIX_HEADER = Py80/Py80.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -386,6 +473,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = Py80/Py80.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

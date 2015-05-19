@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class KDEOutputView;
+@class KDEOutputView, ASKSyntaxViewController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -17,6 +17,7 @@
 @property (nonatomic, readwrite, weak) IBOutlet KDEOutputView *outputView;
 @property (nonatomic, readwrite, strong) IBOutlet NSButton *runButton;
 @property (nonatomic, readwrite, weak) IBOutlet NSTextField *infoField;
+@property (nonatomic, readwrite, strong) IBOutlet ASKSyntaxViewController *syntaxViewController;
 
 - (IBAction) runCode:(id)sender;
 

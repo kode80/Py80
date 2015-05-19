@@ -1,0 +1,14 @@
+//
+//  Py80.pch
+//  Py80
+//
+//  Created by Benjamin S Hopkins on 5/19/15.
+//  Copyright (c) 2015 kode80. All rights reserved.
+//
+
+#ifndef Py80_Py80_pch
+#define Py80_Py80_pch
+
+#import <Cocoa/Cocoa.h>
+
+#endif
