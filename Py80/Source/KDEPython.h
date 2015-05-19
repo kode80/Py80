@@ -12,7 +12,8 @@
 
 + (KDEPython *) sharedPython;
 
-- (BOOL) setupEnvironment;
+- (void) setupEnvironmentWithCompletion:(void(^)(BOOL result))completionBlock;
+- (void) tearDown;
 
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
                         runFunction:(NSString*)functionName;

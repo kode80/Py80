@@ -43,7 +43,10 @@
     
     [KDEPy80Context sharedContext].delegate = self;
     
-    [[KDEPython sharedPython] setupEnvironment];
+    self.runButton.enabled = NO;
+    [[KDEPython sharedPython] setupEnvironmentWithCompletion:^(BOOL result){
+        self.runButton.enabled = YES;
+    }];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
