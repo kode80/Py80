@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E7B1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m */; };
+		20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */; };
 		203D568C1B0A55EE00A7779E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D568B1B0A55EE00A7779E /* main.m */; };
 		203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 203D568D1B0A55EE00A7779E /* Images.xcassets */; };
 		203D56911B0A55EE00A7779E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203D568F1B0A55EE00A7779E /* MainMenu.xib */; };
@@ -31,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20082E7A1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAdaptiveSpaceItem.h; sourceTree = "<group>"; };
+		20082E7B1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAdaptiveSpaceItem.m; sourceTree = "<group>"; };
+		20082E7C1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAdaptiveSpaceItemView.h; sourceTree = "<group>"; };
+		20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAdaptiveSpaceItemView.m; sourceTree = "<group>"; };
 		203D56831B0A55EE00A7779E /* Py80.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Py80.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203D56871B0A55EE00A7779E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		203D568B1B0A55EE00A7779E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,6 +77,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20082E791B0B6F540064DDA4 /* TAAdaptiveSpaceItem */ = {
+			isa = PBXGroup;
+			children = (
+				20082E7A1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.h */,
+				20082E7B1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m */,
+				20082E7C1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.h */,
+				20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */,
+			);
+			path = TAAdaptiveSpaceItem;
+			sourceTree = "<group>";
+		};
 		203D567A1B0A55EE00A7779E = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +171,7 @@
 		20F13AC71B0AD45F00C30D2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				20082E791B0B6F540064DDA4 /* TAAdaptiveSpaceItem */,
 				20F13AC81B0AD47600C30D2A /* KDEOutputView.h */,
 				20F13AC91B0AD47600C30D2A /* KDEOutputView.m */,
 			);
@@ -263,8 +281,10 @@
 			files = (
 				20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */,
 				203D568C1B0A55EE00A7779E /* main.m in Sources */,
+				20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */,
 				207F18781B0A85C4009E2889 /* KDEPy80Context.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
+				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
 				203D56B11B0A657A00A7779E /* KDEPython.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

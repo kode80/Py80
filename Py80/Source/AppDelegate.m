@@ -44,8 +44,10 @@
     [KDEPy80Context sharedContext].delegate = self;
     
     self.runButton.enabled = NO;
+    self.infoField.stringValue = @"Initializing Python...";
     [[KDEPython sharedPython] setupEnvironmentWithCompletion:^(BOOL result){
         self.runButton.enabled = YES;
+        self.infoField.stringValue = @"Py80: untitled.py";
     }];
 }
 
