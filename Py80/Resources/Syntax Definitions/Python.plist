@@ -7,24 +7,6 @@
 	<key>Components</key>
 	<array>
 		<dict>
-			<key>Color</key>
-			<array>
-				<integer>1</integer>
-				<integer>1</integer>
-				<integer>1</integer>
-			</array>
-			<key>End</key>
-			<string>&quot;</string>
-			<key>EscapeChar</key>
-			<string>\</string>
-			<key>Name</key>
-			<string>Strings</string>
-			<key>Start</key>
-			<string>&quot;</string>
-			<key>Type</key>
-			<string>String</string>
-		</dict>
-		<dict>
 			<key>Charset</key>
 			<string>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz@_1234567890</string>
 			<key>Color</key>
@@ -81,12 +63,22 @@
 			<string>Keywords</string>
 		</dict>
 		<dict>
+			<key>Color</key>
+			<array>
+				<integer>1</integer>
+				<integer>1</integer>
+				<integer>1</integer>
+			</array>
+			<key>End</key>
+			<string>&quot;</string>
+			<key>EscapeChar</key>
+			<string>\</string>
 			<key>Name</key>
-			<string>Preprocessor</string>
+			<string>Strings</string>
 			<key>Start</key>
-			<string>#define</string>
+			<string>&quot;</string>
 			<key>Type</key>
-			<string>OneLineComment</string>
+			<string>String</string>
 		</dict>
 		<dict>
 			<key>Name</key>
