@@ -43,13 +43,7 @@
     
     [KDEPy80Context sharedContext].delegate = self;
     
-    self.runButton.enabled = NO;
-    dispatch_async( dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [[KDEPython sharedPython] setupEnvironment];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self.runButton.enabled = YES;
-        });
-    });
+    [[KDEPython sharedPython] setupEnvironment];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
