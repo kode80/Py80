@@ -22,6 +22,7 @@
 		20082EA31B0B8B240064DDA4 /* TDBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E971B0B8B240064DDA4 /* TDBindings.m */; };
 		20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */; };
 		20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */ = {isa = PBXBuildFile; fileRef = 20082EB41B0B91CA0064DDA4 /* Syntax Definitions */; };
+		201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 201551241B0E168B00A008F4 /* KDEDocumentTracker.m */; };
 		203D568C1B0A55EE00A7779E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D568B1B0A55EE00A7779E /* main.m */; };
 		203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 203D568D1B0A55EE00A7779E /* Images.xcassets */; };
 		203D56911B0A55EE00A7779E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203D568F1B0A55EE00A7779E /* MainMenu.xib */; };
@@ -76,6 +77,8 @@
 		20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SyntaxColorDefaults.plist; sourceTree = "<group>"; };
 		20082EB11B0B8D570064DDA4 /* Py80.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Py80.pch; sourceTree = "<group>"; };
 		20082EB41B0B91CA0064DDA4 /* Syntax Definitions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Syntax Definitions"; sourceTree = "<group>"; };
+		201551231B0E168B00A008F4 /* KDEDocumentTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEDocumentTracker.h; sourceTree = "<group>"; };
+		201551241B0E168B00A008F4 /* KDEDocumentTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEDocumentTracker.m; sourceTree = "<group>"; };
 		203D56831B0A55EE00A7779E /* Py80.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Py80.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203D56871B0A55EE00A7779E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		203D568B1B0A55EE00A7779E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 				203D56B01B0A657A00A7779E /* KDEPython.m */,
 				207F18761B0A85C4009E2889 /* KDEPy80Context.h */,
 				207F18771B0A85C4009E2889 /* KDEPy80Context.m */,
+				201551231B0E168B00A008F4 /* KDEDocumentTracker.h */,
+				201551241B0E168B00A008F4 /* KDEDocumentTracker.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
 				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
+				201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */,
 				20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */,
 				203D56B11B0A657A00A7779E /* KDEPython.m in Sources */,
 			);

@@ -10,14 +10,30 @@
 #import "KDEPython.h"
 #import "KDEPy80Context.h"
 #import "KDEOutputView.h"
+#import "KDEDocumentTracker.h"
 
 #import "SyntaxKit.h"
 
 
-@interface AppDelegate () <KDEPy80ContextDelegate>
+typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
+{
+    KDESaveAlertResponseSave,
+    KDESaveAlertResponseDontSave,
+    KDESaveAlertResponseCancel
+};
+
+
+
+@interface AppDelegate ()
+<
+    KDEPy80ContextDelegate,
+    KDEDocumentTrackerDelegate,
+    ASKSyntaxViewControllerDelegate,
+    NSTextViewDelegate
+>
 
 @property (weak) IBOutlet NSWindow *window;
-@property (nonatomic, readwrite, copy) NSString *currentFilePath;
+@property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
 
 @end
 
@@ -36,18 +52,12 @@
     self.syntaxViewController.indentsWithSpaces = NO;
     self.syntaxViewController.showsLineNumbers = YES;
     self.syntaxViewController.syntax = [ASKSyntax syntaxForType:@"public.python-source"];
+    self.syntaxViewController.delegate = self;
     
-    NSString *code = [[NSUserDefaults standardUserDefaults] stringForKey:@"Py80Code"];
-    if( code == nil)
-    {
-        NSString *defaultPath = [[NSBundle mainBundle] pathForResource:@"Default"
-                                                                ofType:@"py"];
-        code = [NSString stringWithContentsOfFile:defaultPath
-                                         encoding:NSUTF8StringEncoding
-                                            error:NULL];
-    }
-    self.codeView.string = code;
-    self.currentFilePath = @"untitled.py";
+    self.docTracker = [[KDEDocumentTracker alloc] initWithDocumentExtensions:@[ @"py"]
+                                                          userDefaultsPrefix:@"py_"
+                                                                    delegate:self];
+    [self.docTracker checkUserDefaultsForPreviousActiveFile];
     
     [KDEPy80Context sharedContext].delegate = self;
     
@@ -59,91 +69,62 @@
     }];
 }
 
+- (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *)sender
+{
+    if( self.docTracker.activeFileNeedsSaving)
+    {
+        KDESaveAlertResponse response = [self runModalSaveAlert];
+        
+        if( response == KDESaveAlertResponseSave)
+        {
+            return [self.docTracker saveDocumentForWindow:self.window] ? NSTerminateNow : NSTerminateCancel;
+        }
+        else if( response == KDESaveAlertResponseCancel)
+        {
+            return NSTerminateCancel;
+        }
+    }
+    
+    return NSTerminateNow;
+}
+
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.codeView.string
-                                              forKey:@"Py80Code"];
+    [self.docTracker writeActiveFileToUserDefaults];
 }
 
 - (IBAction)newDocument:(id)sender
 {
-    NSString *defaultPath = [[NSBundle mainBundle] pathForResource:@"Default"
-                                                            ofType:@"py"];
-    self.codeView.string = [NSString stringWithContentsOfFile:defaultPath
-                                                     encoding:NSUTF8StringEncoding
-                                                        error:NULL];
+    [self.docTracker newDocument];
 }
 
 - (IBAction)openDocument:(id)sender
 {
-    NSOpenPanel *panel = [NSOpenPanel openPanel];
-    panel.allowedFileTypes = @[ @"py"];
-    panel.allowsMultipleSelection = NO;
-    panel.canChooseDirectories = NO;
-    
-    [panel beginSheetModalForWindow:self.window
-                  completionHandler:^(NSInteger result){
-                      if (result == NSFileHandlingPanelOKButton)
-                      {
-                          self.currentFilePath = panel.URL.filePathURL.path;
-                          self.codeView.string = [NSString stringWithContentsOfFile:self.currentFilePath
-                                                                           encoding:NSUTF8StringEncoding
-                                                                              error:NULL];
-                          [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:panel.URL.filePathURL];
-                          [self updateInfoField];
-                      }
-                  }];
+    [self.docTracker openDocumentForWindow:self.window];
 }
 
 - (IBAction)saveDocument:(id)sender
 {
-    NSSavePanel *panel = [NSSavePanel savePanel];
-    panel.allowedFileTypes = @[ @"py"];
-    panel.nameFieldStringValue = self.currentFilePath.lastPathComponent;
-    [panel beginSheetModalForWindow:self.window
-                  completionHandler:^(NSInteger result){
-                      if (result == NSFileHandlingPanelOKButton)
-                      {
-                          self.currentFilePath = panel.URL.filePathURL.path;
-                          [self.codeView.string writeToURL:panel.URL.filePathURL
-                                                atomically:YES
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-                          [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:panel.URL.filePathURL];
-                          [self updateInfoField];
-                      }
-                  }];
+    [self.docTracker saveDocumentForWindow:self.window];
 }
 
 - (IBAction)saveDocumentAs:(id)sender
 {
-    NSSavePanel *panel = [NSSavePanel savePanel];
-    panel.allowedFileTypes = @[ @"py"];
-    panel.nameFieldStringValue = self.currentFilePath.lastPathComponent;
-    [panel beginSheetModalForWindow:self.window
-                  completionHandler:^(NSInteger result){
-                      if (result == NSFileHandlingPanelOKButton)
-                      {
-                          self.currentFilePath = panel.URL.filePathURL.path;
-                          [self.codeView.string writeToURL:panel.URL.filePathURL
-                                                atomically:YES
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-                          [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:panel.URL.filePathURL];
-                          [self updateInfoField];
-                      }
-                  }];
+    [self.docTracker saveDocumentAsForWindow:self.window];
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
 {
-    self.currentFilePath = filename;
-    self.codeView.string = [NSString stringWithContentsOfFile:filename
-                                                     encoding:NSUTF8StringEncoding
-                                                        error:NULL];
-    [self updateInfoField];
+    BOOL isDirectory;
+    if( [filename.pathExtension isEqualToString:@"py"] &&
+        [[NSFileManager defaultManager] fileExistsAtPath:filename isDirectory:&isDirectory] &&
+        isDirectory == NO)
+    {
+        [self.docTracker openDocumentAtPath:filename];
+        return YES;
+    }
     
-    return YES;
+    return NO;
 }
 
 - (IBAction) runCode:(id)sender
@@ -164,7 +145,76 @@
 
 - (void) updateInfoField
 {
-    self.infoField.stringValue = [NSString stringWithFormat:@"Py80: %@", self.currentFilePath.lastPathComponent];
+    NSString *fileName = self.docTracker.activeFilePath.lastPathComponent;
+    NSString *fileStatus = self.docTracker.activeFileNeedsSaving ? @"*" : @"";
+    self.infoField.stringValue = [NSString stringWithFormat:@"Py80: %@ %@", fileName, fileStatus];
+}
+
+- (KDESaveAlertResponse) runModalSaveAlert
+{
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [NSString stringWithFormat:@"Do you want to save the changes made to \"%@\"?", self.docTracker.activeFilePath.lastPathComponent];
+    alert.informativeText = @"Your changes will be lost if you don't save them.";
+    [alert addButtonWithTitle:@"Save"];
+    [alert addButtonWithTitle:@"Don't save"];
+    [alert addButtonWithTitle:@"Cancel"];
+    
+    switch( [alert runModal])
+    {
+        case NSAlertFirstButtonReturn: return KDESaveAlertResponseSave;
+        case NSAlertSecondButtonReturn: return KDESaveAlertResponseDontSave;
+        default:
+        case NSAlertThirdButtonReturn: return KDESaveAlertResponseCancel;
+    }
+}
+
+#pragma mark - KDEDocumentTrackerDelegate
+
+- (void) documentTrackerActiveFileNeedsSaveDidChange:(KDEDocumentTracker *)tracker
+{
+    [self updateInfoField];
+}
+
+- (void) documentTrackerActiveFileDidChange:(KDEDocumentTracker *)tracker
+{
+    NSString *path = tracker.activeFileIsNew ? [[NSBundle mainBundle] pathForResource:@"Default" ofType:@"py"] :
+                                               tracker.activeFilePath;
+    
+    self.codeView.string = [NSString stringWithContentsOfFile:path
+                                                     encoding:NSUTF8StringEncoding
+                                                        error:NULL];
+    [self updateInfoField];
+}
+
+- (BOOL) documentTrackerActiveFileNeedingSaveCanChange:(KDEDocumentTracker *)tracker
+{
+    KDESaveAlertResponse response = [self runModalSaveAlert];
+    BOOL canChange = response == KDESaveAlertResponseSave || response == KDESaveAlertResponseDontSave;
+    
+    if( response == KDESaveAlertResponseSave)
+    {
+        return [tracker saveDocumentForWindow:self.window];
+    }
+    
+    return canChange;
+}
+
+- (BOOL) documentTrackerSaveActiveFile:(KDEDocumentTracker *)tracker
+{
+    BOOL success = [self.codeView.string writeToFile:tracker.activeFilePath
+                                          atomically:YES
+                                            encoding:NSUTF8StringEncoding
+                                               error:NULL];
+    [self updateInfoField];
+    
+    return success;
+}
+
+#pragma mark - ASKSyntaxViewControllerDelegate
+
+- (void) syntaxViewControllerTextDidChange:(ASKSyntaxViewController *)controller
+{
+    [self.docTracker markActiveFileAsNeedingSave];
 }
 
 #pragma mark - KDEPy80ContextDelegate

@@ -368,6 +368,11 @@ static void * const KVO = (void*)&KVO;
 				[[self view] insertText: [tsString substringWithRange:spacesRange]];
 		}
 	}
+    
+    if( [self.delegate respondsToSelector:@selector(syntaxViewControllerTextDidChange:)])
+    {
+        [self.delegate syntaxViewControllerTextDidChange:self];
+    }
 }
 
 
@@ -902,7 +907,6 @@ static void * const KVO = (void*)&KVO;
         if( [self.lastPartialWord isEqualToString:partialWord] == NO)
         {
             self.lastPartialWord = partialWord;
-            NSLog(@"last partial: %@", partialWord);
             [self.view complete:nil];
         }
     }
