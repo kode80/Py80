@@ -107,9 +107,4 @@
                                  functionName:functionName];
 }
 
-- (void) test
-{
-    NSLog(@"Test from python -> objc");
-}
-
 @end
