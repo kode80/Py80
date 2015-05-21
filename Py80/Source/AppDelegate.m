@@ -88,6 +88,20 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     return NSTerminateNow;
 }
 
+- (BOOL) validateMenuItem:(NSMenuItem *)menuItem
+{
+    if( menuItem.action == @selector(saveDocument:))
+    {
+        return self.docTracker.activeFileIsNew || self.docTracker.activeFileNeedsSaving;
+    }
+    else if( menuItem.action == @selector(saveDocumentAs:))
+    {
+        return self.docTracker.activeFileIsNew == NO;
+    }
+    
+    return [[NSApplication sharedApplication] validateMenuItem:menuItem];
+}
+
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     [self.docTracker writeActiveFileToUserDefaults];
