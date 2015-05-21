@@ -179,6 +179,17 @@
     return NO;
 }
 
+- (void) revertDocumentToSaved
+{
+    if( self.activeFileIsNew == NO &&
+        self.activeFileNeedsSaving &&
+        [self.delegate documentTrackerActiveFileNeedingSaveCanRevert:self])
+    {
+        self.activeFileNeedsSaving = NO;
+        [self.delegate documentTrackerActiveFileDidChange:self];
+    }
+}
+
 - (void) markActiveFileAsNeedingSave
 {
     self.activeFileNeedsSaving = YES;

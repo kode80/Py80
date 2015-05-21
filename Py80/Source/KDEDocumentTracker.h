@@ -31,6 +31,7 @@
 - (void) openDocumentAtPath:(NSString *)path;
 - (BOOL) saveDocumentForWindow:(NSWindow *)window;
 - (BOOL) saveDocumentAsForWindow:(NSWindow *)window;
+- (void) revertDocumentToSaved;
 
 - (void) markActiveFileAsNeedingSave;
 
@@ -42,6 +43,7 @@
 - (void) documentTrackerActiveFileNeedsSaveDidChange:(KDEDocumentTracker *)tracker;
 
 - (BOOL) documentTrackerActiveFileNeedingSaveCanChange:(KDEDocumentTracker *)tracker;
+- (BOOL) documentTrackerActiveFileNeedingSaveCanRevert:(KDEDocumentTracker *)tracker;
 - (void) documentTrackerActiveFileDidChange:(KDEDocumentTracker *)tracker;
 - (BOOL) documentTrackerSaveActiveFile:(KDEDocumentTracker *)tracker;
 

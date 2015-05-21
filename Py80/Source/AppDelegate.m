@@ -98,6 +98,10 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     {
         return self.docTracker.activeFileIsNew == NO;
     }
+    else if( menuItem.action == @selector(revertDocumentToSaved:))
+    {
+        return self.docTracker.activeFileIsNew == NO && self.docTracker.activeFileNeedsSaving;
+    }
     
     return [[NSApplication sharedApplication] validateMenuItem:menuItem];
 }
@@ -125,6 +129,11 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (IBAction)saveDocumentAs:(id)sender
 {
     [self.docTracker saveDocumentAsForWindow:self.window];
+}
+
+- (IBAction)revertDocumentToSaved:(id)sender
+{
+    [self.docTracker revertDocumentToSaved];
 }
 
 - (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
@@ -211,6 +220,17 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     }
     
     return canChange;
+}
+
+- (BOOL) documentTrackerActiveFileNeedingSaveCanRevert:(KDEDocumentTracker *)tracker
+{
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [NSString stringWithFormat:@"Do you want to revert \"%@\" to the last saved version?", self.docTracker.activeFilePath.lastPathComponent];
+    alert.informativeText = @"Your unsaved changes will be lost if you choose to revert.";
+    [alert addButtonWithTitle:@"Revert"];
+    [alert addButtonWithTitle:@"Cancel"];
+    
+    return [alert runModal] == NSAlertFirstButtonReturn;
 }
 
 - (BOOL) documentTrackerSaveActiveFile:(KDEDocumentTracker *)tracker
