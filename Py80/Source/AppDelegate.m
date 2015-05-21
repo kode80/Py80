@@ -34,6 +34,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
+@property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
 
 @end
 
@@ -48,6 +49,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [self applyDefaultsToTextView:self.console];
 
     self.console.editable = NO;
+    
+    self.logDateFormatter = [NSDateFormatter new];
+    self.logDateFormatter.dateFormat = @"dd-MM-YY HH:mm:ss.SSS";
     
     self.syntaxViewController.indentsWithSpaces = NO;
     self.syntaxViewController.showsLineNumbers = YES;
@@ -255,9 +259,17 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (void) py80Context:(KDEPy80Context *)context logMessage:(NSString *)message
 {
-    NSString *formattedMessage = [NSString stringWithFormat:@"%@: %@\n", [NSDate date], message];
-    NSString *output = [self.console.string stringByAppendingString:formattedMessage];
-    self.console.string = output;
+    NSString *date = [self.logDateFormatter stringFromDate:[NSDate date]];
+    NSString *formattedMessage = [NSString stringWithFormat:@"%@ %@\n", date, message];
+
+    NSFont *font = [NSFont fontWithName:@"Monaco"
+                                   size:11.0f];
+    NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:formattedMessage
+                                                                               attributes:@{ NSFontAttributeName : font }];
+    [output addAttributes:@{ NSForegroundColorAttributeName : [NSColor grayColor] }
+                    range:NSMakeRange( 0, date.length)];
+    
+    [self.console.textStorage appendAttributedString:output];
 }
 
 - (void) py80ContextClearLog:(KDEPy80Context *)context
