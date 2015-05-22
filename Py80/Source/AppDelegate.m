@@ -357,6 +357,14 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
             function:(NSString *)function
           lineNumber:(NSInteger)lineNumber
 {
+    if( [type isEqualTo:@"SyntaxError"])
+    {
+        NSRange lineRange = [description rangeOfString:@"line "];
+        NSString *lineString = [description substringFromIndex:lineRange.location + lineRange.length];
+        lineNumber = [lineString integerValue];
+        description = @"Invalid syntax";
+    }
+    
     NSString *message = [NSString stringWithFormat:@"%@\n%@", type, description];
     NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:message];
     
