@@ -99,4 +99,21 @@
     }
 }
 
+- (void) reportExceptionType:(NSString *)type
+                 description:(NSString *)description
+                    filePath:(NSString *)filePath
+                    function:(NSString *)function
+                  lineNumber:(NSInteger)lineNumber
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:reportExceptionType:description:filePath:function:lineNumber:)])
+    {
+        [self.delegate py80Context:self
+               reportExceptionType:type
+                       description:description
+                          filePath:filePath
+                          function:function
+                        lineNumber:lineNumber];
+    }
+}
+
 @end

@@ -20,6 +20,8 @@
             <connections>
                 <outlet property="codeView" destination="3Ky-Bg-C7G" id="Xby-yg-sa1"/>
                 <outlet property="console" destination="vSn-P3-RRN" id="WCu-nf-q1C"/>
+                <outlet property="exceptionLabel" destination="fyE-ie-RxJ" id="Way-nG-P9m"/>
+                <outlet property="exceptionView" destination="qYW-g8-i8Z" id="kYQ-rw-kr1"/>
                 <outlet property="infoField" destination="0vi-7E-cOT" id="obU-yO-qp2"/>
                 <outlet property="outputView" destination="2gb-pG-ihC" id="hDx-gR-6di"/>
                 <outlet property="runButton" destination="bZ3-gu-STN" id="WsB-ZF-tpp"/>
@@ -455,6 +457,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
+                                    <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="qYW-g8-i8Z">
+                                        <rect key="frame" x="6" y="229" width="258" height="29"/>
+                                        <view key="contentView">
+                                            <rect key="frame" x="1" y="1" width="256" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyE-ie-RxJ">
+                                                    <rect key="frame" x="3" y="5" width="250" height="17"/>
+                                                    <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" allowsEditingTextAttributes="YES" id="aJ4-rD-m43">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                        </view>
+                                        <color key="borderColor" red="0.97742730379104614" green="0.8456730842590332" blue="0.48844313621520996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="fillColor" red="0.98355410153876732" green="0.98594826459884644" blue="0.88353324028330271" alpha="1" colorSpace="calibratedRGB"/>
+                                    </box>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="fk5-yO-F8L" firstAttribute="top" secondItem="Jff-8F-cvc" secondAttribute="top" id="Jtt-Ey-tPB"/>

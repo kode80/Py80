@@ -40,6 +40,12 @@
            withWidth:(CGFloat)width
               height:(CGFloat)height;
 
+- (void) reportExceptionType:(NSString *)type
+                 description:(NSString *)description
+                    filePath:(NSString *)filePath
+                    function:(NSString *)function
+                  lineNumber:(NSInteger)lineNumber;
+
 @end
 
 
@@ -72,5 +78,12 @@
                    y:(CGFloat)y
            withWidth:(CGFloat)width
               height:(CGFloat)height;
+
+- (void) py80Context:(KDEPy80Context *)context
+ reportExceptionType:(NSString *)type
+         description:(NSString *)description
+            filePath:(NSString *)filePath
+            function:(NSString *)function
+          lineNumber:(NSInteger)lineNumber;
 
 @end

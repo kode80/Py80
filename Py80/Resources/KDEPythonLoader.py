@@ -7,7 +7,6 @@
 #
 
 from Foundation import *
-from AppKit import *
 
 import imp
 import inspect
@@ -15,19 +14,19 @@ import inspect
 class KDEPythonLoader(NSObject):
 	@classmethod
 	def loadModuleFromSourceString_functionName_(self, source, func):
+		py80 = KDEPy80Context()
 		try:
 			kdemodule = imp.new_module("kdemodule")
 			exec source in kdemodule.__dict__
 			realfunc = getattr( kdemodule, func, None)
 			if realfunc is not None:
-				py80 = KDEPy80Context()
 				realfunc(py80)
 		except Exception as e:
 			tb = inspect.trace()[-1]
 			fileName = tb[1]
 			lineNumber = tb[2]
 			functionName = tb[ 3]
-			NSRunAlertPanel('Script Error', '{}\n\nfile:{}\nfunc:{}\nline:{}'.format( e, fileName, functionName, lineNumber), None, None, None)
+			py80.context.reportExceptionType_description_filePath_function_lineNumber_( type(e).__name__, str(e), fileName, functionName, lineNumber)
 		finally:
 			return NO
 

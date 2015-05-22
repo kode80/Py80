@@ -44,6 +44,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.window.titleVisibility = NSWindowTitleHidden;
+    [self.exceptionView removeFromSuperview];
     
     [self applyDefaultsToTextView:self.codeView];
     [self applyDefaultsToTextView:self.console];
@@ -320,4 +321,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [self.outputView addRectangle:NSMakeRect( x, y, width, height)];
 }
 
+- (void) py80Context:(KDEPy80Context *)context
+ reportExceptionType:(NSString *)type
+         description:(NSString *)description
+            filePath:(NSString *)filePath
+            function:(NSString *)function
+          lineNumber:(NSInteger)lineNumber
+{
+}
 @end

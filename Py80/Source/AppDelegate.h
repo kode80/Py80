@@ -18,6 +18,8 @@
 @property (nonatomic, readwrite, strong) IBOutlet NSButton *runButton;
 @property (nonatomic, readwrite, weak) IBOutlet NSTextField *infoField;
 @property (nonatomic, readwrite, strong) IBOutlet ASKSyntaxViewController *syntaxViewController;
+@property (nonatomic, readwrite, strong) IBOutlet NSView *exceptionView;
+@property (nonatomic, readwrite, strong) IBOutlet NSTextField *exceptionLabel;
 
 - (IBAction) runCode:(id)sender;
 
