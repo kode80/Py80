@@ -34,6 +34,7 @@
 		20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */; };
 		20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9831B0FD886005658C3 /* KDEPy80Context.m */; };
 		20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9851B0FD886005658C3 /* KDEPython.m */; };
+		20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */; };
 		20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F13AC91B0AD47600C30D2A /* KDEOutputView.m */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +100,8 @@
 		20A6E9831B0FD886005658C3 /* KDEPy80Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPy80Context.m; sourceTree = "<group>"; };
 		20A6E9841B0FD886005658C3 /* KDEPython.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPython.h; sourceTree = "<group>"; };
 		20A6E9851B0FD886005658C3 /* KDEPython.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPython.m; sourceTree = "<group>"; };
+		20A6E9881B0FD9C8005658C3 /* KDEExceptionFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEExceptionFormatter.h; sourceTree = "<group>"; };
+		20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEExceptionFormatter.m; sourceTree = "<group>"; };
 		20F13AC81B0AD47600C30D2A /* KDEOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputView.h; sourceTree = "<group>"; };
 		20F13AC91B0AD47600C30D2A /* KDEOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,6 +256,8 @@
 				20A6E9831B0FD886005658C3 /* KDEPy80Context.m */,
 				20A6E9841B0FD886005658C3 /* KDEPython.h */,
 				20A6E9851B0FD886005658C3 /* KDEPython.m */,
+				20A6E9881B0FD9C8005658C3 /* KDEExceptionFormatter.h */,
+				20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */,
 			);
 			path = Python;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 				20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
+				20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */,
 				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
 				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
 				20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */,

@@ -12,6 +12,7 @@
 #import "KDEOutputView.h"
 #import "KDEDocumentTracker.h"
 #import "KDEExceptionView.h"
+#import "KDEExceptionFormatter.h"
 
 #import "SyntaxKit.h"
 
@@ -36,6 +37,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
 @property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
+@property (nonatomic, readwrite, strong) KDEExceptionFormatter *exceptionFormatter;
 
 @end
 
@@ -53,6 +55,13 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     
     self.logDateFormatter = [NSDateFormatter new];
     self.logDateFormatter.dateFormat = @"dd-MM-YY HH:mm:ss.SSS";
+    
+    self.exceptionFormatter = [[KDEExceptionFormatter alloc] initWithTypeFont:[NSFont fontWithName:@"Monaco" size:10.0f]
+                                                                    typeColor:[NSColor redColor]
+                                                              descriptionFont:[NSFont fontWithName:@"Helvetica Neue" size:13.0f]
+                                                             descriptionColor:[NSColor blackColor]
+                                                                     infoFont:[NSFont fontWithName:@"Monaco" size:11.0f]
+                                                                    infoColor:[NSColor blackColor]];
     
     self.syntaxViewController.indentsWithSpaces = NO;
     self.syntaxViewController.showsLineNumbers = YES;
@@ -331,42 +340,13 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
             function:(NSString *)function
           lineNumber:(NSInteger)lineNumber
 {
-    if( [type isEqualTo:@"SyntaxError"])
-    {
-        NSRange lineRange = [description rangeOfString:@"line "];
-        NSString *lineString = [description substringFromIndex:lineRange.location + lineRange.length];
-        lineNumber = [lineString integerValue];
-        description = @"Invalid syntax";
-    }
+    self.exceptionView.label.attributedStringValue = [self.exceptionFormatter attributedStringForExceptionType:type
+                                                                                                   description:description
+                                                                                                      filePath:filePath
+                                                                                                      function:function
+                                                                                                    lineNumber:lineNumber];
     
-    BOOL isExternal = [filePath isEqualTo:@"<string>"] == NO;
-    if( isExternal) { type = [type stringByAppendingFormat:@" in %@", filePath.lastPathComponent]; }
-    NSString *externalString = isExternal ? [NSString stringWithFormat:@"\n\nFile: %@\nFunction: %@\nLine: %@", filePath, function, @(lineNumber)] : @"";
-    NSString *message = [NSString stringWithFormat:@"%@\n%@%@", type, description, externalString];
-    
-    NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:message];
-    
-    NSDictionary *attributes = @{ NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:10.0f],
-                                  NSForegroundColorAttributeName : [NSColor redColor]};
-    [output setAttributes:attributes
-                    range:[message rangeOfString:type]];
-    
-    attributes = @{ NSFontAttributeName : [NSFont fontWithName:@"Helvetica Neue" size:13.0f],
-                    NSForegroundColorAttributeName : [NSColor blackColor]};
-    [output setAttributes:attributes
-                    range:[message rangeOfString:description]];
-    
-    if( isExternal)
-    {
-        attributes = @{ NSFontAttributeName : [NSFont fontWithName:@"Helvetica Neue" size:11.0f],
-                        NSForegroundColorAttributeName : [NSColor blackColor]};
-        [output setAttributes:attributes
-                        range:[message rangeOfString:externalString]];
-        lineNumber = 1;
-    }
-    
-    self.exceptionView.label.attributedStringValue = output;
-    
+    lineNumber = [filePath isEqualToString:@"<string>"] ? lineNumber : 1;
     
     [self.syntaxViewController goToLine:lineNumber];
     NSRange range = [self.syntaxViewController rangeForLine:lineNumber];
