@@ -20,6 +20,8 @@
 @property (nonatomic, readwrite, strong) IBOutlet ASKSyntaxViewController *syntaxViewController;
 @property (nonatomic, readwrite, strong) IBOutlet NSView *exceptionView;
 @property (nonatomic, readwrite, strong) IBOutlet NSTextField *exceptionLabel;
+@property (nonatomic, readwrite, strong) IBOutlet NSLayoutConstraint * exceptionLeftConstraint;
+@property (nonatomic, readwrite, strong) IBOutlet NSLayoutConstraint * exceptionTopConstraint;
 
 - (IBAction) runCode:(id)sender;
 

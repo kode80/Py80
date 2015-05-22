@@ -429,7 +429,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="270" height="403"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk5-yO-F8L">
+                                    <scrollView wantsLayer="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk5-yO-F8L">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="403"/>
                                         <clipView key="contentView" id="Fta-UV-YsU">
                                             <rect key="frame" x="1" y="1" width="223" height="133"/>
@@ -457,14 +457,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <box autoresizesSubviews="NO" fixedFrame="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="qYW-g8-i8Z">
-                                        <rect key="frame" x="6" y="229" width="258" height="29"/>
+                                    <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="qYW-g8-i8Z">
+                                        <rect key="frame" x="1" y="274" width="268" height="29"/>
                                         <view key="contentView">
-                                            <rect key="frame" x="1" y="1" width="256" height="27"/>
+                                            <rect key="frame" x="1" y="1" width="266" height="27"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyE-ie-RxJ">
-                                                    <rect key="frame" x="3" y="5" width="250" height="17"/>
+                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyE-ie-RxJ">
+                                                    <rect key="frame" x="3" y="5" width="260" height="17"/>
                                                     <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" allowsEditingTextAttributes="YES" id="aJ4-rD-m43">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -473,15 +473,24 @@
                                                 </textField>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="fyE-ie-RxJ" firstAttribute="top" secondItem="qYW-g8-i8Z" secondAttribute="top" constant="6" id="B80-KN-eck"/>
+                                            <constraint firstAttribute="bottom" secondItem="fyE-ie-RxJ" secondAttribute="bottom" constant="6" id="gaM-Vg-zHP"/>
+                                            <constraint firstItem="fyE-ie-RxJ" firstAttribute="leading" secondItem="qYW-g8-i8Z" secondAttribute="leading" constant="6" id="r1a-VL-fs9"/>
+                                            <constraint firstAttribute="trailing" secondItem="fyE-ie-RxJ" secondAttribute="trailing" constant="6" id="uzB-2F-Gyy"/>
+                                        </constraints>
                                         <color key="borderColor" red="0.97742730379104614" green="0.8456730842590332" blue="0.48844313621520996" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="fillColor" red="0.98355410153876732" green="0.98594826459884644" blue="0.88353324028330271" alpha="1" colorSpace="calibratedRGB"/>
                                     </box>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="fk5-yO-F8L" firstAttribute="top" secondItem="Jff-8F-cvc" secondAttribute="top" id="Jtt-Ey-tPB"/>
-                                    <constraint firstAttribute="trailing" secondItem="fk5-yO-F8L" secondAttribute="trailing" id="PqU-Zr-3Kc"/>
-                                    <constraint firstAttribute="bottom" secondItem="fk5-yO-F8L" secondAttribute="bottom" id="hxR-Th-VXL"/>
-                                    <constraint firstItem="fk5-yO-F8L" firstAttribute="leading" secondItem="Jff-8F-cvc" secondAttribute="leading" id="mYL-we-VcE"/>
+                                    <constraint firstAttribute="bottom" secondItem="fk5-yO-F8L" secondAttribute="bottom" id="0pW-eq-mpL"/>
+                                    <constraint firstItem="qYW-g8-i8Z" firstAttribute="trailing" secondItem="fk5-yO-F8L" secondAttribute="trailing" constant="-1" id="5z7-29-iPg"/>
+                                    <constraint firstItem="qYW-g8-i8Z" firstAttribute="leading" secondItem="fk5-yO-F8L" secondAttribute="leading" constant="1" id="7Dp-Jk-8XS"/>
+                                    <constraint firstItem="qYW-g8-i8Z" firstAttribute="top" secondItem="fk5-yO-F8L" secondAttribute="top" constant="100" id="AKK-PM-TZu"/>
+                                    <constraint firstAttribute="trailing" secondItem="fk5-yO-F8L" secondAttribute="trailing" id="HLc-17-Cjv"/>
+                                    <constraint firstItem="fk5-yO-F8L" firstAttribute="top" secondItem="Jff-8F-cvc" secondAttribute="top" id="Uu7-11-lbl"/>
+                                    <constraint firstItem="fk5-yO-F8L" firstAttribute="leading" secondItem="Jff-8F-cvc" secondAttribute="leading" id="ZbC-nc-XeU"/>
                                 </constraints>
                             </customView>
                             <customView id="gON-C6-MTX">

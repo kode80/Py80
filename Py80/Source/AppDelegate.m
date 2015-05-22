@@ -44,7 +44,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.window.titleVisibility = NSWindowTitleHidden;
-    [self.exceptionView removeFromSuperview];
     
     [self applyDefaultsToTextView:self.codeView];
     [self applyDefaultsToTextView:self.console];
@@ -72,6 +71,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         self.runButton.enabled = YES;
         [self updateInfoField];
     }];
+    
+    [self.codeView.enclosingScrollView.documentView addSubview:self.exceptionView];
 }
 
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *)sender
@@ -328,5 +329,38 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
             function:(NSString *)function
           lineNumber:(NSInteger)lineNumber
 {
+    NSString *message = [NSString stringWithFormat:@"%@\n%@", type, description];
+    NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:message];
+    
+    NSDictionary *attributes = @{ NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:10.0f],
+                                  NSForegroundColorAttributeName : [NSColor redColor]};
+    [output setAttributes:attributes
+                    range:[message rangeOfString:type]];
+    
+    attributes = @{ NSFontAttributeName : [NSFont fontWithName:@"Helvetica Neue" size:13.0f],
+                    NSForegroundColorAttributeName : [NSColor blackColor]};
+    [output setAttributes:attributes
+                    range:[message rangeOfString:description]];
+    
+    self.exceptionLabel.attributedStringValue = output;
+    
+    
+    [self.syntaxViewController goToLine:lineNumber];
+    NSRange glyphRange = [self.codeView.layoutManager glyphRangeForCharacterRange:[self.syntaxViewController rangeForLine:lineNumber]
+                                                             actualCharacterRange:NULL];
+    NSRect lineRect = [self.codeView.layoutManager boundingRectForGlyphRange:glyphRange
+                                                             inTextContainer:self.codeView.textContainer];
+    NSPoint containerOrigin = self.codeView.textContainerOrigin;
+    lineRect.origin.x += containerOrigin.x;
+    lineRect.origin.y += containerOrigin.y;
+    
+    lineRect.origin.y += lineRect.size.height;
+    lineRect.size.width = self.codeView.bounds.size.width - lineRect.origin.x - 6;
+    lineRect.size.height = 100;
+    
+    
+    self.exceptionView.frame = lineRect;
+     
 }
+
 @end
