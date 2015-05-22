@@ -68,6 +68,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.syntaxViewController.syntax = [ASKSyntax syntaxForType:@"public.python-source"];
     self.syntaxViewController.delegate = self;
     
+    self.exceptionView.hidden = YES;
+    [self.exceptionView addToTextView:self.codeView];
+    
     self.docTracker = [[KDEDocumentTracker alloc] initWithDocumentExtensions:@[ @"py"]
                                                           userDefaultsPrefix:@"py_"
                                                                     delegate:self];
@@ -81,9 +84,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         self.runButton.enabled = YES;
         [self updateInfoField];
     }];
-    
-    self.exceptionView.hidden = YES;
-    [self.exceptionView addToTextView:self.codeView];
 }
 
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *)sender
