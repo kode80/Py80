@@ -18,6 +18,4 @@
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
                         runFunction:(NSString*)functionName;
 
-- (void) test;
-
 @end

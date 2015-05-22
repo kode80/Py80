@@ -30,10 +30,10 @@
 		203D56A71B0A57BC00A7779E /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 203D56A61B0A57BC00A7779E /* Python.framework */; };
 		203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D56AA1B0A610D00A7779E /* AppDelegate.m */; };
 		203D56AE1B0A649D00A7779E /* KDEPythonLoader.py in Resources */ = {isa = PBXBuildFile; fileRef = 203D56AD1B0A649D00A7779E /* KDEPythonLoader.py */; };
-		203D56B11B0A657A00A7779E /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D56B01B0A657A00A7779E /* KDEPython.m */; };
 		203D56B31B0A716000A7779E /* Default.py in Resources */ = {isa = PBXBuildFile; fileRef = 203D56B21B0A716000A7779E /* Default.py */; };
-		207F18781B0A85C4009E2889 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 207F18771B0A85C4009E2889 /* KDEPy80Context.m */; };
 		20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */; };
+		20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9831B0FD886005658C3 /* KDEPy80Context.m */; };
+		20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9851B0FD886005658C3 /* KDEPython.m */; };
 		20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F13AC91B0AD47600C30D2A /* KDEOutputView.m */; };
 /* End PBXBuildFile section */
 
@@ -92,13 +92,13 @@
 		203D56A91B0A610D00A7779E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		203D56AA1B0A610D00A7779E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		203D56AD1B0A649D00A7779E /* KDEPythonLoader.py */ = {isa = PBXFileReference; explicitFileType = text.script.python; fileEncoding = 4; path = KDEPythonLoader.py; sourceTree = "<group>"; };
-		203D56AF1B0A657A00A7779E /* KDEPython.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPython.h; sourceTree = "<group>"; };
-		203D56B01B0A657A00A7779E /* KDEPython.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPython.m; sourceTree = "<group>"; };
 		203D56B21B0A716000A7779E /* Default.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Default.py; sourceTree = "<group>"; };
-		207F18761B0A85C4009E2889 /* KDEPy80Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPy80Context.h; sourceTree = "<group>"; };
-		207F18771B0A85C4009E2889 /* KDEPy80Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPy80Context.m; sourceTree = "<group>"; };
 		20A6E97E1B0FC128005658C3 /* KDEExceptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEExceptionView.h; sourceTree = "<group>"; };
 		20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEExceptionView.m; sourceTree = "<group>"; };
+		20A6E9821B0FD886005658C3 /* KDEPy80Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPy80Context.h; sourceTree = "<group>"; };
+		20A6E9831B0FD886005658C3 /* KDEPy80Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPy80Context.m; sourceTree = "<group>"; };
+		20A6E9841B0FD886005658C3 /* KDEPython.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPython.h; sourceTree = "<group>"; };
+		20A6E9851B0FD886005658C3 /* KDEPython.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPython.m; sourceTree = "<group>"; };
 		20F13AC81B0AD47600C30D2A /* KDEOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputView.h; sourceTree = "<group>"; };
 		20F13AC91B0AD47600C30D2A /* KDEOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,14 +224,11 @@
 		203D56A81B0A610D00A7779E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				20A6E9811B0FD886005658C3 /* Python */,
 				20082E801B0B8B240064DDA4 /* SyntaxKit */,
 				20F13AC71B0AD45F00C30D2A /* Views */,
 				203D56A91B0A610D00A7779E /* AppDelegate.h */,
 				203D56AA1B0A610D00A7779E /* AppDelegate.m */,
-				203D56AF1B0A657A00A7779E /* KDEPython.h */,
-				203D56B01B0A657A00A7779E /* KDEPython.m */,
-				207F18761B0A85C4009E2889 /* KDEPy80Context.h */,
-				207F18771B0A85C4009E2889 /* KDEPy80Context.m */,
 				201551231B0E168B00A008F4 /* KDEDocumentTracker.h */,
 				201551241B0E168B00A008F4 /* KDEDocumentTracker.m */,
 			);
@@ -247,6 +244,17 @@
 				203D56B21B0A716000A7779E /* Default.py */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		20A6E9811B0FD886005658C3 /* Python */ = {
+			isa = PBXGroup;
+			children = (
+				20A6E9821B0FD886005658C3 /* KDEPy80Context.h */,
+				20A6E9831B0FD886005658C3 /* KDEPy80Context.m */,
+				20A6E9841B0FD886005658C3 /* KDEPython.h */,
+				20A6E9851B0FD886005658C3 /* KDEPython.m */,
+			);
+			path = Python;
 			sourceTree = "<group>";
 		};
 		20F13AC71B0AD45F00C30D2A /* Views */ = {
@@ -364,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */,
 				20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */,
 				20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */,
 				20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */,
@@ -373,7 +382,6 @@
 				20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */,
 				20082E991B0B8B240064DDA4 /* ASKLineNumberMarker.m in Sources */,
 				20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */,
-				207F18781B0A85C4009E2889 /* KDEPy80Context.m in Sources */,
 				20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
@@ -383,7 +391,7 @@
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
 				201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */,
 				20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */,
-				203D56B11B0A657A00A7779E /* KDEPython.m in Sources */,
+				20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
