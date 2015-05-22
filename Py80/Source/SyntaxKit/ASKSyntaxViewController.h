@@ -70,6 +70,7 @@
 -(IBAction) unindentSelection: (id)sender;
 -(IBAction)	toggleCommentForSelection: (id)sender;
 
+- (NSRange) rangeForLine:(NSUInteger)lineNumber;
 -(void)		goToLine: (NSUInteger)lineNum;
 -(void)		goToCharacter: (NSUInteger)charNum;
 -(void)		goToRangeFrom: (NSUInteger)startCh toChar: (NSUInteger)endCh;

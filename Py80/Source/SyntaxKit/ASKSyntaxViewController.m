@@ -393,26 +393,26 @@ static void * const KVO = (void*)&KVO;
 //		This selects the specified line of the document.
 // -----------------------------------------------------------------------------
 
--(void)	goToLine: (NSUInteger)lineNum
+- (NSRange) rangeForLine:(NSUInteger)lineNumber
 {
-	NSRange range = NSMakeRange( 0, 0);
+    NSRange range = NSMakeRange( 0, 0);
     NSString *string = self.view.string;
     NSInteger count = string.length;
     unichar previousChar = 0;
     unichar currentChar;
     NSInteger eolOffset;
     NSInteger currentLine = 1;
-	
+    
     for( NSInteger x=0; x<count; x++ )
-	{
-		currentChar = [string characterAtIndex: x];
+    {
+        currentChar = [string characterAtIndex: x];
         range.length++;
         
         if( currentChar == '\n')
         {
             eolOffset = previousChar == '\r' ? -2 : -1;
             
-            if( currentLine == lineNum)
+            if( currentLine == lineNumber)
             {
                 range.length += eolOffset;
                 break;
@@ -424,8 +424,14 @@ static void * const KVO = (void*)&KVO;
         }
         
         previousChar = currentChar;
-	}
+    }
+    
+    return range;
+}
 
+-(void)	goToLine: (NSUInteger)lineNum
+{
+    NSRange range = [self rangeForLine:lineNum];
 	[[self view] scrollRangeToVisible:range];
 	[[self view] setSelectedRange:range];
 }
