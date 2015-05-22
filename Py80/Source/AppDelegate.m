@@ -37,9 +37,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
 @property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
 
-@property (nonatomic, readwrite, strong) NSLayoutConstraint * exceptionLeftConstraint;
-@property (nonatomic, readwrite, strong) NSLayoutConstraint * exceptionTopConstraint;
-
 @end
 
 
@@ -76,31 +73,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         [self updateInfoField];
     }];
     
-    NSView *documentView = self.codeView.enclosingScrollView.documentView;
-    NSDictionary *views = @{ @"v" : self.exceptionView };
-    self.exceptionView.translatesAutoresizingMaskIntoConstraints = NO;
-    [documentView addSubview:self.exceptionView];
-    
-    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[v]"
-                                                                             options:0
-                                                                             metrics:nil
-                                                                               views:views];
-    [documentView addConstraints:horizontalConstraints];
-    [self.codeView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.exceptionView
-                                                             attribute:NSLayoutAttributeRight
-                                                             relatedBy:NSLayoutRelationEqual
-                                                                toItem:self.codeView.superview
-                                                             attribute:NSLayoutAttributeRight
-                                                            multiplier:1.0f
-                                                              constant:-10.0f]];
-     NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[v]"
-                                                                           options:0
-                                                                           metrics:nil
-                                                                             views:views];
-    [documentView addConstraints:verticalConstraints];
-    self.exceptionLeftConstraint = horizontalConstraints[0];
-    self.exceptionTopConstraint = verticalConstraints[0];
     self.exceptionView.hidden = YES;
+    [self.exceptionView addToTextView:self.codeView];
 }
 
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *)sender
@@ -395,14 +369,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     
     
     [self.syntaxViewController goToLine:lineNumber];
-    NSRange glyphRange = [self.codeView.layoutManager glyphRangeForCharacterRange:[self.syntaxViewController rangeForLine:lineNumber]
-                                                             actualCharacterRange:NULL];
-    NSRect lineRect = [self.codeView.layoutManager boundingRectForGlyphRange:glyphRange
-                                                             inTextContainer:self.codeView.textContainer];
-    [self.exceptionView.superview convertRect:lineRect fromView:self.codeView];
-    
-    self.exceptionLeftConstraint.constant = lineRect.origin.x;
-    self.exceptionTopConstraint.constant = isExternal ? 6.0f : lineRect.origin.y + lineRect.size.height;
+    NSRange range = [self.syntaxViewController rangeForLine:lineNumber];
+    [self.exceptionView updateConstraintsForCharacterRange:range];
     
     self.exceptionView.hidden = NO;
 }

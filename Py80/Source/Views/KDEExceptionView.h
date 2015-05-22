@@ -12,4 +12,7 @@
 
 @property (nonatomic, readwrite, weak) IBOutlet NSTextField *label;
 
+- (void) addToTextView:(NSTextView *)textView;
+- (void) updateConstraintsForCharacterRange:(NSRange)characterRange;
+
 @end
