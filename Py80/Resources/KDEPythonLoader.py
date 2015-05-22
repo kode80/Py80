@@ -10,6 +10,7 @@ from Foundation import *
 from AppKit import *
 
 import imp
+import inspect
 
 class KDEPythonLoader(NSObject):
 	@classmethod
@@ -22,7 +23,11 @@ class KDEPythonLoader(NSObject):
 				py80 = KDEPy80Context()
 				realfunc(py80)
 		except Exception as e:
-			NSRunAlertPanel('Script Error', '%s' % e, None, None, None)
+			tb = inspect.trace()[-1]
+			fileName = tb[1]
+			lineNumber = tb[2]
+			functionName = tb[ 3]
+			NSRunAlertPanel('Script Error', '{}\n\nfile:{}\nfunc:{}\nline:{}'.format( e, fileName, functionName, lineNumber), None, None, None)
 		finally:
 			return NO
 
