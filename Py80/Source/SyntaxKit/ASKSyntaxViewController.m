@@ -395,44 +395,39 @@ static void * const KVO = (void*)&KVO;
 
 -(void)	goToLine: (NSUInteger)lineNum
 {
-	NSRange			theRange = { 0, 0 };
-	NSString*		vString = [[self view] string];
-	NSUInteger		currLine = 1;
-	NSCharacterSet* vSet = [NSCharacterSet characterSetWithCharactersInString: @"\n\r"];
-	unsigned		x;
-	unsigned		lastBreakOffs = 0;
-	unichar			lastBreakChar = 0;
+	NSRange range = NSMakeRange( 0, 0);
+    NSString *string = self.view.string;
+    NSInteger count = string.length;
+    unichar previousChar = 0;
+    unichar currentChar;
+    NSInteger eolOffset;
+    NSInteger currentLine = 1;
 	
-	for( x = 0; x < [vString length]; x++ )
+    for( NSInteger x=0; x<count; x++ )
 	{
-		unichar		theCh = [vString characterAtIndex: x];
-		
-		// Skip non-linebreak chars:
-		if( ![vSet characterIsMember: theCh] )
-			continue;
-		
-		// If this is the LF in a CRLF sequence, only count it as one line break:
-		if( theCh == '\n' && lastBreakOffs == (x-1)
-			&& lastBreakChar == '\r' )
-		{
-			lastBreakOffs = 0;
-			lastBreakChar = 0;
-			theRange.location++;
-			continue;
-		}
-		
-		// Calc range and increase line number:
-		theRange.length = x -theRange.location +1;
-		if( currLine >= lineNum )
-			break;
-		currLine++;
-		theRange.location = theRange.location +theRange.length;
-		lastBreakOffs = x;
-		lastBreakChar = theCh;
+		currentChar = [string characterAtIndex: x];
+        range.length++;
+        
+        if( currentChar == '\n')
+        {
+            eolOffset = previousChar == '\r' ? -2 : -1;
+            
+            if( currentLine == lineNum)
+            {
+                range.length += eolOffset;
+                break;
+            }
+            
+            range.location = x + 1;
+            range.length = 0;
+            currentLine++;
+        }
+        
+        previousChar = currentChar;
 	}
-	
-	[[self view] scrollRangeToVisible: theRange];
-	[[self view] setSelectedRange: theRange];
+
+	[[self view] scrollRangeToVisible:range];
+	[[self view] setSelectedRange:range];
 }
 
 
