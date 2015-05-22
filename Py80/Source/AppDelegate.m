@@ -365,7 +365,11 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         description = @"Invalid syntax";
     }
     
-    NSString *message = [NSString stringWithFormat:@"%@\n%@", type, description];
+    BOOL isExternal = [filePath isEqualTo:@"<string>"] == NO;
+    if( isExternal) { type = [type stringByAppendingFormat:@" in %@", filePath.lastPathComponent]; }
+    NSString *externalString = isExternal ? [NSString stringWithFormat:@"\n\nFile: %@\nFunction: %@\nLine: %@", filePath, function, @(lineNumber)] : @"";
+    NSString *message = [NSString stringWithFormat:@"%@\n%@%@", type, description, externalString];
+    
     NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:message];
     
     NSDictionary *attributes = @{ NSFontAttributeName : [NSFont fontWithName:@"Monaco" size:10.0f],
@@ -378,6 +382,15 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [output setAttributes:attributes
                     range:[message rangeOfString:description]];
     
+    if( isExternal)
+    {
+        attributes = @{ NSFontAttributeName : [NSFont fontWithName:@"Helvetica Neue" size:11.0f],
+                        NSForegroundColorAttributeName : [NSColor blackColor]};
+        [output setAttributes:attributes
+                        range:[message rangeOfString:externalString]];
+        lineNumber = 1;
+    }
+    
     self.exceptionView.label.attributedStringValue = output;
     
     
@@ -389,7 +402,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [self.exceptionView.superview convertRect:lineRect fromView:self.codeView];
     
     self.exceptionLeftConstraint.constant = lineRect.origin.x;
-    self.exceptionTopConstraint.constant = lineRect.origin.y + lineRect.size.height;
+    self.exceptionTopConstraint.constant = isExternal ? 6.0f : lineRect.origin.y + lineRect.size.height;
     
     self.exceptionView.hidden = NO;
 }
