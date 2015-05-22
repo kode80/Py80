@@ -33,6 +33,7 @@
 		203D56B11B0A657A00A7779E /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D56B01B0A657A00A7779E /* KDEPython.m */; };
 		203D56B31B0A716000A7779E /* Default.py in Resources */ = {isa = PBXBuildFile; fileRef = 203D56B21B0A716000A7779E /* Default.py */; };
 		207F18781B0A85C4009E2889 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 207F18771B0A85C4009E2889 /* KDEPy80Context.m */; };
+		20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */; };
 		20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F13AC91B0AD47600C30D2A /* KDEOutputView.m */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,8 @@
 		203D56B21B0A716000A7779E /* Default.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Default.py; sourceTree = "<group>"; };
 		207F18761B0A85C4009E2889 /* KDEPy80Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPy80Context.h; sourceTree = "<group>"; };
 		207F18771B0A85C4009E2889 /* KDEPy80Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPy80Context.m; sourceTree = "<group>"; };
+		20A6E97E1B0FC128005658C3 /* KDEExceptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEExceptionView.h; sourceTree = "<group>"; };
+		20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEExceptionView.m; sourceTree = "<group>"; };
 		20F13AC81B0AD47600C30D2A /* KDEOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputView.h; sourceTree = "<group>"; };
 		20F13AC91B0AD47600C30D2A /* KDEOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -252,6 +255,8 @@
 				20082E791B0B6F540064DDA4 /* TAAdaptiveSpaceItem */,
 				20F13AC81B0AD47600C30D2A /* KDEOutputView.h */,
 				20F13AC91B0AD47600C30D2A /* KDEOutputView.m */,
+				20A6E97E1B0FC128005658C3 /* KDEExceptionView.h */,
+				20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
 				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
 				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
+				20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */,
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
 				201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */,
 				20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */,

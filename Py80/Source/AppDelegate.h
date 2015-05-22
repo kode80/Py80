@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class KDEOutputView, ASKSyntaxViewController;
+@class KDEOutputView, ASKSyntaxViewController, KDEExceptionView;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -18,10 +18,7 @@
 @property (nonatomic, readwrite, strong) IBOutlet NSButton *runButton;
 @property (nonatomic, readwrite, weak) IBOutlet NSTextField *infoField;
 @property (nonatomic, readwrite, strong) IBOutlet ASKSyntaxViewController *syntaxViewController;
-@property (nonatomic, readwrite, strong) IBOutlet NSView *exceptionView;
-@property (nonatomic, readwrite, strong) IBOutlet NSTextField *exceptionLabel;
-@property (nonatomic, readwrite, strong) IBOutlet NSLayoutConstraint * exceptionLeftConstraint;
-@property (nonatomic, readwrite, strong) IBOutlet NSLayoutConstraint * exceptionTopConstraint;
+@property (nonatomic, readwrite, strong) IBOutlet KDEExceptionView *exceptionView;
 
 - (IBAction) runCode:(id)sender;
 

@@ -20,7 +20,6 @@
             <connections>
                 <outlet property="codeView" destination="3Ky-Bg-C7G" id="Xby-yg-sa1"/>
                 <outlet property="console" destination="vSn-P3-RRN" id="WCu-nf-q1C"/>
-                <outlet property="exceptionLabel" destination="fyE-ie-RxJ" id="Way-nG-P9m"/>
                 <outlet property="exceptionView" destination="qYW-g8-i8Z" id="kYQ-rw-kr1"/>
                 <outlet property="infoField" destination="0vi-7E-cOT" id="obU-yO-qp2"/>
                 <outlet property="outputView" destination="2gb-pG-ihC" id="hDx-gR-6di"/>
@@ -457,37 +456,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
-                                    <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="qYW-g8-i8Z">
-                                        <rect key="frame" x="1" y="274" width="268" height="29"/>
-                                        <view key="contentView">
-                                            <rect key="frame" x="1" y="1" width="266" height="27"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyE-ie-RxJ">
-                                                    <rect key="frame" x="3" y="5" width="260" height="17"/>
-                                                    <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" allowsEditingTextAttributes="YES" id="aJ4-rD-m43">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="fyE-ie-RxJ" firstAttribute="top" secondItem="qYW-g8-i8Z" secondAttribute="top" constant="6" id="B80-KN-eck"/>
-                                            <constraint firstAttribute="bottom" secondItem="fyE-ie-RxJ" secondAttribute="bottom" constant="6" id="gaM-Vg-zHP"/>
-                                            <constraint firstItem="fyE-ie-RxJ" firstAttribute="leading" secondItem="qYW-g8-i8Z" secondAttribute="leading" constant="6" id="r1a-VL-fs9"/>
-                                            <constraint firstAttribute="trailing" secondItem="fyE-ie-RxJ" secondAttribute="trailing" constant="6" id="uzB-2F-Gyy"/>
-                                        </constraints>
-                                        <color key="borderColor" red="0.97742730379104614" green="0.8456730842590332" blue="0.48844313621520996" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="fillColor" red="0.98355410153876732" green="0.98594826459884644" blue="0.88353324028330271" alpha="1" colorSpace="calibratedRGB"/>
-                                    </box>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="fk5-yO-F8L" secondAttribute="bottom" id="0pW-eq-mpL"/>
-                                    <constraint firstItem="qYW-g8-i8Z" firstAttribute="trailing" secondItem="fk5-yO-F8L" secondAttribute="trailing" constant="-1" id="5z7-29-iPg"/>
-                                    <constraint firstItem="qYW-g8-i8Z" firstAttribute="leading" secondItem="fk5-yO-F8L" secondAttribute="leading" constant="1" id="7Dp-Jk-8XS"/>
-                                    <constraint firstItem="qYW-g8-i8Z" firstAttribute="top" secondItem="fk5-yO-F8L" secondAttribute="top" constant="100" id="AKK-PM-TZu"/>
                                     <constraint firstAttribute="trailing" secondItem="fk5-yO-F8L" secondAttribute="trailing" id="HLc-17-Cjv"/>
                                     <constraint firstItem="fk5-yO-F8L" firstAttribute="top" secondItem="Jff-8F-cvc" secondAttribute="top" id="Uu7-11-lbl"/>
                                     <constraint firstItem="fk5-yO-F8L" firstAttribute="leading" secondItem="Jff-8F-cvc" secondAttribute="leading" id="ZbC-nc-XeU"/>
@@ -630,6 +601,36 @@
             </toolbar>
             <point key="canvasLocation" x="373" y="390.5"/>
         </window>
+        <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="line" id="qYW-g8-i8Z" customClass="KDEExceptionView">
+            <rect key="frame" x="0.0" y="0.0" width="166" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView">
+                <rect key="frame" x="1" y="1" width="164" height="61"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="fyE-ie-RxJ">
+                        <rect key="frame" x="3" y="5" width="158" height="51"/>
+                        <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label with some test text here for good measure" allowsEditingTextAttributes="YES" id="aJ4-rD-m43">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="fyE-ie-RxJ" firstAttribute="top" secondItem="qYW-g8-i8Z" secondAttribute="top" constant="6" id="B80-KN-eck"/>
+                <constraint firstAttribute="bottom" secondItem="fyE-ie-RxJ" secondAttribute="bottom" constant="6" id="gaM-Vg-zHP"/>
+                <constraint firstItem="fyE-ie-RxJ" firstAttribute="leading" secondItem="qYW-g8-i8Z" secondAttribute="leading" constant="6" id="r1a-VL-fs9"/>
+                <constraint firstAttribute="trailing" secondItem="fyE-ie-RxJ" secondAttribute="trailing" constant="6" id="uzB-2F-Gyy"/>
+            </constraints>
+            <color key="borderColor" red="0.69803923369999998" green="0.84313726430000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="fillColor" red="0.91947831884492748" green="0.95817055525485395" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <connections>
+                <outlet property="label" destination="fyE-ie-RxJ" id="nPl-2C-6iQ"/>
+            </connections>
+            <point key="canvasLocation" x="135" y="715"/>
+        </box>
     </objects>
     <resources>
         <image name="PlayIcon" width="13" height="14"/>

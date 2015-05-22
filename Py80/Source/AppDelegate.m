@@ -11,6 +11,7 @@
 #import "KDEPy80Context.h"
 #import "KDEOutputView.h"
 #import "KDEDocumentTracker.h"
+#import "KDEExceptionView.h"
 
 #import "SyntaxKit.h"
 
@@ -35,6 +36,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
 @property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
+
+@property (nonatomic, readwrite, strong) NSLayoutConstraint * exceptionLeftConstraint;
+@property (nonatomic, readwrite, strong) NSLayoutConstraint * exceptionTopConstraint;
 
 @end
 
@@ -72,7 +76,31 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         [self updateInfoField];
     }];
     
-    [self.codeView.enclosingScrollView.documentView addSubview:self.exceptionView];
+    NSView *documentView = self.codeView.enclosingScrollView.documentView;
+    NSDictionary *views = @{ @"v" : self.exceptionView };
+    self.exceptionView.translatesAutoresizingMaskIntoConstraints = NO;
+    [documentView addSubview:self.exceptionView];
+    
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[v]"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:views];
+    [documentView addConstraints:horizontalConstraints];
+    [self.codeView.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.exceptionView
+                                                             attribute:NSLayoutAttributeRight
+                                                             relatedBy:NSLayoutRelationEqual
+                                                                toItem:self.codeView.superview
+                                                             attribute:NSLayoutAttributeRight
+                                                            multiplier:1.0f
+                                                              constant:-10.0f]];
+     NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[v]"
+                                                                           options:0
+                                                                           metrics:nil
+                                                                             views:views];
+    [documentView addConstraints:verticalConstraints];
+    self.exceptionLeftConstraint = horizontalConstraints[0];
+    self.exceptionTopConstraint = verticalConstraints[0];
+    self.exceptionView.hidden = YES;
 }
 
 - (NSApplicationTerminateReply) applicationShouldTerminate:(NSApplication *)sender
@@ -342,7 +370,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [output setAttributes:attributes
                     range:[message rangeOfString:description]];
     
-    self.exceptionLabel.attributedStringValue = output;
+    self.exceptionView.label.attributedStringValue = output;
     
     
     [self.syntaxViewController goToLine:lineNumber];
@@ -350,17 +378,17 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                                                              actualCharacterRange:NULL];
     NSRect lineRect = [self.codeView.layoutManager boundingRectForGlyphRange:glyphRange
                                                              inTextContainer:self.codeView.textContainer];
-    NSPoint containerOrigin = self.codeView.textContainerOrigin;
-    lineRect.origin.x += containerOrigin.x;
-    lineRect.origin.y += containerOrigin.y;
+    [self.exceptionView.superview convertRect:lineRect fromView:self.codeView];
     
-    lineRect.origin.y += lineRect.size.height;
-    lineRect.size.width = self.codeView.bounds.size.width - lineRect.origin.x - 6;
-    lineRect.size.height = 100;
+    self.exceptionLeftConstraint.constant = lineRect.origin.x;
+    self.exceptionTopConstraint.constant = lineRect.origin.y + lineRect.size.height;
     
-    
-    self.exceptionView.frame = lineRect;
-     
+    self.exceptionView.hidden = NO;
+}
+
+- (void) textViewDidChangeSelection:(NSNotification *)notification
+{
+    self.exceptionView.hidden = YES;
 }
 
 @end
