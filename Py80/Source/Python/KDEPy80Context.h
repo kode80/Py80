@@ -21,6 +21,12 @@
 - (void) log:(NSString *)message;
 - (void) clearLog;
 
+
+- (NSString *) getClipboard;
+
+- (void) setClipboard:(NSString *)string;
+
+
 - (void) clearDrawing;
 
 - (void) setStrokeRed:(CGFloat)red
@@ -40,6 +46,7 @@
            withWidth:(CGFloat)width
               height:(CGFloat)height;
 
+
 - (void) reportExceptionType:(NSString *)type
                  description:(NSString *)description
                     filePath:(NSString *)filePath
@@ -51,10 +58,18 @@
 
 @protocol KDEPy80ContextDelegate <NSObject>
 
+@optional
 - (void) py80Context:(KDEPy80Context *)context
           logMessage:(NSString *)message;
 
 - (void) py80ContextClearLog:(KDEPy80Context *)context;
+
+
+- (NSString *) py80ContextGetClipboard:(KDEPy80Context *)context;
+
+- (void) py80Context:(KDEPy80Context *)context
+        setClipboard:(NSString *)string;
+
 
 - (void) py80ContextClearDrawing:(KDEPy80Context *)context;
 
@@ -78,6 +93,7 @@
                    y:(CGFloat)y
            withWidth:(CGFloat)width
               height:(CGFloat)height;
+
 
 - (void) py80Context:(KDEPy80Context *)context
  reportExceptionType:(NSString *)type

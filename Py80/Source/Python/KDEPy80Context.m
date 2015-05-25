@@ -37,6 +37,25 @@
     }
 }
 
+- (NSString *) getClipboard
+{
+    if( [self.delegate respondsToSelector:@selector(py80ContextGetClipboard:)])
+    {
+        return [self.delegate py80ContextGetClipboard:self];
+    }
+    
+    return nil;
+}
+
+- (void) setClipboard:(NSString *)string
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:setClipboard:)])
+    {
+        [self.delegate py80Context:self
+                      setClipboard:string];
+    }
+}
+
 - (void) clearDrawing
 {
     if( [self.delegate respondsToSelector:@selector(py80ContextClearDrawing:)])

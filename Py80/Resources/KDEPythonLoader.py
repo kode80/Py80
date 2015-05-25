@@ -43,6 +43,12 @@ class KDEPy80Context:
 	def clearLog( self):
 		self.context.clearLog()
 
+	def getClipboard( self):
+		return self.context.getClipboard()
+
+	def setClipboard( self, string):
+		self.context.setClipboard_( string)
+
 	def clearDrawing( self):
 		self.context.clearDrawing()
 

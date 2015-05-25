@@ -318,6 +318,28 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.console.string = @"";
 }
 
+- (NSString *) py80ContextGetClipboard:(KDEPy80Context *)context
+{
+    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+    NSArray *classes = @[ [NSString class]];
+    
+    if( [pasteboard canReadObjectForClasses:classes
+                                    options:@{}])
+    {
+        return [pasteboard readObjectsForClasses:classes
+                                         options:@{}][0];
+    }
+    
+    return nil;
+}
+
+- (void) py80Context:(KDEPy80Context *)context
+        setClipboard:(NSString *)string
+{
+    [[NSPasteboard generalPasteboard] clearContents];
+    [[NSPasteboard generalPasteboard] writeObjects:@[ [NSString stringWithString:string]]];
+}
+
 - (void) py80ContextClearDrawing:(KDEPy80Context *)context
 {
     [self.outputView clear];
