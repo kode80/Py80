@@ -10,7 +10,7 @@ The main() function accepts a *py80* object as it's only argument. The py80 obje
 * **log( message)**: logs message to in-app console
 * **clearLog()**: clears the in-app console
 * **getClipboard()**: returns any string currently copied to the system clipboard
-* **setClipboard( str)**: writes a string to the system clipboard
+* **setClipboard( str)**: pastes a string to the system clipboard
 * **clearDrawing()**: clears the drawing view
 * **setStrokeColor( r, g, b, a)**: sets the stroke color for drawing operations
 * **setFillColor( r, g, b, a)**: sets the fill color for drawing operations
