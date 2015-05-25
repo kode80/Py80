@@ -421,7 +421,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="538" height="403"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-4X-3Lc">
+                    <splitView autosaveName="Py80MainWindowHSplit" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xlw-4X-3Lc">
                         <rect key="frame" x="0.0" y="0.0" width="538" height="403"/>
                         <subviews>
                             <customView id="Jff-8F-cvc">
@@ -468,7 +468,7 @@
                                 <rect key="frame" x="271" y="0.0" width="267" height="403"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
-                                    <splitView dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Icu-7r-gn0">
+                                    <splitView autosaveName="Py80MainWindowVSplit" dividerStyle="thin" translatesAutoresizingMaskIntoConstraints="NO" id="Icu-7r-gn0">
                                         <rect key="frame" x="0.0" y="0.0" width="267" height="403"/>
                                         <subviews>
                                             <customView id="5fj-RP-EZq">
