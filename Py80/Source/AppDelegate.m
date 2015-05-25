@@ -174,6 +174,21 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                                              runFunction:@"main"];
 }
 
+- (IBAction) insertPath:(id)sender
+{
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    panel.allowedFileTypes = nil;
+    panel.allowsMultipleSelection = NO;
+    panel.canChooseDirectories = YES;
+    
+    NSInteger result = [panel runModal];
+    
+    if (result == NSFileHandlingPanelOKButton)
+    {
+        [self.codeView insertText:panel.URL.filePathURL.path];
+    }
+}
+
 - (void) applyDefaultsToTextView:(NSTextView *)textView
 {
     textView.automaticQuoteSubstitutionEnabled = NO;
@@ -267,6 +282,18 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) syntaxViewControllerTextDidChange:(ASKSyntaxViewController *)controller
 {
     [self.docTracker markActiveFileAsNeedingSave];
+}
+
+- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex
+{
+    [menu insertItem:[NSMenuItem separatorItem]
+             atIndex:0];
+    [menu insertItemWithTitle:@"Insert path..."
+                       action:@selector(insertPath:)
+                keyEquivalent:@""
+                      atIndex:0];
+    
+    return menu;
 }
 
 #pragma mark - KDEPy80ContextDelegate
