@@ -169,6 +169,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (IBAction) runCode:(id)sender
 {
+    self.exceptionView.hidden = YES;
     [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
                                              runFunction:@"main"];
 }
