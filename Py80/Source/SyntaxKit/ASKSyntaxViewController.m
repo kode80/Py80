@@ -885,6 +885,18 @@ static void * const KVO = (void*)&KVO;
 //		display to indicate which characters are selected.
 // -----------------------------------------------------------------------------
 
+- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex
+{
+    if( [self.delegate respondsToSelector:@selector(textView:menu:forEvent:atIndex:)])
+    {
+        menu = [self.delegate textView:view
+                                  menu:menu
+                              forEvent:event
+                               atIndex:charIndex];
+    }
+    return menu;
+}
+
 - (void)textViewDidChangeSelection:(NSNotification *)notification {
     NSTextView * textView = notification.object;
     
