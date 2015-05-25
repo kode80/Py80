@@ -48,6 +48,9 @@
 				<string>while</string>
 				<string>with</string>
 				<string>yield</string>
+				<string>None</string>
+				<string>True</string>
+				<string>False</string>
 			</array>
 			<key>Name</key>
 			<string>Identifiers</string>
