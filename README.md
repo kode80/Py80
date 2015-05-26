@@ -23,4 +23,8 @@ The main() function accepts a *py80* object as it's only argument. The py80 obje
 * **setStrokeColor( r, g, b, a)**: sets the stroke color for drawing operations
 * **setFillColor( r, g, b, a)**: sets the fill color for drawing operations
 * **setStrokeWidth( w)**: sets the stroke width for drawing operations
+* **setFont( name, size)**: sets the font for text drawing operations
 * **drawRect( x, y, w, h)**: draws a rectangle
+* **drawCircle( x, y, radius)**: draws a circle centered at x/y
+* **drawOvalInRect( x, y, w, h)**: draws an oval in the specified rectangle
+* **drawText( x, y, text)**: draws text (uses stroke color for text and fill color for background)
