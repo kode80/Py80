@@ -41,6 +41,9 @@
 
 - (void) setStrokeWidth:(CGFloat)width;
 
+- (void) setFont:(NSString *)fontName
+            size:(CGFloat)size;
+
 - (void) drawRectAtX:(CGFloat)x
                    y:(CGFloat)y
            withWidth:(CGFloat)width
@@ -50,6 +53,10 @@
                          y:(CGFloat)y
                  withWidth:(CGFloat)width
                     height:(CGFloat)height;
+
+- (void) drawText:(NSString *)text
+              atX:(CGFloat)x
+                y:(CGFloat)y;
 
 
 - (void) reportExceptionType:(NSString *)type
@@ -94,6 +101,10 @@
       setStrokeWidth:(CGFloat)width;
 
 - (void) py80Context:(KDEPy80Context *)context
+             setFont:(NSString *)fontName
+                size:(CGFloat)size;
+
+- (void) py80Context:(KDEPy80Context *)context
          drawRectAtX:(CGFloat)x
                    y:(CGFloat)y
            withWidth:(CGFloat)width
@@ -104,6 +115,11 @@
                    y:(CGFloat)y
            withWidth:(CGFloat)width
               height:(CGFloat)height;
+
+- (void) py80Context:(KDEPy80Context *)context
+            drawText:(NSString *)text
+                 atX:(CGFloat)x
+                   y:(CGFloat)y;
 
 
 - (void) py80Context:(KDEPy80Context *)context

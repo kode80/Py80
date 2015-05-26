@@ -398,9 +398,18 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                                                       alpha:alpha];
 }
 
-- (void) py80Context:(KDEPy80Context *)context setStrokeWidth:(CGFloat)width
+- (void) py80Context:(KDEPy80Context *)context
+      setStrokeWidth:(CGFloat)width
 {
     self.outputView.strokeWidth = width;
+}
+
+- (void) py80Context:(KDEPy80Context *)context
+             setFont:(NSString *)fontName
+                size:(CGFloat)size
+{
+    [self.outputView setFontName:fontName
+                            size:size];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -419,6 +428,15 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
               height:(CGFloat)height
 {
     [self.outputView addOval:NSMakeRect( x, y, width, height)];
+}
+
+- (void) py80Context:(KDEPy80Context *)context
+            drawText:(NSString *)text
+                 atX:(CGFloat)x
+                   y:(CGFloat)y
+{
+    [self.outputView addText:text
+                     atPoint:NSMakePoint( x, y)];
 }
 
 - (void) py80Context:(KDEPy80Context *)context

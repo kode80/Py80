@@ -934,7 +934,7 @@ static void * const KVO = (void*)&KVO;
     
     NSArray *keywords = @[@"and", @"as", @"assert", @"break", @"class", @"continue", @"def", @"del", @"elif", @"else", @"except", @"exec", @"finally", @"for", @"from", @"global", @"if", @"import", @"in", @"is", @"lambda", @"not", @"or", @"pass", @"print", @"raise", @"return", @"try", @"while", @"with", @"yield",
         
-                          @"py80", @"log", @"clearLog", @"getClipboard", @"setClipboard", @"clearDrawing", @"setStrokeColor", @"setFillColor", @"setStrokeWidth", @"drawRect", @"drawCircle", @"drawOvalInRect"];
+                          @"py80", @"log", @"clearLog", @"getClipboard", @"setClipboard", @"clearDrawing", @"setStrokeColor", @"setFillColor", @"setStrokeWidth", @"setFont", @"drawRect", @"drawCircle", @"drawOvalInRect", @"drawText"];
     
     NSMutableArray *validKeywords = [NSMutableArray array];
     for( NSString *keyword in keywords)

@@ -61,6 +61,9 @@ class KDEPy80Context:
 	def setStrokeWidth( self, w):
 		self.context.setStrokeWidth_( w)
 
+	def setFont( self, name, size):
+		self.context.setFont_size_( name, size)
+
 	def drawRect( self, x, y, w, h):
 		self.context.drawRectAtX_y_withWidth_height_( x, y, w, h)
 
@@ -73,3 +76,6 @@ class KDEPy80Context:
 
 	def drawOvalInRect( self, x, y, w, h):
 		self.context.drawOvalInRectAtX_y_withWidth_height_( x, y, w, h)
+
+	def drawText( self, x, y, text):
+		self.context.drawText_atX_y_( text, x, y)

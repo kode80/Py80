@@ -16,7 +16,11 @@
 - (void) setStrokeColor:(NSColor *)strokeColor;
 - (void) setFillColor:(NSColor *)fillColor;
 - (void) setStrokeWidth:(CGFloat)strokeWidth;
+- (void) setFontName:(NSString *)fontName
+                size:(CGFloat)size;
 - (void) addRectangle:(NSRect)rect;
 - (void) addOval:(NSRect)rect;
+- (void) addText:(NSString *)text
+         atPoint:(NSPoint)point;
 
 @end

@@ -103,6 +103,17 @@
     }
 }
 
+- (void) setFont:(NSString *)fontName
+            size:(CGFloat)size
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:setFont:size:)])
+    {
+        [self.delegate py80Context:self
+                           setFont:fontName
+                              size:size];
+    }
+}
+
 - (void) drawRectAtX:(CGFloat)x
                    y:(CGFloat)y
            withWidth:(CGFloat)width
@@ -130,6 +141,19 @@
                                  y:y
                          withWidth:width
                             height:height];
+    }
+}
+
+- (void) drawText:(NSString *)text
+              atX:(CGFloat)x
+                y:(CGFloat)y
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:drawText:atX:y:)])
+    {
+        [self.delegate py80Context:self
+                          drawText:text
+                               atX:x
+                                 y:y];
     }
 }
 

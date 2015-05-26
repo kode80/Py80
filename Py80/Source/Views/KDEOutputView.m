@@ -15,6 +15,7 @@
 @property (nonatomic, readwrite, strong) NSColor *strokeColor;
 @property (nonatomic, readwrite, strong) NSColor *fillColor;
 @property (nonatomic, readwrite, assign) CGFloat strokeWidth;
+@property (nonatomic, readwrite, strong) NSFont *font;
 
 @end
 
@@ -26,8 +27,18 @@
     copy.strokeColor = [self.strokeColor copy];
     copy.fillColor = [self.fillColor copy];
     copy.strokeWidth = self.strokeWidth;
+    copy.font = [self.font copy];
     return copy;
 }
+@end
+
+
+@interface KDEOutputViewDrawTextCommand : NSObject
+@property (nonatomic, readwrite, copy) NSString *string;
+@property (nonatomic, readwrite, assign) NSPoint point;
+@end
+
+@implementation KDEOutputViewDrawTextCommand
 @end
 
 
@@ -82,7 +93,23 @@
                 [path stroke];
             }
         }
+        else if( [command isKindOfClass:[KDEOutputViewDrawTextCommand class]])
+        {
+            KDEOutputViewDrawTextCommand *textCommand = command;
+            
+            NSColor *backgroundColor = drawSettings.fillColor ?: [NSColor clearColor];
+            NSColor *foregroundColor = drawSettings.strokeColor ?: [NSColor blackColor];
+            [textCommand.string drawAtPoint:textCommand.point
+                             withAttributes:@{ NSBackgroundColorAttributeName : backgroundColor,
+                                               NSForegroundColorAttributeName : foregroundColor,
+                                               NSFontAttributeName : drawSettings.font }];
+        }
     }
+}
+
+- (BOOL) isFlipped
+{
+    return YES;
 }
 
 - (void) mouseUp:(NSEvent *)theEvent
@@ -99,6 +126,7 @@
     defaultSettings.strokeColor = [NSColor blackColor];
     defaultSettings.fillColor = [NSColor clearColor];
     defaultSettings.strokeWidth = 1.0f;
+    defaultSettings.font = [NSFont systemFontOfSize:11.0f];
     
     self.hasContent = NO;
     self.mostRecentDrawSettings = defaultSettings;
@@ -132,6 +160,19 @@
     }];
 }
 
+- (void) setFontName:(NSString *)fontName
+                size:(CGFloat)size
+{
+    [self updateDrawSettingsWithAssignmentBlock:^(KDEOutputViewDrawSettings *settings){
+        NSFont *font = [NSFont fontWithName:fontName
+                                       size:size];
+        if( font)
+        {
+            settings.font = font;
+        }
+    }];
+}
+
 - (void) addRectangle:(NSRect)rect
 {
     NSBezierPath *path = [NSBezierPath bezierPathWithRect:rect];
@@ -146,6 +187,23 @@
     NSBezierPath *path = [NSBezierPath bezierPathWithOvalInRect:rect];
     self.drawList = [self.drawList arrayByAddingObject:path];
     self.hasContent = YES;
+    [self expandIntrinsicContentSizeIfNeededForRect:rect];
+    [self setNeedsDisplay:YES];
+}
+
+- (void) addText:(NSString *)text
+         atPoint:(NSPoint)point
+{
+    KDEOutputViewDrawTextCommand *command = [KDEOutputViewDrawTextCommand new];
+    command.string = text;
+    command.point = point;
+    self.drawList = [self.drawList arrayByAddingObject:command];
+    self.hasContent = YES;
+    
+    NSRect rect;
+    rect.origin = point;
+    rect.size = [text sizeWithAttributes:@{ NSFontAttributeName : self.mostRecentDrawSettings.font }];
+    
     [self expandIntrinsicContentSizeIfNeededForRect:rect];
     [self setNeedsDisplay:YES];
 }
