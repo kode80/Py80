@@ -371,6 +371,25 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Drawing" id="Dp2-GF-a9d">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Drawing" id="lSf-be-Reo">
+                        <items>
+                            <menuItem title="Reset magnification" id="tXd-uf-wgy">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="resetOutputMagnification:" target="Voe-Tx-rLC" id="QG1-X5-NYc"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Save contents" id="3uI-Tb-zHE">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="saveOutputContents:" target="Voe-Tx-rLC" id="Y18-3h-zLo"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Window" id="aUF-d1-5bR">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -475,7 +494,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="267" height="197"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
-                                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR6-Tl-CIx">
+                                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR6-Tl-CIx">
                                                         <rect key="frame" x="0.0" y="0.0" width="267" height="197"/>
                                                         <clipView key="contentView" copiesOnScroll="NO" id="X37-gN-9FJ">
                                                             <rect key="frame" x="1" y="1" width="166" height="79"/>
@@ -494,6 +513,9 @@
                                                             <rect key="frame" x="167" y="1" width="15" height="79"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
+                                                        <connections>
+                                                            <outlet property="menu" destination="AS1-Nf-c0U" id="GFx-aG-LOa"/>
+                                                        </connections>
                                                     </scrollView>
                                                 </subviews>
                                                 <constraints>
@@ -648,6 +670,23 @@
             </connections>
             <point key="canvasLocation" x="135" y="715"/>
         </box>
+        <menu id="AS1-Nf-c0U" userLabel="OutputViewMenu">
+            <items>
+                <menuItem title="Reset magnification" id="8Ro-an-2D8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="resetOutputMagnification:" target="Voe-Tx-rLC" id="d4y-Y3-Dhr"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Save contents" id="8hm-dt-v37">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="saveOutputContents:" target="Voe-Tx-rLC" id="x6t-hM-YYr"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="327" y="703.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="PlayIcon" width="13" height="14"/>

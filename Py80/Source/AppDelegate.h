@@ -22,5 +22,8 @@
 
 - (IBAction) runCode:(id)sender;
 
+- (IBAction) resetOutputMagnification:(id)sender;
+- (IBAction) saveOutputContents:(id)sender;
+
 @end
 

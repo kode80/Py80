@@ -10,6 +10,8 @@
 
 @interface KDEOutputView : NSView
 
+@property (nonatomic, readonly, assign) BOOL hasContent;
+
 - (void) clear;
 - (void) setStrokeColor:(NSColor *)strokeColor;
 - (void) setFillColor:(NSColor *)fillColor;

@@ -119,6 +119,14 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     {
         return self.docTracker.activeFileIsNew == NO && self.docTracker.activeFileNeedsSaving;
     }
+    else if( menuItem.action == @selector(resetOutputMagnification:))
+    {
+        return self.outputView.enclosingScrollView.magnification != 1.0f;
+    }
+    else if( menuItem.action == @selector(saveOutputContents:))
+    {
+        return self.outputView.hasContent;
+    }
     
     return [[NSApplication sharedApplication] validateMenuItem:menuItem];
 }
@@ -174,6 +182,29 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                                              runFunction:@"main"];
 }
 
+- (IBAction) resetOutputMagnification:(id)sender
+{
+    self.outputView.enclosingScrollView.animator.magnification = 1.0f;
+}
+
+- (IBAction) saveOutputContents:(id)sender
+{
+    NSSavePanel *panel = [NSSavePanel savePanel];
+    panel.allowedFileTypes = @[ @"png"];
+    
+    if( [panel runModal] == NSFileHandlingPanelOKButton)
+    {
+        NSBitmapImageRep *imageRep = [self.outputView bitmapImageRepForCachingDisplayInRect:self.outputView.bounds];
+        [self.outputView cacheDisplayInRect:self.outputView.bounds
+                           toBitmapImageRep:imageRep];
+        
+        NSData *data = [imageRep representationUsingType:NSPNGFileType
+                                              properties:nil];
+        [data writeToFile:panel.URL.filePathURL.path
+               atomically:YES];
+    }
+}
+
 - (IBAction) insertPath:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
@@ -181,9 +212,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     panel.allowsMultipleSelection = NO;
     panel.canChooseDirectories = YES;
     
-    NSInteger result = [panel runModal];
-    
-    if (result == NSFileHandlingPanelOKButton)
+    if( [panel runModal] == NSFileHandlingPanelOKButton)
     {
         [self.codeView insertText:panel.URL.filePathURL.path];
     }

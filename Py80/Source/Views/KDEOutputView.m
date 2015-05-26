@@ -34,6 +34,7 @@
 
 @interface KDEOutputView ()
 
+@property (nonatomic, readwrite, assign) BOOL hasContent;
 @property (nonatomic, readwrite, assign) NSRect contentRect;
 @property (nonatomic, readwrite, copy) NSArray *drawList;
 @property (nonatomic, readwrite, strong) KDEOutputViewDrawSettings *mostRecentDrawSettings;
@@ -84,6 +85,13 @@
     }
 }
 
+- (void) mouseUp:(NSEvent *)theEvent
+{
+    if( theEvent.clickCount == 2)
+    {
+        self.enclosingScrollView.animator.magnification = 1.0f;
+    }
+}
 
 - (void) clear
 {
@@ -92,6 +100,7 @@
     defaultSettings.fillColor = [NSColor clearColor];
     defaultSettings.strokeWidth = 1.0f;
     
+    self.hasContent = NO;
     self.mostRecentDrawSettings = defaultSettings;
     self.drawList = @[ defaultSettings];
     
@@ -127,6 +136,8 @@
 {
     NSBezierPath *path = [NSBezierPath bezierPathWithRect:rect];
     self.drawList = [self.drawList arrayByAddingObject:path];
+    
+    self.hasContent = YES;
     
     [self expandIntrinsicContentSizeIfNeededForRect:rect];
     
