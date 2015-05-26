@@ -34,6 +34,7 @@
 
 @interface KDEOutputView ()
 
+@property (nonatomic, readwrite, assign) NSRect contentRect;
 @property (nonatomic, readwrite, copy) NSArray *drawList;
 @property (nonatomic, readwrite, strong) KDEOutputViewDrawSettings *mostRecentDrawSettings;
 
@@ -54,7 +55,7 @@
 
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    
+
     KDEOutputViewDrawSettings *drawSettings = nil;
     
     for( id command in self.drawList)
@@ -94,6 +95,9 @@
     self.mostRecentDrawSettings = defaultSettings;
     self.drawList = @[ defaultSettings];
     
+    self.contentRect = NSZeroRect;
+    [self expandIntrinsicContentSizeIfNeededForRect:NSZeroRect];
+    
     [self setNeedsDisplay:YES];
 }
 
@@ -123,10 +127,27 @@
 {
     NSBezierPath *path = [NSBezierPath bezierPathWithRect:rect];
     self.drawList = [self.drawList arrayByAddingObject:path];
+    
+    [self expandIntrinsicContentSizeIfNeededForRect:rect];
+    
     [self setNeedsDisplay:YES];
 }
 
+- (NSSize)intrinsicContentSize
+{
+    return self.contentRect.size;
+}
+
 #pragma mark Private
+
+- (void) expandIntrinsicContentSizeIfNeededForRect:(NSRect)rect
+{
+    // Expand rect as a hack to include stroke width
+    rect = NSInsetRect( rect, -10, -10);
+    
+    self.contentRect = NSUnionRect( self.contentRect, rect);
+    [self invalidateIntrinsicContentSize];
+}
 
 - (void) updateDrawSettingsWithAssignmentBlock:(void (^)(KDEOutputViewDrawSettings * settings))assignmentBlock
 {

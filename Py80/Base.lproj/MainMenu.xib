@@ -22,7 +22,7 @@
                 <outlet property="console" destination="vSn-P3-RRN" id="WCu-nf-q1C"/>
                 <outlet property="exceptionView" destination="qYW-g8-i8Z" id="kYQ-rw-kr1"/>
                 <outlet property="infoField" destination="0vi-7E-cOT" id="obU-yO-qp2"/>
-                <outlet property="outputView" destination="2gb-pG-ihC" id="hDx-gR-6di"/>
+                <outlet property="outputView" destination="ftz-qM-8Pu" id="OYX-eu-8VV"/>
                 <outlet property="runButton" destination="bZ3-gu-STN" id="WsB-ZF-tpp"/>
                 <outlet property="syntaxViewController" destination="pa6-ih-VyB" id="jMZ-U7-WpE"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -475,15 +475,32 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="267" height="197"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
-                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="2gb-pG-ihC" customClass="KDEOutputView">
+                                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR6-Tl-CIx">
                                                         <rect key="frame" x="0.0" y="0.0" width="267" height="197"/>
-                                                    </customView>
+                                                        <clipView key="contentView" copiesOnScroll="NO" id="X37-gN-9FJ">
+                                                            <rect key="frame" x="1" y="1" width="166" height="79"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ftz-qM-8Pu" customClass="KDEOutputView">
+                                                                    <rect key="frame" x="188" y="159" width="100" height="100"/>
+                                                                </view>
+                                                            </subviews>
+                                                        </clipView>
+                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="wPF-Jt-bVX">
+                                                            <rect key="frame" x="1" y="80" width="166" height="15"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </scroller>
+                                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tGl-Is-9W0">
+                                                            <rect key="frame" x="167" y="1" width="15" height="79"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        </scroller>
+                                                    </scrollView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="2gb-pG-ihC" secondAttribute="trailing" id="1Rc-Ew-kUO"/>
-                                                    <constraint firstItem="2gb-pG-ihC" firstAttribute="top" secondItem="5fj-RP-EZq" secondAttribute="top" id="3ZZ-VN-UdU"/>
-                                                    <constraint firstItem="2gb-pG-ihC" firstAttribute="leading" secondItem="5fj-RP-EZq" secondAttribute="leading" id="3bN-sr-RMZ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="2gb-pG-ihC" secondAttribute="bottom" id="6BH-3G-mgl"/>
+                                                    <constraint firstItem="JR6-Tl-CIx" firstAttribute="top" secondItem="5fj-RP-EZq" secondAttribute="top" id="Hr2-ps-ciH"/>
+                                                    <constraint firstAttribute="bottom" secondItem="JR6-Tl-CIx" secondAttribute="bottom" id="TdB-47-PYg"/>
+                                                    <constraint firstItem="JR6-Tl-CIx" firstAttribute="leading" secondItem="5fj-RP-EZq" secondAttribute="leading" id="exn-rs-OAd"/>
+                                                    <constraint firstAttribute="trailing" secondItem="JR6-Tl-CIx" secondAttribute="trailing" id="h7S-Ho-2cB"/>
                                                 </constraints>
                                             </customView>
                                             <customView id="BXR-sC-F5e">
