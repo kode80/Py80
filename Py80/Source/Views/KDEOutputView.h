@@ -17,5 +17,6 @@
 - (void) setFillColor:(NSColor *)fillColor;
 - (void) setStrokeWidth:(CGFloat)strokeWidth;
 - (void) addRectangle:(NSRect)rect;
+- (void) addOval:(NSRect)rect;
 
 @end

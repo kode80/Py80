@@ -118,6 +118,21 @@
     }
 }
 
+- (void) drawOvalInRectAtX:(CGFloat)x
+                         y:(CGFloat)y
+                 withWidth:(CGFloat)width
+                    height:(CGFloat)height;
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:drawOvalInRectAtX:y:withWidth:height:)])
+    {
+        [self.delegate py80Context:self
+                 drawOvalInRectAtX:x
+                                 y:y
+                         withWidth:width
+                            height:height];
+    }
+}
+
 - (void) reportExceptionType:(NSString *)type
                  description:(NSString *)description
                     filePath:(NSString *)filePath

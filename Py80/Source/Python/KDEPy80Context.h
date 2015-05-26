@@ -46,6 +46,11 @@
            withWidth:(CGFloat)width
               height:(CGFloat)height;
 
+- (void) drawOvalInRectAtX:(CGFloat)x
+                         y:(CGFloat)y
+                 withWidth:(CGFloat)width
+                    height:(CGFloat)height;
+
 
 - (void) reportExceptionType:(NSString *)type
                  description:(NSString *)description
@@ -90,6 +95,12 @@
 
 - (void) py80Context:(KDEPy80Context *)context
          drawRectAtX:(CGFloat)x
+                   y:(CGFloat)y
+           withWidth:(CGFloat)width
+              height:(CGFloat)height;
+
+- (void) py80Context:(KDEPy80Context *)context
+   drawOvalInRectAtX:(CGFloat)x
                    y:(CGFloat)y
            withWidth:(CGFloat)width
               height:(CGFloat)height;

@@ -413,6 +413,15 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 }
 
 - (void) py80Context:(KDEPy80Context *)context
+   drawOvalInRectAtX:(CGFloat)x
+                   y:(CGFloat)y
+           withWidth:(CGFloat)width
+              height:(CGFloat)height
+{
+    [self.outputView addOval:NSMakeRect( x, y, width, height)];
+}
+
+- (void) py80Context:(KDEPy80Context *)context
  reportExceptionType:(NSString *)type
          description:(NSString *)description
             filePath:(NSString *)filePath

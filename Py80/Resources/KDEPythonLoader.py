@@ -63,3 +63,13 @@ class KDEPy80Context:
 
 	def drawRect( self, x, y, w, h):
 		self.context.drawRectAtX_y_withWidth_height_( x, y, w, h)
+
+	def drawCircle( self, x, y, radius):
+		centerX = x - radius
+		centerY = y - radius
+		w = radius * 2
+		h = radius * 2
+		self.context.drawOvalInRectAtX_y_withWidth_height_( centerX, centerY, w, h)
+
+	def drawOvalInRect( self, x, y, w, h):
+		self.context.drawOvalInRectAtX_y_withWidth_height_( x, y, w, h)

@@ -136,11 +136,17 @@
 {
     NSBezierPath *path = [NSBezierPath bezierPathWithRect:rect];
     self.drawList = [self.drawList arrayByAddingObject:path];
-    
     self.hasContent = YES;
-    
     [self expandIntrinsicContentSizeIfNeededForRect:rect];
-    
+    [self setNeedsDisplay:YES];
+}
+
+- (void) addOval:(NSRect)rect
+{
+    NSBezierPath *path = [NSBezierPath bezierPathWithOvalInRect:rect];
+    self.drawList = [self.drawList arrayByAddingObject:path];
+    self.hasContent = YES;
+    [self expandIntrinsicContentSizeIfNeededForRect:rect];
     [self setNeedsDisplay:YES];
 }
 
