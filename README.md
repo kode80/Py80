@@ -11,7 +11,7 @@ Latest build (ver 0.1): [Py80.zip](http://kode80.com/downloads/Py80.zip)
 * Drawing to in-app canvas (can also be saved as image)
 * OSX clipboard read/write access
 
-![Screen](https://pbs.twimg.com/media/CFoxlqYVAAAUbVd.png:large)
+![Screen](https://github.com/kode80/Py80/blob/master/py80_screen.png)
 
 ## py80 context
 The main() function accepts a *py80* object as it's only argument. The py80 object acts as a bridge between python and the py80 app, exposing various methods for interacting with the playground.
