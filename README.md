@@ -1,7 +1,14 @@
 # Py80
 A Python playground for OSX.
 
-Still early in dev. Currently features basic logging/graphics/IO via the py80 context, rough syntax highlighting/code completion and inline display of exceptions.
+Still early in dev but very much usable.
+
+## Features
+* Syntax highlighting/code completion
+* Inline display of runtime exceptions
+* Logging to in-app console
+* Drawing to in-app canvas (can also be saved as image)
+* OSX clipboard read/write access
 
 ![Screen](https://pbs.twimg.com/media/CFoxlqYVAAAUbVd.png:large)
 
