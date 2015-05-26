@@ -1,7 +1,8 @@
 # Py80
 A Python playground for OSX.
 
-Still early in dev but very much usable.
+Still early in dev but very much usable.  
+Latest build: [Py80-0.1.zip](http://kode80.com/downloads/Py80-0.1.zip)
 
 ## Features
 * Syntax highlighting/code completion
