@@ -15,6 +15,7 @@ import imp
 import inspect
 
 import jedi
+
 import py80
 
 
@@ -41,9 +42,4 @@ class KDEPythonLoader(NSObject):
 	@classmethod
 	def completionsForSourceString_line_column_( self, source, line, column):
 		script = jedi.Script( source, line, column)
-		completions = script.completions()
-		s = ""
-		for completion in completions:
-			if completion.type == "function":
-				s += completion.name + ","
-		return completions;
+		return script#.completions()

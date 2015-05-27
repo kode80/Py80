@@ -258,12 +258,12 @@
 		20A6E9811B0FD886005658C3 /* Python */ = {
 			isa = PBXGroup;
 			children = (
+				20A6E9881B0FD9C8005658C3 /* KDEExceptionFormatter.h */,
+				20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */,
 				20A6E9821B0FD886005658C3 /* KDEPy80Context.h */,
 				20A6E9831B0FD886005658C3 /* KDEPy80Context.m */,
 				20A6E9841B0FD886005658C3 /* KDEPython.h */,
 				20A6E9851B0FD886005658C3 /* KDEPython.m */,
-				20A6E9881B0FD9C8005658C3 /* KDEExceptionFormatter.h */,
-				20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */,
 			);
 			path = Python;
 			sourceTree = "<group>";

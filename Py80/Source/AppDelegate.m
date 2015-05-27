@@ -205,6 +205,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     }
 }
 
+
 - (IBAction) printCompletions:(id)sender
 {
     NSString *source = self.codeView.string;
@@ -239,19 +240,38 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         columnNumber = 0;
     }
     
-    /*
-    NSLog(@"--------");
-    //NSLog(@"cursorRange: %@", NSStringFromRange(cursorRange));
-    //NSLog(@"line range: %@", NSStringFromRange( lineRange));
-    NSLog(@"\"%@\",\"%@\"", [NSString stringWithCharacters:&characterBeforeCursor length:1],
-                            [NSString stringWithCharacters:&characterAtCursor length:1]);
-    NSLog(@"%@ : %@", @( lineNumber), @( columnNumber));
-    */
     
-    NSArray *completions = (NSArray *)[[KDEPython sharedPython] completionsForSourceString:source
-                                                                            line:lineNumber
-                                                                          column:columnNumber];
+    [self py80ContextClearLog:nil];
     
+    id script = [[KDEPython sharedPython] completionsForSourceString:source
+                                                                line:lineNumber
+                                                              column:columnNumber];
+    NSArray *signatures = [script valueForKey:@"call_signatures"];
+    NSArray *completions = [script valueForKey:@"completions"];
+    
+    if( signatures.count)
+    {
+        for( id sig in signatures)
+        {
+            NSMutableString *func = [NSMutableString stringWithFormat:@"%@(", [sig valueForKey:@"name"]];
+            int index = [[sig valueForKey:@"index"] intValue];
+            int i = 0;
+            NSArray *params = [sig valueForKey:@"params"];
+            for( id p in params)
+            {
+                [func appendString:@" "];
+                if( i == index) { [func appendString:@"["]; }
+                [func appendString:[p valueForKey:@"name"]];
+                if( i == index) { [func appendString:@"]"]; }
+                if( i + 1 < params.count) { [func appendString:@","]; }
+                
+                i++;
+            }
+            [func appendString:@")"];
+            
+            [self py80Context:nil logMessage:func];
+        }
+    }
 
     NSMutableDictionary *completionDictionary = [NSMutableDictionary dictionary];
     NSMutableArray *types;
@@ -303,8 +323,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         }
     }
     
-    [self py80ContextClearLog:nil];
     [self py80Context:nil logMessage:log];
+
 }
 
 - (IBAction) insertPath:(id)sender
@@ -566,6 +586,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) textViewDidChangeSelection:(NSNotification *)notification
 {
     self.exceptionView.hidden = YES;
+    [self printCompletions:nil];
 }
 
 @end
