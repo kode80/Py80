@@ -1,3 +1,6 @@
+# jedi branch
+In development [jedi](https://github.com/davidhalter/jedi) code completion integration.
+
 # Py80
 A Python playground for OSX.
 
