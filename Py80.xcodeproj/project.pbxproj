@@ -31,6 +31,8 @@
 		203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D56AA1B0A610D00A7779E /* AppDelegate.m */; };
 		203D56AE1B0A649D00A7779E /* KDEPythonLoader.py in Resources */ = {isa = PBXBuildFile; fileRef = 203D56AD1B0A649D00A7779E /* KDEPythonLoader.py */; };
 		203D56B31B0A716000A7779E /* Default.py in Resources */ = {isa = PBXBuildFile; fileRef = 203D56B21B0A716000A7779E /* Default.py */; };
+		208808171B14FBBD003AA9DE /* jedi in Resources */ = {isa = PBXBuildFile; fileRef = 208808161B14FBBD003AA9DE /* jedi */; };
+		208808191B150944003AA9DE /* py80 in Resources */ = {isa = PBXBuildFile; fileRef = 208808181B150944003AA9DE /* py80 */; };
 		20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */; };
 		20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9831B0FD886005658C3 /* KDEPy80Context.m */; };
 		20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9851B0FD886005658C3 /* KDEPython.m */; };
@@ -94,6 +96,8 @@
 		203D56AA1B0A610D00A7779E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		203D56AD1B0A649D00A7779E /* KDEPythonLoader.py */ = {isa = PBXFileReference; explicitFileType = text.script.python; fileEncoding = 4; path = KDEPythonLoader.py; sourceTree = "<group>"; };
 		203D56B21B0A716000A7779E /* Default.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = Default.py; sourceTree = "<group>"; };
+		208808161B14FBBD003AA9DE /* jedi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = jedi; sourceTree = "<group>"; };
+		208808181B150944003AA9DE /* py80 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = py80; sourceTree = "<group>"; };
 		20A6E97E1B0FC128005658C3 /* KDEExceptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEExceptionView.h; sourceTree = "<group>"; };
 		20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEExceptionView.m; sourceTree = "<group>"; };
 		20A6E9821B0FD886005658C3 /* KDEPy80Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPy80Context.h; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 		203D56AC1B0A612100A7779E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				208808181B150944003AA9DE /* py80 */,
+				208808161B14FBBD003AA9DE /* jedi */,
 				20082EB41B0B91CA0064DDA4 /* Syntax Definitions */,
 				20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */,
 				203D56AD1B0A649D00A7779E /* KDEPythonLoader.py */,
@@ -358,6 +364,8 @@
 				203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */,
 				20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */,
 				20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */,
+				208808171B14FBBD003AA9DE /* jedi in Resources */,
+				208808191B150944003AA9DE /* py80 in Resources */,
 				203D56B31B0A716000A7779E /* Default.py in Resources */,
 				203D56911B0A55EE00A7779E /* MainMenu.xib in Resources */,
 			);

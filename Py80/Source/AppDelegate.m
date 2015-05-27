@@ -205,13 +205,115 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     }
 }
 
+- (IBAction) printCompletions:(id)sender
+{
+    NSString *source = self.codeView.string;
+    NSRange cursorRange = NSMakeRange( self.codeView.selectedRange.location, 0);
+    NSRange currentRange = NSMakeRange( 0, 0);
+    NSRange lineRange = [source lineRangeForRange:currentRange];
+
+    NSInteger lineNumber = 1;
+    
+    while( lineRange.location < cursorRange.location &&
+           NSMaxRange( lineRange) < cursorRange.location &&
+           NSMaxRange( currentRange) < source.length)
+    {
+        lineNumber++;
+        currentRange.location = NSMaxRange( lineRange);
+        lineRange = [source lineRangeForRange:currentRange];
+    }
+    
+    NSInteger columnNumber = (cursorRange.location - lineRange.location);
+    
+    NSCharacterSet *newLineChars = [NSCharacterSet newlineCharacterSet];
+    unichar characterAtCursor = cursorRange.location < source.length ? [source characterAtIndex:cursorRange.location] : 0;
+    unichar characterBeforeCursor = cursorRange.location > 0 ? [source characterAtIndex:cursorRange.location - 1] : 0;
+
+    BOOL beforeIsNewLine = [newLineChars characterIsMember:characterBeforeCursor];
+    BOOL cursorIsNewLine = [newLineChars characterIsMember:characterAtCursor];
+    
+    if( (beforeIsNewLine && cursorIsNewLine == NO) ||
+        (beforeIsNewLine && cursorIsNewLine))
+    {
+        lineNumber++;
+        columnNumber = 0;
+    }
+    
+    /*
+    NSLog(@"--------");
+    //NSLog(@"cursorRange: %@", NSStringFromRange(cursorRange));
+    //NSLog(@"line range: %@", NSStringFromRange( lineRange));
+    NSLog(@"\"%@\",\"%@\"", [NSString stringWithCharacters:&characterBeforeCursor length:1],
+                            [NSString stringWithCharacters:&characterAtCursor length:1]);
+    NSLog(@"%@ : %@", @( lineNumber), @( columnNumber));
+    */
+    
+    NSArray *completions = (NSArray *)[[KDEPython sharedPython] completionsForSourceString:source
+                                                                            line:lineNumber
+                                                                          column:columnNumber];
+    
+
+    NSMutableDictionary *completionDictionary = [NSMutableDictionary dictionary];
+    NSMutableArray *types;
+    NSString *type, *name, *complete;
+    for( id completion in completions)
+    {
+        type = [completion valueForKey:@"type"];
+        name = [completion valueForKey:@"name"];
+        complete = [completion valueForKey:@"complete"];
+        
+        types = completionDictionary[ type];
+        if( types == nil)
+        {
+            types = [NSMutableArray array];
+            completionDictionary[ type] = types;
+        }
+        
+        name = [name stringByReplacingOccurrencesOfString:complete
+                                               withString:[NSString stringWithFormat:@"[%@]", complete]];
+        
+        if( [type isEqualToString:@"function"])
+        {
+            name = [name stringByAppendingString:@" ("];
+            
+            NSArray *params = [completion valueForKey:@"params"];
+            for( id param in params)
+            {
+                name = [name stringByAppendingFormat:@" %@,", [param valueForKey:@"name"]];
+            }
+            
+            if( params.count)
+            {
+                name = [name substringToIndex:name.length - 1];
+            }
+            
+            name = [name stringByAppendingString:@")"];
+        }
+        
+        [types addObject:name];
+    }
+    
+    NSMutableString *log = [NSMutableString stringWithString:@"\nCompletions:"];
+    for( type in completionDictionary)
+    {
+        [log appendFormat:@"\n\nType(%@):", type];
+        for( NSString *completionName in completionDictionary[ type])
+        {
+            [log appendFormat:@"\n%@",completionName];
+        }
+    }
+    
+    [self py80ContextClearLog:nil];
+    [self py80Context:nil logMessage:log];
+}
+
 - (IBAction) insertPath:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     panel.allowedFileTypes = nil;
     panel.allowsMultipleSelection = NO;
     panel.canChooseDirectories = YES;
-    
+
     if( [panel runModal] == NSFileHandlingPanelOKButton)
     {
         [self.codeView insertText:panel.URL.filePathURL.path];

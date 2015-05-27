@@ -16,6 +16,10 @@
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
                        functionName:(NSString*)funcName;
 
+- (NSString *) completionsForSourceString:(NSString *)source
+                                     line:(NSNumber *)line
+                                   column:(NSNumber *)column;
+
 @end
 
 
@@ -57,8 +61,17 @@
     PyEval_ReleaseLock();
     
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"KDEPythonLoader"
-                                                         ofType:@"py"];
+        NSString *loaderPath = [[NSBundle mainBundle] pathForResource:@"KDEPythonLoader"
+                                                               ofType:@"py"];
+        NSMutableString *loaderSrc = [[NSString stringWithContentsOfFile:loaderPath
+                                                                encoding:NSUTF8StringEncoding
+                                                                   error:NULL] mutableCopy];
+        
+        NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+        [loaderSrc replaceOccurrencesOfString:@"<PY80_RESOURCE_PATH>"
+                                   withString:resourcePath
+                                      options:0
+                                        range:NSMakeRange( 0, loaderSrc.length)];
         
         // Create new thread state
         PyEval_AcquireLock();
@@ -70,8 +83,7 @@
         PyEval_AcquireLock();
         PyThreadState_Swap(newThreadState);
         
-        FILE *file = fopen( [path UTF8String], "r");
-        BOOL result = PyRun_SimpleFileEx( file, [[path lastPathComponent] UTF8String], 1);
+        BOOL result = PyRun_SimpleString( [loaderSrc cStringUsingEncoding:NSUTF8StringEncoding]);
         
         PyThreadState_Swap(NULL);
         PyEval_ReleaseLock();
@@ -105,6 +117,17 @@
     
     return [loader loadModuleFromSourceString:sourceString
                                  functionName:functionName];
+}
+
+- (NSString *) completionsForSourceString:(NSString *)source
+                                     line:(NSInteger)line
+                                   column:(NSInteger)column
+{
+    //completionsForSourceString_line_column_
+    Class loader = NSClassFromString(@"KDEPythonLoader");
+    return [loader completionsForSourceString:source
+                                         line:@(line)
+                                       column:@(column)];
 }
 
 @end

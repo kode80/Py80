@@ -8,19 +8,25 @@
 
 from Foundation import *
 
+import sys
+sys.path.append( "<PY80_RESOURCE_PATH>")
+
 import imp
 import inspect
+
+import jedi
+import py80
+
 
 class KDEPythonLoader(NSObject):
 	@classmethod
 	def loadModuleFromSourceString_functionName_(self, source, func):
-		py80 = KDEPy80Context()
 		try:
 			kdemodule = imp.new_module("kdemodule")
 			exec source in kdemodule.__dict__
 			realfunc = getattr( kdemodule, func, None)
 			if realfunc is not None:
-				realfunc(py80)
+				realfunc()
 		except Exception as e:
 			tb = inspect.trace()[-1]
 			fileName = tb[1]
@@ -32,50 +38,12 @@ class KDEPythonLoader(NSObject):
 
 		return YES
 
-class KDEPy80Context:
-	def __init__( self):
-		contextClass = objc.lookUpClass( "KDEPy80Context")
-		self.context = contextClass.sharedContext()
-
-	def log( self, message):
-		self.context.log_( message)
-
-	def clearLog( self):
-		self.context.clearLog()
-
-	def getClipboard( self):
-		return self.context.getClipboard()
-
-	def setClipboard( self, string):
-		self.context.setClipboard_( string)
-
-	def clearDrawing( self):
-		self.context.clearDrawing()
-
-	def setStrokeColor( self, r, g, b, a):
-		self.context.setStrokeRed_green_blue_alpha_( r, g, b, a)
-
-	def setFillColor( self, r, g, b, a):
-		self.context.setFillRed_green_blue_alpha_( r, g, b, a)
-
-	def setStrokeWidth( self, w):
-		self.context.setStrokeWidth_( w)
-
-	def setFont( self, name, size):
-		self.context.setFont_size_( name, size)
-
-	def drawRect( self, x, y, w, h):
-		self.context.drawRectAtX_y_withWidth_height_( x, y, w, h)
-
-	def drawCircle( self, x, y, radius):
-		centerX = x - radius
-		centerY = y - radius
-		w = radius * 2
-		h = radius * 2
-		self.context.drawOvalInRectAtX_y_withWidth_height_( centerX, centerY, w, h)
-
-	def drawOvalInRect( self, x, y, w, h):
-		self.context.drawOvalInRectAtX_y_withWidth_height_( x, y, w, h)
-
-	def drawText( self, x, y, text):
-		self.context.drawText_atX_y_( text, x, y)
+	@classmethod
+	def completionsForSourceString_line_column_( self, source, line, column):
+		script = jedi.Script( source, line, column)
+		completions = script.completions()
+		s = ""
+		for completion in completions:
+			if completion.type == "function":
+				s += completion.name + ","
+		return completions;

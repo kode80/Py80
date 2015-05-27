@@ -18,4 +18,8 @@
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
                         runFunction:(NSString*)functionName;
 
+- (NSString *) completionsForSourceString:(NSString *)source
+                                     line:(NSInteger)line
+                                   column:(NSInteger)column;
+
 @end
