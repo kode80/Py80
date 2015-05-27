@@ -19,6 +19,7 @@
 @property (nonatomic, readwrite, weak) IBOutlet NSTextField *infoField;
 @property (nonatomic, readwrite, strong) IBOutlet ASKSyntaxViewController *syntaxViewController;
 @property (nonatomic, readwrite, strong) IBOutlet KDEExceptionView *exceptionView;
+@property (nonatomic, readwrite, weak) IBOutlet NSPopover *popover;
 
 - (IBAction) runCode:(id)sender;
 

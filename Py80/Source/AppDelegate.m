@@ -212,7 +212,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (IBAction) printCompletions:(id)sender
 {
     NSString *source = self.codeView.string;
-    NSRange cursorRange = NSMakeRange( self.codeView.selectedRange.location, 0);
+    const NSRange cursorRange = NSMakeRange( self.codeView.selectedRange.location, 0);
     NSRange currentRange = NSMakeRange( 0, 0);
     NSRange lineRange = [source lineRangeForRange:currentRange];
 
@@ -340,6 +340,17 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     
     [self py80Context:nil logMessage:log];
 
+    
+    lineRange = NSMakeRange( lineRange.location, cursorRange.location - lineRange.location);
+    NSRange glyphRange = [self.codeView.layoutManager glyphRangeForCharacterRange:lineRange
+                                                             actualCharacterRange:NULL];
+    NSRect lineRect = [self.codeView.layoutManager boundingRectForGlyphRange:glyphRange
+                                                             inTextContainer:self.codeView.textContainer];
+    lineRect.origin.x += lineRect.size.width - 1;
+    lineRect.size.width = 2;
+    [self.popover showRelativeToRect:lineRect
+                              ofView:self.codeView
+                       preferredEdge:NSMaxYEdge];
 }
 
 - (IBAction) insertPath:(id)sender

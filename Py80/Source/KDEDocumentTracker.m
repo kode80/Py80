@@ -126,7 +126,7 @@
         self.activeFilePath = path;
         self.activeFileNeedsSaving = NO;
         self.activeFileIsNew = NO;
-        
+
         [[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:path]];
         
         [self.delegate documentTrackerActiveFileDidChange:self];

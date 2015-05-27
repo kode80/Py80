@@ -23,6 +23,7 @@
                 <outlet property="exceptionView" destination="qYW-g8-i8Z" id="kYQ-rw-kr1"/>
                 <outlet property="infoField" destination="0vi-7E-cOT" id="obU-yO-qp2"/>
                 <outlet property="outputView" destination="ftz-qM-8Pu" id="OYX-eu-8VV"/>
+                <outlet property="popover" destination="6iQ-hc-Zcw" id="7ln-dX-Ppn"/>
                 <outlet property="runButton" destination="bZ3-gu-STN" id="WsB-ZF-tpp"/>
                 <outlet property="syntaxViewController" destination="pa6-ih-VyB" id="jMZ-U7-WpE"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -699,6 +700,30 @@
             </items>
             <point key="canvasLocation" x="327" y="703.5"/>
         </menu>
+        <viewController id="mxB-AR-GRL" userLabel="Popover View Controller">
+            <connections>
+                <outlet property="view" destination="GGH-u5-zJG" id="yGb-x0-ud4"/>
+            </connections>
+        </viewController>
+        <popover id="6iQ-hc-Zcw">
+            <connections>
+                <outlet property="contentViewController" destination="mxB-AR-GRL" id="5AX-Vf-9OB"/>
+            </connections>
+        </popover>
+        <customView id="GGH-u5-zJG">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lq2-95-Fem">
+                    <rect key="frame" x="40" y="31" width="82" height="32"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TEE-qQ-maJ">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <point key="canvasLocation" x="582.5" y="726"/>
+        </customView>
     </objects>
     <resources>
         <image name="PlayIcon" width="13" height="14"/>
