@@ -18,6 +18,8 @@ import jedi
 
 import py80
 
+jedi.api.preload_module( py80)
+
 
 class KDEPythonLoader(NSObject):
 	@classmethod
@@ -42,4 +44,30 @@ class KDEPythonLoader(NSObject):
 	@classmethod
 	def completionsForSourceString_line_column_( self, source, line, column):
 		script = jedi.Script( source, line, column)
-		return script#.completions()
+		completions = script.completions()
+
+		compClass = objc.lookUpClass( "KDEPyCompletion")
+		comps = []
+		for completion in completions:
+			comp = compClass.alloc().init()
+			comp.setType_( completion.type)
+			comp.setName_( completion.name)
+			comp.setComplete_( completion.complete)
+			if completion.type is "function":
+				params = completion.params
+				for param in params:
+					comp.addArgName_( param.name)
+			comps.append( comp)
+
+		sigClass = objc.lookUpClass( "KDEPyCallSignature")
+		signatures = script.call_signatures()
+		for signature in signatures:
+			sig = sigClass.alloc().init()
+			sig.setName_( signature.name)
+			sig.setArgIndex_( signature.index)
+			params = signature.params
+			for param in params:
+				sig.addArgName_( param.name)
+			comps.append( sig)
+
+		return comps

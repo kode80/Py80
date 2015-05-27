@@ -16,6 +16,9 @@
 
 #import "SyntaxKit.h"
 
+#import "KDEPyCompletion.h"
+#import "KDEPyCallSignature.h"
+
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 {
@@ -246,24 +249,37 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     id script = [[KDEPython sharedPython] completionsForSourceString:source
                                                                 line:lineNumber
                                                               column:columnNumber];
-    NSArray *signatures = [script valueForKey:@"call_signatures"];
-    NSArray *completions = [script valueForKey:@"completions"];
+    NSArray *rawArray = script;
+    
+    NSMutableArray *signatures = [NSMutableArray array];
+    NSMutableArray *completions = [NSMutableArray array];
+    
+    for( id obj in rawArray)
+    {
+        if( [obj isKindOfClass:[KDEPyCompletion class]])
+        {
+            [completions addObject:obj];
+        }
+        else if( [obj isKindOfClass:[KDEPyCallSignature class]])
+        {
+            [signatures addObject:obj];
+        }
+    }
     
     if( signatures.count)
     {
-        for( id sig in signatures)
+        for( KDEPyCallSignature *sig in signatures)
         {
-            NSMutableString *func = [NSMutableString stringWithFormat:@"%@(", [sig valueForKey:@"name"]];
-            int index = [[sig valueForKey:@"index"] intValue];
+            NSMutableString *func = [NSMutableString stringWithFormat:@"%@(", sig.name];
+            int index = [sig.argIndex intValue];
             int i = 0;
-            NSArray *params = [sig valueForKey:@"params"];
-            for( id p in params)
+            for( NSString *p in sig.argNames)
             {
                 [func appendString:@" "];
                 if( i == index) { [func appendString:@"["]; }
-                [func appendString:[p valueForKey:@"name"]];
+                [func appendString:p];
                 if( i == index) { [func appendString:@"]"]; }
-                if( i + 1 < params.count) { [func appendString:@","]; }
+                if( i + 1 < sig.argNames.count) { [func appendString:@","]; }
                 
                 i++;
             }
@@ -276,11 +292,11 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     NSMutableDictionary *completionDictionary = [NSMutableDictionary dictionary];
     NSMutableArray *types;
     NSString *type, *name, *complete;
-    for( id completion in completions)
+    for( KDEPyCompletion *completion in completions)
     {
-        type = [completion valueForKey:@"type"];
-        name = [completion valueForKey:@"name"];
-        complete = [completion valueForKey:@"complete"];
+        type = completion.type;
+        name = completion.name;
+        complete = completion.complete;
         
         types = completionDictionary[ type];
         if( types == nil)
@@ -296,13 +312,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         {
             name = [name stringByAppendingString:@" ("];
             
-            NSArray *params = [completion valueForKey:@"params"];
-            for( id param in params)
+            for( NSString *param in completion.argNames)
             {
-                name = [name stringByAppendingFormat:@" %@,", [param valueForKey:@"name"]];
+                name = [name stringByAppendingFormat:@" %@,", param];
             }
             
-            if( params.count)
+            if( completion.argNames.count)
             {
                 name = [name substringToIndex:name.length - 1];
             }
