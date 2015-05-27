@@ -47,8 +47,6 @@ static BOOL			sSyntaxColoredTextDocPrefsInited = NO;
 
 @interface ASKSyntaxViewController () <ASKSyntaxDelegate>
 
-@property (nonatomic, readwrite, copy) NSString *lastPartialWord;
-
 +(void) 	makeSurePrefsAreInited;		// No need to call this.
 
 -(void) recolorRange: (NSRange) range;
@@ -908,51 +906,6 @@ static void * const KVO = (void*)&KVO;
     if([self.delegate respondsToSelector:@selector(textViewDidChangeSelection:)]) {
         [self.delegate textViewDidChangeSelection:notification];
     }
-}
-
-- (void) textDidChange:(NSNotification *)notification
-{
-    NSRange range = [self.view rangeForUserCompletion];
-    
-    if( range.location != NSNotFound)
-    {
-        NSString *partialWord = [self.view.string substringWithRange:range];
-        if( [self.lastPartialWord isEqualToString:partialWord] == NO)
-        {
-            self.lastPartialWord = partialWord;
-            [self.view complete:nil];
-        }
-    }
-}
-
-- (NSArray *)textView:(NSTextView *)textView
-          completions:(NSArray *)words
-  forPartialWordRange:(NSRange)charRange
-  indexOfSelectedItem:(NSInteger *)index
-{
-    NSString *partialString = [textView.string substringWithRange:charRange];
-    
-    NSArray *keywords = @[@"and", @"as", @"assert", @"break", @"class", @"continue", @"def", @"del", @"elif", @"else", @"except", @"exec", @"finally", @"for", @"from", @"global", @"if", @"import", @"in", @"is", @"lambda", @"not", @"or", @"pass", @"print", @"raise", @"return", @"try", @"while", @"with", @"yield",
-        
-                          @"py80", @"log", @"clearLog", @"getClipboard", @"setClipboard", @"clearDrawing", @"setStrokeColor", @"setFillColor", @"setStrokeWidth", @"setFont", @"drawRect", @"drawCircle", @"drawOvalInRect", @"drawText"];
-    
-    NSMutableArray *validKeywords = [NSMutableArray array];
-    for( NSString *keyword in keywords)
-    {
-        if( [keyword rangeOfString:partialString].location == 0)
-        {
-            [validKeywords addObject:keyword];
-        }
-    }
-    if( validKeywords.count)
-    {
-        *index = 0;
-        [validKeywords insertObject:partialString
-                            atIndex:0];
-        self.lastPartialWord = validKeywords[0];
-    }
-    
-    return [NSArray arrayWithArray:validKeywords];
 }
 
 // -----------------------------------------------------------------------------
