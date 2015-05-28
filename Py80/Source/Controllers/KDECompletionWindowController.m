@@ -12,6 +12,8 @@
 #import "KDEPyCompletion.h"
 #import "KDEPyCallSignature.h"
 
+#import "NSString+CursorPosition.h"
+
 
 @interface KDECompletionWindowController ()
 
@@ -35,42 +37,11 @@
 - (void) reloadCompletionsForTextView:(NSTextView *)textView
 {
     NSString *source = textView.string;
-    const NSRange cursorRange = NSMakeRange( textView.selectedRange.location, 0);
-    NSRange currentRange = NSMakeRange( 0, 0);
-    NSRange lineRange = [source lineRangeForRange:currentRange];
-    
-    NSInteger lineNumber = 1;
-    
-    while( lineRange.location < cursorRange.location &&
-          NSMaxRange( lineRange) < cursorRange.location &&
-          NSMaxRange( currentRange) < source.length)
-    {
-        lineNumber++;
-        currentRange.location = NSMaxRange( lineRange);
-        lineRange = [source lineRangeForRange:currentRange];
-    }
-    
-    NSInteger columnNumber = (cursorRange.location - lineRange.location);
-    
-    NSCharacterSet *newLineChars = [NSCharacterSet newlineCharacterSet];
-    unichar characterAtCursor = cursorRange.location < source.length ? [source characterAtIndex:cursorRange.location] : 0;
-    unichar characterBeforeCursor = cursorRange.location > 0 ? [source characterAtIndex:cursorRange.location - 1] : 0;
-    
-    BOOL beforeIsNewLine = [newLineChars characterIsMember:characterBeforeCursor];
-    BOOL cursorIsNewLine = [newLineChars characterIsMember:characterAtCursor];
-    
-    if( (beforeIsNewLine && cursorIsNewLine == NO) ||
-       (beforeIsNewLine && cursorIsNewLine))
-    {
-        lineNumber++;
-        columnNumber = 0;
-    }
-    
-    
+    KDEStringCursor cursor = [source cursorForRange:textView.selectedRange];
     
     NSArray *completionObjects = [[KDEPython sharedPython] completionsForSourceString:source
-                                                                                 line:lineNumber
-                                                                               column:columnNumber];
+                                                                                 line:cursor.line
+                                                                               column:cursor.column];
     
     NSMutableArray *signatures = [NSMutableArray array];
     NSMutableArray *completions = [NSMutableArray array];
@@ -142,39 +113,9 @@
     }
     
     NSString *source = textView.string;
-    const NSRange cursorRange = NSMakeRange( textView.selectedRange.location, 0);
-    NSRange currentRange = NSMakeRange( 0, 0);
-    NSRange lineRange = [source lineRangeForRange:currentRange];
     
-    NSInteger lineNumber = 1;
-    
-    while( lineRange.location < cursorRange.location &&
-          NSMaxRange( lineRange) < cursorRange.location &&
-          NSMaxRange( currentRange) < source.length)
-    {
-        lineNumber++;
-        currentRange.location = NSMaxRange( lineRange);
-        lineRange = [source lineRangeForRange:currentRange];
-    }
-    
-    NSInteger columnNumber = (cursorRange.location - lineRange.location);
-    
-    NSCharacterSet *newLineChars = [NSCharacterSet newlineCharacterSet];
-    unichar characterAtCursor = cursorRange.location < source.length ? [source characterAtIndex:cursorRange.location] : 0;
-    unichar characterBeforeCursor = cursorRange.location > 0 ? [source characterAtIndex:cursorRange.location - 1] : 0;
-    
-    BOOL beforeIsNewLine = [newLineChars characterIsMember:characterBeforeCursor];
-    BOOL cursorIsNewLine = [newLineChars characterIsMember:characterAtCursor];
-    
-    if( (beforeIsNewLine && cursorIsNewLine == NO) ||
-       (beforeIsNewLine && cursorIsNewLine))
-    {
-        lineNumber++;
-        columnNumber = 0;
-    }
-    
-    
-    lineRange = NSMakeRange( lineRange.location, cursorRange.location - lineRange.location);
+    NSRange lineRange = [source lineRangeForRange:textView.selectedRange];
+    lineRange.length = textView.selectedRange.location - lineRange.location;
     NSRange glyphRange = [textView.layoutManager glyphRangeForCharacterRange:lineRange
                                                         actualCharacterRange:NULL];
     NSRect lineRect = [textView.layoutManager boundingRectForGlyphRange:glyphRange
