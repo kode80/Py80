@@ -78,6 +78,11 @@
             [c addObject:completion];
         }
     }
+    
+    NSTableColumn *typeColumn = self.table.tableColumns[ [self.table columnWithIdentifier:@"Type"]];
+    typeColumn.minWidth = [self columnWidthForTypeNames:[completionDictionary allKeys]];
+    typeColumn.width = typeColumn.minWidth;
+    
     self.completions = [NSArray arrayWithArray:c];
     [self.table reloadData];
     
@@ -135,19 +140,28 @@
     viewForTableColumn:(NSTableColumn *)tableColumn
                    row:(NSInteger)row
 {
-    NSTableCellView *view = [tableView makeViewWithIdentifier:@"Completion" owner:self];
+    NSTableCellView *view = [tableView makeViewWithIdentifier:tableColumn.identifier
+                                                        owner:self];
     KDEPyCompletion *completion = self.completions[ row];
+    NSMutableString *string = [NSMutableString string];
 
-    NSMutableString *string = [NSMutableString stringWithString:completion.name];
-    
-    if( [completion.type isEqualToString:@"function"])
+    if( [tableColumn.identifier isEqualToString:@"Type"])
     {
-        [string appendString:@"("];
-        if( completion.argNames.count)
+        [string appendString:completion.type];
+    }
+    else if( [tableColumn.identifier isEqualToString:@"Completion"])
+    {
+        [string appendString:completion.name];
+        
+        if( [completion.type isEqualToString:@"function"])
         {
-            [string appendFormat:@" %@",[completion.argNames componentsJoinedByString:@", "]];
+            [string appendString:@"("];
+            if( completion.argNames.count)
+            {
+                [string appendFormat:@" %@",[completion.argNames componentsJoinedByString:@", "]];
+            }
+            [string appendString:@")"];
         }
-        [string appendString:@")"];
     }
     
     view.textField.stringValue = string;
@@ -176,6 +190,25 @@
     NSPoint point = NSMakePoint( NSMaxX( lineRect), NSMaxY( lineRect));
     return [textView convertPoint:point
                            toView:nil];
+}
+
+- (CGFloat) columnWidthForTypeNames:(NSArray *)typeNames
+{
+    NSTableCellView *view = [self.table makeViewWithIdentifier:@"Type"
+                                                         owner:self];
+    
+    CGFloat width = 0.0f;
+    CGSize size;
+    NSDictionary *attributes = @{ NSFontAttributeName : view.textField.font };
+    for( NSString *type in typeNames)
+    {
+        size = [type sizeWithAttributes:attributes];
+        if( size.width > width)
+        {
+            width = size.width;
+        }
+    }
+    return width + 6.0f;
 }
 
 @end
