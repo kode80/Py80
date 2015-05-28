@@ -214,7 +214,20 @@
 {
     NSTableCellView *view = [tableView makeViewWithIdentifier:@"Completion" owner:self];
     KDEPyCompletion *completion = self.completions[ row];
-    view.textField.stringValue = completion.name;
+
+    NSMutableString *string = [NSMutableString stringWithString:completion.name];
+    
+    if( [completion.type isEqualToString:@"function"])
+    {
+        [string appendString:@"("];
+        if( completion.argNames.count)
+        {
+            [string appendFormat:@" %@",[completion.argNames componentsJoinedByString:@", "]];
+        }
+        [string appendString:@")"];
+    }
+    
+    view.textField.stringValue = string;
     
     return view;
 }
