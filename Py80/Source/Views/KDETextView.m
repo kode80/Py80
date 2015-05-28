@@ -35,6 +35,7 @@
 {
     BOOL visible = self.completionController.isVisible;
     unsigned short code = theEvent.keyCode;
+    NSEventModifierFlags modifiers = theEvent.modifierFlags;
     
     if( visible && (code == kVK_UpArrow || code == kVK_DownArrow))
     {
@@ -47,6 +48,11 @@
     else if( visible && code == kVK_Escape)
     {
         [self.completionController hide];
+    }
+    else if( visible == NO && code == kVK_Space && modifiers & NSControlKeyMask)
+    {
+        [self.completionController reloadCompletionsForTextView:self];
+        [self.completionController showForTextView:self];
     }
     else
     {
