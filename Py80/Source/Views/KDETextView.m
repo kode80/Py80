@@ -21,6 +21,11 @@
 
 @implementation KDETextView
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void) awakeFromNib
 {
     [super awakeFromNib];
@@ -29,6 +34,24 @@
     [ignoreSet formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
     
     self.triggerCompletionCharSet = [ignoreSet invertedSet];
+}
+
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow
+{
+    if( newWindow)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(windowWillClose:)
+                                                     name:NSWindowWillCloseNotification
+                                                   object:newWindow];
+    }
+    else
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSWindowWillCloseNotification
+                                                      object:self.window];
+    }
+    [super viewWillMoveToWindow:newWindow];
 }
 
 - (void) keyDown:(NSEvent *)theEvent
@@ -79,6 +102,13 @@
     {
         [super keyUp:theEvent];
     }
+}
+
+#pragma mark Notifications
+
+- (void) windowWillClose:(NSNotification *)notification
+{
+    [self.completionController hide];
 }
 
 #pragma mark NSTextView: Selection change methods
