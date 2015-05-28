@@ -26,6 +26,16 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (BOOL)resignFirstResponder
+{
+    BOOL result = [super resignFirstResponder];
+    if( result)
+    {
+        [self.completionController hide];
+    }
+    return result;
+}
+
 - (void) awakeFromNib
 {
     [super awakeFromNib];
