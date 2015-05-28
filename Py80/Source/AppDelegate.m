@@ -18,6 +18,7 @@
 
 #import "KDEPyCompletion.h"
 #import "KDEPyCallSignature.h"
+#import "KDECompletionViewController.h"
 
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
@@ -209,18 +210,18 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 }
 
 
-- (IBAction) printCompletions:(id)sender
+- (IBAction)printCompletions:(id)sender
 {
     NSString *source = self.codeView.string;
     const NSRange cursorRange = NSMakeRange( self.codeView.selectedRange.location, 0);
     NSRange currentRange = NSMakeRange( 0, 0);
     NSRange lineRange = [source lineRangeForRange:currentRange];
-
+    
     NSInteger lineNumber = 1;
     
     while( lineRange.location < cursorRange.location &&
-           NSMaxRange( lineRange) < cursorRange.location &&
-           NSMaxRange( currentRange) < source.length)
+          NSMaxRange( lineRange) < cursorRange.location &&
+          NSMaxRange( currentRange) < source.length)
     {
         lineNumber++;
         currentRange.location = NSMaxRange( lineRange);
@@ -232,125 +233,36 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     NSCharacterSet *newLineChars = [NSCharacterSet newlineCharacterSet];
     unichar characterAtCursor = cursorRange.location < source.length ? [source characterAtIndex:cursorRange.location] : 0;
     unichar characterBeforeCursor = cursorRange.location > 0 ? [source characterAtIndex:cursorRange.location - 1] : 0;
-
+    
     BOOL beforeIsNewLine = [newLineChars characterIsMember:characterBeforeCursor];
     BOOL cursorIsNewLine = [newLineChars characterIsMember:characterAtCursor];
     
     if( (beforeIsNewLine && cursorIsNewLine == NO) ||
-        (beforeIsNewLine && cursorIsNewLine))
+       (beforeIsNewLine && cursorIsNewLine))
     {
         lineNumber++;
         columnNumber = 0;
     }
     
-    
-    [self py80ContextClearLog:nil];
-    
-    id script = [[KDEPython sharedPython] completionsForSourceString:source
-                                                                line:lineNumber
-                                                              column:columnNumber];
-    NSArray *rawArray = script;
-    
-    NSMutableArray *signatures = [NSMutableArray array];
-    NSMutableArray *completions = [NSMutableArray array];
-    
-    for( id obj in rawArray)
-    {
-        if( [obj isKindOfClass:[KDEPyCompletion class]])
-        {
-            [completions addObject:obj];
-        }
-        else if( [obj isKindOfClass:[KDEPyCallSignature class]])
-        {
-            [signatures addObject:obj];
-        }
-    }
-    
-    if( signatures.count)
-    {
-        for( KDEPyCallSignature *sig in signatures)
-        {
-            NSMutableString *func = [NSMutableString stringWithFormat:@"%@(", sig.name];
-            int index = [sig.argIndex intValue];
-            int i = 0;
-            for( NSString *p in sig.argNames)
-            {
-                [func appendString:@" "];
-                if( i == index) { [func appendString:@"["]; }
-                [func appendString:p];
-                if( i == index) { [func appendString:@"]"]; }
-                if( i + 1 < sig.argNames.count) { [func appendString:@","]; }
-                
-                i++;
-            }
-            [func appendString:@")"];
-            
-            [self py80Context:nil logMessage:func];
-        }
-    }
-
-    NSMutableDictionary *completionDictionary = [NSMutableDictionary dictionary];
-    NSMutableArray *types;
-    NSString *type, *name, *complete;
-    for( KDEPyCompletion *completion in completions)
-    {
-        type = completion.type;
-        name = completion.name;
-        complete = completion.complete;
-        
-        types = completionDictionary[ type];
-        if( types == nil)
-        {
-            types = [NSMutableArray array];
-            completionDictionary[ type] = types;
-        }
-        
-        name = [name stringByReplacingOccurrencesOfString:complete
-                                               withString:[NSString stringWithFormat:@"[%@]", complete]];
-        
-        if( [type isEqualToString:@"function"])
-        {
-            name = [name stringByAppendingString:@" ("];
-            
-            for( NSString *param in completion.argNames)
-            {
-                name = [name stringByAppendingFormat:@" %@,", param];
-            }
-            
-            if( completion.argNames.count)
-            {
-                name = [name substringToIndex:name.length - 1];
-            }
-            
-            name = [name stringByAppendingString:@")"];
-        }
-        
-        [types addObject:name];
-    }
-    
-    NSMutableString *log = [NSMutableString stringWithString:@"\nCompletions:"];
-    for( type in completionDictionary)
-    {
-        [log appendFormat:@"\n\nType(%@):", type];
-        for( NSString *completionName in completionDictionary[ type])
-        {
-            [log appendFormat:@"\n%@",completionName];
-        }
-    }
-    
-    [self py80Context:nil logMessage:log];
-
-    
     lineRange = NSMakeRange( lineRange.location, cursorRange.location - lineRange.location);
     NSRange glyphRange = [self.codeView.layoutManager glyphRangeForCharacterRange:lineRange
-                                                             actualCharacterRange:NULL];
+                                                        actualCharacterRange:NULL];
     NSRect lineRect = [self.codeView.layoutManager boundingRectForGlyphRange:glyphRange
-                                                             inTextContainer:self.codeView.textContainer];
-    lineRect.origin.x += lineRect.size.width - 1;
-    lineRect.size.width = 2;
-    [self.popover showRelativeToRect:lineRect
-                              ofView:self.codeView
-                       preferredEdge:NSMaxYEdge];
+                                                        inTextContainer:self.codeView.textContainer];
+    NSPoint p = NSMakePoint( NSMaxX( lineRect), NSMaxY( lineRect));
+    p = [self.codeView convertPoint:p toView:nil];
+    
+    NSRect f = self.completionWindow.frame;
+    f.origin = p;
+    
+    f = [self.window convertRectToScreen:f];
+    f.origin.y -= f.size.height;
+    
+    [self.completionWindow setFrame:f display:YES];
+    
+    [self.completionWindow orderFront:nil];
+    
+    [self.completionViewController reloadCompletionsForTextView:self.codeView];
 }
 
 - (IBAction) insertPath:(id)sender

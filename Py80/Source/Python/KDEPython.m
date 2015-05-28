@@ -16,9 +16,9 @@
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
                        functionName:(NSString*)funcName;
 
-- (NSString *) completionsForSourceString:(NSString *)source
-                                     line:(NSNumber *)line
-                                   column:(NSNumber *)column;
+- (NSArray *) completionsForSourceString:(NSString *)source
+                                    line:(NSNumber *)line
+                                  column:(NSNumber *)column;
 
 @end
 
@@ -119,11 +119,10 @@
                                  functionName:functionName];
 }
 
-- (NSString *) completionsForSourceString:(NSString *)source
-                                     line:(NSInteger)line
-                                   column:(NSInteger)column
+- (NSArray *) completionsForSourceString:(NSString *)source
+                                    line:(NSInteger)line
+                                  column:(NSInteger)column
 {
-    //completionsForSourceString_line_column_
     Class loader = NSClassFromString(@"KDEPythonLoader");
     return [loader completionsForSourceString:source
                                          line:@(line)
