@@ -53,7 +53,7 @@ class KDEPythonLoader(NSObject):
 			comp.setType_( completion.type)
 			comp.setName_( completion.name)
 			comp.setComplete_( completion.complete)
-			if completion.type is "function":
+			if completion.type == "function":
 				params = completion.params
 				for param in params:
 					comp.addArgName_( param.name)
