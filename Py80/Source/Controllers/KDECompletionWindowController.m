@@ -24,11 +24,6 @@
 
 @implementation KDECompletionWindowController
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    // Do view setup here.
-}
-
 - (BOOL) isVisible
 {
     return self.window.isVisible;
@@ -106,34 +101,20 @@
 
 - (void) showForTextView:(NSTextView *)textView
 {
-    if( [KDEPython sharedPython].isInitialized == NO ||
-        self.completions.count == 0)
+    if( [KDEPython sharedPython].isInitialized && self.completions.count)
     {
-        return;
+        NSRect frame = self.window.frame;
+        frame.size.height = MIN( [self tableHeightForRowCount:8],
+                                 [self tableHeightForRowCount:self.completions.count]);
+        frame.origin = [self windowPointForCurrentSelectionInTextView:textView];
+        
+        frame = [textView.window convertRectToScreen:frame];
+        frame.origin.y -= frame.size.height;
+        
+        [self showWindow:nil];
+        [self.window setFrame:frame
+                      display:YES];
     }
-    
-    NSString *source = textView.string;
-    
-    NSRange lineRange = [source lineRangeForRange:textView.selectedRange];
-    lineRange.length = textView.selectedRange.location - lineRange.location;
-    NSRange glyphRange = [textView.layoutManager glyphRangeForCharacterRange:lineRange
-                                                        actualCharacterRange:NULL];
-    NSRect lineRect = [textView.layoutManager boundingRectForGlyphRange:glyphRange
-                                                        inTextContainer:textView.textContainer];
-    NSPoint p = NSMakePoint( NSMaxX( lineRect), NSMaxY( lineRect));
-    p = [textView convertPoint:p toView:nil];
-    
-    CGFloat tableHeight = self.completions.count * (self.table.rowHeight + self.table.intercellSpacing.height);
-    CGFloat maxTableHeight = 8 * (self.table.rowHeight + self.table.intercellSpacing.height);
-    NSRect f = self.window.frame;
-    f.size.height = MIN( tableHeight, maxTableHeight);
-    f.origin = p;
-    
-    f = [textView.window convertRectToScreen:f];
-    f.origin.y -= f.size.height;
-    
-    [self showWindow:nil];
-    [self.window setFrame:f display:YES];
 }
 
 - (void) hide
@@ -172,6 +153,29 @@
     view.textField.stringValue = string;
     
     return view;
+}
+
+#pragma mark - private
+
+- (CGFloat) tableHeightForRowCount:(NSInteger)rowCount
+{
+    return rowCount * (self.table.rowHeight + self.table.intercellSpacing.height);
+}
+
+- (NSPoint) windowPointForCurrentSelectionInTextView:(NSTextView *)textView
+{
+    NSString *source = textView.string;
+    
+    NSRange lineRange = [source lineRangeForRange:textView.selectedRange];
+    lineRange.length = textView.selectedRange.location - lineRange.location;
+    NSRange glyphRange = [textView.layoutManager glyphRangeForCharacterRange:lineRange
+                                                        actualCharacterRange:NULL];
+    NSRect lineRect = [textView.layoutManager boundingRectForGlyphRange:glyphRange
+                                                        inTextContainer:textView.textContainer];
+
+    NSPoint point = NSMakePoint( NSMaxX( lineRect), NSMaxY( lineRect));
+    return [textView convertPoint:point
+                           toView:nil];
 }
 
 @end
