@@ -15,6 +15,9 @@
 @property (nonatomic, readwrite, weak) IBOutlet NSTableView *table;
 @property (nonatomic, readwrite, weak) IBOutlet NSTextField *docLabel;
 @property (nonatomic, readwrite, weak) IBOutlet NSLayoutConstraint *tableHeightConstraint;
+@property (nonatomic, readwrite, weak) IBOutlet NSLayoutConstraint *docTopMarginConstraint;
+@property (nonatomic, readwrite, weak) IBOutlet NSLayoutConstraint *docBottomMarginConstraint;
+@property (nonatomic, readwrite, strong) IBOutlet NSLayoutConstraint *docZeroHeightConstraint;
 
 - (void) reloadCompletionsForTextView:(NSTextView *)textView;
 - (void) insertCurrentCompletionInTextView:(NSTextView *)textView;

@@ -26,6 +26,14 @@
 
 @implementation KDECompletionWindowController
 
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self.docLabel removeConstraint:self.docZeroHeightConstraint];
+    self.docZeroHeightConstraint.constant = 0.0f;
+}
+
 - (BOOL) isVisible
 {
     return self.window.isVisible;
@@ -150,6 +158,7 @@
     if( self.completions.count && index > -1)
     {
         KDEPyCompletion *completion = self.completions[ index];
+        NSString *docString = completion.docString;
         
         if( [completion.type isEqualToString:@"function"])
         {
@@ -159,13 +168,29 @@
             // this is a hacky way of keeping full jedi docstrings while
             // removing the unwanted function signature
             
-            NSRange range = [completion.docString rangeOfString:@"\n\n"];
-            self.docLabel.stringValue = [completion.docString substringFromIndex:NSMaxRange( range)];
+            NSRange range = [docString rangeOfString:@"\n\n"];
+            if( range.location != NSNotFound)
+            {
+                docString = [docString substringFromIndex:NSMaxRange( range)];
+            }
+        }
+        
+        BOOL showDocs = docString.length > 0;
+        
+        CGFloat margin = showDocs ? 6.0f : 0.0f;
+        self.docTopMarginConstraint.constant = margin;
+        self.docBottomMarginConstraint.constant = margin;
+        
+        if( showDocs)
+        {
+            [self.docLabel removeConstraint:self.docZeroHeightConstraint];
         }
         else
         {
-            self.docLabel.stringValue = completion.docString;
+            [self.docLabel addConstraint:self.docZeroHeightConstraint];
         }
+        
+        self.docLabel.stringValue = docString;
     }
 }
 

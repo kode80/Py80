@@ -33,7 +33,10 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <viewController id="Vm7-SP-0Uq" customClass="KDECompletionWindowController">
             <connections>
+                <outlet property="docBottomMarginConstraint" destination="ZTU-97-uIR" id="0wD-OI-Y3E"/>
                 <outlet property="docLabel" destination="9AI-fR-MmB" id="jML-iU-SGB"/>
+                <outlet property="docTopMarginConstraint" destination="3oy-Vo-gWG" id="0FX-c2-4ko"/>
+                <outlet property="docZeroHeightConstraint" destination="0a4-nA-Gc9" id="Sit-Nf-Uah"/>
                 <outlet property="table" destination="grc-Vr-qNc" id="gFU-4O-6Ki"/>
                 <outlet property="tableHeightConstraint" destination="4sC-Ry-lIG" id="nSR-mu-8Fk"/>
                 <outlet property="window" destination="Hhb-Tm-bl3" id="dZd-iW-stg"/>
@@ -825,6 +828,9 @@
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9AI-fR-MmB">
                                     <rect key="frame" x="4" y="6" width="429" height="14"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="14" id="0a4-nA-Gc9"/>
+                                    </constraints>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="V2S-am-599">
                                         <font key="font" metaFont="smallSystem"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
