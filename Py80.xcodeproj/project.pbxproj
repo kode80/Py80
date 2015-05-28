@@ -45,6 +45,7 @@
 		20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9851B0FD886005658C3 /* KDEPython.m */; };
 		20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */; };
 		20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F13AC91B0AD47600C30D2A /* KDEOutputView.m */; };
+		20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEExceptionFormatter.m; sourceTree = "<group>"; };
 		20F13AC81B0AD47600C30D2A /* KDEOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputView.h; sourceTree = "<group>"; };
 		20F13AC91B0AD47600C30D2A /* KDEOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputView.m; sourceTree = "<group>"; };
+		20F160A01B1790DC00398B70 /* KDECompletionTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECompletionTableRowView.h; sourceTree = "<group>"; };
+		20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableRowView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +324,8 @@
 				208D43111B1688240004898F /* KDETextView.m */,
 				200B7C511B178765005D64B1 /* KDETypeTableCellView.h */,
 				200B7C521B178765005D64B1 /* KDETypeTableCellView.m */,
+				20F160A01B1790DC00398B70 /* KDECompletionTableRowView.h */,
+				20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				200B7C501B1774F6005D64B1 /* NSString+CursorPosition.m in Sources */,
 				208D430C1B1646D80004898F /* KDECompletionWindowController.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
+				20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */,
 				208D43121B1688240004898F /* KDETextView.m in Sources */,
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
 				20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "KDECompletionWindowController.h"
+#import "KDECompletionTableRowView.h"
 
 #import "KDEPython.h"
 #import "KDEPyCompletion.h"
@@ -174,6 +175,11 @@
     view.textField.stringValue = string;
     
     return view;
+}
+
+- (NSTableRowView *) tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row
+{
+    return [KDECompletionTableRowView new];
 }
 
 #pragma mark - private
