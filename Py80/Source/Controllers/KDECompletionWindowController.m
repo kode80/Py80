@@ -49,17 +49,14 @@
                                                                                column:cursor.column];
     
     NSMutableArray *signatures = [NSMutableArray array];
-    NSMutableArray *completions = [NSMutableArray array];
+    NSMutableArray *completions = [completionObjects mutableCopy];
     
     for( id obj in completionObjects)
     {
-        if( [obj isKindOfClass:[KDEPyCompletion class]])
-        {
-            [completions addObject:obj];
-        }
-        else if( [obj isKindOfClass:[KDEPyCallSignature class]])
+        if( [obj isKindOfClass:[KDEPyCallSignature class]])
         {
             [signatures addObject:obj];
+            [completions removeObject:obj];
         }
     }
     
@@ -79,22 +76,22 @@
         [types addObject:completion];
     }
     
-    NSMutableArray *c = [NSMutableArray array];
-    for( type in completionDictionary)
+    NSMutableArray *sortedCompletions = [NSMutableArray array];
+    NSMutableArray *typeNames = [completionDictionary.allKeys mutableCopy];
+    [self moveExistingString:@"keyword" toTopOfArray:typeNames];
+    [self moveExistingString:@"class" toTopOfArray:typeNames];
+    [self moveExistingString:@"module" toTopOfArray:typeNames];
+    [self moveExistingString:@"function" toTopOfArray:typeNames];
+        
+    for( type in typeNames)
     {
         types = completionDictionary[ type];
-        for( KDEPyCompletion *completion in types)
-        {
-            [c addObject:completion];
-        }
+        [sortedCompletions addObjectsFromArray:types];
     }
     
-    NSTableColumn *typeColumn = self.table.tableColumns[ [self.table columnWithIdentifier:@"Type"]];
-    self.typeColumnWidth = [self columnWidthForTypeNames:[completionDictionary allKeys]];
-    typeColumn.minWidth = self.typeColumnWidth;
-    typeColumn.width = self.typeColumnWidth;
+    [self updateTypeColumnWidthWithTypeNames:typeNames];
     
-    self.completions = [NSArray arrayWithArray:c];
+    self.completions = [NSArray arrayWithArray:sortedCompletions];
     [self.table reloadData];
     
     if( self.completions.count == 0)
@@ -237,6 +234,14 @@
 
 #pragma mark - private
 
+- (void) updateTypeColumnWidthWithTypeNames:(NSArray *)typeNames
+{
+    NSTableColumn *typeColumn = self.table.tableColumns[ [self.table columnWithIdentifier:@"Type"]];
+    self.typeColumnWidth = [self columnWidthForTypeNames:typeNames];
+    typeColumn.minWidth = self.typeColumnWidth;
+    typeColumn.width = self.typeColumnWidth;
+}
+
 - (CGFloat) tableHeightForRowCount:(NSInteger)rowCount
 {
     return rowCount * (self.table.rowHeight + self.table.intercellSpacing.height);
@@ -302,6 +307,17 @@
     }
     
     return nil;
+}
+
+- (void) moveExistingString:(NSString *)string
+               toTopOfArray:(NSMutableArray *)array
+{
+    if( [array containsObject:string])
+    {
+        [array removeObject:string];
+        [array insertObject:string
+                    atIndex:0];
+    }
 }
 
 @end
