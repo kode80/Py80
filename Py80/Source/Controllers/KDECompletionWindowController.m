@@ -181,13 +181,14 @@
     NSPoint p = NSMakePoint( NSMaxX( lineRect), NSMaxY( lineRect));
     p = [textView convertPoint:p toView:nil];
     
+    CGFloat tableHeight = self.completions.count * (self.table.rowHeight + self.table.intercellSpacing.height);
+    CGFloat maxTableHeight = 8 * (self.table.rowHeight + self.table.intercellSpacing.height);
     NSRect f = self.window.frame;
+    f.size.height = MIN( tableHeight, maxTableHeight);
     f.origin = p;
     
     f = [textView.window convertRectToScreen:f];
     f.origin.y -= f.size.height;
-    
-    //f = NSMakeRect( 100, 100, 300, 300);
     
     [self showWindow:nil];
     [self.window setFrame:f display:YES];
