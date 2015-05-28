@@ -134,9 +134,10 @@
         frame = [textView.window convertRectToScreen:frame];
         frame.origin.y -= frame.size.height;
         
-        [self showWindow:nil];
         [self.window setFrame:frame
                       display:YES];
+        [textView.window addChildWindow:self.window
+                                ordered:NSWindowAbove];
     }
 }
 
