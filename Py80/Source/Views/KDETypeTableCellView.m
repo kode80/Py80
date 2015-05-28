@@ -7,6 +7,7 @@
 //
 
 #import "KDETypeTableCellView.h"
+#import "KDECompletionTableCellView.h"
 
 @implementation KDETypeTableCellView
 
@@ -14,6 +15,7 @@
 {
     NSTableRowView *row = (NSTableRowView*)self.superview;
     self.textField.textColor = row.isSelected ? [NSColor whiteColor] : [NSColor grayColor];
+    self.textField.shadow = row.isSelected ? [KDECompletionTableCellView selectedTextShadow] : nil;
 }
 
 @end

@@ -769,7 +769,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView identifier="Completion" id="EMq-bf-OO1">
+                                                <tableCellView identifier="Completion" id="EMq-bf-OO1" customClass="KDECompletionTableCellView">
                                                     <rect key="frame" x="112" y="1" width="323" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
