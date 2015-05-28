@@ -234,9 +234,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (void) updateInfoField
 {
-    NSString *fileName = self.docTracker.activeFilePath.lastPathComponent;
-    NSString *fileStatus = self.docTracker.activeFileNeedsSaving ? @"*" : @"";
-    self.infoField.stringValue = [NSString stringWithFormat:@"Py80: %@ %@", fileName, fileStatus];
+    if( [KDEPython sharedPython].isInitialized)
+    {
+        NSString *fileName = self.docTracker.activeFilePath.lastPathComponent;
+        NSString *fileStatus = self.docTracker.activeFileNeedsSaving ? @"*" : @"";
+        self.infoField.stringValue = [NSString stringWithFormat:@"Py80: %@ %@", fileName, fileStatus];
+    }
 }
 
 - (KDESaveAlertResponse) runModalSaveAlert
