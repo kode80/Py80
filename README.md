@@ -13,8 +13,8 @@ Latest build (ver 0.2): [Py80.zip](http://kode80.com/downloads/Py80.zip)
 
 ![Screen](https://github.com/kode80/Py80/blob/master/py80_screen.png)
 
-## py80 context
-The main() function accepts a *py80* object as it's only argument. The py80 object acts as a bridge between python and the py80 app, exposing various methods for interacting with the playground.
+## py80 module
+The py80 module acts as a bridge between python and the py80 app, exposing various methods for interacting with the playground.
 * **log( message)**: logs message to in-app console
 * **clearLog()**: clears the in-app console
 * **getClipboard()**: returns any string currently copied to the system clipboard
