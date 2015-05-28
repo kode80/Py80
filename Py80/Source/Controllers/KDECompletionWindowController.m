@@ -114,9 +114,11 @@
         NSRange range = textView.selectedRange;
         range.location -= [self currentIncompleteString].length;
         
+        self.tableHeightConstraint.constant = MIN( [self tableHeightForRowCount:8],
+                                                   [self tableHeightForRowCount:self.completions.count]);
+        [self.window layoutIfNeeded];
+        
         NSRect frame = self.window.frame;
-        frame.size.height = MIN( [self tableHeightForRowCount:8],
-                                 [self tableHeightForRowCount:self.completions.count]);
         frame.origin = [self windowPointForRange:range
                                       inTextView:textView];
         frame.origin.x -= self.typeColumnWidth + 6.0f;
@@ -140,6 +142,16 @@
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
 {
     return self.completions.count;
+}
+
+- (void) tableViewSelectionDidChange:(NSNotification *)notification
+{
+    NSInteger index = self.table.selectedRow;
+    if( self.completions.count && index > -1)
+    {
+        KDEPyCompletion *completion = self.completions[ index];
+        self.docLabel.stringValue = completion.docString;
+    }
 }
 
 #pragma mark - NSTableViewDelegate

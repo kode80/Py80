@@ -13,6 +13,8 @@
 @property (nonatomic, readonly, assign) BOOL isVisible;
 
 @property (nonatomic, readwrite, weak) IBOutlet NSTableView *table;
+@property (nonatomic, readwrite, weak) IBOutlet NSTextField *docLabel;
+@property (nonatomic, readwrite, weak) IBOutlet NSLayoutConstraint *tableHeightConstraint;
 
 - (void) reloadCompletionsForTextView:(NSTextView *)textView;
 - (void) insertCurrentCompletionInTextView:(NSTextView *)textView;
