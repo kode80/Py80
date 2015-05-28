@@ -150,7 +150,22 @@
     if( self.completions.count && index > -1)
     {
         KDEPyCompletion *completion = self.completions[ index];
-        self.docLabel.stringValue = completion.docString;
+        
+        if( [completion.type isEqualToString:@"function"])
+        {
+            // jedi offers two forms of docstring parsing raw and full,
+            // raw results in limited docs for common modules but full
+            // adds call signature to function docs - which we don't need.
+            // this is a hacky way of keeping full jedi docstrings while
+            // removing the unwanted function signature
+            
+            NSRange range = [completion.docString rangeOfString:@"\n\n"];
+            self.docLabel.stringValue = [completion.docString substringFromIndex:NSMaxRange( range)];
+        }
+        else
+        {
+            self.docLabel.stringValue = completion.docString;
+        }
     }
 }
 
