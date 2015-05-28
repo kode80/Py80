@@ -135,7 +135,8 @@
 
 - (void) showForTextView:(NSTextView *)textView
 {
-    if( self.completions.count == 0)
+    if( [KDEPython sharedPython].isInitialized == NO ||
+        self.completions.count == 0)
     {
         return;
     }
