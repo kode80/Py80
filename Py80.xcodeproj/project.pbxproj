@@ -23,6 +23,7 @@
 		20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */; };
 		20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */ = {isa = PBXBuildFile; fileRef = 20082EB41B0B91CA0064DDA4 /* Syntax Definitions */; };
 		200B7C501B1774F6005D64B1 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 200B7C4F1B1774F6005D64B1 /* NSString+CursorPosition.m */; };
+		200B7C531B178765005D64B1 /* KDETypeTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 200B7C521B178765005D64B1 /* KDETypeTableCellView.m */; };
 		201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 201551241B0E168B00A008F4 /* KDEDocumentTracker.m */; };
 		203D568C1B0A55EE00A7779E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D568B1B0A55EE00A7779E /* main.m */; };
 		203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 203D568D1B0A55EE00A7779E /* Images.xcassets */; };
@@ -89,6 +90,8 @@
 		20082EB41B0B91CA0064DDA4 /* Syntax Definitions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Syntax Definitions"; sourceTree = "<group>"; };
 		200B7C4E1B1774F6005D64B1 /* NSString+CursorPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CursorPosition.h"; sourceTree = "<group>"; };
 		200B7C4F1B1774F6005D64B1 /* NSString+CursorPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CursorPosition.m"; sourceTree = "<group>"; };
+		200B7C511B178765005D64B1 /* KDETypeTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETypeTableCellView.h; sourceTree = "<group>"; };
+		200B7C521B178765005D64B1 /* KDETypeTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETypeTableCellView.m; sourceTree = "<group>"; };
 		201551231B0E168B00A008F4 /* KDEDocumentTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEDocumentTracker.h; sourceTree = "<group>"; };
 		201551241B0E168B00A008F4 /* KDEDocumentTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEDocumentTracker.m; sourceTree = "<group>"; };
 		203D56831B0A55EE00A7779E /* Py80.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Py80.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -316,6 +319,8 @@
 				208D430E1B1668B70004898F /* KDEWindow.m */,
 				208D43101B1688240004898F /* KDETextView.h */,
 				208D43111B1688240004898F /* KDETextView.m */,
+				200B7C511B178765005D64B1 /* KDETypeTableCellView.h */,
+				200B7C521B178765005D64B1 /* KDETypeTableCellView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,6 +469,7 @@
 				20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */,
 				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
 				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
+				200B7C531B178765005D64B1 /* KDETypeTableCellView.m in Sources */,
 				20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */,
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
 				201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */,
