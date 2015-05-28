@@ -475,7 +475,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) textViewDidChangeSelection:(NSNotification *)notification
 {
     self.exceptionView.hidden = YES;
-    [self printCompletions:nil];
 }
 
 @end

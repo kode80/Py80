@@ -11,7 +11,25 @@
 
 #import "VKConsts.h"
 
+@interface KDETextView ()
+
+@property (nonatomic, readwrite, assign) BOOL didChangeTextTriggersCompletion;
+@property (nonatomic, readwrite, copy) NSCharacterSet *triggerCompletionCharSet;
+
+@end
+
+
 @implementation KDETextView
+
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    NSMutableCharacterSet *ignoreSet = [NSMutableCharacterSet characterSetWithCharactersInString:@" \t.(){}\""];
+    [ignoreSet formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
+    
+    self.triggerCompletionCharSet = [ignoreSet invertedSet];
+}
 
 - (void) keyDown:(NSEvent *)theEvent
 {
@@ -54,6 +72,44 @@
     else
     {
         [super keyUp:theEvent];
+    }
+}
+
+#pragma mark NSTextView: Selection change methods
+
+- (void) setSelectedRanges:(NSArray *)ranges affinity:(NSSelectionAffinity)affinity stillSelecting:(BOOL)stillSelectingFlag
+{
+    [super setSelectedRanges:ranges affinity:affinity stillSelecting:stillSelectingFlag];
+    
+    if( stillSelectingFlag == NO)
+    {
+        [self.completionController hide];
+    }
+}
+
+#pragma mark NSTextView: Text change methods
+
+- (BOOL) shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
+{
+    BOOL result = [super shouldChangeTextInRange:affectedCharRange
+                               replacementString:replacementString];
+    
+    self.didChangeTextTriggersCompletion = result &&
+                                           replacementString.length == 1 &&
+                                           [self.triggerCompletionCharSet characterIsMember:[replacementString characterAtIndex:0]];
+    
+    return result;
+}
+
+- (void)didChangeText
+{
+    [super didChangeText];
+    
+    if( self.didChangeTextTriggersCompletion)
+    {
+        self.didChangeTextTriggersCompletion = NO;
+        [self.completionController reloadCompletionsForTextView:self];
+        [self.completionController showForTextView:self];
     }
 }
 
