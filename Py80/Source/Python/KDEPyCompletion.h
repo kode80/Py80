@@ -13,6 +13,7 @@
 @property (nonatomic, readwrite, strong) NSString *type;
 @property (nonatomic, readwrite, strong) NSString *name;
 @property (nonatomic, readwrite, strong) NSString *complete;
+@property (nonatomic, readwrite, strong) NSString *docString;
 @property (nonatomic, readonly, strong) NSArray *argNames;
 
 - (void) addArgName:(NSString *)name;

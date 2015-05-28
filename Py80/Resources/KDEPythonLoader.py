@@ -53,6 +53,7 @@ class KDEPythonLoader(NSObject):
 			comp.setType_( completion.type)
 			comp.setName_( completion.name)
 			comp.setComplete_( completion.complete)
+			comp.setDocString_( completion.docstring( fast=True))
 			if completion.type == "function":
 				params = completion.params
 				for param in params:
