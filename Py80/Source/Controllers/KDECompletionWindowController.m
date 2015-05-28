@@ -18,6 +18,7 @@
 @interface KDECompletionWindowController ()
 
 @property (nonatomic, readwrite, strong) NSArray *completions;
+@property (nonatomic, readwrite, assign) CGFloat typeColumnWidth;
 
 @end
 
@@ -80,8 +81,9 @@
     }
     
     NSTableColumn *typeColumn = self.table.tableColumns[ [self.table columnWithIdentifier:@"Type"]];
-    typeColumn.minWidth = [self columnWidthForTypeNames:[completionDictionary allKeys]];
-    typeColumn.width = typeColumn.minWidth;
+    self.typeColumnWidth = [self columnWidthForTypeNames:[completionDictionary allKeys]];
+    typeColumn.minWidth = self.typeColumnWidth;
+    typeColumn.width = self.typeColumnWidth;
     
     self.completions = [NSArray arrayWithArray:c];
     [self.table reloadData];
@@ -108,10 +110,15 @@
 {
     if( [KDEPython sharedPython].isInitialized && self.completions.count)
     {
+        NSRange range = textView.selectedRange;
+        range.location -= [self currentIncompleteString].length;
+        
         NSRect frame = self.window.frame;
         frame.size.height = MIN( [self tableHeightForRowCount:8],
                                  [self tableHeightForRowCount:self.completions.count]);
-        frame.origin = [self windowPointForCurrentSelectionInTextView:textView];
+        frame.origin = [self windowPointForRange:range
+                                      inTextView:textView];
+        frame.origin.x -= self.typeColumnWidth + 6.0f;
         
         frame = [textView.window convertRectToScreen:frame];
         frame.origin.y -= frame.size.height;
@@ -176,12 +183,14 @@
     return rowCount * (self.table.rowHeight + self.table.intercellSpacing.height);
 }
 
-- (NSPoint) windowPointForCurrentSelectionInTextView:(NSTextView *)textView
+- (NSPoint) windowPointForRange:(NSRange)range
+                     inTextView:(NSTextView *)textView
 {
     NSString *source = textView.string;
     
-    NSRange lineRange = [source lineRangeForRange:textView.selectedRange];
-    lineRange.length = textView.selectedRange.location - lineRange.location;
+    NSRange lineRange = [source lineRangeForRange:range];
+    lineRange.length = range.location - lineRange.location;
+    
     NSRange glyphRange = [textView.layoutManager glyphRangeForCharacterRange:lineRange
                                                         actualCharacterRange:NULL];
     NSRect lineRect = [textView.layoutManager boundingRectForGlyphRange:glyphRange
@@ -209,6 +218,31 @@
         }
     }
     return width + 6.0f;
+}
+
+- (NSString *) currentIncompleteString
+{
+    if( self.completions.count)
+    {
+        KDEPyCompletion *completion = self.completions.firstObject;
+        
+        if( completion.complete.length == 0)
+        {
+            // It's possible that the first completion will be complete
+            // eg: "math.acos" would return completions, "acos" and "acosh"
+            return completion.name;
+        }
+        else
+        {
+            NSRange range = [completion.name rangeOfString:completion.complete
+                                                   options:NSBackwardsSearch];
+            BOOL isValidRange = range.location > 0 && range.location != NSNotFound;
+            
+            return isValidRange ? [completion.name substringToIndex:range.location] : nil;
+        }
+    }
+    
+    return nil;
 }
 
 @end
