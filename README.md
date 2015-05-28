@@ -1,14 +1,11 @@
-# jedi branch
-In development [jedi](https://github.com/davidhalter/jedi) code completion integration.
-
 # Py80
 A Python playground for OSX.
 
-Still early in dev but very much usable.  
-Latest build (ver 0.1): [Py80.zip](http://kode80.com/downloads/Py80.zip)
+Latest build (ver 0.2): [Py80.zip](http://kode80.com/downloads/Py80.zip)
 
 ## Features
-* Syntax highlighting/code completion
+* Syntax highlighting
+* Full code completion powered by the awesome [jedi](https://github.com/davidhalter/jedi) library
 * Inline display of runtime exceptions
 * Logging to in-app console
 * Drawing to in-app canvas (can also be saved as image)
