@@ -209,13 +209,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     }
 }
 
-
-- (IBAction)printCompletions:(id)sender
-{
-    [self.completionWindowController reloadCompletionsForTextView:self.codeView];
-    [self.completionWindowController showForTextView:self.codeView];
-}
-
 - (IBAction) insertPath:(id)sender
 {
     NSOpenPanel *panel = [NSOpenPanel openPanel];

@@ -27,7 +27,5 @@
 - (IBAction) resetOutputMagnification:(id)sender;
 - (IBAction) saveOutputContents:(id)sender;
 
-- (IBAction) printCompletions:(id)sender;
-
 @end
 
