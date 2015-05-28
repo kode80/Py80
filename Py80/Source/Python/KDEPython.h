@@ -10,6 +10,8 @@
 
 @interface KDEPython : NSObject
 
+@property (nonatomic, readonly, assign) BOOL isInitialized;
+
 + (KDEPython *) sharedPython;
 
 - (void) setupEnvironmentWithCompletion:(void(^)(BOOL result))completionBlock;

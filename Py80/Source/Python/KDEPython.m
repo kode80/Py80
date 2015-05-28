@@ -24,7 +24,10 @@
 
 
 @interface KDEPython ()
+
+@property (nonatomic, readwrite, assign) BOOL isInitialized;
 @property (nonatomic, readwrite, assign) PyThreadState * mainThreadState;
+
 @end
 
 
@@ -94,6 +97,8 @@
         PyThreadState_Clear(newThreadState);
         PyThreadState_Delete(newThreadState);
         PyEval_ReleaseLock();
+        
+        self.isInitialized = result == 0;
         
         if( completionBlock)
         {
