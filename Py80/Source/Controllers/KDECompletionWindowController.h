@@ -1,5 +1,5 @@
 //
-//  KDECompletionViewController.h
+//  KDECompletionWindowController.h
 //  Py80
 //
 //  Created by Benjamin S Hopkins on 5/27/15.
@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface KDECompletionViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+@interface KDECompletionWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @property (nonatomic, readonly, assign) BOOL isVisible;
 
@@ -16,5 +16,8 @@
 
 - (void) reloadCompletionsForTextView:(NSTextView *)textView;
 - (void) insertCurrentCompletionInTextView:(NSTextView *)textView;
+
+- (void) showForTextView:(NSTextView *)textView;
+- (void) hide;
 
 @end

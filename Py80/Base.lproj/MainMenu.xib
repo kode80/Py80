@@ -19,8 +19,8 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="codeView" destination="3Ky-Bg-C7G" id="Xby-yg-sa1"/>
-                <outlet property="completionViewController" destination="Vm7-SP-0Uq" id="POx-B8-MU4"/>
                 <outlet property="completionWindow" destination="Hhb-Tm-bl3" id="Cu6-hT-2db"/>
+                <outlet property="completionWindowController" destination="Vm7-SP-0Uq" id="1FU-kd-vk3"/>
                 <outlet property="console" destination="vSn-P3-RRN" id="WCu-nf-q1C"/>
                 <outlet property="exceptionView" destination="qYW-g8-i8Z" id="kYQ-rw-kr1"/>
                 <outlet property="infoField" destination="0vi-7E-cOT" id="obU-yO-qp2"/>
@@ -31,10 +31,10 @@
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <viewController id="Vm7-SP-0Uq" customClass="KDECompletionViewController">
+        <viewController id="Vm7-SP-0Uq" customClass="KDECompletionWindowController">
             <connections>
                 <outlet property="table" destination="grc-Vr-qNc" id="gFU-4O-6Ki"/>
-                <outlet property="view" destination="GLi-Tj-UPX" id="NYS-3r-jcb"/>
+                <outlet property="window" destination="Hhb-Tm-bl3" id="dZd-iW-stg"/>
             </connections>
         </viewController>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
@@ -773,7 +773,7 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="h4e-Dn-Tae">
-                            <rect key="frame" x="1" y="117.70029282569885" width="237.5" height="16"/>
+                            <rect key="frame" x="1" y="117.70029282569885" width="238" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="8M3-Ek-t9g">

@@ -8,10 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class KDECompletionViewController;
+@class KDECompletionWindowController;
 
 @interface KDETextView : NSTextView
 
-@property (nonatomic, readwrite, weak) IBOutlet KDECompletionViewController *completionController;
+@property (nonatomic, readwrite, weak) IBOutlet KDECompletionWindowController *completionController;
 
 @end

@@ -18,7 +18,7 @@
 
 #import "KDEPyCompletion.h"
 #import "KDEPyCallSignature.h"
-#import "KDECompletionViewController.h"
+#import "KDECompletionWindowController.h"
 
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
@@ -212,57 +212,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (IBAction)printCompletions:(id)sender
 {
-    NSString *source = self.codeView.string;
-    const NSRange cursorRange = NSMakeRange( self.codeView.selectedRange.location, 0);
-    NSRange currentRange = NSMakeRange( 0, 0);
-    NSRange lineRange = [source lineRangeForRange:currentRange];
-    
-    NSInteger lineNumber = 1;
-    
-    while( lineRange.location < cursorRange.location &&
-          NSMaxRange( lineRange) < cursorRange.location &&
-          NSMaxRange( currentRange) < source.length)
-    {
-        lineNumber++;
-        currentRange.location = NSMaxRange( lineRange);
-        lineRange = [source lineRangeForRange:currentRange];
-    }
-    
-    NSInteger columnNumber = (cursorRange.location - lineRange.location);
-    
-    NSCharacterSet *newLineChars = [NSCharacterSet newlineCharacterSet];
-    unichar characterAtCursor = cursorRange.location < source.length ? [source characterAtIndex:cursorRange.location] : 0;
-    unichar characterBeforeCursor = cursorRange.location > 0 ? [source characterAtIndex:cursorRange.location - 1] : 0;
-    
-    BOOL beforeIsNewLine = [newLineChars characterIsMember:characterBeforeCursor];
-    BOOL cursorIsNewLine = [newLineChars characterIsMember:characterAtCursor];
-    
-    if( (beforeIsNewLine && cursorIsNewLine == NO) ||
-       (beforeIsNewLine && cursorIsNewLine))
-    {
-        lineNumber++;
-        columnNumber = 0;
-    }
-    
-    lineRange = NSMakeRange( lineRange.location, cursorRange.location - lineRange.location);
-    NSRange glyphRange = [self.codeView.layoutManager glyphRangeForCharacterRange:lineRange
-                                                        actualCharacterRange:NULL];
-    NSRect lineRect = [self.codeView.layoutManager boundingRectForGlyphRange:glyphRange
-                                                        inTextContainer:self.codeView.textContainer];
-    NSPoint p = NSMakePoint( NSMaxX( lineRect), NSMaxY( lineRect));
-    p = [self.codeView convertPoint:p toView:nil];
-    
-    NSRect f = self.completionWindow.frame;
-    f.origin = p;
-    
-    f = [self.window convertRectToScreen:f];
-    f.origin.y -= f.size.height;
-    
-    [self.completionWindow setFrame:f display:YES];
-    
-    [self.completionWindow orderFront:nil];
-    
-    [self.completionViewController reloadCompletionsForTextView:self.codeView];
+    [self.completionWindowController reloadCompletionsForTextView:self.codeView];
+    [self.completionWindowController showForTextView:self.codeView];
 }
 
 - (IBAction) insertPath:(id)sender

@@ -35,7 +35,7 @@
 		208808191B150944003AA9DE /* py80 in Resources */ = {isa = PBXBuildFile; fileRef = 208808181B150944003AA9DE /* py80 */; };
 		208D43051B162CB80004898F /* KDEPyCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D43041B162CB80004898F /* KDEPyCompletion.m */; };
 		208D43081B1635200004898F /* KDEPyCallSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D43071B1635200004898F /* KDEPyCallSignature.m */; };
-		208D430C1B1646D80004898F /* KDECompletionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D430B1B1646D80004898F /* KDECompletionViewController.m */; };
+		208D430C1B1646D80004898F /* KDECompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D430B1B1646D80004898F /* KDECompletionWindowController.m */; };
 		208D430F1B1668B70004898F /* KDEWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D430E1B1668B70004898F /* KDEWindow.m */; };
 		208D43121B1688240004898F /* KDETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D43111B1688240004898F /* KDETextView.m */; };
 		20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */; };
@@ -107,8 +107,8 @@
 		208D43041B162CB80004898F /* KDEPyCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyCompletion.m; sourceTree = "<group>"; };
 		208D43061B1635200004898F /* KDEPyCallSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPyCallSignature.h; sourceTree = "<group>"; };
 		208D43071B1635200004898F /* KDEPyCallSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyCallSignature.m; sourceTree = "<group>"; };
-		208D430A1B1646D80004898F /* KDECompletionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECompletionViewController.h; sourceTree = "<group>"; };
-		208D430B1B1646D80004898F /* KDECompletionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionViewController.m; sourceTree = "<group>"; };
+		208D430A1B1646D80004898F /* KDECompletionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECompletionWindowController.h; sourceTree = "<group>"; };
+		208D430B1B1646D80004898F /* KDECompletionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionWindowController.m; sourceTree = "<group>"; };
 		208D430D1B1668B70004898F /* KDEWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEWindow.h; sourceTree = "<group>"; };
 		208D430E1B1668B70004898F /* KDEWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEWindow.m; sourceTree = "<group>"; };
 		208D43101B1688240004898F /* KDETextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETextView.h; sourceTree = "<group>"; };
@@ -276,8 +276,8 @@
 		208D43091B1646BF0004898F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				208D430A1B1646D80004898F /* KDECompletionViewController.h */,
-				208D430B1B1646D80004898F /* KDECompletionViewController.m */,
+				208D430A1B1646D80004898F /* KDECompletionWindowController.h */,
+				208D430B1B1646D80004898F /* KDECompletionWindowController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -451,7 +451,7 @@
 				20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */,
 				20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */,
 				208D43081B1635200004898F /* KDEPyCallSignature.m in Sources */,
-				208D430C1B1646D80004898F /* KDECompletionViewController.m in Sources */,
+				208D430C1B1646D80004898F /* KDECompletionWindowController.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
 				208D43121B1688240004898F /* KDETextView.m in Sources */,
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,

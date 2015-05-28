@@ -7,7 +7,7 @@
 //
 
 #import "KDETextView.h"
-#import "KDECompletionViewController.h"
+#import "KDECompletionWindowController.h"
 
 #import "VKConsts.h"
 
@@ -26,6 +26,10 @@
     {
         [self.completionController insertCurrentCompletionInTextView:self];
     }
+    else if( visible && code == kVK_Escape)
+    {
+        [self.completionController hide];
+    }
     else
     {
         [super keyDown:theEvent];
@@ -43,7 +47,9 @@
     }
     else if( visible && code == kVK_Return)
     {
-        
+    }
+    else if( visible && code == kVK_Escape)
+    {
     }
     else
     {

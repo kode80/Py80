@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class KDEOutputView, ASKSyntaxViewController, KDEExceptionView, KDECompletionViewController;
+@class KDEOutputView, ASKSyntaxViewController, KDEExceptionView, KDECompletionWindowController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
@@ -20,7 +20,7 @@
 @property (nonatomic, readwrite, strong) IBOutlet ASKSyntaxViewController *syntaxViewController;
 @property (nonatomic, readwrite, strong) IBOutlet KDEExceptionView *exceptionView;
 @property (nonatomic, readwrite, strong) IBOutlet NSWindow *completionWindow;
-@property (nonatomic, readwrite, strong) IBOutlet KDECompletionViewController *completionViewController;
+@property (nonatomic, readwrite, strong) IBOutlet KDECompletionWindowController *completionWindowController;
 
 - (IBAction) runCode:(id)sender;
 
