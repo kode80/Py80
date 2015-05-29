@@ -55,11 +55,11 @@
     
     while( nextCharIsBoundary == NO)
     {
-        end = range.length ? NSMaxRange( range) - 1 : 0;
+        end = NSMaxRange( range);
         
-        if( end + 1 < self.length)
+        if( end < self.length)
         {
-            nextCharIsBoundary = [boundaryCharacters characterIsMember:[self characterAtIndex:end + 1]];
+            nextCharIsBoundary = [boundaryCharacters characterIsMember:[self characterAtIndex:end]];
         }
         else
         {
