@@ -13,4 +13,10 @@
 - (NSRange) expandRange:(NSRange)range
  withBoundaryCharacters:(NSCharacterSet *)boundaryCharacters;
 
+- (NSRange) expandRangeLeft:(NSRange)range
+     withBoundaryCharacters:(NSCharacterSet *)boundaryCharacters;
+
+- (NSRange) expandRangeRight:(NSRange)range
+      withBoundaryCharacters:(NSCharacterSet *)boundaryCharacters;
+
 @end

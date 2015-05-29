@@ -13,8 +13,19 @@
 - (NSRange) expandRange:(NSRange)range
  withBoundaryCharacters:(NSCharacterSet *)boundaryCharacters
 {
-    BOOL nextCharIsBoundary = NO;
+    range = [self expandRangeLeft:range
+           withBoundaryCharacters:boundaryCharacters];
+    range = [self expandRangeRight:range
+            withBoundaryCharacters:boundaryCharacters];
+    
+    return range;
+}
 
+- (NSRange) expandRangeLeft:(NSRange)range
+     withBoundaryCharacters:(NSCharacterSet *)boundaryCharacters
+{
+    BOOL nextCharIsBoundary = NO;
+    
     while( nextCharIsBoundary == NO)
     {
         if( range.location > 0)
@@ -33,8 +44,15 @@
         }
     }
     
-    nextCharIsBoundary = NO;
+    return range;
+}
+
+- (NSRange) expandRangeRight:(NSRange)range
+      withBoundaryCharacters:(NSCharacterSet *)boundaryCharacters
+{
+    BOOL nextCharIsBoundary = NO;
     NSUInteger end;
+    
     while( nextCharIsBoundary == NO)
     {
         end = range.length ? NSMaxRange( range) - 1 : 0;
