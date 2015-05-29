@@ -40,7 +40,7 @@
 {
     [super awakeFromNib];
     
-    NSMutableCharacterSet *ignoreSet = [NSMutableCharacterSet characterSetWithCharactersInString:@" \t.(){}\"#"];
+    NSMutableCharacterSet *ignoreSet = [NSMutableCharacterSet characterSetWithCharactersInString:@" \t.(){}\"#="];
     [ignoreSet formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
     
     self.triggerCompletionCharSet = [ignoreSet invertedSet];
