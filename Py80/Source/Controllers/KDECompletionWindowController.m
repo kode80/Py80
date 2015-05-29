@@ -131,6 +131,16 @@
         frame = [textView.window convertRectToScreen:frame];
         frame.origin.y -= frame.size.height;
         
+        CGFloat rightDelta = NSMaxX( frame) - NSMaxX( textView.window.screen.frame);
+        if( frame.origin.x < 0.0f)
+        {
+            frame.origin.x = 0.0f;
+        }
+        else if( rightDelta > 0.0f)
+        {
+            frame.origin.x -= rightDelta;
+        }
+        
         [self.window setFrame:frame
                       display:YES];
         [textView.window addChildWindow:self.window
