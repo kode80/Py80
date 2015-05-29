@@ -149,6 +149,9 @@
         range = self.selectedRange;
         if( NSMaxRange( range) + 1 < self.string.length)
         {
+            range.location += range.length;
+            range.length = 0;
+            
             boundaryCharacters = [[self identifierCharacterSet] invertedSet];
             character = [self.string characterAtIndex:NSMaxRange( range)];
             
@@ -260,7 +263,7 @@
 
 - (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange
                               granularity:(NSSelectionGranularity)granularity
-{   
+{
     if( granularity == NSSelectByWord)
     {
         NSString *source = self.string;
