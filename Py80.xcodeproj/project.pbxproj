@@ -268,16 +268,16 @@
 		203D56A81B0A610D00A7779E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				20F84EA41B18C427002D8116 /* Utils */,
+				203D56A91B0A610D00A7779E /* AppDelegate.h */,
+				201551231B0E168B00A008F4 /* KDEDocumentTracker.h */,
 				208D43131B168B380004898F /* VKConsts.h */,
+				203D56AA1B0A610D00A7779E /* AppDelegate.m */,
+				201551241B0E168B00A008F4 /* KDEDocumentTracker.m */,
 				208D43091B1646BF0004898F /* Controllers */,
 				20A6E9811B0FD886005658C3 /* Python */,
 				20082E801B0B8B240064DDA4 /* SyntaxKit */,
+				20F84EA41B18C427002D8116 /* Utils */,
 				20F13AC71B0AD45F00C30D2A /* Views */,
-				203D56A91B0A610D00A7779E /* AppDelegate.h */,
-				203D56AA1B0A610D00A7779E /* AppDelegate.m */,
-				201551231B0E168B00A008F4 /* KDEDocumentTracker.h */,
-				201551241B0E168B00A008F4 /* KDEDocumentTracker.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -307,20 +307,20 @@
 		20A6E9811B0FD886005658C3 /* Python */ = {
 			isa = PBXGroup;
 			children = (
-				20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */,
-				20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */,
-				20F84EA01B18C3F1002D8116 /* NSCharacterSet+PythonSets.h */,
-				20F84EA11B18C3F1002D8116 /* NSString+PythonRangeUtils.h */,
 				20A6E9881B0FD9C8005658C3 /* KDEExceptionFormatter.h */,
 				20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */,
 				20A6E9821B0FD886005658C3 /* KDEPy80Context.h */,
 				20A6E9831B0FD886005658C3 /* KDEPy80Context.m */,
-				20A6E9841B0FD886005658C3 /* KDEPython.h */,
-				20A6E9851B0FD886005658C3 /* KDEPython.m */,
-				208D43031B162CB80004898F /* KDEPyCompletion.h */,
-				208D43041B162CB80004898F /* KDEPyCompletion.m */,
 				208D43061B1635200004898F /* KDEPyCallSignature.h */,
 				208D43071B1635200004898F /* KDEPyCallSignature.m */,
+				208D43031B162CB80004898F /* KDEPyCompletion.h */,
+				208D43041B162CB80004898F /* KDEPyCompletion.m */,
+				20A6E9841B0FD886005658C3 /* KDEPython.h */,
+				20A6E9851B0FD886005658C3 /* KDEPython.m */,
+				20F84EA01B18C3F1002D8116 /* NSCharacterSet+PythonSets.h */,
+				20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */,
+				20F84EA11B18C3F1002D8116 /* NSString+PythonRangeUtils.h */,
+				20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */,
 			);
 			path = Python;
 			sourceTree = "<group>";
