@@ -260,9 +260,7 @@
 
 - (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange
                               granularity:(NSSelectionGranularity)granularity
-{
-    NSLog(@"%s",__func__);
-    
+{   
     if( granularity == NSSelectByWord)
     {
         NSString *source = self.string;
