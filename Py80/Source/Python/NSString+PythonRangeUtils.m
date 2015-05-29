@@ -74,10 +74,11 @@
 {
     NSCharacterSet *boundaryCharacters;
     NSRange range = originalRange;
+    unichar character = 0;
     
     if( range.location > 0)
     {
-        boundaryCharacters = [[NSCharacterSet pythonIdentifierCharacterSet] invertedSet];
+        boundaryCharacters = [[NSCharacterSet pythonIdentifierLowercaseLettersCharacterSet] invertedSet];
         
         range = [self expandRangeLeft:range
                withBoundaryCharacters:boundaryCharacters];
@@ -86,6 +87,15 @@
         {
             range.location--;
             range.length++;
+        }
+        else if( range.location > 0)
+        {
+            character = [self characterAtIndex:range.location - 1];
+            if( [[NSCharacterSet pythonIdentifierUppercaseLettersCharacterSet] characterIsMember:character])
+            {
+                range.location--;
+                range.length++;
+            }
         }
     }
     
@@ -100,23 +110,24 @@
     
     if( NSMaxRange( range) + 1 < self.length)
     {
-        boundaryCharacters = [[NSCharacterSet pythonIdentifierCharacterSet] invertedSet];
+        boundaryCharacters = [[NSCharacterSet pythonIdentifierLowercaseLettersCharacterSet] invertedSet];
         character = [self characterAtIndex:NSMaxRange( range)];
         
-        if( [boundaryCharacters characterIsMember:character])
+        range = [self expandRangeRight:range
+                withBoundaryCharacters:boundaryCharacters];
+        
+        if( NSMaxRange( range) == NSMaxRange( originalRange) &&
+            NSMaxRange( range) < self.length)
         {
             range.length++;
         }
-        else
+        
+        character = [self characterAtIndex:NSMaxRange( range) - 1];
+            
+        if( [[NSCharacterSet pythonIdentifierUppercaseLettersCharacterSet] characterIsMember:character])
         {
             range = [self expandRangeRight:range
                     withBoundaryCharacters:boundaryCharacters];
-            
-            if( NSMaxRange( range) == NSMaxRange( originalRange) &&
-               NSMaxRange( range) + 1 < self.length)
-            {
-                range.length++;
-            }
         }
     }
     
