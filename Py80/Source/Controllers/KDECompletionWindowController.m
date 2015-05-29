@@ -107,7 +107,17 @@
     if( index > -1)
     {
         KDEPyCompletion *completion = self.completions[ index];
-        [textView insertText:completion.complete];
+        NSString *incomplete = [self currentIncompleteString];
+        
+        if( incomplete.length)
+        {
+            NSRange range = textView.selectedRange;
+            range.location -= incomplete.length;
+            range.length = incomplete.length;
+            [textView setSelectedRange:range];
+        }
+        
+        [textView insertText:completion.name];
         [self hide];
     }
 }
