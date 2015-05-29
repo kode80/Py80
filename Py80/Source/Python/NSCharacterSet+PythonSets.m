@@ -8,13 +8,36 @@
 
 #import "NSCharacterSet+PythonSets.h"
 
+
+NSString * const KDEPythonIdentifierLowercaseLettersString = @"abcdefghijklmnopqrstuvwxyz";
+NSString * const KDEPythonIdentifierUppercaseLettersString = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+NSString * const KDEPythonIdentifierNumbersString          = @"0123456789_";
+
+
 @implementation NSCharacterSet (PythonSets)
 
 + (NSCharacterSet *) pythonIdentifierCharacterSet
 {
-    return [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyz"
-                                                              @"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                                                              @"0123456789_"];
+    NSString *all = [NSString stringWithFormat:@"%@%@%@", KDEPythonIdentifierLowercaseLettersString,
+                                                          KDEPythonIdentifierUppercaseLettersString,
+                                                          KDEPythonIdentifierNumbersString];
+    
+    return [NSCharacterSet characterSetWithCharactersInString:all];
+}
+
++ (NSCharacterSet *) pythonIdentifierLowercaseLettersCharacterSet
+{
+    return [NSCharacterSet characterSetWithCharactersInString:KDEPythonIdentifierLowercaseLettersString];
+}
+
++ (NSCharacterSet *) pythonIdentifierUppercaseLettersCharacterSet
+{
+    return [NSCharacterSet characterSetWithCharactersInString:KDEPythonIdentifierUppercaseLettersString];
+}
+
++ (NSCharacterSet *) pythonIdentifierNumericCharacterSet
+{
+    return [NSCharacterSet characterSetWithCharactersInString:KDEPythonIdentifierNumbersString];
 }
 
 @end

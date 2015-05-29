@@ -11,5 +11,8 @@
 @interface NSCharacterSet (PythonSets)
 
 + (NSCharacterSet *) pythonIdentifierCharacterSet;
++ (NSCharacterSet *) pythonIdentifierLowercaseLettersCharacterSet;
++ (NSCharacterSet *) pythonIdentifierUppercaseLettersCharacterSet;
++ (NSCharacterSet *) pythonIdentifierNumericCharacterSet;
 
 @end
