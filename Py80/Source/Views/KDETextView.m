@@ -9,6 +9,8 @@
 #import "KDETextView.h"
 #import "KDECompletionWindowController.h"
 
+#import "NSString+RangeUtils.h"
+
 #import "VKConsts.h"
 
 @interface KDETextView ()
@@ -133,7 +135,41 @@
     }
 }
 
+
+
 #pragma mark NSTextView: Text change methods
+
+- (NSRange)selectionRangeForProposedRange:(NSRange)proposedSelRange
+                              granularity:(NSSelectionGranularity)granularity
+{
+    if( granularity == NSSelectByWord)
+    {
+        NSString *source = self.string;
+        NSCharacterSet *allowedCharacters = [NSCharacterSet characterSetWithCharactersInString: @"abcdefghijklmnopqrstuvwxyz"
+                                                                                                @"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                                                                                @"0123456789_"];
+        NSCharacterSet *numberCharacters = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+        NSUInteger index = proposedSelRange.location;
+        
+        if( index < source.length &&
+            [allowedCharacters characterIsMember:[source characterAtIndex:index]])
+        {
+            NSRange expandedRange = [source expandRange:proposedSelRange
+                                 withBoundaryCharacters:[allowedCharacters invertedSet]];
+            
+            NSString *subString = [source substringWithRange:expandedRange];
+            
+            if( subString.length &&
+                [numberCharacters characterIsMember:[subString characterAtIndex:0]] == NO)
+            {
+                return expandedRange;
+            }
+        }
+    }
+    
+    return [super selectionRangeForProposedRange:proposedSelRange
+                                     granularity:granularity];
+}
 
 - (BOOL) shouldChangeTextInRange:(NSRange)affectedCharRange replacementString:(NSString *)replacementString
 {
