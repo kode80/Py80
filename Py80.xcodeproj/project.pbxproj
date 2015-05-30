@@ -23,6 +23,11 @@
 		20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */; };
 		20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */ = {isa = PBXBuildFile; fileRef = 20082EB41B0B91CA0064DDA4 /* Syntax Definitions */; };
 		200B7C531B178765005D64B1 /* KDETypeTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 200B7C521B178765005D64B1 /* KDETypeTableCellView.m */; };
+		200CD8AE1B1A618800312847 /* KDEOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 200CD8AD1B1A618800312847 /* KDEOutputView.m */; };
+		200CD8BF1B1A621A00312847 /* KDEOutputCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 200CD8BA1B1A621A00312847 /* KDEOutputCommand.m */; };
+		200CD8C01B1A621A00312847 /* KDEOutputDrawSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 200CD8BC1B1A621A00312847 /* KDEOutputDrawSettings.m */; };
+		200CD8C11B1A621A00312847 /* KDEOutputDrawTextCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 200CD8BE1B1A621A00312847 /* KDEOutputDrawTextCommand.m */; };
+		200CD8C41B1A640B00312847 /* KDEOutputDrawPathCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 200CD8C31B1A640B00312847 /* KDEOutputDrawPathCommand.m */; };
 		201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 201551241B0E168B00A008F4 /* KDEDocumentTracker.m */; };
 		203D568C1B0A55EE00A7779E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 203D568B1B0A55EE00A7779E /* main.m */; };
 		203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 203D568D1B0A55EE00A7779E /* Images.xcassets */; };
@@ -43,7 +48,6 @@
 		20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9831B0FD886005658C3 /* KDEPy80Context.m */; };
 		20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9851B0FD886005658C3 /* KDEPython.m */; };
 		20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */; };
-		20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F13AC91B0AD47600C30D2A /* KDEOutputView.m */; };
 		20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */; };
 		20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A41B17938800398B70 /* KDECompletionTableCellView.m */; };
 		20F84EA21B18C3F1002D8116 /* NSString+PythonRangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */; };
@@ -95,6 +99,16 @@
 		20082EB41B0B91CA0064DDA4 /* Syntax Definitions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Syntax Definitions"; sourceTree = "<group>"; };
 		200B7C511B178765005D64B1 /* KDETypeTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETypeTableCellView.h; sourceTree = "<group>"; };
 		200B7C521B178765005D64B1 /* KDETypeTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETypeTableCellView.m; sourceTree = "<group>"; };
+		200CD8AC1B1A618800312847 /* KDEOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputView.h; sourceTree = "<group>"; };
+		200CD8AD1B1A618800312847 /* KDEOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputView.m; sourceTree = "<group>"; };
+		200CD8B91B1A621A00312847 /* KDEOutputCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputCommand.h; sourceTree = "<group>"; };
+		200CD8BA1B1A621A00312847 /* KDEOutputCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputCommand.m; sourceTree = "<group>"; };
+		200CD8BB1B1A621A00312847 /* KDEOutputDrawSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawSettings.h; sourceTree = "<group>"; };
+		200CD8BC1B1A621A00312847 /* KDEOutputDrawSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputDrawSettings.m; sourceTree = "<group>"; };
+		200CD8BD1B1A621A00312847 /* KDEOutputDrawTextCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawTextCommand.h; sourceTree = "<group>"; };
+		200CD8BE1B1A621A00312847 /* KDEOutputDrawTextCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputDrawTextCommand.m; sourceTree = "<group>"; };
+		200CD8C21B1A640B00312847 /* KDEOutputDrawPathCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawPathCommand.h; sourceTree = "<group>"; };
+		200CD8C31B1A640B00312847 /* KDEOutputDrawPathCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputDrawPathCommand.m; sourceTree = "<group>"; };
 		201551231B0E168B00A008F4 /* KDEDocumentTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEDocumentTracker.h; sourceTree = "<group>"; };
 		201551241B0E168B00A008F4 /* KDEDocumentTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEDocumentTracker.m; sourceTree = "<group>"; };
 		203D56831B0A55EE00A7779E /* Py80.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Py80.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,8 +145,6 @@
 		20A6E9851B0FD886005658C3 /* KDEPython.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPython.m; sourceTree = "<group>"; };
 		20A6E9881B0FD9C8005658C3 /* KDEExceptionFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEExceptionFormatter.h; sourceTree = "<group>"; };
 		20A6E9891B0FD9C8005658C3 /* KDEExceptionFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEExceptionFormatter.m; sourceTree = "<group>"; };
-		20F13AC81B0AD47600C30D2A /* KDEOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputView.h; sourceTree = "<group>"; };
-		20F13AC91B0AD47600C30D2A /* KDEOutputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputView.m; sourceTree = "<group>"; };
 		20F160A01B1790DC00398B70 /* KDECompletionTableRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECompletionTableRowView.h; sourceTree = "<group>"; };
 		20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableRowView.m; sourceTree = "<group>"; };
 		20F160A31B17938800398B70 /* KDECompletionTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECompletionTableCellView.h; sourceTree = "<group>"; };
@@ -205,6 +217,31 @@
 				20082E981B0B8B240064DDA4 /* UKHelperMacros.h */,
 			);
 			path = SyntaxKit;
+			sourceTree = "<group>";
+		};
+		200CD8AB1B1A618800312847 /* KDEOutputView */ = {
+			isa = PBXGroup;
+			children = (
+				200CD8B81B1A621A00312847 /* Commands */,
+				200CD8AC1B1A618800312847 /* KDEOutputView.h */,
+				200CD8AD1B1A618800312847 /* KDEOutputView.m */,
+			);
+			path = KDEOutputView;
+			sourceTree = "<group>";
+		};
+		200CD8B81B1A621A00312847 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				200CD8B91B1A621A00312847 /* KDEOutputCommand.h */,
+				200CD8BA1B1A621A00312847 /* KDEOutputCommand.m */,
+				200CD8BB1B1A621A00312847 /* KDEOutputDrawSettings.h */,
+				200CD8BC1B1A621A00312847 /* KDEOutputDrawSettings.m */,
+				200CD8BD1B1A621A00312847 /* KDEOutputDrawTextCommand.h */,
+				200CD8BE1B1A621A00312847 /* KDEOutputDrawTextCommand.m */,
+				200CD8C21B1A640B00312847 /* KDEOutputDrawPathCommand.h */,
+				200CD8C31B1A640B00312847 /* KDEOutputDrawPathCommand.m */,
+			);
+			path = Commands;
 			sourceTree = "<group>";
 		};
 		203D567A1B0A55EE00A7779E = {
@@ -328,9 +365,8 @@
 		20F13AC71B0AD45F00C30D2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				200CD8AB1B1A618800312847 /* KDEOutputView */,
 				20082E791B0B6F540064DDA4 /* TAAdaptiveSpaceItem */,
-				20F13AC81B0AD47600C30D2A /* KDEOutputView.h */,
-				20F13AC91B0AD47600C30D2A /* KDEOutputView.m */,
 				20A6E97E1B0FC128005658C3 /* KDEExceptionView.h */,
 				20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */,
 				208D430D1B1668B70004898F /* KDEWindow.h */,
@@ -482,23 +518,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */,
+				200CD8C41B1A640B00312847 /* KDEOutputDrawPathCommand.m in Sources */,
 				208D43051B162CB80004898F /* KDEPyCompletion.m in Sources */,
 				20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */,
-				20F13ACA1B0AD47600C30D2A /* KDEOutputView.m in Sources */,
 				20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */,
 				20082EA31B0B8B240064DDA4 /* TDBindings.m in Sources */,
 				20082EA01B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m in Sources */,
 				203D568C1B0A55EE00A7779E /* main.m in Sources */,
+				200CD8BF1B1A621A00312847 /* KDEOutputCommand.m in Sources */,
 				20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */,
 				20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */,
 				20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */,
 				20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */,
 				208D430F1B1668B70004898F /* KDEWindow.m in Sources */,
 				20082E991B0B8B240064DDA4 /* ASKLineNumberMarker.m in Sources */,
+				200CD8C01B1A621A00312847 /* KDEOutputDrawSettings.m in Sources */,
 				20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */,
 				20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */,
+				200CD8AE1B1A618800312847 /* KDEOutputView.m in Sources */,
 				208D43081B1635200004898F /* KDEPyCallSignature.m in Sources */,
 				208D430C1B1646D80004898F /* KDECompletionWindowController.m in Sources */,
+				200CD8C11B1A621A00312847 /* KDEOutputDrawTextCommand.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
 				20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */,
 				20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */,
