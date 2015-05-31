@@ -451,30 +451,46 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                      atPoint:NSMakePoint( x, y)];
 }
 
-- (void) drawImage:(NSInteger)imageID
-               atX:(CGFloat)x
-                 y:(CGFloat)y
+- (void) py80Context:(KDEPy80Context *)context
+           drawImage:(NSInteger)imageID
+                 atX:(CGFloat)x
+                   y:(CGFloat)y
 {
-    
+    NSImage *image = [self.imageStore getImage:imageID];
+    if( image)
+    {
+        NSRect rect = NSMakeRect( x, y, image.size.width, image.size.height);
+        [self.outputView addImage:image
+                           inRect:rect];
+    }
 }
 
-- (void) drawImage:(NSInteger)imageID
-         inRectAtX:(CGFloat)x
-                 y:(CGFloat)y
-         withWidth:(CGFloat)width
-            height:(CGFloat)height
+- (void) py80Context:(KDEPy80Context *)context
+           drawImage:(NSInteger)imageID
+           inRectAtX:(CGFloat)x
+                   y:(CGFloat)y
+           withWidth:(CGFloat)width
+              height:(CGFloat)height
 {
-    
+    NSImage *image = [self.imageStore getImage:imageID];
+    if( image)
+    {
+        NSRect rect = NSMakeRect( x, y, width, height);
+        [self.outputView addImage:image
+                           inRect:rect];
+    }
 }
 
-- (NSInteger) loadImage:(NSString *)path
+- (NSUInteger) py80Context:(KDEPy80Context *)context
+                 loadImage:(NSString *)path
 {
     return [self.imageStore addImageAtPath:path];
 }
 
-- (NSInteger) createImageWithBytes:(NSData *)data
-                             width:(NSInteger)width
-                            height:(NSInteger)height
+- (NSUInteger) py80Context:(KDEPy80Context *)context
+      createImageWithBytes:(NSData *)data
+                     width:(NSInteger)width
+                    height:(NSInteger)height
 {
     return [self.imageStore addImageWithRGBABytes:data
                                             width:width
