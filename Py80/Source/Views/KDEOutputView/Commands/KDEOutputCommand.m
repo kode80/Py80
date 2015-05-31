@@ -14,6 +14,7 @@
 @implementation KDEOutputCommand
 
 - (void) executeWithDrawSettings:(KDEOutputDrawSettings *)drawSettings
+                     inDirtyRect:(NSRect)dirtyRect
 {
     @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                    reason:@"KDEOutputDrawSettings subclasses must implemented executeWithDrawSettings:"

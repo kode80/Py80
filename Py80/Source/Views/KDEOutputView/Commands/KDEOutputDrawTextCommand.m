@@ -12,6 +12,7 @@
 @implementation KDEOutputDrawTextCommand
 
 - (void) executeWithDrawSettings:(KDEOutputDrawSettings *)drawSettings
+                     inDirtyRect:(NSRect)dirtyRect
 {
     NSColor *backgroundColor = drawSettings.fillColor ?: [NSColor clearColor];
     NSColor *foregroundColor = drawSettings.strokeColor ?: [NSColor blackColor];

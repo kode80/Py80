@@ -36,14 +36,16 @@
     return self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(NSRect)dirtyRect
+{
     [super drawRect:dirtyRect];
 
     KDEOutputDrawSettings *drawSettings = [KDEOutputDrawSettings new];
     
     for( KDEOutputCommand *command in self.drawList)
     {
-        [command executeWithDrawSettings:drawSettings];
+        [command executeWithDrawSettings:drawSettings
+                             inDirtyRect:dirtyRect];
     }
 }
 

@@ -12,6 +12,7 @@
 @implementation KDEOutputDrawPathCommand
 
 - (void) executeWithDrawSettings:(KDEOutputDrawSettings *)drawSettings
+                     inDirtyRect:(NSRect)dirtyRect
 {
     if( drawSettings.fillColor)
     {

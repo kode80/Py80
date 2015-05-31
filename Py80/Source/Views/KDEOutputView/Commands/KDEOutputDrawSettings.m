@@ -29,6 +29,7 @@
 }
 
 - (void) executeWithDrawSettings:(KDEOutputDrawSettings *)drawSettings
+                     inDirtyRect:(NSRect)dirtyRect
 {
     [drawSettings assignFrom:self];
 }

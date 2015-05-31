@@ -13,6 +13,7 @@
 
 @interface KDEOutputCommand : NSObject
 
-- (void) executeWithDrawSettings:(KDEOutputDrawSettings *)drawSettings;
+- (void) executeWithDrawSettings:(KDEOutputDrawSettings *)drawSettings
+                     inDirtyRect:(NSRect)dirtyRect;
 
 @end

@@ -11,8 +11,12 @@
 @implementation KDEOutputDrawImageCommand
 
 - (void) executeWithDrawSettings:(KDEOutputDrawSettings *)drawSettings
+                     inDirtyRect:(NSRect)dirtyRect
 {
-    [self.image drawInRect:self.rect];
+    [self.image drawInRect:self.rect
+                  fromRect:NSZeroRect
+                 operation:NSCompositeSourceOver
+                  fraction:1.0];
 }
 
 @end
