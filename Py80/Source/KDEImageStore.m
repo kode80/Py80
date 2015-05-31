@@ -62,7 +62,7 @@
 
 - (NSImage *) getImage:(NSUInteger)imageID
 {
-    if( imageID && imageID <= self.count)
+    if( imageID > 0 && imageID <= self.count)
     {
         return self.images[ imageID - 1];
     }
