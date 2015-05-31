@@ -1,7 +1,7 @@
 # Py80
 A Python playground for OSX.
 
-Latest build (ver 0.3): [Py80.zip](http://kode80.com/downloads/Py80.zip)
+Latest build (ver 0.4): [Py80.zip](http://kode80.com/downloads/Py80.zip)
 
 ## Features
 * Syntax highlighting
@@ -29,3 +29,7 @@ The py80 module acts as a bridge between python and the py80 app, exposing vario
 * **drawCircle( x, y, radius)**: draws a circle centered at x/y
 * **drawOvalInRect( x, y, w, h)**: draws an oval in the specified rectangle
 * **drawText( x, y, text)**: draws text (uses stroke color for text and fill color for background)
+* **drawImage( imageID, x, y)**: draws an image 
+* **drawImageInRect( imageID, x, y, w, h)**: draws an image in the specified rectangle
+* **loadImage( path)**: loads an image
+* **createImage( rgbaByteArray, w, h)**: creates an image from a Python bytearray of raw RGBA values
