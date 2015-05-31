@@ -446,6 +446,34 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                      atPoint:NSMakePoint( x, y)];
 }
 
+- (void) drawImage:(NSInteger)imageID
+               atX:(CGFloat)x
+                 y:(CGFloat)y
+{
+    
+}
+
+- (void) drawImage:(NSInteger)imageID
+         inRectAtX:(CGFloat)x
+                 y:(CGFloat)y
+         withWidth:(CGFloat)width
+            height:(CGFloat)height
+{
+    
+}
+
+- (NSInteger) loadImage:(NSString *)path
+{
+    return 0;
+}
+
+- (NSInteger) createImageWithBytes:(NSData *)data
+                             width:(NSInteger)width
+                            height:(NSInteger)height
+{
+    return 0;
+}
+
 - (void) py80Context:(KDEPy80Context *)context
  reportExceptionType:(NSString *)type
          description:(NSString *)description

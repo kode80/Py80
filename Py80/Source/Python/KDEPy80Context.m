@@ -157,6 +157,61 @@
     }
 }
 
+- (void) drawImage:(NSInteger)imageID
+               atX:(CGFloat)x
+                 y:(CGFloat)y
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:drawImage:atX:y:)])
+    {
+        [self.delegate py80Context:self
+                         drawImage:imageID
+                               atX:x
+                                 y:y];
+    }
+}
+
+- (void) drawImage:(NSInteger)imageID
+         inRectAtX:(CGFloat)x
+                 y:(CGFloat)y
+         withWidth:(CGFloat)width
+            height:(CGFloat)height
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:drawImage:inRectAtX:y:withWidth:height:)])
+    {
+        [self.delegate py80Context:self
+                         drawImage:imageID
+                         inRectAtX:x y:y
+                         withWidth:width
+                            height:height];
+    }
+}
+
+- (NSInteger) loadImage:(NSString *)path
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:loadImage:)])
+    {
+        return [self.delegate py80Context:self
+                                loadImage:path];
+    }
+    
+    return 0;
+}
+
+- (NSInteger) createImageWithBytes:(NSData *)data
+                             width:(NSInteger)width
+                            height:(NSInteger)height
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:createImageWithBytes:width:height:)])
+    {
+        return [self.delegate py80Context:self
+                     createImageWithBytes:data
+                                    width:width
+                                   height:height];
+    }
+    
+    return 0;
+}
+
 - (void) reportExceptionType:(NSString *)type
                  description:(NSString *)description
                     filePath:(NSString *)filePath

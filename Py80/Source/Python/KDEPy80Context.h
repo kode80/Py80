@@ -58,6 +58,22 @@
               atX:(CGFloat)x
                 y:(CGFloat)y;
 
+- (void) drawImage:(NSInteger)imageID
+               atX:(CGFloat)x
+                 y:(CGFloat)y;
+
+- (void) drawImage:(NSInteger)imageID
+         inRectAtX:(CGFloat)x
+                 y:(CGFloat)y
+         withWidth:(CGFloat)width
+            height:(CGFloat)height;
+
+- (NSInteger) loadImage:(NSString *)path;
+
+- (NSInteger) createImageWithBytes:(NSData *)data
+                             width:(NSInteger)width
+                            height:(NSInteger)height;
+
 
 - (void) reportExceptionType:(NSString *)type
                  description:(NSString *)description
@@ -121,6 +137,25 @@
                  atX:(CGFloat)x
                    y:(CGFloat)y;
 
+- (void) py80Context:(KDEPy80Context *)context
+           drawImage:(NSInteger)imageID
+                 atX:(CGFloat)x
+                   y:(CGFloat)y;
+
+- (void) py80Context:(KDEPy80Context *)context
+           drawImage:(NSInteger)imageID
+           inRectAtX:(CGFloat)x
+                   y:(CGFloat)y
+           withWidth:(CGFloat)width
+              height:(CGFloat)height;
+
+- (NSInteger) py80Context:(KDEPy80Context *)context
+                loadImage:(NSString *)path;
+
+- (NSInteger) py80Context:(KDEPy80Context *)context
+     createImageWithBytes:(NSData *)data
+                    width:(NSInteger)width
+                   height:(NSInteger)height;
 
 - (void) py80Context:(KDEPy80Context *)context
  reportExceptionType:(NSString *)type
