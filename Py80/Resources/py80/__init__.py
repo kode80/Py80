@@ -114,7 +114,7 @@ def drawImageInRect( imageID, x, y, w, h):
 	"""
 	Draws an image so that it fills the rectangle defined by x/y/w/h to the in-app canvas.
 	"""
-	context.inRectAtX_y_withWidth_height_( imageID, x, y, w, h)
+	context.drawImage_inRectAtX_y_withWidth_height_( imageID, x, y, w, h)
 
 def loadImage( path):
 	"""
