@@ -83,9 +83,11 @@
                                                                          colorSpaceName:NSDeviceRGBColorSpace
                                                                             bytesPerRow:width * 4
                                                                            bitsPerPixel:32];
-        
-        NSImage *image = [[NSImage alloc] initWithCGImage:imageRep.CGImage
-                                                     size:NSMakeSize( width, height)];
+
+        // This is the only way I've ever been able to get a reliable NSImage
+        // All other approaches result in drawing glitches depending on size.
+        NSImage *image = [[NSImage alloc] initWithData:[imageRep TIFFRepresentation]];
+
         if( image)
         {
             self.images = [self.images arrayByAddingObject:image];
