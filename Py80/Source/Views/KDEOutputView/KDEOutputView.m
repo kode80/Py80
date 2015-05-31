@@ -158,6 +158,7 @@
     KDEOutputDrawImageCommand *command = [KDEOutputDrawImageCommand new];
     command.image = image;
     command.rect = rect;
+    self.drawList = [self.drawList arrayByAddingObject:command];
     
     self.hasContent = YES;
     [self expandIntrinsicContentSizeIfNeededForRect:rect];
