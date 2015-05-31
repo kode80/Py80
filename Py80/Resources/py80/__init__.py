@@ -103,3 +103,31 @@ def drawText( x, y, text):
 	Uses the current stroke for text color and fill for text background.
 	"""
 	context.drawText_atX_y_( text, x, y)
+
+def drawImage( imageID, x, y):
+	"""
+	Draws an image at x/y to the in-app canvas.
+	"""
+	context.drawImage_atX_y_( imageID, x, y)
+
+def drawImageInRect( imageID, x, y, w, h):
+	"""
+	Draws an image so that it fills the rectangle defined by x/y/w/h to the in-app canvas.
+	"""
+	context.inRectAtX_y_withWidth_height_( imageID, x, y, w, h)
+
+def loadImage( path):
+	"""
+	Attempts to load an image from disk. 
+	Returns 0 if the image could not be loaded, otherwise returns an image ID that can be 
+	passed to the various py80 image functions.
+	"""
+	return context.loadImage_( path)
+
+def createImage( rgbaByteArray, w, h):
+	"""
+	Attempts to create an image from a raw RGBA bytearray. The bytearray must be (w * h * 4) large.
+	Returns 0 if the image could not be created, otherwise returns an image ID that can be
+	passed to the various py80 image functions.
+	"""
+	return context.createImageWithBytes_width_height_( rgbaByteArray, w, h)

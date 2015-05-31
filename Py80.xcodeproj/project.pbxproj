@@ -54,6 +54,7 @@
 		20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */; };
 		20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */; };
 		20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */; };
+		20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,8 @@
 		20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CursorPosition.m"; sourceTree = "<group>"; };
 		20F84EA71B18C427002D8116 /* NSString+RangeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RangeUtils.h"; sourceTree = "<group>"; };
 		20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RangeUtils.m"; sourceTree = "<group>"; };
+		20F8ED3A1B1B3F9F00DA11C3 /* KDEImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEImageStore.h; sourceTree = "<group>"; };
+		20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEImageStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +318,8 @@
 				20082E801B0B8B240064DDA4 /* SyntaxKit */,
 				20F84EA41B18C427002D8116 /* Utils */,
 				20F13AC71B0AD45F00C30D2A /* Views */,
+				20F8ED3A1B1B3F9F00DA11C3 /* KDEImageStore.h */,
+				20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				200CD8C11B1A621A00312847 /* KDEOutputDrawTextCommand.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
 				20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */,
+				20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */,
 				20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */,
 				208D43121B1688240004898F /* KDETextView.m in Sources */,
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,

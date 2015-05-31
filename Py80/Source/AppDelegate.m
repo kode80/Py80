@@ -13,6 +13,7 @@
 #import "KDEDocumentTracker.h"
 #import "KDEExceptionView.h"
 #import "KDEExceptionFormatter.h"
+#import "KDEImageStore.h"
 
 #import "SyntaxKit.h"
 
@@ -42,6 +43,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
 @property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
 @property (nonatomic, readwrite, strong) KDEExceptionFormatter *exceptionFormatter;
+@property (nonatomic, readwrite, strong) KDEImageStore *imageStore;
 
 @end
 
@@ -59,6 +61,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     
     self.logDateFormatter = [NSDateFormatter new];
     self.logDateFormatter.dateFormat = @"dd-MM-YY HH:mm:ss.SSS";
+    
+    self.imageStore = [KDEImageStore new];
     
     self.exceptionFormatter = [[KDEExceptionFormatter alloc] initWithTypeFont:[NSFont fontWithName:@"Monaco" size:10.0f]
                                                                     typeColor:[NSColor redColor]
@@ -181,6 +185,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (IBAction) runCode:(id)sender
 {
+    [self.imageStore reset];
     self.exceptionView.hidden = YES;
     [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
                                              runFunction:@"main"];
@@ -464,14 +469,16 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (NSInteger) loadImage:(NSString *)path
 {
-    return 0;
+    return [self.imageStore addImageAtPath:path];
 }
 
 - (NSInteger) createImageWithBytes:(NSData *)data
                              width:(NSInteger)width
                             height:(NSInteger)height
 {
-    return 0;
+    return [self.imageStore addImageWithRGBABytes:data
+                                            width:width
+                                           height:height];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
