@@ -57,6 +57,31 @@
                                width:(NSUInteger)width
                               height:(NSUInteger)height
 {
+    size_t dataSize = width * height * 4;
+    
+    if( dataSize && data.length == dataSize)
+    {
+        unsigned char *bytes = (unsigned char *)data.bytes;
+        NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&bytes
+                                                                             pixelsWide:width
+                                                                             pixelsHigh:height
+                                                                          bitsPerSample:8
+                                                                        samplesPerPixel:4
+                                                                               hasAlpha:YES
+                                                                               isPlanar:NO
+                                                                         colorSpaceName:NSDeviceRGBColorSpace
+                                                                            bytesPerRow:width * 4
+                                                                           bitsPerPixel:32];
+        
+        NSImage *image = [[NSImage alloc] initWithCGImage:imageRep.CGImage
+                                                     size:imageRep.size];
+        if( image)
+        {
+            self.images = [self.images arrayByAddingObject:image];
+            return self.images.count;
+        }
+    }
+    
     return 0;
 }
 
