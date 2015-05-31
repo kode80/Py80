@@ -32,4 +32,4 @@ The py80 module acts as a bridge between python and the py80 app, exposing vario
 * **drawImage( imageID, x, y)**: draws an image 
 * **drawImageInRect( imageID, x, y, w, h)**: draws an image in the specified rectangle
 * **loadImage( path)**: loads an image
-* **createImage( rgbaByteArray, w, h)**: creates an image from a Python bytearray of raw RGBA values
+* **createImage( rgbaByteArray, w, h)**: creates an image from a bytearray of raw RGBA values
