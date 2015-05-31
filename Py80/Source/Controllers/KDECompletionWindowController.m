@@ -48,18 +48,6 @@
                                                                                  line:cursor.line
                                                                                column:cursor.column];
     
-    if( [completionObjects isKindOfClass:[NSData class]])
-    {
-        unsigned char *data = (unsigned char *) [(NSData *)completionObjects bytes];
-        NSInteger l = [(NSData *)completionObjects length];
-        for( NSInteger i=0; i<l; i++)
-        {
-            NSLog(@"%d: %d %c", (int)i, data[i], data[i]);
-        }
-        return;
-    }
-    
-    
     NSMutableArray *signatures = [NSMutableArray array];
     NSMutableArray *completions = [completionObjects mutableCopy];
     

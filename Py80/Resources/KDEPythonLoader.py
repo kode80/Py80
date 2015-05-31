@@ -72,5 +72,4 @@ class KDEPythonLoader(NSObject):
 				sig.addArgName_( param.name)
 			comps.append( sig)
 
-		data = bytearray( b"Hellow world")
-		return data#comps
+		return comps
