@@ -22,5 +22,7 @@
 - (void) addOval:(NSRect)rect;
 - (void) addText:(NSString *)text
          atPoint:(NSPoint)point;
+- (void) addImage:(NSImage *)image
+           inRect:(NSRect)rect;
 
 @end

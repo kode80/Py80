@@ -12,6 +12,7 @@
 #import "KDEOutputDrawSettings.h"
 #import "KDEOutputDrawPathCommand.h"
 #import "KDEOutputDrawTextCommand.h"
+#import "KDEOutputDrawImageCommand.h"
 
 @interface KDEOutputView ()
 
@@ -147,6 +148,18 @@
     rect.origin = point;
     rect.size = [text sizeWithAttributes:@{ NSFontAttributeName : self.mostRecentDrawSettings.font }];
     
+    [self expandIntrinsicContentSizeIfNeededForRect:rect];
+    [self setNeedsDisplay:YES];
+}
+
+- (void) addImage:(NSImage *)image
+           inRect:(NSRect)rect
+{
+    KDEOutputDrawImageCommand *command = [KDEOutputDrawImageCommand new];
+    command.image = image;
+    command.rect = rect;
+    
+    self.hasContent = YES;
     [self expandIntrinsicContentSizeIfNeededForRect:rect];
     [self setNeedsDisplay:YES];
 }

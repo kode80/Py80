@@ -55,6 +55,7 @@
 		20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */; };
 		20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */; };
 		20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */; };
+		20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,8 @@
 		20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RangeUtils.m"; sourceTree = "<group>"; };
 		20F8ED3A1B1B3F9F00DA11C3 /* KDEImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEImageStore.h; sourceTree = "<group>"; };
 		20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEImageStore.m; sourceTree = "<group>"; };
+		20F8ED3D1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawImageCommand.h; sourceTree = "<group>"; };
+		20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputDrawImageCommand.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +246,8 @@
 				200CD8BE1B1A621A00312847 /* KDEOutputDrawTextCommand.m */,
 				200CD8C21B1A640B00312847 /* KDEOutputDrawPathCommand.h */,
 				200CD8C31B1A640B00312847 /* KDEOutputDrawPathCommand.m */,
+				20F8ED3D1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.h */,
+				20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */,
 				20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */,
 				20082EA31B0B8B240064DDA4 /* TDBindings.m in Sources */,
+				20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */,
 				20082EA01B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m in Sources */,
 				203D568C1B0A55EE00A7779E /* main.m in Sources */,
 				200CD8BF1B1A621A00312847 /* KDEOutputCommand.m in Sources */,
