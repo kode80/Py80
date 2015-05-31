@@ -62,6 +62,17 @@
     if( dataSize && data.length == dataSize)
     {
         unsigned char *bytes = (unsigned char *)data.bytes;
+
+        // NSBitmapImageRep requires that bitmap uses pre-multiplied alpha
+        float a;
+        for( NSInteger i=0; i<width * height; i++)
+        {
+            a = bytes[ i * 4 + 3] / 255.0f;
+            bytes[ i * 4] *= a;
+            bytes[ i * 4 + 1] *= a;
+            bytes[ i * 4 + 2] *= a;
+        }
+        
         NSBitmapImageRep *imageRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&bytes
                                                                              pixelsWide:width
                                                                              pixelsHigh:height
@@ -74,7 +85,7 @@
                                                                            bitsPerPixel:32];
         
         NSImage *image = [[NSImage alloc] initWithCGImage:imageRep.CGImage
-                                                     size:imageRep.size];
+                                                     size:NSMakeSize( width, height)];
         if( image)
         {
             self.images = [self.images arrayByAddingObject:image];
