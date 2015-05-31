@@ -186,7 +186,7 @@
     }
 }
 
-- (NSInteger) loadImage:(NSString *)path
+- (NSUInteger) loadImage:(NSString *)path
 {
     if( [self.delegate respondsToSelector:@selector(py80Context:loadImage:)])
     {
@@ -197,9 +197,9 @@
     return 0;
 }
 
-- (NSInteger) createImageWithBytes:(NSData *)data
-                             width:(NSInteger)width
-                            height:(NSInteger)height
+- (NSUInteger) createImageWithBytes:(NSData *)data
+                              width:(NSInteger)width
+                             height:(NSInteger)height
 {
     if( [self.delegate respondsToSelector:@selector(py80Context:createImageWithBytes:width:height:)])
     {

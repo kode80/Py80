@@ -68,11 +68,11 @@
          withWidth:(CGFloat)width
             height:(CGFloat)height;
 
-- (NSInteger) loadImage:(NSString *)path;
+- (NSUInteger) loadImage:(NSString *)path;
 
-- (NSInteger) createImageWithBytes:(NSData *)data
-                             width:(NSInteger)width
-                            height:(NSInteger)height;
+- (NSUInteger) createImageWithBytes:(NSData *)data
+                              width:(NSInteger)width
+                             height:(NSInteger)height;
 
 
 - (void) reportExceptionType:(NSString *)type
@@ -149,13 +149,13 @@
            withWidth:(CGFloat)width
               height:(CGFloat)height;
 
-- (NSInteger) py80Context:(KDEPy80Context *)context
-                loadImage:(NSString *)path;
+- (NSUInteger) py80Context:(KDEPy80Context *)context
+                 loadImage:(NSString *)path;
 
-- (NSInteger) py80Context:(KDEPy80Context *)context
-     createImageWithBytes:(NSData *)data
-                    width:(NSInteger)width
-                   height:(NSInteger)height;
+- (NSUInteger) py80Context:(KDEPy80Context *)context
+      createImageWithBytes:(NSData *)data
+                     width:(NSInteger)width
+                    height:(NSInteger)height;
 
 - (void) py80Context:(KDEPy80Context *)context
  reportExceptionType:(NSString *)type
