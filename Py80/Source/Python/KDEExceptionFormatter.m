@@ -7,7 +7,7 @@
 //
 
 #import "KDEExceptionFormatter.h"
-
+#import "KDEPyException.h"
 
 @interface KDEExceptionFormatter ()
 
@@ -45,44 +45,38 @@
     return self;
 }
 
-- (NSAttributedString *) attributedStringForExceptionType:(NSString *)type
-                                              description:(NSString *)description
-                                                 filePath:(NSString *)filePath
-                                                 function:(NSString *)function
-                                               lineNumber:(NSInteger)lineNumber
+- (NSAttributedString *) attributedStringForException:(KDEPyException *)exception
 {
-    if( [type isEqualTo:@"SyntaxError"])
+    NSString *type = exception.type;
+    NSString *externalString = @"";
+    if( exception.isExternal)
     {
-        NSRange lineRange = [description rangeOfString:@"line "];
-        NSString *lineString = [description substringFromIndex:lineRange.location + lineRange.length];
-        lineNumber = [lineString integerValue];
-        description = @"Invalid syntax";
+        type = [type stringByAppendingFormat:@" in %@", exception.filePath.lastPathComponent];
+        externalString = [NSString stringWithFormat:@"\n\nFile: %@\nFunction: %@\nLine: %@", exception.filePath,
+                                                                                             exception.function,
+                                                                                             @(exception.lineNumber)];
     }
     
-    BOOL isExternal = [filePath isEqualTo:@"<string>"] == NO;
-    if( isExternal) { type = [type stringByAppendingFormat:@" in %@", filePath.lastPathComponent]; }
-    NSString *externalString = isExternal ? [NSString stringWithFormat:@"\n\nFile: %@\nFunction: %@\nLine: %@", filePath, function, @(lineNumber)] : @"";
-    NSString *message = [NSString stringWithFormat:@"%@\n%@%@", type, description, externalString];
+    NSString *message = [NSString stringWithFormat:@"%@\n%@%@", exception.type, exception.exceptionDescription, externalString];
     
     NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:message];
     
     NSDictionary *attributes = @{ NSFontAttributeName : self.typeFont,
                                   NSForegroundColorAttributeName : self.typeColor};
     [output setAttributes:attributes
-                    range:[message rangeOfString:type]];
+                    range:[message rangeOfString:exception.type]];
     
     attributes = @{ NSFontAttributeName : self.descriptionFont,
                     NSForegroundColorAttributeName : self.descriptionColor};
     [output setAttributes:attributes
-                    range:[message rangeOfString:description]];
+                    range:[message rangeOfString:exception.exceptionDescription]];
     
-    if( isExternal)
+    if( exception.isExternal)
     {
         attributes = @{ NSFontAttributeName : self.infoFont,
                         NSForegroundColorAttributeName : self.infoColor};
         [output setAttributes:attributes
                         range:[message rangeOfString:externalString]];
-        lineNumber = 1;
     }
     
     return output;

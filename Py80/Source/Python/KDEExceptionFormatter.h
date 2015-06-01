@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class KDEPyException;
+
 @interface KDEExceptionFormatter : NSObject
 
 - (instancetype) initWithTypeFont:(NSFont *)typeFont
@@ -17,10 +19,6 @@
                          infoFont:(NSFont *)infoFont
                         infoColor:(NSColor *)infoColor;
 
-- (NSAttributedString *) attributedStringForExceptionType:(NSString *)type
-                                              description:(NSString *)description
-                                                 filePath:(NSString *)filePath
-                                                 function:(NSString *)function
-                                               lineNumber:(NSInteger)lineNumber;
+- (NSAttributedString *) attributedStringForException:(KDEPyException *)exception;
 
 @end

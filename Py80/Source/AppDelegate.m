@@ -19,6 +19,7 @@
 
 #import "KDEPyCompletion.h"
 #import "KDEPyCallSignature.h"
+#import "KDEPyException.h"
 #import "KDECompletionWindowController.h"
 
 
@@ -498,22 +499,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 }
 
 - (void) py80Context:(KDEPy80Context *)context
- reportExceptionType:(NSString *)type
-         description:(NSString *)description
-            filePath:(NSString *)filePath
-            function:(NSString *)function
-          lineNumber:(NSInteger)lineNumber
+     reportException:(KDEPyException *)exception
 {
-    self.exceptionView.label.attributedStringValue = [self.exceptionFormatter attributedStringForExceptionType:type
-                                                                                                   description:description
-                                                                                                      filePath:filePath
-                                                                                                      function:function
-                                                                                                    lineNumber:lineNumber];
+    self.exceptionView.label.attributedStringValue = [self.exceptionFormatter attributedStringForException:exception];
     
-    lineNumber = [filePath isEqualToString:@"<string>"] ? lineNumber : 1;
-    
-    [self.syntaxViewController goToLine:lineNumber];
-    NSRange range = [self.syntaxViewController rangeForLine:lineNumber];
+    [self.syntaxViewController goToLine:exception.lineNumber];
+    NSRange range = [self.syntaxViewController rangeForLine:exception.lineNumber];
     [self.exceptionView updateConstraintsForCharacterRange:range];
     
     self.exceptionView.hidden = NO;

@@ -7,6 +7,8 @@
 //
 
 #import "KDEPy80Context.h"
+#import "KDEPyException.h"
+
 
 @implementation KDEPy80Context
 
@@ -218,14 +220,15 @@
                     function:(NSString *)function
                   lineNumber:(NSInteger)lineNumber
 {
-    if( [self.delegate respondsToSelector:@selector(py80Context:reportExceptionType:description:filePath:function:lineNumber:)])
+    if( [self.delegate respondsToSelector:@selector(py80Context:reportException:)])
     {
+        KDEPyException *exception = [[KDEPyException alloc] initWithType:type
+                                                             description:description
+                                                                filePath:filePath
+                                                                function:function
+                                                              lineNumber:lineNumber];
         [self.delegate py80Context:self
-               reportExceptionType:type
-                       description:description
-                          filePath:filePath
-                          function:function
-                        lineNumber:lineNumber];
+                   reportException:exception];
     }
 }
 

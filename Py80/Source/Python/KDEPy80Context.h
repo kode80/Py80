@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
+@class KDEPyException;
 @protocol KDEPy80ContextDelegate;
 
 
@@ -158,10 +159,6 @@
                     height:(NSInteger)height;
 
 - (void) py80Context:(KDEPy80Context *)context
- reportExceptionType:(NSString *)type
-         description:(NSString *)description
-            filePath:(NSString *)filePath
-            function:(NSString *)function
-          lineNumber:(NSInteger)lineNumber;
+     reportException:(KDEPyException *)exception;
 
 @end
