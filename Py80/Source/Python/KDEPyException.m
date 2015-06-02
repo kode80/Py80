@@ -39,8 +39,15 @@
         self.filePath = filePath;
         self.function = function;
         
-        BOOL parseDescription = [KDEPyException lineNumberIsInDescriptionForType:type];
-        self.lineNumber = parseDescription ? [KDEPyException lineNumberFromDescription:description] : lineNumber;
+        if( self.isExternal)
+        {
+            self.lineNumber = 1;
+        }
+        else
+        {
+            BOOL parseDescription = [KDEPyException lineNumberIsInDescriptionForType:type];
+            self.lineNumber = parseDescription ? [KDEPyException lineNumberFromDescription:description] : lineNumber;
+        }
     }
     
     return self;
