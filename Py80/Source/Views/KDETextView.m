@@ -44,10 +44,7 @@
 {
     [super awakeFromNib];
     
-    NSMutableCharacterSet *ignoreSet = [NSMutableCharacterSet characterSetWithCharactersInString:@" \t.(){}\"#="];
-    [ignoreSet formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
-    
-    self.triggerCompletionCharSet = [ignoreSet invertedSet];
+    self.triggerCompletionCharSet = [NSCharacterSet pythonIdentifierCharacterSet];
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow
