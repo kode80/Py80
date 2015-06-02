@@ -23,4 +23,14 @@
     self.argNames = self.argNames ? [self.argNames arrayByAddingObject:name] : @[ name];
 }
 
+- (void) setComplete:(NSString *)complete
+{
+    NSRange range = [complete rangeOfString:@"=" options:NSBackwardsSearch];
+    if( range.location == complete.length - 1)
+    {
+        complete = [complete substringToIndex:range.location];
+    }
+    _complete = complete;
+}
+
 @end
