@@ -26,6 +26,7 @@
 
 - (IBAction) resetOutputMagnification:(id)sender;
 - (IBAction) saveOutputContents:(id)sender;
+- (IBAction) openPreviousDocument:(id)sender;
 
 @end
 

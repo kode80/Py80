@@ -136,6 +136,10 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     {
         return self.outputView.hasContent;
     }
+    else if( menuItem.action == @selector(openPreviousDocument:))
+    {
+        return [[NSDocumentController sharedDocumentController] recentDocumentURLs].count > 1;
+    }
     
     return [[NSApplication sharedApplication] validateMenuItem:menuItem];
 }
@@ -212,6 +216,16 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                                               properties:nil];
         [data writeToFile:panel.URL.filePathURL.path
                atomically:YES];
+    }
+}
+
+- (IBAction) openPreviousDocument:(id)sender
+{
+    NSArray *urls = [[NSDocumentController sharedDocumentController] recentDocumentURLs];;
+    if( urls.count > 1)
+    {
+        NSURL *url = urls[1];
+        [self.docTracker openDocumentAtPath:url.filePathURL.path];
     }
 }
 

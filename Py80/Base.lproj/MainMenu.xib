@@ -115,6 +115,11 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Open Previous" keyEquivalent="O" id="saq-Nm-dtj">
+                                <connections>
+                                    <action selector="openPreviousDocument:" target="Voe-Tx-rLC" id="JzQ-d4-pQL"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="m54-Is-iLE"/>
                             <menuItem title="Close" keyEquivalent="w" id="DVo-aG-piG">
                                 <connections>
