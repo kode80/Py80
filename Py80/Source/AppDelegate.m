@@ -503,8 +503,10 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 {
     self.exceptionView.label.attributedStringValue = [self.exceptionFormatter attributedStringForException:exception];
     
-    [self.syntaxViewController goToLine:exception.lineNumber];
-    NSRange range = [self.syntaxViewController rangeForLine:exception.lineNumber];
+    NSInteger lineNumber = exception.isExternal ? 1 : exception.lineNumber;
+
+    [self.syntaxViewController goToLine:lineNumber];
+    NSRange range = [self.syntaxViewController rangeForLine:lineNumber];
     [self.exceptionView updateConstraintsForCharacterRange:range];
     
     self.exceptionView.hidden = NO;
