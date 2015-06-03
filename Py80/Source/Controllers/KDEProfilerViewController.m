@@ -17,9 +17,11 @@
 
 @implementation KDEProfilerViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do view setup here.
+    
+    self.table.doubleAction = @selector(tableDidDoubleClick:);
 }
 
 - (void) setStats:(NSArray *)stats
@@ -28,6 +30,16 @@
     {
         _stats = stats;
         [self.table reloadData];
+    }
+}
+
+- (IBAction) tableDidDoubleClick:(id)sender
+{
+    if( self.table.clickedRow > -1 &&
+        [self.delegate respondsToSelector:@selector(profilerViewController:didDoubleClickStat:)])
+    {
+        [self.delegate profilerViewController:self
+                           didDoubleClickStat:self.stats[ self.table.clickedRow]];
     }
 }
 

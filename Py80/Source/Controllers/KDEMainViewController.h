@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol KDEMainViewControllerDelegate;
+
 @class KDEOutputView,
        ASKSyntaxViewController,
        KDEExceptionView,
@@ -17,6 +19,7 @@
 
 @interface KDEMainViewController : NSViewController
 
+@property (nonatomic, readwrite, weak) IBOutlet id<KDEMainViewControllerDelegate> delegate;
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *codeView;
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *console;
 @property (nonatomic, readwrite, weak) IBOutlet KDEOutputView *outputView;
@@ -31,5 +34,12 @@
 - (IBAction) insertPath:(id)sender;
 
 - (void) showException:(KDEPyException *)exception;
+
+@end
+
+
+@protocol KDEMainViewControllerDelegate <NSObject>
+
+- (void) codeDidChangeInMainViewController:(KDEMainViewController *)viewController;
 
 @end

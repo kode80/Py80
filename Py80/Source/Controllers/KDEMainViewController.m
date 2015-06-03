@@ -115,6 +115,28 @@
                                     size:11.0f];
 }
 
+#pragma mark - ASKSyntaxViewControllerDelegate
+
+- (void) syntaxViewControllerTextDidChange:(ASKSyntaxViewController *)controller
+{
+    if( [self.delegate respondsToSelector:@selector(codeDidChangeInMainViewController:)])
+    {
+        [self.delegate codeDidChangeInMainViewController:self];
+    }
+}
+
+- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex
+{
+    [menu insertItem:[NSMenuItem separatorItem]
+             atIndex:0];
+    [menu insertItemWithTitle:@"Insert path..."
+                       action:@selector(insertPath:)
+                keyEquivalent:@""
+                      atIndex:0];
+    
+    return menu;
+}
+
 - (void) textViewDidChangeSelection:(NSNotification *)notification
 {
     self.exceptionView.hidden = YES;

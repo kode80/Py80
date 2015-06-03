@@ -38,7 +38,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @interface AppDelegate ()
 <
     KDEPy80ContextDelegate,
-    KDEDocumentTrackerDelegate
+    KDEDocumentTrackerDelegate,
+    KDEProfilerViewControllerDelegate,
+    KDEMainViewControllerDelegate
 >
 
 @property (weak) IBOutlet NSWindow *window;
@@ -56,9 +58,11 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 {
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.contentViewController = self.mainViewController;
+    self.mainViewController.delegate = self;
     
     self.profilerViewController = [[KDEProfilerViewController alloc] initWithNibName:nil
                                                                               bundle:nil];
+    self.profilerViewController.delegate = self;
     
     // IB autosave name doesn't work with view controllers /shakes fist
     self.window.frameAutosaveName = @"Py80 Main Window";
@@ -314,23 +318,27 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     return success;
 }
 
-#pragma mark - ASKSyntaxViewControllerDelegate
+#pragma mark - KDEMainViewControllerDelegate
 
-- (void) syntaxViewControllerTextDidChange:(ASKSyntaxViewController *)controller
+- (void) codeDidChangeInMainViewController:(KDEMainViewController *)viewController
 {
     [self.docTracker markActiveFileAsNeedingSave];
 }
 
-- (NSMenu *)textView:(NSTextView *)view menu:(NSMenu *)menu forEvent:(NSEvent *)event atIndex:(NSUInteger)charIndex
+#pragma mark - KDEProfilerViewControllerDelegate
+
+- (void) profilerViewController:(KDEProfilerViewController *)viewController
+             didDoubleClickStat:(KDEPyProfilerStat *)stat
 {
-    [menu insertItem:[NSMenuItem separatorItem]
-             atIndex:0];
-    [menu insertItemWithTitle:@"Insert path..."
-                       action:@selector(insertPath:)
-                keyEquivalent:@""
-                      atIndex:0];
+    [self.mainViewController dismissViewController:viewController];
     
-    return menu;
+    if( [stat.isBuiltIn boolValue] == NO &&
+        [stat.filename isEqualTo:@"<string>"] == NO)
+    {
+        [self.docTracker openDocumentAtPath:stat.filename];
+    }
+    
+    [self.mainViewController.syntaxViewController goToLine:[stat.lineNumber integerValue]];
 }
 
 #pragma mark - KDEPy80ContextDelegate
