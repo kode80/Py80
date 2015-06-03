@@ -502,7 +502,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) py80Context:(KDEPy80Context *)context
   reportProfileStats:(NSArray *)stats
 {
-    self.profilerViewController.stats = stats;
+    self.profilerViewController.stats = [stats sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"totalTime"
+                                                                                                           ascending:NO]]];
     [self.mainViewController presentViewControllerAsSheet:self.profilerViewController];
 }
 
