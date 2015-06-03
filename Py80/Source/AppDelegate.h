@@ -15,7 +15,6 @@
 @property (nonatomic, readwrite, strong) IBOutlet NSButton *runButton;
 @property (nonatomic, readwrite, weak) IBOutlet NSTextField *infoField;
 @property (nonatomic, readwrite, strong) IBOutlet KDEMainViewController *mainViewController;
-@property (nonatomic, readwrite, strong) IBOutlet KDEProfilerViewController *profilerViewController;
 
 - (IBAction) runCode:(id)sender;
 - (IBAction) profileCode:(id)sender;

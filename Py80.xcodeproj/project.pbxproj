@@ -52,7 +52,7 @@
 		20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */; };
 		20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A41B17938800398B70 /* KDECompletionTableCellView.m */; };
 		20F58F561B1F5E23003E984C /* KDEPyProfilerStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */; };
-		20F58F5C1B1F6E26003E984C /* ProfilerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F58F5A1B1F6E26003E984C /* ProfilerView.xib */; };
+		20F58F5C1B1F6E26003E984C /* KDEProfilerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F58F5A1B1F6E26003E984C /* KDEProfilerViewController.xib */; };
 		20F58F5F1B1F6E41003E984C /* KDEProfilerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F5E1B1F6E41003E984C /* KDEProfilerViewController.m */; };
 		20F58F631B1F7150003E984C /* KDEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F611B1F7150003E984C /* KDEMainViewController.m */; };
 		20F58F641B1F7150003E984C /* KDEMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F58F621B1F7150003E984C /* KDEMainViewController.xib */; };
@@ -161,7 +161,7 @@
 		20F160A41B17938800398B70 /* KDECompletionTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableCellView.m; sourceTree = "<group>"; };
 		20F58F541B1F5E23003E984C /* KDEPyProfilerStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPyProfilerStat.h; sourceTree = "<group>"; };
 		20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyProfilerStat.m; sourceTree = "<group>"; };
-		20F58F5B1B1F6E26003E984C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProfilerView.xib; sourceTree = "<group>"; };
+		20F58F5B1B1F6E26003E984C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KDEProfilerViewController.xib; sourceTree = "<group>"; };
 		20F58F5D1B1F6E41003E984C /* KDEProfilerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEProfilerViewController.h; sourceTree = "<group>"; };
 		20F58F5E1B1F6E41003E984C /* KDEProfilerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEProfilerViewController.m; sourceTree = "<group>"; };
 		20F58F601B1F7150003E984C /* KDEMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEMainViewController.h; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 				203D568D1B0A55EE00A7779E /* Images.xcassets */,
 				203D568F1B0A55EE00A7779E /* MainMenu.xib */,
 				203D56861B0A55EE00A7779E /* Supporting Files */,
-				20F58F5A1B1F6E26003E984C /* ProfilerView.xib */,
+				20F58F5A1B1F6E26003E984C /* KDEProfilerViewController.xib */,
 			);
 			path = Py80;
 			sourceTree = "<group>";
@@ -514,7 +514,7 @@
 			files = (
 				203D56AE1B0A649D00A7779E /* KDEPythonLoader.py in Resources */,
 				203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */,
-				20F58F5C1B1F6E26003E984C /* ProfilerView.xib in Resources */,
+				20F58F5C1B1F6E26003E984C /* KDEProfilerViewController.xib in Resources */,
 				20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */,
 				20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */,
 				208808171B14FBBD003AA9DE /* jedi in Resources */,
@@ -628,12 +628,12 @@
 			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		20F58F5A1B1F6E26003E984C /* ProfilerView.xib */ = {
+		20F58F5A1B1F6E26003E984C /* KDEProfilerViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				20F58F5B1B1F6E26003E984C /* Base */,
 			);
-			name = ProfilerView.xib;
+			name = KDEProfilerViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -45,6 +45,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
 @property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
 @property (nonatomic, readwrite, strong) KDEImageStore *imageStore;
+@property (nonatomic, readwrite, strong) KDEProfilerViewController *profilerViewController;
 
 @end
 
@@ -55,6 +56,11 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 {
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.contentViewController = self.mainViewController;
+    
+    self.profilerViewController = [[KDEProfilerViewController alloc] initWithNibName:nil
+                                                                              bundle:nil];
+    
+    [self.mainViewController presentViewControllerAsSheet:self.profilerViewController];
     
     // IB autosave name doesn't work with view controllers /shakes fist
     self.window.frameAutosaveName = @"Py80 Main Window";
@@ -101,6 +107,11 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (BOOL) validateMenuItem:(NSMenuItem *)menuItem
 {
+    if( self.profilerViewController.presentingViewController != nil)
+    {
+        return NO;
+    }
+    
     if( menuItem.action == @selector(runCode:))
     {
         return [KDEPython sharedPython].isInitialized;
@@ -493,6 +504,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) py80Context:(KDEPy80Context *)context
   reportProfileStats:(NSArray *)stats
 {
+    [self.mainViewController presentViewControllerAsSheet:self.profilerViewController];
+    return;
+    
     for( KDEPyProfilerStat *stat in stats)
     {
         NSMutableString *message = [NSMutableString string];
