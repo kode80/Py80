@@ -646,7 +646,7 @@
                         <nil key="toolTip"/>
                         <size key="minSize" width="34" height="28"/>
                         <size key="maxSize" width="50" height="52"/>
-                        <button key="view" toolTip="Run Code (⌘R)" verticalHuggingPriority="750" id="bZ3-gu-STN">
+                        <button key="view" toolTip="Run Code (⌘R) / Profile Code (⇧⌘R)" verticalHuggingPriority="750" id="bZ3-gu-STN">
                             <rect key="frame" x="22" y="14" width="50" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="PlayIcon" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="x2T-M4-aGg">
