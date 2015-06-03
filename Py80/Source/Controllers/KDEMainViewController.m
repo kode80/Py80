@@ -27,6 +27,15 @@
 
 @implementation KDEMainViewController
 
+- (void) awakeFromNib
+{
+    [super awakeFromNib];
+    
+    // IB autosave names don't work with view controllers /shakes fist x2
+    self.horizontalSplitView.autosaveName = @"Main Horizontal Split View";
+    self.verticalSplitView.autosaveName = @"Main Vertical Split View";
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

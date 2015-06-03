@@ -523,7 +523,7 @@
             </toolbar>
             <point key="canvasLocation" x="373" y="390.5"/>
         </window>
-        <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="line" id="qYW-g8-i8Z" customClass="KDEExceptionView">
+        <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="line" id="qYW-g8-i8Z" userLabel="Exception View" customClass="KDEExceptionView">
             <rect key="frame" x="0.0" y="0.0" width="166" height="63"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView">
@@ -570,7 +570,7 @@
             </items>
             <point key="canvasLocation" x="327" y="703.5"/>
         </menu>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Hhb-Tm-bl3" customClass="KDEWindow">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="Hhb-Tm-bl3" userLabel="Completion Window" customClass="KDEWindow">
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="158" width="437" height="149"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -893,8 +893,10 @@
             <connections>
                 <outlet property="codeView" destination="nBE-Vu-1vq" id="mNj-fF-1g3"/>
                 <outlet property="console" destination="Fdo-f4-65k" id="CKi-bi-Un7"/>
+                <outlet property="horizontalSplitView" destination="dzK-QE-nEc" id="gzt-H1-EPq"/>
                 <outlet property="outputView" destination="P2k-fG-8B9" id="xci-31-SxE"/>
                 <outlet property="syntaxViewController" destination="pa6-ih-VyB" id="gwQ-Iz-b8J"/>
+                <outlet property="verticalSplitView" destination="s2f-0y-Arv" id="eF7-AK-DdA"/>
                 <outlet property="view" destination="Ik9-vI-lZ8" id="W5O-SI-ed6"/>
             </connections>
         </viewController>

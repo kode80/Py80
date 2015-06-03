@@ -56,6 +56,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.contentViewController = self.mainViewController;
     
+    // IB autosave name doesn't work with view controllers /shakes fist
+    self.window.frameAutosaveName = @"Py80 Main Window";
+    
     
     self.logDateFormatter = [NSDateFormatter new];
     self.logDateFormatter.dateFormat = @"dd-MM-YY HH:mm:ss.SSS";
