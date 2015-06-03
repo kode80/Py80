@@ -62,6 +62,7 @@ class KDEPythonLoader(NSObject):
 				realfunc()
 
 				if profiler is not None:
+					profiler.disable()
 					reportProfileStats( profiler)
 
 
