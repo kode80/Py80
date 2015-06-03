@@ -43,6 +43,16 @@
     
 }
 
+- (void)tableView:(NSTableView *)aTableView
+sortDescriptorsDidChange:(NSArray *)oldDescriptors
+{
+    if( aTableView.sortDescriptors.firstObject)
+    {
+        self.stats = [self.stats sortedArrayUsingDescriptors:aTableView.sortDescriptors];
+        [self.table reloadData];
+    }
+}
+
 #pragma mark - NSTableViewDelegate
 
 - (NSView *) tableView:(NSTableView *)tableView
