@@ -893,6 +893,7 @@
             <connections>
                 <outlet property="codeView" destination="nBE-Vu-1vq" id="mNj-fF-1g3"/>
                 <outlet property="console" destination="Fdo-f4-65k" id="CKi-bi-Un7"/>
+                <outlet property="exceptionView" destination="qYW-g8-i8Z" id="e5l-ZF-WIa"/>
                 <outlet property="horizontalSplitView" destination="dzK-QE-nEc" id="gzt-H1-EPq"/>
                 <outlet property="outputView" destination="P2k-fG-8B9" id="xci-31-SxE"/>
                 <outlet property="syntaxViewController" destination="pa6-ih-VyB" id="gwQ-Iz-b8J"/>
