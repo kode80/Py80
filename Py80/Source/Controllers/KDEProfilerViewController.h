@@ -8,6 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface KDEProfilerViewController : NSViewController
+@interface KDEProfilerViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
+
+@property (nonatomic, readwrite, weak) IBOutlet NSTableView *table;
+@property (nonatomic, readwrite, copy) NSArray *stats;
 
 @end

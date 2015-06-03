@@ -60,8 +60,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.profilerViewController = [[KDEProfilerViewController alloc] initWithNibName:nil
                                                                               bundle:nil];
     
-    [self.mainViewController presentViewControllerAsSheet:self.profilerViewController];
-    
     // IB autosave name doesn't work with view controllers /shakes fist
     self.window.frameAutosaveName = @"Py80 Main Window";
     
@@ -504,27 +502,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) py80Context:(KDEPy80Context *)context
   reportProfileStats:(NSArray *)stats
 {
+    self.profilerViewController.stats = stats;
     [self.mainViewController presentViewControllerAsSheet:self.profilerViewController];
-    return;
-    
-    for( KDEPyProfilerStat *stat in stats)
-    {
-        NSMutableString *message = [NSMutableString string];
-        [message appendString:@"-------------"];
-        [message appendFormat:@"\nName: %@", stat.name];
-        [message appendFormat:@"\nisBuiltIn: %@", [stat.isBuiltIn boolValue] ? @"YES" : @"NO"];
-        [message appendFormat:@"\ncallCount: %@", stat.callCount];
-        [message appendFormat:@"\nrecallCount: %@", stat.recallCount];
-        [message appendFormat:@"\ntotalTime: %@", stat.totalTime];
-        [message appendFormat:@"\ninlineTime: %@", stat.inlineTime];
-        if( [stat.isBuiltIn boolValue] == NO)
-        {
-            [message appendFormat:@"\nfilename: %@", stat.filename];
-            [message appendFormat:@"\nlineNumber: %@", stat.lineNumber];
-        }
-        [self py80Context:nil
-               logMessage:message];
-    }
 }
 
 @end
