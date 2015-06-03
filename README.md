@@ -1,12 +1,13 @@
 # Py80
 A Python playground for OSX.
 
-Latest build (ver 0.4): [Py80.zip](http://kode80.com/downloads/Py80.zip)
+Latest build (ver 0.5): [Py80.zip](http://kode80.com/downloads/Py80.zip)
 
 ## Features
 * Syntax highlighting
 * Full code completion powered by the awesome [jedi](https://github.com/davidhalter/jedi) library
 * Inline display of runtime exceptions
+* Code profiling
 * Camel case aware keyboard selection (hold ALT/OPTION)
 * Logging to in-app console
 * Drawing to in-app canvas (can also be saved as image)
