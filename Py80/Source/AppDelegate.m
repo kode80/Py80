@@ -21,7 +21,9 @@
 #import "KDEPyCallSignature.h"
 #import "KDEPyException.h"
 #import "KDEPyProfilerStat.h"
+#import "KDEMainViewController.h"
 #import "KDECompletionWindowController.h"
+#import "KDEProfilerViewController.h"
 
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
@@ -36,15 +38,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @interface AppDelegate ()
 <
     KDEPy80ContextDelegate,
-    KDEDocumentTrackerDelegate,
-    ASKSyntaxViewControllerDelegate,
-    NSTextViewDelegate
+    KDEDocumentTrackerDelegate
 >
 
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
 @property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
-@property (nonatomic, readwrite, strong) KDEExceptionFormatter *exceptionFormatter;
 @property (nonatomic, readwrite, strong) KDEImageStore *imageStore;
 
 @end
@@ -55,31 +54,13 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     self.window.titleVisibility = NSWindowTitleHidden;
+    self.window.contentViewController = self.mainViewController;
     
-    [self applyDefaultsToTextView:self.codeView];
-    [self applyDefaultsToTextView:self.console];
-
-    self.console.editable = NO;
     
     self.logDateFormatter = [NSDateFormatter new];
     self.logDateFormatter.dateFormat = @"dd-MM-YY HH:mm:ss.SSS";
     
     self.imageStore = [KDEImageStore new];
-    
-    self.exceptionFormatter = [[KDEExceptionFormatter alloc] initWithTypeFont:[NSFont fontWithName:@"Monaco" size:10.0f]
-                                                                    typeColor:[NSColor redColor]
-                                                              descriptionFont:[NSFont fontWithName:@"Helvetica Neue" size:13.0f]
-                                                             descriptionColor:[NSColor blackColor]
-                                                                     infoFont:[NSFont fontWithName:@"Monaco" size:11.0f]
-                                                                    infoColor:[NSColor blackColor]];
-    
-    self.syntaxViewController.indentsWithSpaces = NO;
-    self.syntaxViewController.showsLineNumbers = YES;
-    self.syntaxViewController.syntax = [ASKSyntax syntaxForType:@"public.python-source"];
-    self.syntaxViewController.delegate = self;
-    
-    self.exceptionView.hidden = YES;
-    [self.exceptionView addToTextView:self.codeView];
     
     self.docTracker = [[KDEDocumentTracker alloc] initWithDocumentExtensions:@[ @"py"]
                                                           userDefaultsPrefix:@"py_"
@@ -139,11 +120,11 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     }
     else if( menuItem.action == @selector(resetOutputMagnification:))
     {
-        return self.outputView.enclosingScrollView.magnification != 1.0f;
+        return self.mainViewController.outputView.enclosingScrollView.magnification != 1.0f;
     }
     else if( menuItem.action == @selector(saveOutputContents:))
     {
-        return self.outputView.hasContent;
+        return self.mainViewController.outputView.hasContent;
     }
     else if( menuItem.action == @selector(openPreviousDocument:))
     {
@@ -200,8 +181,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (IBAction) runCode:(id)sender
 {
     [self.imageStore reset];
-    self.exceptionView.hidden = YES;
-    [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
+    self.mainViewController.exceptionView.hidden = YES;
+    [[KDEPython sharedPython] loadModuleFromSourceString:self.mainViewController.codeView.string
                                              runFunction:@"main"
                                                  profile:NO];
 }
@@ -209,33 +190,20 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (IBAction) profileCode:(id)sender
 {
     [self.imageStore reset];
-    self.exceptionView.hidden = YES;
-    [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
+    self.mainViewController.exceptionView.hidden = YES;
+    [[KDEPython sharedPython] loadModuleFromSourceString:self.mainViewController.codeView.string
                                              runFunction:@"main"
                                                  profile:YES];
 }
 
 - (IBAction) resetOutputMagnification:(id)sender
 {
-    self.outputView.enclosingScrollView.animator.magnification = 1.0f;
+    self.mainViewController.outputView.enclosingScrollView.animator.magnification = 1.0f;
 }
 
 - (IBAction) saveOutputContents:(id)sender
 {
-    NSSavePanel *panel = [NSSavePanel savePanel];
-    panel.allowedFileTypes = @[ @"png"];
-    
-    if( [panel runModal] == NSFileHandlingPanelOKButton)
-    {
-        NSBitmapImageRep *imageRep = [self.outputView bitmapImageRepForCachingDisplayInRect:self.outputView.bounds];
-        [self.outputView cacheDisplayInRect:self.outputView.bounds
-                           toBitmapImageRep:imageRep];
-        
-        NSData *data = [imageRep representationUsingType:NSPNGFileType
-                                              properties:nil];
-        [data writeToFile:panel.URL.filePathURL.path
-               atomically:YES];
-    }
+    [self.mainViewController saveOutputContents:sender];
 }
 
 - (IBAction) openPreviousDocument:(id)sender
@@ -250,25 +218,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (IBAction) insertPath:(id)sender
 {
-    NSOpenPanel *panel = [NSOpenPanel openPanel];
-    panel.allowedFileTypes = nil;
-    panel.allowsMultipleSelection = NO;
-    panel.canChooseDirectories = YES;
-
-    if( [panel runModal] == NSFileHandlingPanelOKButton)
-    {
-        [self.codeView insertText:panel.URL.filePathURL.path];
-    }
-}
-
-- (void) applyDefaultsToTextView:(NSTextView *)textView
-{
-    textView.automaticQuoteSubstitutionEnabled = NO;
-    textView.automaticDashSubstitutionEnabled = NO;
-    textView.automaticTextReplacementEnabled = NO;
-    textView.automaticSpellingCorrectionEnabled = NO;
-    textView.font = [NSFont fontWithName:@"Monaco"
-                                    size:11.0f];
+    [self.mainViewController insertPath:sender];
 }
 
 - (void) updateInfoField
@@ -311,9 +261,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     NSString *path = tracker.activeFileIsNew ? [[NSBundle mainBundle] pathForResource:@"Default" ofType:@"py"] :
                                                tracker.activeFilePath;
     
-    self.codeView.string = [NSString stringWithContentsOfFile:path
-                                                     encoding:NSUTF8StringEncoding
-                                                        error:NULL];
+    self.mainViewController.codeView.string = [NSString stringWithContentsOfFile:path
+                                                                        encoding:NSUTF8StringEncoding
+                                                                           error:NULL];
     [self updateInfoField];
 }
 
@@ -343,10 +293,10 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (BOOL) documentTrackerSaveActiveFile:(KDEDocumentTracker *)tracker
 {
-    BOOL success = [self.codeView.string writeToFile:tracker.activeFilePath
-                                          atomically:YES
-                                            encoding:NSUTF8StringEncoding
-                                               error:NULL];
+    BOOL success = [self.mainViewController.codeView.string writeToFile:tracker.activeFilePath
+                                                             atomically:YES
+                                                               encoding:NSUTF8StringEncoding
+                                                                  error:NULL];
     [self updateInfoField];
     
     return success;
@@ -385,12 +335,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [output addAttributes:@{ NSForegroundColorAttributeName : [NSColor grayColor] }
                     range:NSMakeRange( 0, date.length)];
     
-    [self.console.textStorage appendAttributedString:output];
+    [self.mainViewController.console.textStorage appendAttributedString:output];
 }
 
 - (void) py80ContextClearLog:(KDEPy80Context *)context
 {
-    self.console.string = @"";
+    self.mainViewController.console.string = @"";
 }
 
 - (NSString *) py80ContextGetClipboard:(KDEPy80Context *)context
@@ -417,7 +367,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (void) py80ContextClearDrawing:(KDEPy80Context *)context
 {
-    [self.outputView clear];
+    [self.mainViewController.outputView clear];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -426,10 +376,10 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                 blue:(CGFloat)blue
                alpha:(CGFloat)alpha
 {
-    self.outputView.strokeColor = [NSColor colorWithDeviceRed:red
-                                                        green:green
-                                                         blue:blue
-                                                        alpha:alpha];
+    self.mainViewController.outputView.strokeColor = [NSColor colorWithDeviceRed:red
+                                                                           green:green
+                                                                            blue:blue
+                                                                           alpha:alpha];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -438,24 +388,24 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                 blue:(CGFloat)blue
                alpha:(CGFloat)alpha
 {
-    self.outputView.fillColor = [NSColor colorWithDeviceRed:red
-                                                      green:green
-                                                       blue:blue
-                                                      alpha:alpha];
+    self.mainViewController.outputView.fillColor = [NSColor colorWithDeviceRed:red
+                                                                         green:green
+                                                                          blue:blue
+                                                                         alpha:alpha];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
       setStrokeWidth:(CGFloat)width
 {
-    self.outputView.strokeWidth = width;
+    self.mainViewController.outputView.strokeWidth = width;
 }
 
 - (void) py80Context:(KDEPy80Context *)context
              setFont:(NSString *)fontName
                 size:(CGFloat)size
 {
-    [self.outputView setFontName:fontName
-                            size:size];
+    [self.mainViewController.outputView setFontName:fontName
+                                               size:size];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -464,7 +414,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
            withWidth:(CGFloat)width
               height:(CGFloat)height
 {
-    [self.outputView addRectangle:NSMakeRect( x, y, width, height)];
+    [self.mainViewController.outputView addRectangle:NSMakeRect( x, y, width, height)];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -473,7 +423,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
            withWidth:(CGFloat)width
               height:(CGFloat)height
 {
-    [self.outputView addOval:NSMakeRect( x, y, width, height)];
+    [self.mainViewController.outputView addOval:NSMakeRect( x, y, width, height)];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -481,8 +431,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                  atX:(CGFloat)x
                    y:(CGFloat)y
 {
-    [self.outputView addText:text
-                     atPoint:NSMakePoint( x, y)];
+    [self.mainViewController.outputView addText:text
+                                        atPoint:NSMakePoint( x, y)];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -494,8 +444,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     if( image)
     {
         NSRect rect = NSMakeRect( x, y, image.size.width, image.size.height);
-        [self.outputView addImage:image
-                           inRect:rect];
+        [self.mainViewController.outputView addImage:image
+                                              inRect:rect];
     }
 }
 
@@ -510,8 +460,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     if( image)
     {
         NSRect rect = NSMakeRect( x, y, width, height);
-        [self.outputView addImage:image
-                           inRect:rect];
+        [self.mainViewController.outputView addImage:image
+                                              inRect:rect];
     }
 }
 
@@ -534,15 +484,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) py80Context:(KDEPy80Context *)context
      reportException:(KDEPyException *)exception
 {
-    self.exceptionView.label.attributedStringValue = [self.exceptionFormatter attributedStringForException:exception];
-    
-    NSInteger lineNumber = exception.isExternal ? 1 : exception.lineNumber;
-
-    [self.syntaxViewController goToLine:lineNumber];
-    NSRange range = [self.syntaxViewController rangeForLine:lineNumber];
-    [self.exceptionView updateConstraintsForCharacterRange:range];
-    
-    self.exceptionView.hidden = NO;
+    [self.mainViewController showException:exception];
 }
 
 - (void) py80Context:(KDEPy80Context *)context
@@ -566,11 +508,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         [self py80Context:nil
                logMessage:message];
     }
-}
-
-- (void) textViewDidChangeSelection:(NSNotification *)notification
-{
-    self.exceptionView.hidden = YES;
 }
 
 @end

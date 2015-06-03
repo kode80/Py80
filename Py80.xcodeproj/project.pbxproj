@@ -52,6 +52,10 @@
 		20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */; };
 		20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A41B17938800398B70 /* KDECompletionTableCellView.m */; };
 		20F58F561B1F5E23003E984C /* KDEPyProfilerStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */; };
+		20F58F5C1B1F6E26003E984C /* ProfilerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F58F5A1B1F6E26003E984C /* ProfilerView.xib */; };
+		20F58F5F1B1F6E41003E984C /* KDEProfilerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F5E1B1F6E41003E984C /* KDEProfilerViewController.m */; };
+		20F58F631B1F7150003E984C /* KDEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F611B1F7150003E984C /* KDEMainViewController.m */; };
+		20F58F641B1F7150003E984C /* KDEMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F58F621B1F7150003E984C /* KDEMainViewController.xib */; };
 		20F84EA21B18C3F1002D8116 /* NSString+PythonRangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */; };
 		20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */; };
 		20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */; };
@@ -157,6 +161,12 @@
 		20F160A41B17938800398B70 /* KDECompletionTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableCellView.m; sourceTree = "<group>"; };
 		20F58F541B1F5E23003E984C /* KDEPyProfilerStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPyProfilerStat.h; sourceTree = "<group>"; };
 		20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyProfilerStat.m; sourceTree = "<group>"; };
+		20F58F5B1B1F6E26003E984C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProfilerView.xib; sourceTree = "<group>"; };
+		20F58F5D1B1F6E41003E984C /* KDEProfilerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEProfilerViewController.h; sourceTree = "<group>"; };
+		20F58F5E1B1F6E41003E984C /* KDEProfilerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEProfilerViewController.m; sourceTree = "<group>"; };
+		20F58F601B1F7150003E984C /* KDEMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEMainViewController.h; sourceTree = "<group>"; };
+		20F58F611B1F7150003E984C /* KDEMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEMainViewController.m; sourceTree = "<group>"; };
+		20F58F621B1F7150003E984C /* KDEMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KDEMainViewController.xib; sourceTree = "<group>"; };
 		20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PythonRangeUtils.m"; sourceTree = "<group>"; };
 		20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+PythonSets.m"; sourceTree = "<group>"; };
 		20F84EA01B18C3F1002D8116 /* NSCharacterSet+PythonSets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+PythonSets.h"; sourceTree = "<group>"; };
@@ -285,6 +295,7 @@
 				203D568D1B0A55EE00A7779E /* Images.xcassets */,
 				203D568F1B0A55EE00A7779E /* MainMenu.xib */,
 				203D56861B0A55EE00A7779E /* Supporting Files */,
+				20F58F5A1B1F6E26003E984C /* ProfilerView.xib */,
 			);
 			path = Py80;
 			sourceTree = "<group>";
@@ -353,6 +364,11 @@
 			children = (
 				208D430A1B1646D80004898F /* KDECompletionWindowController.h */,
 				208D430B1B1646D80004898F /* KDECompletionWindowController.m */,
+				20F58F5D1B1F6E41003E984C /* KDEProfilerViewController.h */,
+				20F58F5E1B1F6E41003E984C /* KDEProfilerViewController.m */,
+				20F58F601B1F7150003E984C /* KDEMainViewController.h */,
+				20F58F611B1F7150003E984C /* KDEMainViewController.m */,
+				20F58F621B1F7150003E984C /* KDEMainViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -498,11 +514,13 @@
 			files = (
 				203D56AE1B0A649D00A7779E /* KDEPythonLoader.py in Resources */,
 				203D568E1B0A55EE00A7779E /* Images.xcassets in Resources */,
+				20F58F5C1B1F6E26003E984C /* ProfilerView.xib in Resources */,
 				20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */,
 				20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */,
 				208808171B14FBBD003AA9DE /* jedi in Resources */,
 				208808191B150944003AA9DE /* py80 in Resources */,
 				203D56B31B0A716000A7779E /* Default.py in Resources */,
+				20F58F641B1F7150003E984C /* KDEMainViewController.xib in Resources */,
 				203D56911B0A55EE00A7779E /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -567,6 +585,7 @@
 				20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */,
 				20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */,
 				208D43121B1688240004898F /* KDETextView.m in Sources */,
+				20F58F631B1F7150003E984C /* KDEMainViewController.m in Sources */,
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
 				20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */,
 				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
@@ -575,6 +594,7 @@
 				200B7C531B178765005D64B1 /* KDETypeTableCellView.m in Sources */,
 				20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */,
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
+				20F58F5F1B1F6E41003E984C /* KDEProfilerViewController.m in Sources */,
 				201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */,
 				20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */,
 				20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */,
@@ -606,6 +626,14 @@
 				203D56901B0A55EE00A7779E /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		20F58F5A1B1F6E26003E984C /* ProfilerView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20F58F5B1B1F6E26003E984C /* Base */,
+			);
+			name = ProfilerView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
