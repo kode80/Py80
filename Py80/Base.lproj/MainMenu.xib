@@ -415,6 +415,23 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Playground" id="4MS-1i-gPR">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Playground" id="Ohk-KC-LBc">
+                        <items>
+                            <menuItem title="Run" keyEquivalent="r" id="Ocy-JL-U5Z">
+                                <connections>
+                                    <action selector="runCode:" target="Voe-Tx-rLC" id="76f-oo-srx"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Profile" keyEquivalent="R" id="YnK-Fd-TVc">
+                                <connections>
+                                    <action selector="profileCode:" target="Voe-Tx-rLC" id="Iui-SC-RCv"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
                 <menuItem title="Window" id="aUF-d1-5bR">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">

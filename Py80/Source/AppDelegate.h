@@ -23,6 +23,7 @@
 @property (nonatomic, readwrite, strong) IBOutlet KDECompletionWindowController *completionWindowController;
 
 - (IBAction) runCode:(id)sender;
+- (IBAction) profileCode:(id)sender;
 
 - (IBAction) resetOutputMagnification:(id)sender;
 - (IBAction) saveOutputContents:(id)sender;

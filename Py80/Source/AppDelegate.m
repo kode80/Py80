@@ -117,7 +117,15 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (BOOL) validateMenuItem:(NSMenuItem *)menuItem
 {
-    if( menuItem.action == @selector(saveDocument:))
+    if( menuItem.action == @selector(runCode:))
+    {
+        return [KDEPython sharedPython].isInitialized;
+    }
+    else if( menuItem.action == @selector(profileCode:))
+    {
+        return [KDEPython sharedPython].isInitialized;
+    }
+    else if( menuItem.action == @selector(saveDocument:))
     {
         return self.docTracker.activeFileIsNew || self.docTracker.activeFileNeedsSaving;
     }
@@ -196,6 +204,15 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
                                              runFunction:@"main"
                                                  profile:NO];
+}
+
+- (IBAction) profileCode:(id)sender
+{
+    [self.imageStore reset];
+    self.exceptionView.hidden = YES;
+    [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
+                                             runFunction:@"main"
+                                                 profile:YES];
 }
 
 - (IBAction) resetOutputMagnification:(id)sender
