@@ -82,6 +82,8 @@
                     function:(NSString *)function
                   lineNumber:(NSInteger)lineNumber;
 
+- (void) reportProfileStats:(NSArray *)stats;
+
 @end
 
 
@@ -160,5 +162,8 @@
 
 - (void) py80Context:(KDEPy80Context *)context
      reportException:(KDEPyException *)exception;
+
+- (void) py80Context:(KDEPy80Context *)context
+  reportProfileStats:(NSArray *)stats;
 
 @end

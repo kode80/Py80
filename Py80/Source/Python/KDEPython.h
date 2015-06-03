@@ -18,7 +18,8 @@
 - (void) tearDown;
 
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
-                        runFunction:(NSString*)functionName;
+                        runFunction:(NSString*)functionName
+                            profile:(BOOL)profile;
 
 - (NSArray *) completionsForSourceString:(NSString *)source
                                     line:(NSInteger)line

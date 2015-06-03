@@ -14,7 +14,8 @@
 @interface NSObject (KDEPythonLoader)
 
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
-                       functionName:(NSString*)funcName;
+                       functionName:(NSString*)funcName
+                            profile:(NSNumber *)profile;
 
 - (NSArray *) completionsForSourceString:(NSString *)source
                                     line:(NSNumber *)line
@@ -117,11 +118,13 @@
 
 - (BOOL) loadModuleFromSourceString:(NSString*)sourceString
                         runFunction:(NSString*)functionName
+                            profile:(BOOL)profile
 {
     Class loader = NSClassFromString(@"KDEPythonLoader");
     
     return [loader loadModuleFromSourceString:sourceString
-                                 functionName:functionName];
+                                 functionName:functionName
+                                      profile:@(profile)];
 }
 
 - (NSArray *) completionsForSourceString:(NSString *)source

@@ -20,6 +20,7 @@
 #import "KDEPyCompletion.h"
 #import "KDEPyCallSignature.h"
 #import "KDEPyException.h"
+#import "KDEPyProfilerStat.h"
 #import "KDECompletionWindowController.h"
 
 
@@ -193,7 +194,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [self.imageStore reset];
     self.exceptionView.hidden = YES;
     [[KDEPython sharedPython] loadModuleFromSourceString:self.codeView.string
-                                             runFunction:@"main"];
+                                             runFunction:@"main"
+                                                 profile:NO];
 }
 
 - (IBAction) resetOutputMagnification:(id)sender
@@ -524,6 +526,29 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     [self.exceptionView updateConstraintsForCharacterRange:range];
     
     self.exceptionView.hidden = NO;
+}
+
+- (void) py80Context:(KDEPy80Context *)context
+  reportProfileStats:(NSArray *)stats
+{
+    for( KDEPyProfilerStat *stat in stats)
+    {
+        NSMutableString *message = [NSMutableString string];
+        [message appendString:@"-------------"];
+        [message appendFormat:@"\nName: %@", stat.name];
+        [message appendFormat:@"\nisBuiltIn: %@", [stat.isBuiltIn boolValue] ? @"YES" : @"NO"];
+        [message appendFormat:@"\ncallCount: %@", stat.callCount];
+        [message appendFormat:@"\nrecallCount: %@", stat.recallCount];
+        [message appendFormat:@"\ntotalTime: %@", stat.totalTime];
+        [message appendFormat:@"\ninlineTime: %@", stat.inlineTime];
+        if( [stat.isBuiltIn boolValue] == NO)
+        {
+            [message appendFormat:@"\nfilename: %@", stat.filename];
+            [message appendFormat:@"\nlineNumber: %@", stat.lineNumber];
+        }
+        [self py80Context:nil
+               logMessage:message];
+    }
 }
 
 - (void) textViewDidChangeSelection:(NSNotification *)notification

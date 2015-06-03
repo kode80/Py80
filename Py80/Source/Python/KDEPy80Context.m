@@ -232,4 +232,13 @@
     }
 }
 
+- (void) reportProfileStats:(NSArray *)stats
+{
+    if( [self.delegate respondsToSelector:@selector(py80Context:reportProfileStats:)])
+    {
+        [self.delegate py80Context:self
+                reportProfileStats:stats];
+    }
+}
+
 @end

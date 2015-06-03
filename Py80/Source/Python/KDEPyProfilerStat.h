@@ -12,7 +12,9 @@
 
 @property (nonatomic, readwrite, strong) NSString *name;
 @property (nonatomic, readwrite, strong) NSString *filename;
+@property (nonatomic, readwrite, strong) NSNumber *isBuiltIn;
 @property (nonatomic, readwrite, strong) NSNumber *lineNumber;
+
 @property (nonatomic, readwrite, strong) NSNumber *callCount;
 @property (nonatomic, readwrite, strong) NSNumber *recallCount;
 @property (nonatomic, readwrite, strong) NSNumber *inlineTime;
