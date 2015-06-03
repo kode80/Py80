@@ -51,6 +51,7 @@
 		20E00E631B1D194600B94595 /* KDEPyException.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E00E621B1D194600B94595 /* KDEPyException.m */; };
 		20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */; };
 		20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A41B17938800398B70 /* KDECompletionTableCellView.m */; };
+		20F58F561B1F5E23003E984C /* KDEPyProfilerStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */; };
 		20F84EA21B18C3F1002D8116 /* NSString+PythonRangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */; };
 		20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */; };
 		20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */; };
@@ -154,6 +155,8 @@
 		20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableRowView.m; sourceTree = "<group>"; };
 		20F160A31B17938800398B70 /* KDECompletionTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECompletionTableCellView.h; sourceTree = "<group>"; };
 		20F160A41B17938800398B70 /* KDECompletionTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableCellView.m; sourceTree = "<group>"; };
+		20F58F541B1F5E23003E984C /* KDEPyProfilerStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPyProfilerStat.h; sourceTree = "<group>"; };
+		20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyProfilerStat.m; sourceTree = "<group>"; };
 		20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PythonRangeUtils.m"; sourceTree = "<group>"; };
 		20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+PythonSets.m"; sourceTree = "<group>"; };
 		20F84EA01B18C3F1002D8116 /* NSCharacterSet+PythonSets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+PythonSets.h"; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				20F84E9E1B18C3F1002D8116 /* NSString+PythonRangeUtils.m */,
 				20E00E611B1D194600B94595 /* KDEPyException.h */,
 				20E00E621B1D194600B94595 /* KDEPyException.m */,
+				20F58F541B1F5E23003E984C /* KDEPyProfilerStat.h */,
+				20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */,
 			);
 			path = Python;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				200CD8AE1B1A618800312847 /* KDEOutputView.m in Sources */,
 				208D43081B1635200004898F /* KDEPyCallSignature.m in Sources */,
 				208D430C1B1646D80004898F /* KDECompletionWindowController.m in Sources */,
+				20F58F561B1F5E23003E984C /* KDEPyProfilerStat.m in Sources */,
 				200CD8C11B1A621A00312847 /* KDEOutputDrawTextCommand.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
 				20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */,
