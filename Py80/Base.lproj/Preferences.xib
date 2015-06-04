@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E7f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="KDEPreferencesWindowController">
+            <connections>
+                <outlet property="window" destination="QvC-M9-y7g" id="rTk-oo-mmf"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" texturedBackground="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
+            <toolbar key="toolbar" implicitIdentifier="BB4740A5-4756-4ADF-B29B-8FED50FB4374" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="fnX-B6-Eg1">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="tjs-CT-QI5"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="cgY-Yc-RKA"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="VZ0-GJ-jlC"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="krl-zu-vfd"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="r6k-yV-hXs"/>
+                    <toolbarItem implicitItemIdentifier="210B89DF-6E28-4BBD-86AD-C25659114D6E" explicitItemIdentifier="General" label="General" paletteLabel="General" tag="-1" image="NSAdvanced" selectable="YES" id="rtw-4u-Vwn">
+                        <connections>
+                            <action selector="showGeneral:" target="-2" id="Lll-sq-6uF"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="F9ECBF52-919F-4511-91EC-722AE989C661" explicitItemIdentifier="Theme" label="Theme" paletteLabel="Theme" tag="-1" image="NSColorPanel" selectable="YES" id="kwX-wG-Q5m">
+                        <connections>
+                            <action selector="showTheme:" target="-2" id="gwL-M3-Kuw"/>
+                        </connections>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="rtw-4u-Vwn"/>
+                    <toolbarItem reference="kwX-wG-Q5m"/>
+                    <toolbarItem reference="r6k-yV-hXs"/>
+                </defaultToolbarItems>
+            </toolbar>
+            <connections>
+                <outlet property="delegate" destination="-2" id="LuN-i0-TrI"/>
+            </connections>
+        </window>
+    </objects>
+    <resources>
+        <image name="NSAdvanced" width="32" height="32"/>
+        <image name="NSColorPanel" width="32" height="32"/>
+    </resources>
+</document>

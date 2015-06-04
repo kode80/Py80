@@ -51,6 +51,8 @@
 		20E00E631B1D194600B94595 /* KDEPyException.m in Sources */ = {isa = PBXBuildFile; fileRef = 20E00E621B1D194600B94595 /* KDEPyException.m */; };
 		20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */; };
 		20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A41B17938800398B70 /* KDECompletionTableCellView.m */; };
+		20F4A51F1B20A690000BCECF /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F4A51D1B20A690000BCECF /* Preferences.xib */; };
+		20F4A5221B20A847000BCECF /* KDEPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F4A5211B20A847000BCECF /* KDEPreferencesWindowController.m */; };
 		20F58F561B1F5E23003E984C /* KDEPyProfilerStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */; };
 		20F58F5C1B1F6E26003E984C /* KDEProfilerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F58F5A1B1F6E26003E984C /* KDEProfilerViewController.xib */; };
 		20F58F5F1B1F6E41003E984C /* KDEProfilerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F5E1B1F6E41003E984C /* KDEProfilerViewController.m */; };
@@ -159,6 +161,9 @@
 		20F160A11B1790DC00398B70 /* KDECompletionTableRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableRowView.m; sourceTree = "<group>"; };
 		20F160A31B17938800398B70 /* KDECompletionTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECompletionTableCellView.h; sourceTree = "<group>"; };
 		20F160A41B17938800398B70 /* KDECompletionTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionTableCellView.m; sourceTree = "<group>"; };
+		20F4A51E1B20A690000BCECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
+		20F4A5201B20A847000BCECF /* KDEPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPreferencesWindowController.h; sourceTree = "<group>"; };
+		20F4A5211B20A847000BCECF /* KDEPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPreferencesWindowController.m; sourceTree = "<group>"; };
 		20F58F541B1F5E23003E984C /* KDEPyProfilerStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPyProfilerStat.h; sourceTree = "<group>"; };
 		20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyProfilerStat.m; sourceTree = "<group>"; };
 		20F58F5B1B1F6E26003E984C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KDEProfilerViewController.xib; sourceTree = "<group>"; };
@@ -296,6 +301,7 @@
 				203D568F1B0A55EE00A7779E /* MainMenu.xib */,
 				203D56861B0A55EE00A7779E /* Supporting Files */,
 				20F58F5A1B1F6E26003E984C /* KDEProfilerViewController.xib */,
+				20F4A51D1B20A690000BCECF /* Preferences.xib */,
 			);
 			path = Py80;
 			sourceTree = "<group>";
@@ -369,6 +375,8 @@
 				20F58F601B1F7150003E984C /* KDEMainViewController.h */,
 				20F58F611B1F7150003E984C /* KDEMainViewController.m */,
 				20F58F621B1F7150003E984C /* KDEMainViewController.xib */,
+				20F4A5201B20A847000BCECF /* KDEPreferencesWindowController.h */,
+				20F4A5211B20A847000BCECF /* KDEPreferencesWindowController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -519,6 +527,7 @@
 				20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */,
 				208808171B14FBBD003AA9DE /* jedi in Resources */,
 				208808191B150944003AA9DE /* py80 in Resources */,
+				20F4A51F1B20A690000BCECF /* Preferences.xib in Resources */,
 				203D56B31B0A716000A7779E /* Default.py in Resources */,
 				20F58F641B1F7150003E984C /* KDEMainViewController.xib in Resources */,
 				203D56911B0A55EE00A7779E /* MainMenu.xib in Resources */,
@@ -565,6 +574,7 @@
 				20E00E631B1D194600B94595 /* KDEPyException.m in Sources */,
 				20082EA01B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m in Sources */,
 				203D568C1B0A55EE00A7779E /* main.m in Sources */,
+				20F4A5221B20A847000BCECF /* KDEPreferencesWindowController.m in Sources */,
 				200CD8BF1B1A621A00312847 /* KDEOutputCommand.m in Sources */,
 				20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */,
 				20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */,
@@ -626,6 +636,14 @@
 				203D56901B0A55EE00A7779E /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		20F4A51D1B20A690000BCECF /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20F4A51E1B20A690000BCECF /* Base */,
+			);
+			name = Preferences.xib;
 			sourceTree = "<group>";
 		};
 		20F58F5A1B1F6E26003E984C /* KDEProfilerViewController.xib */ = {

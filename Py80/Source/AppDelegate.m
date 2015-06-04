@@ -24,6 +24,7 @@
 #import "KDEMainViewController.h"
 #import "KDECompletionWindowController.h"
 #import "KDEProfilerViewController.h"
+#import "KDEPreferencesWindowController.h"
 
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
@@ -48,6 +49,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
 @property (nonatomic, readwrite, strong) KDEImageStore *imageStore;
 @property (nonatomic, readwrite, strong) KDEProfilerViewController *profilerViewController;
+@property (nonatomic, readwrite, strong) KDEPreferencesWindowController *preferencesWindowController;
 
 @end
 
@@ -63,6 +65,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.profilerViewController = [[KDEProfilerViewController alloc] initWithNibName:nil
                                                                               bundle:nil];
     self.profilerViewController.delegate = self;
+    
+    self.preferencesWindowController = [[KDEPreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
     
     // IB autosave name doesn't work with view controllers /shakes fist
     self.window.frameAutosaveName = @"Py80 Main Window";
@@ -230,6 +234,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         NSURL *url = urls[1];
         [self.docTracker openDocumentAtPath:url.filePathURL.path];
     }
+}
+
+- (IBAction) showPreferences:(id)sender
+{
+    [self.preferencesWindowController showWindow:self];
+    [self.preferencesWindowController.window center];
 }
 
 - (IBAction) insertPath:(id)sender
