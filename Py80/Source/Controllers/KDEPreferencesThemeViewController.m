@@ -77,7 +77,8 @@
 
 - (IBAction) changeColor:(id)sender
 {
-    [self.currentTheme setColor:[sender color]
+    NSColor *color = [[sender color] colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
+    [self.currentTheme setColor:color
                     forItemName:self.currentThemeItemName];
     [self reloadTableView:self.themeItemsTable];
 }
