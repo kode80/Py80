@@ -95,7 +95,6 @@
 - (void) showException:(KDEPyException *)exception
 {
     self.exceptionView.label.attributedStringValue = [self.exceptionFormatter attributedStringForException:exception];
-    
     NSInteger lineNumber = exception.isExternal ? 1 : exception.lineNumber;
     
     [self.syntaxViewController goToLine:lineNumber];

@@ -12,6 +12,8 @@
 
 @interface KDEProfilerViewController ()
 
+@property (nonatomic, readwrite, strong) NSNumberFormatter *numberFormatter;
+
 @end
 
 
@@ -21,6 +23,9 @@
 {
     [super viewDidLoad];
     
+    self.numberFormatter = [NSNumberFormatter new];
+    self.numberFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    self.numberFormatter.maximumFractionDigits = 16;
     self.table.doubleAction = @selector(tableDidDoubleClick:);
 }
 
@@ -78,19 +83,19 @@ sortDescriptorsDidChange:(NSArray *)oldDescriptors
     
     if( [tableColumn.identifier isEqualToString:@"calls"])
     {
-        valueString = [stat.callCount stringValue];
+        valueString = [self.numberFormatter stringFromNumber:stat.callCount];
     }
     else if( [tableColumn.identifier isEqualToString:@"recursive"])
     {
-        valueString = [stat.recallCount stringValue];
+        valueString = [self.numberFormatter stringFromNumber:stat.recallCount];
     }
     else if( [tableColumn.identifier isEqualToString:@"inline"])
     {
-        valueString = [stat.inlineTime stringValue];
+        valueString = [self.numberFormatter stringFromNumber:stat.inlineTime];
     }
     else if( [tableColumn.identifier isEqualToString:@"total"])
     {
-        valueString = [stat.totalTime stringValue];
+        valueString = [self.numberFormatter stringFromNumber:stat.totalTime];
     }
     else if( [tableColumn.identifier isEqualToString:@"name"])
     {
@@ -98,7 +103,7 @@ sortDescriptorsDidChange:(NSArray *)oldDescriptors
     }
     else if( [tableColumn.identifier isEqualToString:@"line"])
     {
-        valueString = [stat.lineNumber stringValue];
+        valueString = [self.numberFormatter stringFromNumber:stat.lineNumber];
     }
     else if( [tableColumn.identifier isEqualToString:@"filename"])
     {
