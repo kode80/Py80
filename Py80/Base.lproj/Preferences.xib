@@ -6,6 +6,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="KDEPreferencesWindowController">
             <connections>
+                <outlet property="generalController" destination="Xvx-i7-pwv" id="Ffp-M8-SSd"/>
+                <outlet property="themeController" destination="kQJ-Xh-aws" id="gAP-cB-RFZ"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="rTk-oo-mmf"/>
             </connections>
         </customObject>
@@ -48,6 +50,41 @@
                 <outlet property="delegate" destination="-2" id="LuN-i0-TrI"/>
             </connections>
         </window>
+        <viewController id="Xvx-i7-pwv" customClass="KDEPreferencesGeneralViewController">
+            <connections>
+                <outlet property="view" destination="9bm-Ic-yDT" id="sZn-tb-W7s"/>
+            </connections>
+        </viewController>
+        <viewController id="kQJ-Xh-aws" customClass="KDEPreferencesThemeViewController">
+            <connections>
+                <outlet property="view" destination="Bca-ok-slO" id="wNP-ki-8Zs"/>
+            </connections>
+        </viewController>
+        <customView id="9bm-Ic-yDT" userLabel="General">
+            <rect key="frame" x="0.0" y="0.0" width="499" height="322"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h28-xC-4HR">
+                    <rect key="frame" x="208" y="144" width="82" height="32"/>
+                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rwz-q7-HJV">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <point key="canvasLocation" x="310.5" y="731"/>
+        </customView>
+        <customView id="Bca-ok-slO" userLabel="Theme">
+            <rect key="frame" x="0.0" y="0.0" width="499" height="322"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tFM-6h-9hH">
+                    <rect key="frame" x="216" y="174" width="44" height="23"/>
+                    <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </colorWell>
+            </subviews>
+            <point key="canvasLocation" x="906.5" y="731"/>
+        </customView>
     </objects>
     <resources>
         <image name="NSAdvanced" width="32" height="32"/>

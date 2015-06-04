@@ -8,7 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class KDEPreferencesGeneralViewController, KDEPreferencesThemeViewController;
+
 @interface KDEPreferencesWindowController : NSWindowController
+
+@property (nonatomic, readwrite, strong) IBOutlet KDEPreferencesGeneralViewController *generalController;
+@property (nonatomic, readwrite, strong) IBOutlet KDEPreferencesThemeViewController *themeController;
 
 - (IBAction) showGeneral:(id)sender;
 - (IBAction) showTheme:(id)sender;

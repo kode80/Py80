@@ -7,10 +7,14 @@
 //
 
 #import "KDEPreferencesWindowController.h"
+#import "KDEPreferencesGeneralViewController.h"
+#import "KDEPreferencesThemeViewController.h"
+
 
 @interface KDEPreferencesWindowController () <NSToolbarDelegate>
 
 @end
+
 
 @implementation KDEPreferencesWindowController
 
@@ -23,12 +27,12 @@
 
 - (IBAction) showGeneral:(id)sender
 {
-    NSLog(@"general");
+    self.window.contentViewController = self.generalController;
 }
 
 - (IBAction) showTheme:(id)sender
 {
-    NSLog(@"theme");
+    self.window.contentViewController = self.themeController;
 }
 
 @end

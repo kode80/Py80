@@ -53,6 +53,9 @@
 		20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F160A41B17938800398B70 /* KDECompletionTableCellView.m */; };
 		20F4A51F1B20A690000BCECF /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F4A51D1B20A690000BCECF /* Preferences.xib */; };
 		20F4A5221B20A847000BCECF /* KDEPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F4A5211B20A847000BCECF /* KDEPreferencesWindowController.m */; };
+		20F4A5251B20AB33000BCECF /* KDEPreferencesGeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F4A5241B20AB33000BCECF /* KDEPreferencesGeneralViewController.m */; };
+		20F4A5291B20AB49000BCECF /* KDEPreferencesThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F4A5271B20AB49000BCECF /* KDEPreferencesThemeViewController.m */; };
+		20F4A52A1B20AB49000BCECF /* KDEPreferencesThemeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F4A5281B20AB49000BCECF /* KDEPreferencesThemeViewController.xib */; };
 		20F58F561B1F5E23003E984C /* KDEPyProfilerStat.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */; };
 		20F58F5C1B1F6E26003E984C /* KDEProfilerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F58F5A1B1F6E26003E984C /* KDEProfilerViewController.xib */; };
 		20F58F5F1B1F6E41003E984C /* KDEProfilerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F58F5E1B1F6E41003E984C /* KDEProfilerViewController.m */; };
@@ -164,6 +167,11 @@
 		20F4A51E1B20A690000BCECF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		20F4A5201B20A847000BCECF /* KDEPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPreferencesWindowController.h; sourceTree = "<group>"; };
 		20F4A5211B20A847000BCECF /* KDEPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPreferencesWindowController.m; sourceTree = "<group>"; };
+		20F4A5231B20AB33000BCECF /* KDEPreferencesGeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPreferencesGeneralViewController.h; sourceTree = "<group>"; };
+		20F4A5241B20AB33000BCECF /* KDEPreferencesGeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPreferencesGeneralViewController.m; sourceTree = "<group>"; };
+		20F4A5261B20AB49000BCECF /* KDEPreferencesThemeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPreferencesThemeViewController.h; sourceTree = "<group>"; };
+		20F4A5271B20AB49000BCECF /* KDEPreferencesThemeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPreferencesThemeViewController.m; sourceTree = "<group>"; };
+		20F4A5281B20AB49000BCECF /* KDEPreferencesThemeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KDEPreferencesThemeViewController.xib; sourceTree = "<group>"; };
 		20F58F541B1F5E23003E984C /* KDEPyProfilerStat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPyProfilerStat.h; sourceTree = "<group>"; };
 		20F58F551B1F5E23003E984C /* KDEPyProfilerStat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyProfilerStat.m; sourceTree = "<group>"; };
 		20F58F5B1B1F6E26003E984C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KDEProfilerViewController.xib; sourceTree = "<group>"; };
@@ -377,6 +385,11 @@
 				20F58F621B1F7150003E984C /* KDEMainViewController.xib */,
 				20F4A5201B20A847000BCECF /* KDEPreferencesWindowController.h */,
 				20F4A5211B20A847000BCECF /* KDEPreferencesWindowController.m */,
+				20F4A5231B20AB33000BCECF /* KDEPreferencesGeneralViewController.h */,
+				20F4A5241B20AB33000BCECF /* KDEPreferencesGeneralViewController.m */,
+				20F4A5261B20AB49000BCECF /* KDEPreferencesThemeViewController.h */,
+				20F4A5271B20AB49000BCECF /* KDEPreferencesThemeViewController.m */,
+				20F4A5281B20AB49000BCECF /* KDEPreferencesThemeViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -526,6 +539,7 @@
 				20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */,
 				20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */,
 				208808171B14FBBD003AA9DE /* jedi in Resources */,
+				20F4A52A1B20AB49000BCECF /* KDEPreferencesThemeViewController.xib in Resources */,
 				208808191B150944003AA9DE /* py80 in Resources */,
 				20F4A51F1B20A690000BCECF /* Preferences.xib in Resources */,
 				203D56B31B0A716000A7779E /* Default.py in Resources */,
@@ -591,12 +605,14 @@
 				20F58F561B1F5E23003E984C /* KDEPyProfilerStat.m in Sources */,
 				200CD8C11B1A621A00312847 /* KDEOutputDrawTextCommand.m in Sources */,
 				203D56AB1B0A610D00A7779E /* AppDelegate.m in Sources */,
+				20F4A5251B20AB33000BCECF /* KDEPreferencesGeneralViewController.m in Sources */,
 				20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */,
 				20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */,
 				20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */,
 				208D43121B1688240004898F /* KDETextView.m in Sources */,
 				20F58F631B1F7150003E984C /* KDEMainViewController.m in Sources */,
 				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
+				20F4A5291B20AB49000BCECF /* KDEPreferencesThemeViewController.m in Sources */,
 				20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */,
 				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
 				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
