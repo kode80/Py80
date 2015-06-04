@@ -29,6 +29,29 @@
     return self;
 }
 
+- (instancetype) initWithJSONAtPath:(NSString *)jsonPath
+{
+    NSData *data = [NSData dataWithContentsOfFile:jsonPath];
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                               options:0
+                                                                 error:NULL];
+    if( dictionary)
+    {
+        self = [self initWithDictionary:dictionary];
+    }
+    
+    return self;
+}
+
+- (void) writeJSONToPath:(NSString *)jsonPath
+{
+    NSData *data = [NSJSONSerialization dataWithJSONObject:[self dictionary]
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:NULL];
+    [data writeToFile:jsonPath
+           atomically:YES];
+}
+
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary
 {
     self = [self init];
@@ -40,6 +63,11 @@
         }
     }
     return self;
+}
+
+- (NSArray *) itemNames
+{
+    return self.items.allKeys;
 }
 
 - (NSDictionary *) dictionary

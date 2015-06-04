@@ -8,31 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-/*
- THEME KEYS:
- 
- Comments
- Comments2
- Identifiers
- Identifiers2
- Preprocessor
- Strings
- Tags
- UserIdentifiers
- 
- CodeBackground
- 
- ConsoleBackground
- ConsoleTimestamp
- ConsoleText
- 
- OutputBackground
- */
-
 @interface KDETheme : NSObject
 
+@property (nonatomic, readonly, strong) NSArray *itemNames;
+
+- (instancetype) initWithJSONAtPath:(NSString *)jsonPath;
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
+
 - (NSDictionary *) dictionary;
+- (void) writeJSONToPath:(NSString *)jsonPath;
 
 - (NSColor *) colorForItemName:(NSString *)name;
 - (NSFont *) fontForItemName:(NSString *)name;
