@@ -1,0 +1,93 @@
+{
+  "Comments" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "Comments2" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "Identifiers" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "Identifiers2" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "Preprocessor" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "Strings" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "Tags" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "UserIdentifiers" : {
+    "Red" : 1,
+    "Green" : 0,
+    "Blue" : 0,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "CodeBackground" : {
+    "Red" : 1,
+    "Green" : 1,
+    "Blue" : 1
+  },
+
+
+
+  "ConsoleBackground" : {
+    "Red" : 1,
+    "Green" : 1,
+    "Blue" : 1
+  },
+  "ConsoleTimestamp" : {
+    "Red" : 1,
+    "Green" : 1,
+    "Blue" : 1,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+  "ConsoleText" : {
+    "Red" : 1,
+    "Green" : 1,
+    "Blue" : 1,
+    "FontName" : "Monaco",
+    "FontSize" : 13
+  },
+
+
+
+  "OutputBackground" : {
+    "Red" : 1,
+    "Green" : 1,
+    "Blue" : 1
+  }
+}
