@@ -8,6 +8,27 @@
 
 #import <Foundation/Foundation.h>
 
+/*
+ THEME KEYS:
+ 
+ Comments
+ Comments2
+ Identifiers
+ Identifiers2
+ Preprocessor
+ Strings
+ Tags
+ UserIdentifiers
+ 
+ CodeBackground
+ 
+ ConsoleBackground
+ ConsoleTimestamp
+ ConsoleText
+ 
+ OutputBackground
+ */
+
 @interface KDETheme : NSObject
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
