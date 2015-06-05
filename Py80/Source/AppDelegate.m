@@ -243,8 +243,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (IBAction) showPreferences:(id)sender
 {
-    [self.preferencesWindowController showWindow:self];
     [self.preferencesWindowController.window center];
+    [self.preferencesWindowController showWindow:self];
 }
 
 - (IBAction) insertPath:(id)sender
