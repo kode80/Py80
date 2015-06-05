@@ -200,6 +200,9 @@
 		[vStyles addEntriesFromDictionary: vLocalStyles];
 	else
 		vStyles[NSForegroundColorAttributeName] = col;
+    
+    vStyles[ NSForegroundColorAttributeName] = [self.theme colorForItemName:attr];
+    vStyles[ NSFontAttributeName] = [self.theme fontForItemName:attr];
 	
 	// Make sure partial recoloring works:
 	vStyles[TD_SYNTAX_COLORING_MODE_ATTR] = attr;
