@@ -197,6 +197,8 @@
         if( font && color)
         {
             view.textField.textColor = color;
+            view.textField.font = [NSFont fontWithName:font.fontName
+                                                  size:11.0f];
         }
     }
     
