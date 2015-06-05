@@ -80,11 +80,17 @@ NSString * const KDEPy80PreferencesDefaultsKeyCurrentThemePath = @"com.kode80.Py
     NSFileManager *manager = [NSFileManager defaultManager];
     BOOL isDirectory;
     
-    return [manager fileExistsAtPath:oldPath isDirectory:&isDirectory] &&
-           isDirectory == NO &&
-           [manager moveItemAtPath:oldPath
-                            toPath:newPath
-                             error:NULL];
+    BOOL result = [manager fileExistsAtPath:oldPath isDirectory:&isDirectory] &&
+                  isDirectory == NO &&
+                  [manager moveItemAtPath:oldPath
+                                   toPath:newPath
+                                    error:NULL];
+    if( result && [oldPath isEqualToString:self.currentThemePath])
+    {
+        self.currentThemePath = newPath;
+    }
+    
+    return result;
 }
 
 - (void) duplicateThemeNamed:(NSString *)name
