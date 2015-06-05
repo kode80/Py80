@@ -51,6 +51,7 @@
         NSString *name = [self.themes allKeysForObject:currentTheme].firstObject;
         [KDEPy80Preferences sharedPreferences].currentThemePath = self.themePaths[ [self.themeNames indexOfObject:name]];
 
+        [self selectCurrentTheme];
         [self informDelegateOfThemeUpdates];
     }
 }
@@ -276,6 +277,14 @@
         [self.delegate themeViewController:self
                             didUpdateTheme:self.currentTheme];
     }
+}
+
+- (void) selectCurrentTheme
+{
+    NSString *name = [[KDEPy80Preferences sharedPreferences].currentThemePath.lastPathComponent stringByDeletingPathExtension];
+    NSInteger row = [self.themeNames indexOfObject:name];
+    [self.themesTable selectRowIndexes:[NSIndexSet indexSetWithIndex:row]
+                  byExtendingSelection:NO];
 }
 
 @end
