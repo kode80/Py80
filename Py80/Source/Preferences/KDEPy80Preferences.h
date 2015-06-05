@@ -23,5 +23,7 @@
           withName:(NSString *)name;
 - (BOOL) renameThemeNamed:(NSString *)themeName
                        to:(NSString *)newName;
+- (void) duplicateThemeNamed:(NSString *)name;
+- (void) deleteThemeNamed:(NSString *)name;
 
 @end

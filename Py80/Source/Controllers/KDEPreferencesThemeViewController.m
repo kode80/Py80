@@ -59,12 +59,19 @@
 
 - (IBAction) addTheme:(id)sender
 {
-    
+    NSInteger row = self.themesTable.selectedRow;
+    [[KDEPy80Preferences sharedPreferences] duplicateThemeNamed:self.themeNames[ row]];
+    [self reloadThemes];
 }
 
 - (IBAction) removeTheme:(id)sender
 {
-    
+    if( self.themeNames.count > 1)
+    {
+        NSInteger row = self.themesTable.selectedRow;
+        [[KDEPy80Preferences sharedPreferences] deleteThemeNamed:self.themeNames[ row]];
+        [self reloadThemes];
+    }
 }
 
 - (IBAction) pickFont:(id)sender
@@ -236,6 +243,8 @@
     self.currentTheme = self.themes[ currentThemeName];
     
     [self reloadTableView:self.themesTable];
+    
+    self.removeThemeButton.enabled = self.themeNames.count > 1;
 }
 
 - (void) saveCurrentTheme

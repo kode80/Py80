@@ -79,6 +79,56 @@ NSString * const KDEPy80PreferencesDefaultsKeyCurrentThemePath = @"com.kode80.Py
                              error:NULL];
 }
 
+- (void) duplicateThemeNamed:(NSString *)name
+{
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    NSArray *paths = [self pathsOfAvailableThemes];
+    NSInteger maxPostfix = 1;
+    NSString *currentName;
+    NSString *postfix;
+    NSRange range;
+    NSNumber *number;
+    NSString *newName = @"New Theme ";
+    
+    for( NSString *path in paths)
+    {
+        currentName = [[path lastPathComponent] stringByDeletingPathExtension];
+        if( [currentName isEqualToString:newName] && maxPostfix == 1)
+        {
+            maxPostfix++;
+        }
+        else
+        {
+            range = [currentName rangeOfString:newName];
+            if( range.location == 0)
+            {
+                postfix = [currentName substringFromIndex:newName.length];
+                number = [formatter numberFromString:postfix];
+                if( number && [number integerValue] >= maxPostfix)
+                {
+                    maxPostfix = [number integerValue] + 1;
+                }
+            }
+        }
+    }
+    
+    if( maxPostfix > 1)
+    {
+        newName = [newName stringByAppendingString:[formatter stringFromNumber:@(maxPostfix)]];
+    }
+    KDETheme *theme = [[KDETheme alloc] initWithJSONAtPath:[KDEPy80Preferences pathForThemeNamed:name]];
+    [[KDEPy80Preferences sharedPreferences] saveTheme:theme
+                                             withName:newName];
+}
+
+- (void) deleteThemeNamed:(NSString *)name
+{
+    [[NSFileManager defaultManager] removeItemAtPath:[KDEPy80Preferences pathForThemeNamed:name]
+                                               error:NULL];
+}
+
 #pragma mark - Accessors
 
 - (NSString *) currentThemePath
