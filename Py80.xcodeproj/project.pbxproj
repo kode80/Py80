@@ -69,6 +69,8 @@
 		20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */; };
 		20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */; };
 		20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */; };
+		20F9C3041B21DF0F00694678 /* KDEConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9C3031B21DF0F00694678 /* KDEConsoleViewController.m */; };
+		20F9C3071B21E1AC00694678 /* KDEConsoleLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9C3061B21E1AC00694678 /* KDEConsoleLog.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +201,10 @@
 		20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEImageStore.m; sourceTree = "<group>"; };
 		20F8ED3D1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawImageCommand.h; sourceTree = "<group>"; };
 		20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputDrawImageCommand.m; sourceTree = "<group>"; };
+		20F9C3021B21DF0F00694678 /* KDEConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEConsoleViewController.h; sourceTree = "<group>"; };
+		20F9C3031B21DF0F00694678 /* KDEConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEConsoleViewController.m; sourceTree = "<group>"; };
+		20F9C3051B21E1AC00694678 /* KDEConsoleLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEConsoleLog.h; sourceTree = "<group>"; };
+		20F9C3061B21E1AC00694678 /* KDEConsoleLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEConsoleLog.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -397,6 +403,10 @@
 				20F4A5241B20AB33000BCECF /* KDEPreferencesGeneralViewController.m */,
 				20F4A5261B20AB49000BCECF /* KDEPreferencesThemeViewController.h */,
 				20F4A5271B20AB49000BCECF /* KDEPreferencesThemeViewController.m */,
+				20F9C3021B21DF0F00694678 /* KDEConsoleViewController.h */,
+				20F9C3031B21DF0F00694678 /* KDEConsoleViewController.m */,
+				20F9C3051B21E1AC00694678 /* KDEConsoleLog.h */,
+				20F9C3061B21E1AC00694678 /* KDEConsoleLog.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -600,6 +610,7 @@
 				20F4A5391B20EF08000BCECF /* KDEPy80Preferences.m in Sources */,
 				20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */,
 				200CD8C41B1A640B00312847 /* KDEOutputDrawPathCommand.m in Sources */,
+				20F9C3071B21E1AC00694678 /* KDEConsoleLog.m in Sources */,
 				208D43051B162CB80004898F /* KDEPyCompletion.m in Sources */,
 				20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */,
 				20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */,
@@ -638,6 +649,7 @@
 				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
 				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
 				20F84EA21B18C3F1002D8116 /* NSString+PythonRangeUtils.m in Sources */,
+				20F9C3041B21DF0F00694678 /* KDEConsoleViewController.m in Sources */,
 				200B7C531B178765005D64B1 /* KDETypeTableCellView.m in Sources */,
 				20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */,
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,

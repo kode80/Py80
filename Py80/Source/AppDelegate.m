@@ -25,6 +25,7 @@
 #import "KDECompletionWindowController.h"
 #import "KDEProfilerViewController.h"
 #import "KDEPreferencesWindowController.h"
+#import "KDEConsoleViewController.h"
 #import "KDEPy80Preferences.h"
 #import "KDETheme.h"
 
@@ -49,7 +50,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, readwrite, strong) KDEDocumentTracker *docTracker;
-@property (nonatomic, readwrite, strong) NSDateFormatter *logDateFormatter;
 @property (nonatomic, readwrite, strong) KDEImageStore *imageStore;
 @property (nonatomic, readwrite, strong) KDEProfilerViewController *profilerViewController;
 @property (nonatomic, readwrite, strong) KDEPreferencesWindowController *preferencesWindowController;
@@ -79,10 +79,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     
     // IB autosave name doesn't work with view controllers /shakes fist
     self.window.frameAutosaveName = @"Py80 Main Window";
-    
-    
-    self.logDateFormatter = [NSDateFormatter new];
-    self.logDateFormatter.dateFormat = @"dd-MM-YY HH:mm:ss.SSS";
     
     self.imageStore = [KDEImageStore new];
     
@@ -372,22 +368,12 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (void) py80Context:(KDEPy80Context *)context logMessage:(NSString *)message
 {
-    NSString *date = [self.logDateFormatter stringFromDate:[NSDate date]];
-    NSString *formattedMessage = [NSString stringWithFormat:@"%@ %@\n", date, message];
-
-    NSFont *font = [NSFont fontWithName:@"Monaco"
-                                   size:11.0f];
-    NSMutableAttributedString *output = [[NSMutableAttributedString alloc] initWithString:formattedMessage
-                                                                               attributes:@{ NSFontAttributeName : font }];
-    [output addAttributes:@{ NSForegroundColorAttributeName : [NSColor grayColor] }
-                    range:NSMakeRange( 0, date.length)];
-    
-    [self.mainViewController.console.textStorage appendAttributedString:output];
+    [self.mainViewController.consoleViewController logMessage:message];
 }
 
 - (void) py80ContextClearLog:(KDEPy80Context *)context
 {
-    self.mainViewController.console.string = @"";
+    [self.mainViewController.consoleViewController clearLogs];
 }
 
 - (NSString *) py80ContextGetClipboard:(KDEPy80Context *)context

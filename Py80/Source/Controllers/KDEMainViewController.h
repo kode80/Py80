@@ -14,6 +14,7 @@
        ASKSyntaxViewController,
        KDEExceptionView,
        KDECompletionWindowController,
+       KDEConsoleViewController,
        KDEPyException,
        KDETheme;
 
@@ -22,6 +23,7 @@
 
 @property (nonatomic, readwrite, weak) IBOutlet id<KDEMainViewControllerDelegate> delegate;
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *codeView;
+@property (nonatomic, readwrite, strong) IBOutlet KDEConsoleViewController *consoleViewController;
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *console;
 @property (nonatomic, readwrite, weak) IBOutlet KDEOutputView *outputView;
 @property (nonatomic, readwrite, weak) IBOutlet NSSplitView *horizontalSplitView;

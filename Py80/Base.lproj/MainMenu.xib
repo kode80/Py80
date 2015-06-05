@@ -897,12 +897,18 @@
             <connections>
                 <outlet property="codeView" destination="nBE-Vu-1vq" id="mNj-fF-1g3"/>
                 <outlet property="console" destination="Fdo-f4-65k" id="CKi-bi-Un7"/>
+                <outlet property="consoleViewController" destination="l0o-dA-nWI" id="NMT-cr-x0j"/>
                 <outlet property="exceptionView" destination="qYW-g8-i8Z" id="e5l-ZF-WIa"/>
                 <outlet property="horizontalSplitView" destination="dzK-QE-nEc" id="gzt-H1-EPq"/>
                 <outlet property="outputView" destination="P2k-fG-8B9" id="xci-31-SxE"/>
                 <outlet property="syntaxViewController" destination="pa6-ih-VyB" id="gwQ-Iz-b8J"/>
                 <outlet property="verticalSplitView" destination="s2f-0y-Arv" id="eF7-AK-DdA"/>
                 <outlet property="view" destination="Ik9-vI-lZ8" id="W5O-SI-ed6"/>
+            </connections>
+        </viewController>
+        <viewController id="l0o-dA-nWI" userLabel="Console View Controller" customClass="KDEConsoleViewController">
+            <connections>
+                <outlet property="view" destination="Fdo-f4-65k" id="2hQ-lP-MSg"/>
             </connections>
         </viewController>
     </objects>
