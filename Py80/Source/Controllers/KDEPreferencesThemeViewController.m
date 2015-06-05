@@ -83,9 +83,11 @@
 {
     NSFontManager *manager = [NSFontManager sharedFontManager];
     
+    NSFont *font = [self.currentTheme fontForItemName:self.currentThemeItemName];
+    
     manager.target = self;
     manager.action = @selector(changeFont:);
-    [manager setSelectedFont:[NSFont systemFontOfSize:11.0f]
+    [manager setSelectedFont:font
                   isMultiple:NO];
     [manager orderFrontFontPanel:nil];
 }
