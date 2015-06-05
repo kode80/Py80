@@ -41,12 +41,7 @@
                                                       error:NULL];
     }
     
-    if( dictionary)
-    {
-        self = [self initWithDictionary:dictionary];
-    }
-    
-    return self;
+    return dictionary ? [self initWithDictionary:dictionary] : nil;
 }
 
 - (void) writeJSONToPath:(NSString *)jsonPath
