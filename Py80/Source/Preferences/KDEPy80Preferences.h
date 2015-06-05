@@ -10,9 +10,12 @@
 
 @interface KDEPy80Preferences : NSObject
 
-@property (nonatomic, readonly, strong) NSString *themesPath;
 @property (nonatomic, readonly, strong) NSString *currentThemePath;
 
 + (KDEPy80Preferences *) sharedPreferences;
+
+- (void) appLaunchChecks;
+
+- (NSArray *) pathsOfAvailableThemes;
 
 @end

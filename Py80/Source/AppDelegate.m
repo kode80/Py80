@@ -25,6 +25,7 @@
 #import "KDECompletionWindowController.h"
 #import "KDEProfilerViewController.h"
 #import "KDEPreferencesWindowController.h"
+#import "KDEPy80Preferences.h"
 
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
@@ -58,6 +59,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    [[KDEPy80Preferences sharedPreferences] appLaunchChecks];
+    
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.contentViewController = self.mainViewController;
     self.mainViewController.delegate = self;

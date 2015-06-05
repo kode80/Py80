@@ -8,6 +8,7 @@
 
 #import "KDEPreferencesThemeViewController.h"
 
+#import "KDEPy80Preferences.h"
 #import "KDETheme.h"
 
 
@@ -15,6 +16,7 @@
 
 @property (nonatomic, readwrite, strong) NSDictionary *themes;
 @property (nonatomic, readwrite, strong) NSArray *themeNames;
+@property (nonatomic, readwrite, strong) NSArray *themePaths;
 @property (nonatomic, readwrite, strong) KDETheme *currentTheme;
 @property (nonatomic, readwrite, strong) NSArray *currentThemeItemNames;
 @property (nonatomic, readonly, strong) NSString *currentThemeItemName;
@@ -24,15 +26,16 @@
 
 @implementation KDEPreferencesThemeViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    NSString *themePath = [[NSBundle mainBundle] pathForResource:@"DefaultTheme"
-                                                          ofType:@"json"];
-    KDETheme *theme = [[KDETheme alloc] initWithJSONAtPath:themePath];
-    self.themes = @{ @"Default" : theme };
-    self.themeNames = @[ @"Default" ];
-    self.currentTheme = theme;
+- (void) viewWillAppear
+{
+    [super viewWillAppear];
+    [self reloadThemes];
+}
+
+- (void) viewWillDisappear
+{
+    [super viewWillDisappear];
+    [self saveCurrentTheme];
 }
 
 #pragma mark - Accessors
@@ -121,6 +124,7 @@
     
     if( tableView == self.themesTable)
     {
+        [self saveCurrentTheme];
         self.currentTheme = self.themes[ self.themeNames[ row]];
     }
     else if( tableView == self.themeItemsTable)
@@ -185,6 +189,42 @@
     [tableView reloadData];
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row]
            byExtendingSelection:NO];
+}
+
+- (void) reloadThemes
+{
+    NSArray *themePaths = [[KDEPy80Preferences sharedPreferences] pathsOfAvailableThemes];
+    NSString *currentThemePath = [[KDEPy80Preferences sharedPreferences] currentThemePath];
+    NSString *currentThemeName = [[currentThemePath lastPathComponent] stringByDeletingPathExtension];
+    
+    NSMutableArray *themeNames = [NSMutableArray array];
+    NSMutableDictionary *themes = [NSMutableDictionary dictionary];
+    NSString *name;
+
+    for( NSString *path in themePaths)
+    {
+        name = [[path lastPathComponent] stringByDeletingPathExtension];
+        themes[ name] = [[KDETheme alloc] initWithJSONAtPath:path];
+        [themeNames addObject:name];
+    }
+    
+    self.themePaths = themePaths;
+    self.themeNames = [NSArray arrayWithArray:themeNames];
+    self.themes = [NSDictionary dictionaryWithDictionary:themes];
+    self.currentTheme = self.themes[ currentThemeName];
+    
+    [self reloadTableView:self.themesTable];
+}
+
+- (void) saveCurrentTheme
+{
+    if( self.currentTheme)
+    {
+        NSString *name = [self.themes allKeysForObject:self.currentTheme].firstObject;
+        NSUInteger index = [self.themeNames indexOfObject:name];
+
+        [self.currentTheme writeJSONToPath:self.themePaths[ index]];
+    }
 }
 
 @end
