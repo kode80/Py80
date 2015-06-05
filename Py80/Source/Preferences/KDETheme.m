@@ -32,9 +32,15 @@
 - (instancetype) initWithJSONAtPath:(NSString *)jsonPath
 {
     NSData *data = [NSData dataWithContentsOfFile:jsonPath];
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data
-                                                               options:0
-                                                                 error:NULL];
+    NSDictionary *dictionary = nil;
+    
+    if( data)
+    {
+        dictionary =[NSJSONSerialization JSONObjectWithData:data
+                                                    options:0
+                                                      error:NULL];
+    }
+    
     if( dictionary)
     {
         self = [self initWithDictionary:dictionary];

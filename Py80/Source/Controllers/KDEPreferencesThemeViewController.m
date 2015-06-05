@@ -47,6 +47,9 @@
         _currentTheme = currentTheme;
         self.currentThemeItemNames = [currentTheme.itemNames sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         [self reloadTableView:self.themeItemsTable];
+        
+        NSString *name = [self.themes allKeysForObject:currentTheme].firstObject;
+        [KDEPy80Preferences sharedPreferences].currentThemePath = self.themePaths[ [self.themeNames indexOfObject:name]];
     }
 }
 

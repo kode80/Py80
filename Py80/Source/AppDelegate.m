@@ -26,6 +26,7 @@
 #import "KDEProfilerViewController.h"
 #import "KDEPreferencesWindowController.h"
 #import "KDEPy80Preferences.h"
+#import "KDETheme.h"
 
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
@@ -65,6 +66,9 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.contentViewController = self.mainViewController;
     self.mainViewController.delegate = self;
+    
+    NSString *themePath = [KDEPy80Preferences sharedPreferences].currentThemePath;
+    [self.mainViewController applyTheme:[[KDETheme alloc] initWithJSONAtPath:themePath]];
     
     self.profilerViewController = [[KDEProfilerViewController alloc] initWithNibName:nil
                                                                               bundle:nil];

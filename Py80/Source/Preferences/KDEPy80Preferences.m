@@ -36,7 +36,11 @@ NSString * const KDEPy80PreferencesDefaultsKeyCurrentThemePath = @"com.kode80.Py
     [KDEPy80Preferences createFolderIfDoesntExist:[KDEPy80Preferences themesPath]];
     [self copyDefaultThemesIfNeeded];
     
-    if( self.currentThemePath == nil) { self.currentThemePath = [self pathsOfAvailableThemes].firstObject; }
+    if( self.currentThemePath == nil ||
+        [[KDETheme alloc] initWithJSONAtPath:self.currentThemePath] == nil)
+    {
+        self.currentThemePath = [self pathsOfAvailableThemes].firstObject;
+    }
 }
 
 - (NSArray *) pathsOfAvailableThemes
