@@ -54,6 +54,10 @@ NSString * const KDEPy80PreferencesDefaultsKeyCurrentThemePath = @"com.kode80.Py
     return [NSArray arrayWithArray:paths];
 }
 
+- (KDETheme *) loadThemeNamed:(NSString *)name
+{
+    return [[KDETheme alloc] initWithJSONAtPath:[KDEPy80Preferences pathForThemeNamed:name]];
+}
 
 - (void) saveTheme:(KDETheme *)theme
           withName:(NSString *)name

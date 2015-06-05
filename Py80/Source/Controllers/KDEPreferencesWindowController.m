@@ -11,7 +11,7 @@
 #import "KDEPreferencesThemeViewController.h"
 
 
-@interface KDEPreferencesWindowController () <NSToolbarDelegate>
+@interface KDEPreferencesWindowController () <NSToolbarDelegate, KDEPreferencesThemeViewControllerDelegate>
 
 @end
 
@@ -20,6 +20,8 @@
 
 - (void)windowDidLoad {
     [super windowDidLoad];
+    
+    self.themeController.delegate = self;
     
     [self.window.toolbar setSelectedItemIdentifier:@"General"];
     [self showGeneral:nil];
@@ -33,6 +35,15 @@
 - (IBAction) showTheme:(id)sender
 {
     self.window.contentViewController = self.themeController;
+}
+
+- (void) themeViewController:(KDEPreferencesThemeViewController *)controller didUpdateTheme:(KDETheme *)theme
+{
+    if( [self.delegate respondsToSelector:@selector(preferencesWindowController:didUpdateTheme:)])
+    {
+        [self.delegate preferencesWindowController:self
+                                    didUpdateTheme:theme];
+    }
 }
 
 @end

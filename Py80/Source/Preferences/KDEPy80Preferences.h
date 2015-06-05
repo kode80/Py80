@@ -12,13 +12,14 @@
 
 @interface KDEPy80Preferences : NSObject
 
-@property (nonatomic, readonly, strong) NSString *currentThemePath;
+@property (nonatomic, readwrite, strong) NSString *currentThemePath;
 
 + (KDEPy80Preferences *) sharedPreferences;
 
 - (void) appLaunchChecks;
 
 - (NSArray *) pathsOfAvailableThemes;
+- (KDETheme *) loadThemeNamed:(NSString *)name;
 - (void) saveTheme:(KDETheme *)theme
           withName:(NSString *)name;
 - (BOOL) renameThemeNamed:(NSString *)themeName

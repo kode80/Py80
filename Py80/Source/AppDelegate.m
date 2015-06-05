@@ -42,7 +42,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     KDEPy80ContextDelegate,
     KDEDocumentTrackerDelegate,
     KDEProfilerViewControllerDelegate,
-    KDEMainViewControllerDelegate
+    KDEMainViewControllerDelegate,
+    KDEPreferencesWindowControllerDelegate
 >
 
 @property (weak) IBOutlet NSWindow *window;
@@ -70,6 +71,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.profilerViewController.delegate = self;
     
     self.preferencesWindowController = [[KDEPreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
+    self.preferencesWindowController.delegate = self;
     
     // IB autosave name doesn't work with view controllers /shakes fist
     self.window.frameAutosaveName = @"Py80 Main Window";
@@ -336,6 +338,14 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 - (void) codeDidChangeInMainViewController:(KDEMainViewController *)viewController
 {
     [self.docTracker markActiveFileAsNeedingSave];
+}
+
+#pragma mark - KDEPreferencesWindowControllerDelegate
+
+- (void) preferencesWindowController:(KDEPreferencesWindowController *)controller
+                      didUpdateTheme:(KDETheme *)theme
+{
+    [self.mainViewController applyTheme:theme];
 }
 
 #pragma mark - KDEProfilerViewControllerDelegate

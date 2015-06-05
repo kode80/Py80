@@ -91,6 +91,8 @@
     [self.currentTheme setColor:color
                     forItemName:self.currentThemeItemName];
     [self reloadTableView:self.themeItemsTable];
+    
+    [self informDelegateOfThemeUpdates];
 }
 
 - (IBAction) changeFont:(id)sender
@@ -102,6 +104,8 @@
     [self.currentTheme setFont:font
                    forItemName:self.currentThemeItemName];
     [self reloadTableView:self.themeItemsTable];
+    
+    [self informDelegateOfThemeUpdates];
 }
 
 - (IBAction) themeTableTextEditingEnded:(id)sender
@@ -255,6 +259,15 @@
         NSUInteger index = [self.themeNames indexOfObject:name];
 
         [self.currentTheme writeJSONToPath:self.themePaths[ index]];
+    }
+}
+
+- (void) informDelegateOfThemeUpdates
+{
+    if( [self.delegate respondsToSelector:@selector(themeViewController:didUpdateTheme:)])
+    {
+        [self.delegate themeViewController:self
+                            didUpdateTheme:self.currentTheme];
     }
 }
 

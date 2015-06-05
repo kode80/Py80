@@ -14,7 +14,8 @@
        ASKSyntaxViewController,
        KDEExceptionView,
        KDECompletionWindowController,
-       KDEPyException;
+       KDEPyException,
+       KDETheme;
 
 
 @interface KDEMainViewController : NSViewController
@@ -34,6 +35,8 @@
 - (IBAction) insertPath:(id)sender;
 
 - (void) showException:(KDEPyException *)exception;
+
+- (void) applyTheme:(KDETheme *)theme;
 
 @end
 

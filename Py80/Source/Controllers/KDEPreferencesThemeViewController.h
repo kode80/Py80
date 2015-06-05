@@ -8,11 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class KDETheme;
+@protocol KDEPreferencesThemeViewControllerDelegate;
+
 @interface KDEPreferencesThemeViewController : NSViewController
 <
     NSTableViewDataSource,
     NSTableViewDelegate
 >
+
+@property (nonatomic, readwrite, weak) id<KDEPreferencesThemeViewControllerDelegate> delegate;
 
 @property (nonatomic, readwrite, weak) IBOutlet NSTableView *themesTable;
 @property (nonatomic, readwrite, weak) IBOutlet NSTableView *themeItemsTable;
@@ -29,5 +34,13 @@
 
 - (IBAction) changeColor:(id)sender;
 - (IBAction) themeTableTextEditingEnded:(id)sender;
+
+@end
+
+
+@protocol KDEPreferencesThemeViewControllerDelegate <NSObject>
+
+- (void) themeViewController:(KDEPreferencesThemeViewController *)controller
+              didUpdateTheme:(KDETheme *)theme;
 
 @end

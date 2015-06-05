@@ -12,6 +12,7 @@
 #import "KDEOutputView.h"
 #import "KDEExceptionFormatter.h"
 #import "KDEPyException.h"
+#import "KDETheme.h"
 
 
 @interface KDEMainViewController ()
@@ -102,6 +103,12 @@
     [self.exceptionView updateConstraintsForCharacterRange:range];
     
     self.exceptionView.hidden = NO;
+}
+
+- (void) applyTheme:(KDETheme *)theme
+{
+    self.codeView.backgroundColor = [theme colorForItemName:@"CodeBackground"];
+    self.console.backgroundColor = [theme colorForItemName:@"ConsoleBackground"];
 }
 
 - (void) applyDefaultsToTextView:(NSTextView *)textView
