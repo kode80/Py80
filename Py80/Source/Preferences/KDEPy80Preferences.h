@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class KDETheme;
+
 @interface KDEPy80Preferences : NSObject
 
 @property (nonatomic, readonly, strong) NSString *currentThemePath;
@@ -17,5 +19,9 @@
 - (void) appLaunchChecks;
 
 - (NSArray *) pathsOfAvailableThemes;
+- (void) saveTheme:(KDETheme *)theme
+          withName:(NSString *)name;
+- (BOOL) renameThemeNamed:(NSString *)themeName
+                       to:(NSString *)newName;
 
 @end

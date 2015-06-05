@@ -28,5 +28,6 @@
 - (IBAction) pickFont:(id)sender;
 
 - (IBAction) changeColor:(id)sender;
+- (IBAction) themeTableTextEditingEnded:(id)sender;
 
 @end

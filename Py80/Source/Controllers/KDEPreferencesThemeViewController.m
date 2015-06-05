@@ -97,6 +97,25 @@
     [self reloadTableView:self.themeItemsTable];
 }
 
+- (IBAction) themeTableTextEditingEnded:(id)sender
+{
+    NSTextField *label = sender;
+    NSInteger row = [self.themesTable rowForView:sender];
+    NSString *oldName = self.themeNames[ row];
+    
+    BOOL renamed = [[KDEPy80Preferences sharedPreferences] renameThemeNamed:oldName
+                                                                         to:label.stringValue];
+    
+    if( renamed)
+    {
+        [self reloadThemes];
+    }
+    else
+    {
+        label.stringValue = oldName;
+    }
+}
+
 - (NSUInteger) validModesForFontPanel:(NSFontPanel *)fontPanel
 {
     return NSFontPanelFaceModeMask | NSFontPanelSizeModeMask;
