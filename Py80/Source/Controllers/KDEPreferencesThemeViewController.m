@@ -206,6 +206,9 @@
 {
     NSInteger row = tableView.selectedRow;
     [tableView reloadData];
+    
+    row = MIN( row, [tableView numberOfRows] - 1);
+    
     [tableView selectRowIndexes:[NSIndexSet indexSetWithIndex:row]
            byExtendingSelection:NO];
 }
