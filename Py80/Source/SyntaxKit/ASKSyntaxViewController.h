@@ -34,6 +34,7 @@
 
 @class ASKLineNumberView;
 @class ASKSyntax;
+@class KDETheme;
 
 @protocol ASKSyntaxViewControllerDelegate;
 
@@ -64,6 +65,8 @@
 @property (assign, nonatomic) BOOL showsLineNumbers;
 - (IBAction)toggleShowsLineNumbers:(id)sender;
 @property (readonly) ASKLineNumberView * lineNumberView;
+
+- (void) applyTheme:(KDETheme *)theme;
 
 -(IBAction)	recolorCompleteFile: (id)sender;
 -(IBAction) indentSelection: (id)sender;

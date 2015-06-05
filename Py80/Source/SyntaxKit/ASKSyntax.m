@@ -29,10 +29,12 @@
 #import "ASKSyntax.h"
 #import "NSArray+Color.h"
 #import "NSScanner+SkipUpToCharset.h"
+#import "KDETheme.h"
 
 @interface ASKSyntax ()
 
 @property (strong) NSDictionary * defaultTextAttributes;
+@property (nonatomic, readwrite, strong) KDETheme *theme;
 
 @end
 
@@ -50,8 +52,23 @@
     return [self initWithDefinition:[NSDictionary dictionaryWithContentsOfURL:URL]];
 }
 
+- (void) applyTheme:(KDETheme *)theme
+{
+    self.theme = theme;
+}
+
 - (void)colorRange:(NSRange)range ofTextStorage:(NSTextStorage *)textStorage defaultAttributes:(NSDictionary*)defaultTextAttributes {
-    self.defaultTextAttributes = defaultTextAttributes;
+    NSColor *defaultColor = [self.theme colorForItemName:@"UserIdentifiers"];
+    NSFont *defaultFont = [self.theme fontForItemName:@"UserIdentifiers"];
+    
+    if( defaultColor && defaultFont)
+    {
+        self.defaultTextAttributes = @{ NSFontAttributeName : defaultFont, NSForegroundColorAttributeName : defaultColor};
+    }
+    else
+    {
+        self.defaultTextAttributes = defaultTextAttributes;
+    }
     
     [self.delegate syntaxWillColor:self];
     
@@ -91,8 +108,14 @@
 			NSString*   vComponentType = vCurrComponent[@"Type"];
 			NSString*   vComponentName = vCurrComponent[@"Name"];
 			NSString*   vColorKeyName = [@"SyntaxColoring:Color:" stringByAppendingString: vComponentName];
-			NSColor*	vColor = [[vPrefs arrayForKey: vColorKeyName] colorValue];
+            NSColor*	vColor = self.theme ? [self.theme colorForItemName:vComponentName] :
+                                              [[vPrefs arrayForKey: vColorKeyName] colorValue];
 			
+            if( [self.theme colorForItemName:vComponentName] == nil)
+            {
+                NSLog(@"UNFOUND COMP: %@", vComponentName);
+            }
+            
 			if( !vColor )
 				vColor = [vCurrComponent[@"Color"] colorValue];
 			

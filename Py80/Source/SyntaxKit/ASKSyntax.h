@@ -32,6 +32,7 @@
 #define TD_SYNTAX_COLORING_MODE_ATTR		@"UKTextDocumentSyntaxColoringMode"		// Anything we colorize gets this attribute. The value is an NSString holding the component name.
 
 @protocol ASKSyntaxDelegate;
+@class KDETheme;
 
 @interface ASKSyntax : NSObject
 
@@ -44,6 +45,8 @@
 @property (assign,getter = isColoring) BOOL coloring;
 
 - (void)colorRange:(NSRange)range ofTextStorage:(NSTextStorage *)textStorage defaultAttributes:(NSDictionary*)defaultTextAttributes;
+
+- (void) applyTheme:(KDETheme *)theme;
 
 @end
 

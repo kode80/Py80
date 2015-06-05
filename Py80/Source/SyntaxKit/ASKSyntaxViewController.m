@@ -39,6 +39,8 @@
 #import "ASKLineNumberView.h"
 #import "ASKSyntax.h"
 
+#import "KDETheme.h"
+
 // -----------------------------------------------------------------------------
 //	Globals:
 // -----------------------------------------------------------------------------
@@ -122,6 +124,12 @@ static BOOL			sSyntaxColoredTextDocPrefsInited = NO;
         [self prep];
     }
     return self;
+}
+
+- (void) applyTheme:(KDETheme *)theme
+{
+    [self.syntax applyTheme:theme];
+    [self recolorCompleteFile:nil];
 }
 
 -(void)	dealloc

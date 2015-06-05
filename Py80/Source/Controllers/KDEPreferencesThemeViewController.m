@@ -50,6 +50,8 @@
         
         NSString *name = [self.themes allKeysForObject:currentTheme].firstObject;
         [KDEPy80Preferences sharedPreferences].currentThemePath = self.themePaths[ [self.themeNames indexOfObject:name]];
+
+        [self informDelegateOfThemeUpdates];
     }
 }
 

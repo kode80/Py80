@@ -110,6 +110,8 @@
 - (void) applyTheme:(KDETheme *)theme
 {
     self.codeView.backgroundColor = [theme colorForItemName:@"CodeBackground"];
+    self.outputView.enclosingScrollView.backgroundColor = [theme colorForItemName:@"OutputBackground"];
+    [self.syntaxViewController applyTheme:theme];
     [self.consoleViewController applyTheme:theme];
 }
 
