@@ -30,11 +30,13 @@
 - (IBAction) showGeneral:(id)sender
 {
     self.window.contentViewController = self.generalController;
+    self.window.title = self.window.contentViewController.title;
 }
 
 - (IBAction) showTheme:(id)sender
 {
     self.window.contentViewController = self.themeController;
+    self.window.title = self.window.contentViewController.title;
 }
 
 - (void) themeViewController:(KDEPreferencesThemeViewController *)controller didUpdateTheme:(KDETheme *)theme

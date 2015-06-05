@@ -50,12 +50,12 @@
                 <outlet property="delegate" destination="-2" id="LuN-i0-TrI"/>
             </connections>
         </window>
-        <viewController id="Xvx-i7-pwv" customClass="KDEPreferencesGeneralViewController">
+        <viewController title="General" id="Xvx-i7-pwv" customClass="KDEPreferencesGeneralViewController">
             <connections>
                 <outlet property="view" destination="9bm-Ic-yDT" id="sZn-tb-W7s"/>
             </connections>
         </viewController>
-        <viewController id="kQJ-Xh-aws" customClass="KDEPreferencesThemeViewController">
+        <viewController title="Theme" id="kQJ-Xh-aws" customClass="KDEPreferencesThemeViewController">
             <connections>
                 <outlet property="addThemeButton" destination="vhG-ax-0jJ" id="PXe-lH-fBN"/>
                 <outlet property="colorWell" destination="zLb-Q5-WLO" id="ktp-cA-T5q"/>
