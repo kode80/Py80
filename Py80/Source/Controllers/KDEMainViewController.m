@@ -14,6 +14,8 @@
 #import "KDEPyException.h"
 #import "KDETheme.h"
 
+#import "KDEConsoleViewController.h"
+
 
 @interface KDEMainViewController ()
 <
@@ -108,7 +110,7 @@
 - (void) applyTheme:(KDETheme *)theme
 {
     self.codeView.backgroundColor = [theme colorForItemName:@"CodeBackground"];
-    self.console.backgroundColor = [theme colorForItemName:@"ConsoleBackground"];
+    [self.consoleViewController applyTheme:theme];
 }
 
 - (void) applyDefaultsToTextView:(NSTextView *)textView

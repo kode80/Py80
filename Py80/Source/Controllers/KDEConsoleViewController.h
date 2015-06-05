@@ -8,9 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
+
+@class KDETheme;
+
 @interface KDEConsoleViewController : NSViewController
 
 - (void) clearLogs;
 - (void) logMessage:(NSString *)message;
+
+- (void) applyTheme:(KDETheme *)theme;
 
 @end
