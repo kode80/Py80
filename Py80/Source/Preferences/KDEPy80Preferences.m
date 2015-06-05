@@ -139,7 +139,13 @@ NSString * const KDEPy80PreferencesDefaultsKeyCurrentThemePath = @"com.kode80.Py
 
 - (void) deleteThemeNamed:(NSString *)name
 {
-    [[NSFileManager defaultManager] removeItemAtPath:[KDEPy80Preferences pathForThemeNamed:name]
+    NSString *path = [KDEPy80Preferences pathForThemeNamed:name];
+    if( [self.currentThemePath isEqualToString:path])
+    {
+        self.currentThemePath = [self pathsOfAvailableThemes].firstObject;
+    }
+    
+    [[NSFileManager defaultManager] removeItemAtPath:path
                                                error:NULL];
 }
 
