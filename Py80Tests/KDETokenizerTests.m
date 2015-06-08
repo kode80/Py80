@@ -18,10 +18,10 @@
 
 
 
-static NSString * const TestPythonSource1 = @"# this is a comment\n"
-                                            @"# this is another comment\n"
+static NSString * const TestPythonSource1 = @"import py80\n"
                                             @"\n"
-                                            @"import py80\n"
+                                            @"# this is a comment\n"
+                                            @"# this is another comment\n"
                                             @"\n"
                                             @"def main():\n"
                                             @"\ti = 0\n"
@@ -158,20 +158,20 @@ static NSString * const TestPythonSource1 = @"# this is a comment\n"
     XCTAssert( tokens.count == 12, @"Number of tokens incorrect");
     
     KDEToken *token = tokens[ 0];
-    XCTAssert( [token.value isEqualToString:@"# this is a comment"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
-    
-    token = tokens[ 1];
-    XCTAssert( [token.value isEqualToString:@"# this is another comment"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
-    
-    token = tokens[ 2];
     XCTAssert( [token.value isEqualToString:@"import"], @"Token value is incorrect");
     XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
     
-    token = tokens[ 3];
+    token = tokens[ 1];
     XCTAssert( [token.value isEqualToString:@"py80"], @"Token value is incorrect");
     XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 2];
+    XCTAssert( [token.value isEqualToString:@"# this is a comment"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
+    
+    token = tokens[ 3];
+    XCTAssert( [token.value isEqualToString:@"# this is another comment"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
     
     token = tokens[ 4];
     XCTAssert( [token.value isEqualToString:@"def"], @"Token value is incorrect");

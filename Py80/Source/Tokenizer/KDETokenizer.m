@@ -55,7 +55,7 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
                             defaultTokenType:phase.defaultTokenType
                                 tokenTypeMap:phase.tokenTypeMap];
         [tokens addObjectsFromArray:currentTokens];
-        [self sortedTokens:tokens];
+        [self sortTokens:tokens];
         
         ranges = [self untokenizedRangesInRange:wholeRange
                                  existingTokens:tokens];
