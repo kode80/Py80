@@ -31,6 +31,20 @@
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[a-zA-Z_]\\w*"
                                                               defaultTokenType:@"NAME"
                                                                   tokenTypeMap:nil]];
+        
+        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"\\*\\*=?|>>=?|<<=?|<>|!=|//=?|[+\\-*/%&|^=<>]=?|~"
+                                                              defaultTokenType:@"OPERATOR"
+                                                                  tokenTypeMap:nil]];
+        
+        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[\\]\\[\\(\\)\\{\\}]"
+                                                              defaultTokenType:@"BRACKET"
+                                                                  tokenTypeMap:nil]];
+        
+        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[:;.,`@]"
+                                                              defaultTokenType:@"SPECIAL"
+                                                                  tokenTypeMap:nil]];
+        
+        
     }
     
     return self;
