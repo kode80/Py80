@@ -142,16 +142,20 @@ static NSString * const TestPythonSource1 = @"# this is a comment\n"
     XCTAssert( sortedTokens[4] == tokenE, @"sorted tokens incorrect");
 }
 
-- (void) testTokenizeStringWithRegex_PythonComments
+- (void) testTokenizeStringWithRegex_Python
 {
     KDETokenizer *tokenizer = [KDETokenizer new];
     [tokenizer addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"#[^\r\n]*"
                                                                defaultTokenType:@"COMMENT"
                                                                    tokenTypeMap:nil]];
     
+    [tokenizer addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[a-zA-Z_]\\w*"
+                                                               defaultTokenType:@"NAME"
+                                                                   tokenTypeMap:nil]];
+    
     NSArray *tokens = [tokenizer tokenizeString:TestPythonSource1];
 
-    XCTAssert( tokens.count == 2, @"Number of tokens incorrect");
+    XCTAssert( tokens.count == 12, @"Number of tokens incorrect");
     
     KDEToken *token = tokens[ 0];
     XCTAssert( [token.value isEqualToString:@"# this is a comment"], @"Token value is incorrect");
@@ -160,6 +164,46 @@ static NSString * const TestPythonSource1 = @"# this is a comment\n"
     token = tokens[ 1];
     XCTAssert( [token.value isEqualToString:@"# this is another comment"], @"Token value is incorrect");
     XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
+    
+    token = tokens[ 2];
+    XCTAssert( [token.value isEqualToString:@"import"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 3];
+    XCTAssert( [token.value isEqualToString:@"py80"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 4];
+    XCTAssert( [token.value isEqualToString:@"def"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 5];
+    XCTAssert( [token.value isEqualToString:@"main"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 6];
+    XCTAssert( [token.value isEqualToString:@"i"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 7];
+    XCTAssert( [token.value isEqualToString:@"i"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 8];
+    XCTAssert( [token.value isEqualToString:@"py80"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 9];
+    XCTAssert( [token.value isEqualToString:@"log"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 10];
+    XCTAssert( [token.value isEqualToString:@"str"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    
+    token = tokens[ 11];
+    XCTAssert( [token.value isEqualToString:@"i"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
 }
 
 @end
