@@ -150,7 +150,6 @@ static NSString * const TestPythonSource1 = @"# this is a comment\n"
                                                                    tokenTypeMap:nil]];
     
     NSArray *tokens = [tokenizer tokenizeString:TestPythonSource1];
-    tokens = [tokenizer sortedTokens:tokens];
 
     XCTAssert( tokens.count == 2, @"Number of tokens incorrect");
     
