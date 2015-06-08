@@ -15,6 +15,18 @@
 #define KDEAssertRangeValueEqual( value, loc, len, ...)  ( XCTAssert( NSEqualRanges( [(value) rangeValue], NSMakeRange( ( loc), (len)) ), __VA_ARGS__) )
 
 
+
+static NSString * const TestPythonSource1 = @"# this is a comment\n"
+                                            @"# this is another comment\n"
+                                            @"\n"
+                                            @"import py80\n"
+                                            @"\n"
+                                            @"def main():\n"
+                                            @"\ti = 0\n"
+                                            @"\ti *= 20.0 / 4.0\n"
+                                            @"\tpy80.log( str(i))\n";
+
+
 @interface KDETokenizer (private)
 
 - (NSArray *) tokenizeString:(NSString *)string
@@ -125,6 +137,32 @@
     XCTAssert( sortedTokens[2] == tokenC, @"sorted tokens incorrect");
     XCTAssert( sortedTokens[3] == tokenD, @"sorted tokens incorrect");
     XCTAssert( sortedTokens[4] == tokenE, @"sorted tokens incorrect");
+}
+
+- (void) testTokenizeStringWithRegex_PythonComments
+{
+    KDETokenizer *tokenizer = [KDETokenizer new];
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#[^\r\n]*"
+                                                                           options:0
+                                                                             error:NULL];
+    NSArray *ranges = @[ [NSValue valueWithRange:NSMakeRange( 0, TestPythonSource1.length)]];
+    
+    NSArray *tokens = [tokenizer tokenizeString:TestPythonSource1
+                          withRegularExpression:regex
+                                         ranges:ranges
+                               defaultTokenType:@"COMMENT"
+                                   tokenTypeMap:nil];
+    tokens = [tokenizer sortTokens:tokens];
+
+    XCTAssert( tokens.count == 2, @"Number of tokens incorrect");
+    
+    KDEToken *token = tokens[ 0];
+    XCTAssert( [token.value isEqualToString:@"# this is a comment"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
+    
+    token = tokens[ 1];
+    XCTAssert( [token.value isEqualToString:@"# this is another comment"], @"Token value is incorrect");
+    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
 }
 
 @end
