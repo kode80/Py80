@@ -69,6 +69,7 @@
 		20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */; };
 		20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */; };
 		20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */; };
+		20F9B8351B25DF0F00DBBD4C /* KDETokenizePhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9B8341B25DF0F00DBBD4C /* KDETokenizePhase.m */; };
 		20F9C3041B21DF0F00694678 /* KDEConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9C3031B21DF0F00694678 /* KDEConsoleViewController.m */; };
 		20F9C3071B21E1AC00694678 /* KDEConsoleLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9C3061B21E1AC00694678 /* KDEConsoleLog.m */; };
 		20FAC2A01B24E2EB000B550D /* KDETokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FAC29F1B24E2EB000B550D /* KDETokenizer.m */; };
@@ -204,6 +205,8 @@
 		20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEImageStore.m; sourceTree = "<group>"; };
 		20F8ED3D1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawImageCommand.h; sourceTree = "<group>"; };
 		20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEOutputDrawImageCommand.m; sourceTree = "<group>"; };
+		20F9B8331B25DF0F00DBBD4C /* KDETokenizePhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETokenizePhase.h; sourceTree = "<group>"; };
+		20F9B8341B25DF0F00DBBD4C /* KDETokenizePhase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETokenizePhase.m; sourceTree = "<group>"; };
 		20F9C3021B21DF0F00694678 /* KDEConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEConsoleViewController.h; sourceTree = "<group>"; };
 		20F9C3031B21DF0F00694678 /* KDEConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEConsoleViewController.m; sourceTree = "<group>"; };
 		20F9C3051B21E1AC00694678 /* KDEConsoleLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEConsoleLog.h; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 				20FAC29F1B24E2EB000B550D /* KDETokenizer.m */,
 				20FAC2A11B24E84F000B550D /* KDEToken.h */,
 				20FAC2A21B24E84F000B550D /* KDEToken.m */,
+				20F9B8331B25DF0F00DBBD4C /* KDETokenizePhase.h */,
+				20F9B8341B25DF0F00DBBD4C /* KDETokenizePhase.m */,
 			);
 			path = Tokenizer;
 			sourceTree = "<group>";
@@ -645,6 +650,7 @@
 				20F4A5221B20A847000BCECF /* KDEPreferencesWindowController.m in Sources */,
 				200CD8BF1B1A621A00312847 /* KDEOutputCommand.m in Sources */,
 				20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */,
+				20F9B8351B25DF0F00DBBD4C /* KDETokenizePhase.m in Sources */,
 				20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */,
 				20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */,
 				20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */,

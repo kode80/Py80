@@ -8,7 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+
+@class KDETokenizePhase;
+
+
 @interface KDETokenizer : NSObject
+
+@property (nonatomic, readonly, strong) NSArray *tokenizePhases;
+
+- (void) addTokenizePhase:(KDETokenizePhase *)phase;
 
 - (NSArray *) tokenizeString:(NSString *)string;
 

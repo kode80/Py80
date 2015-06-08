@@ -11,6 +11,8 @@
 
 #import "KDETokenizer.h"
 #import "KDEToken.h"
+#import "KDETokenizePhase.h"
+
 
 #define KDEAssertRangeValueEqual( value, loc, len, ...)  ( XCTAssert( NSEqualRanges( [(value) rangeValue], NSMakeRange( ( loc), (len)) ), __VA_ARGS__) )
 
@@ -38,7 +40,8 @@ static NSString * const TestPythonSource1 = @"# this is a comment\n"
 - (NSArray *) untokenizedRangesInRange:(NSRange)boundaryRange
                         existingTokens:(NSArray *)tokens;
 
-- (NSArray *) sortTokens:(NSArray *)tokens;
+- (NSArray *) sortedTokens:(NSArray *)tokens;
+- (void) sortTokens:(NSMutableArray *)tokens;
 
 @end
 
@@ -130,7 +133,7 @@ static NSString * const TestPythonSource1 = @"# this is a comment\n"
                          tokenD,
                          tokenC];
     
-    NSArray *sortedTokens = [tokenizer sortTokens:tokens];
+    NSArray *sortedTokens = [tokenizer sortedTokens:tokens];
     
     XCTAssert( sortedTokens[0] == tokenA, @"sorted tokens incorrect");
     XCTAssert( sortedTokens[1] == tokenB, @"sorted tokens incorrect");
@@ -142,17 +145,12 @@ static NSString * const TestPythonSource1 = @"# this is a comment\n"
 - (void) testTokenizeStringWithRegex_PythonComments
 {
     KDETokenizer *tokenizer = [KDETokenizer new];
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#[^\r\n]*"
-                                                                           options:0
-                                                                             error:NULL];
-    NSArray *ranges = @[ [NSValue valueWithRange:NSMakeRange( 0, TestPythonSource1.length)]];
+    [tokenizer addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"#[^\r\n]*"
+                                                               defaultTokenType:@"COMMENT"
+                                                                   tokenTypeMap:nil]];
     
-    NSArray *tokens = [tokenizer tokenizeString:TestPythonSource1
-                          withRegularExpression:regex
-                                         ranges:ranges
-                               defaultTokenType:@"COMMENT"
-                                   tokenTypeMap:nil];
-    tokens = [tokenizer sortTokens:tokens];
+    NSArray *tokens = [tokenizer tokenizeString:TestPythonSource1];
+    tokens = [tokenizer sortedTokens:tokens];
 
     XCTAssert( tokens.count == 2, @"Number of tokens incorrect");
     
