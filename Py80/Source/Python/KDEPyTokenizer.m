@@ -40,11 +40,11 @@ NSString *NSStringFromPyTokenType( KDEPyTokenType type)
                                                               defaultTokenType:KDETokenTypeComment
                                                                   tokenTypeMap:nil]];
         
-        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"(?s)\"\"\".*\"\"\"|'''.*'''"
+        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:[KDEPyTokenizer pythonDocStringPattern]
                                                               defaultTokenType:KDETokenTypeDocString
                                                                   tokenTypeMap:nil]];
-        
-        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"(?s)\".*?\"|'.*?'"
+
+        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"(?i)((ur|br|r|b|u)*\"[^\"]*\"|(ur|br|r|b|u)*\'[^\']*\')"
                                                               defaultTokenType:KDETokenTypeString
                                                                   tokenTypeMap:nil]];
         
@@ -68,10 +68,17 @@ NSString *NSStringFromPyTokenType( KDEPyTokenType type)
                                                               defaultTokenType:KDETokenTypeSpecial
                                                                   tokenTypeMap:nil]];
         
-        
     }
     
     return self;
+}
+
++ (NSString *) pythonDocStringPattern
+{
+    NSString *singlePattern = @"(ur|br|r|b|u)*'''[^'\\\\]*(?:(?:\\\\.|'(?!''))[^'\\\\]*)*'''";
+    NSString *doublePattern = @"(ur|br|r|b|u)*\"\"\"[^\"\\\\]*(?:(?:\\\\.|\"(?!\"\"))[^\"\\\\]*)*\"\"\"";
+    
+    return [NSString stringWithFormat:@"(?i)(%@|%@)", singlePattern, doublePattern];
 }
 
 + (NSString *) pythonNumberPattern
