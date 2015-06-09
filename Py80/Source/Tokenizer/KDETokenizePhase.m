@@ -12,7 +12,7 @@
 @interface KDETokenizePhase ()
 
 @property (nonatomic, readwrite, strong) NSRegularExpression *regularExpression;
-@property (nonatomic, readwrite, strong) NSString *defaultTokenType;
+@property (nonatomic, readwrite, assign) KDETokenType defaultTokenType;
 @property (nonatomic, readwrite, strong) NSDictionary *tokenTypeMap;
 
 @end
@@ -21,14 +21,14 @@
 @implementation KDETokenizePhase
 
 + (instancetype) tokenizePhaseWithRegexPattern:(NSString *)regexPattern
-                              defaultTokenType:(NSString *)defaultTokenType
+                              defaultTokenType:(KDETokenType)defaultTokenType
                                   tokenTypeMap:(NSDictionary *)tokenTypeMapOrNil
 {
     KDETokenizePhase *phase = [KDETokenizePhase new];
     phase.regularExpression = [NSRegularExpression regularExpressionWithPattern:regexPattern
                                                                         options:0
                                                                           error:NULL];
-    phase.defaultTokenType = [defaultTokenType copy];
+    phase.defaultTokenType = defaultTokenType;
     phase.tokenTypeMap = [tokenTypeMapOrNil copy];
     return phase;
 }

@@ -8,6 +8,22 @@
 
 #import "KDETokenizer.h"
 
+typedef NS_ENUM( KDETokenType, KDEPyTokenType)
+{
+    KDETokenTypeComment,
+    KDETokenTypeDocString,
+    KDETokenTypeString,
+    KDETokenTypeNumber,
+    KDETokenTypeName,
+    KDETokenTypeOperator,
+    KDETokenTypeBracket,
+    KDETokenTypeSpecial,
+    KDETokenTypeTokenCount
+};
+
+extern NSString *NSStringFromPyTokenType( KDEPyTokenType type);
+
+
 @interface KDEPyTokenizer : KDETokenizer
 
 @end

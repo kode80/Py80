@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-
-@class KDETokenizePhase;
+#import "KDETokenizePhase.h"
 
 
 @interface KDETokenizer : NSObject

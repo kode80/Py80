@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef NSUInteger KDETokenType;
+
+
 @interface KDEToken : NSObject
 
-@property (nonatomic, readwrite, strong) NSString *type;
+@property (nonatomic, readwrite, assign) KDETokenType type;
 @property (nonatomic, readwrite, strong) NSString *value;
 @property (nonatomic, readwrite, assign) NSRange range;
 
-+ (instancetype) tokenWithType:(NSString *)type
++ (instancetype) tokenWithType:(KDETokenType)type
                          value:(NSString *)value
                          range:(NSRange)range;
 

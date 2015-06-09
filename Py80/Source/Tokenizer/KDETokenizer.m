@@ -67,7 +67,7 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
 - (NSArray *) tokenizeString:(NSString *)string
        withRegularExpression:(NSRegularExpression *)regex
                       ranges:(NSArray *)ranges
-            defaultTokenType:(NSString *)defaultTokenType
+            defaultTokenType:(KDETokenType)defaultTokenType
                 tokenTypeMap:(NSDictionary *)tokenTypeMap
 {
     NSMutableArray *tokens = [NSMutableArray array];
@@ -79,8 +79,19 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
                                  KDEToken *token = [KDEToken new];
                                  token.value = [string substringWithRange:result.range];
-                                 token.type = tokenTypeMap[ token.value] ?: defaultTokenType;
+                                 token.type = [tokenTypeMap[ token.value] unsignedIntegerValue] ?: defaultTokenType;
                                  token.range = result.range;
+                                 
+                                 if( tokenTypeMap)
+                                 {
+                                     NSNumber *typeNumber = tokenTypeMap[ @(token.type)];
+                                     token.type = typeNumber ? [typeNumber unsignedIntegerValue] : defaultTokenType;
+                                 }
+                                 else
+                                 {
+                                     token.type = defaultTokenType;
+                                 }
+
                                  [tokens addObject:token];
                              }];
     }

@@ -10,12 +10,12 @@
 
 @implementation KDEToken
 
-+ (instancetype) tokenWithType:(NSString *)type
++ (instancetype) tokenWithType:(KDETokenType)type
                          value:(NSString *)value
                          range:(NSRange)range
 {
     KDEToken *token = [KDEToken new];
-    token.type = [type copy];
+    token.type = type;
     token.value = [value copy];
     token.range = range;
     return token;

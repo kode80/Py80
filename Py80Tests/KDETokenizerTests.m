@@ -84,10 +84,10 @@ static NSString * const TestPythonSource1 = @"import py80\n"
 {
     KDETokenizer *tokenizer = [KDETokenizer new];
     NSRange boundaryRange = NSMakeRange( 0, 30);
-    NSArray *tokens = @[ [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 0, 5)],
-                         [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 10, 2)],
-                         [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 13, 2)],
-                         [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 25, 4)]];
+    NSArray *tokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 10, 2)],
+                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 13, 2)],
+                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 25, 4)]];
     
     NSArray *untokenizedRanges = [tokenizer untokenizedRangesInRange:boundaryRange
                                                       existingTokens:tokens];
@@ -103,10 +103,10 @@ static NSString * const TestPythonSource1 = @"import py80\n"
 {
     KDETokenizer *tokenizer = [KDETokenizer new];
     NSRange boundaryRange = NSMakeRange( 3, 23);
-    NSArray *tokens = @[ [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 0, 5)],
-                         [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 10, 2)],
-                         [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 13, 2)],
-                         [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 25, 4)]];
+    NSArray *tokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 10, 2)],
+                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 13, 2)],
+                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 25, 4)]];
     
     NSArray *untokenizedRanges = [tokenizer untokenizedRangesInRange:boundaryRange
                                                       existingTokens:tokens];
@@ -121,11 +121,11 @@ static NSString * const TestPythonSource1 = @"import py80\n"
 {
     KDETokenizer *tokenizer = [KDETokenizer new];
     
-    KDEToken *tokenA = [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 0, 5)];
-    KDEToken *tokenB = [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 5, 1)];
-    KDEToken *tokenC = [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 6, 10)];
-    KDEToken *tokenD = [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 16, 13)];
-    KDEToken *tokenE = [KDEToken tokenWithType:nil value:nil range:NSMakeRange( 29, 1)];
+    KDEToken *tokenA = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)];
+    KDEToken *tokenB = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 1)];
+    KDEToken *tokenC = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 6, 10)];
+    KDEToken *tokenD = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 16, 13)];
+    KDEToken *tokenE = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 29, 1)];
     
     NSArray *tokens = @[ tokenE,
                          tokenB,
@@ -144,13 +144,14 @@ static NSString * const TestPythonSource1 = @"import py80\n"
 
 - (void) testTokenizeStringWithRegex_Python
 {
+    // TODO: use real token types to test against type assignment
     KDETokenizer *tokenizer = [KDETokenizer new];
     [tokenizer addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"#[^\r\n]*"
-                                                               defaultTokenType:@"COMMENT"
+                                                               defaultTokenType:0
                                                                    tokenTypeMap:nil]];
     
     [tokenizer addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[a-zA-Z_]\\w*"
-                                                               defaultTokenType:@"NAME"
+                                                               defaultTokenType:0
                                                                    tokenTypeMap:nil]];
     
     NSArray *tokens = [tokenizer tokenizeString:TestPythonSource1];
@@ -159,51 +160,51 @@ static NSString * const TestPythonSource1 = @"import py80\n"
     
     KDEToken *token = tokens[ 0];
     XCTAssert( [token.value isEqualToString:@"import"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 1];
     XCTAssert( [token.value isEqualToString:@"py80"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 2];
     XCTAssert( [token.value isEqualToString:@"# this is a comment"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 3];
     XCTAssert( [token.value isEqualToString:@"# this is another comment"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"COMMENT"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 4];
     XCTAssert( [token.value isEqualToString:@"def"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 5];
     XCTAssert( [token.value isEqualToString:@"main"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 6];
     XCTAssert( [token.value isEqualToString:@"i"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 7];
     XCTAssert( [token.value isEqualToString:@"i"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 8];
     XCTAssert( [token.value isEqualToString:@"py80"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 9];
     XCTAssert( [token.value isEqualToString:@"log"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 10];
     XCTAssert( [token.value isEqualToString:@"str"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
     
     token = tokens[ 11];
     XCTAssert( [token.value isEqualToString:@"i"], @"Token value is incorrect");
-    XCTAssert( [token.type isEqualToString:@"NAME"], @"Token type is incorrect");
+    XCTAssert( token.type == 0, @"Token type is incorrect");
 }
 
 @end
