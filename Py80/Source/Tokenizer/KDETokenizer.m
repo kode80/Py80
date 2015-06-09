@@ -64,6 +64,13 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
     return [NSArray arrayWithArray:tokens];
 }
 
+- (NSString *) stringForTokenType:(KDETokenType)type
+{
+    return @"Unknown";
+}
+
+#pragma mark - Private
+
 - (NSArray *) tokenizeString:(NSString *)string
        withRegularExpression:(NSRegularExpression *)regex
                       ranges:(NSArray *)ranges

@@ -17,5 +17,6 @@
 - (void) addTokenizePhase:(KDETokenizePhase *)phase;
 
 - (NSArray *) tokenizeString:(NSString *)string;
+- (NSString *) stringForTokenType:(KDETokenType)type;
 
 @end

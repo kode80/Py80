@@ -11,23 +11,6 @@
 #import "NSRegularExpression+PatternUtils.h"
 
 
-NSString *NSStringFromPyTokenType( KDEPyTokenType type)
-{
-    switch( type)
-    {
-        case KDETokenTypeComment:       return @"Comment";
-        case KDETokenTypeDocString:     return @"DocString";
-        case KDETokenTypeString:        return @"String";
-        case KDETokenTypeName:          return @"Name";
-        case KDETokenTypeNumber:        return @"Number";
-        case KDETokenTypeOperator:      return @"Operator";
-        case KDETokenTypeBracket:       return @"Bracket";
-        case KDETokenTypeSpecial:       return @"Special";
-        default: return @"Unknown";
-    }
-}
-
-
 @implementation KDEPyTokenizer
 
 - (instancetype) init
@@ -70,6 +53,22 @@ NSString *NSStringFromPyTokenType( KDEPyTokenType type)
     }
     
     return self;
+}
+
+- (NSString *) stringForTokenType:(KDETokenType)type
+{
+    switch( type)
+    {
+        case KDETokenTypeComment:       return @"Comment";
+        case KDETokenTypeDocString:     return @"DocString";
+        case KDETokenTypeString:        return @"String";
+        case KDETokenTypeName:          return @"Name";
+        case KDETokenTypeNumber:        return @"Number";
+        case KDETokenTypeOperator:      return @"Operator";
+        case KDETokenTypeBracket:       return @"Bracket";
+        case KDETokenTypeSpecial:       return @"Special";
+        default: return @"Unknown";
+    }
 }
 
 + (NSString *) pythonDocStringPattern
