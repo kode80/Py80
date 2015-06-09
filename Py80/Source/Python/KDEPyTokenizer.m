@@ -35,7 +35,6 @@ NSString *NSStringFromPyTokenType( KDEPyTokenType type)
     self = [super init];
     if( self)
     {
-        // Time was 7ms
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"#[^\r\n]*"
                                                               defaultTokenType:KDETokenTypeComment
                                                                   tokenTypeMap:nil]];
