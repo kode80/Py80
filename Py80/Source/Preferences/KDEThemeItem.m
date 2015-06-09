@@ -8,6 +8,14 @@
 
 #import "KDEThemeItem.h"
 
+
+@interface KDEThemeItem ()
+
+@property (nonatomic, readwrite, copy) NSDictionary *textAttributes;
+
+@end
+
+
 @implementation KDEThemeItem
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
@@ -37,6 +45,24 @@
     return self;
 }
 
+- (void) setColor:(NSColor *)color
+{
+    if( _color != color)
+    {
+        _color = color;
+        [self updateTextAttributes];
+    }
+}
+
+- (void) setFont:(NSFont *)font
+{
+    if( _font != font)
+    {
+        _font = font;
+        [self updateTextAttributes];
+    }
+}
+
 - (NSDictionary *) dictionary
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -53,6 +79,22 @@
         dictionary[ @"FontSize"] = @(self.font.pointSize);
     }
     return [NSDictionary dictionaryWithDictionary:dictionary];
+}
+
+- (void) updateTextAttributes
+{
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    if( self.color)
+    {
+        attributes[ NSForegroundColorAttributeName] = self.color;
+    }
+    
+    if( self.font)
+    {
+        attributes[ NSFontAttributeName] = self.font;
+    }
+    
+    self.textAttributes = [NSDictionary dictionaryWithDictionary:attributes];
 }
 
 @end

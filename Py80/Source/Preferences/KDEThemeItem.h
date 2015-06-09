@@ -12,6 +12,7 @@
 
 @property (nonatomic, readwrite, copy) NSColor *color;
 @property (nonatomic, readwrite, copy) NSFont *font;
+@property (nonatomic, readonly, copy) NSDictionary *textAttributes;
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *) dictionary;

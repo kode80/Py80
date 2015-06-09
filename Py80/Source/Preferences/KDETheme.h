@@ -20,6 +20,7 @@
 
 - (NSColor *) colorForItemName:(NSString *)name;
 - (NSFont *) fontForItemName:(NSString *)name;
+- (NSDictionary *) textAttributesForItemName:(NSString *)name;
 
 - (void) setColor:(NSColor *)color
       forItemName:(NSString *)name;

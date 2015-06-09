@@ -93,6 +93,12 @@
               createIfNeeded:NO].font;
 }
 
+- (NSDictionary *) textAttributesForItemName:(NSString *)name
+{
+    return [self itemForName:name
+              createIfNeeded:NO].textAttributes;
+}
+
 - (void) setColor:(NSColor *)color
       forItemName:(NSString *)name
 {
