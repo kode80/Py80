@@ -67,6 +67,7 @@
 		20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */; };
 		20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */; };
 		20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */; };
+		20F8936B1B2745C7007EA48A /* KDETokenizedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8936A1B2745C7007EA48A /* KDETokenizedString.m */; };
 		20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */; };
 		20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */; };
 		20F9B8351B25DF0F00DBBD4C /* KDETokenizePhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9B8341B25DF0F00DBBD4C /* KDETokenizePhase.m */; };
@@ -204,6 +205,8 @@
 		20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CursorPosition.m"; sourceTree = "<group>"; };
 		20F84EA71B18C427002D8116 /* NSString+RangeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RangeUtils.h"; sourceTree = "<group>"; };
 		20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RangeUtils.m"; sourceTree = "<group>"; };
+		20F893691B2745C7007EA48A /* KDETokenizedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETokenizedString.h; sourceTree = "<group>"; };
+		20F8936A1B2745C7007EA48A /* KDETokenizedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETokenizedString.m; sourceTree = "<group>"; };
 		20F8ED3A1B1B3F9F00DA11C3 /* KDEImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEImageStore.h; sourceTree = "<group>"; };
 		20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEImageStore.m; sourceTree = "<group>"; };
 		20F8ED3D1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawImageCommand.h; sourceTree = "<group>"; };
@@ -518,6 +521,8 @@
 				20F9B8341B25DF0F00DBBD4C /* KDETokenizePhase.m */,
 				20F9B83C1B261A8200DBBD4C /* NSRegularExpression+PatternUtils.h */,
 				20F9B83D1B261A8200DBBD4C /* NSRegularExpression+PatternUtils.m */,
+				20F893691B2745C7007EA48A /* KDETokenizedString.h */,
+				20F8936A1B2745C7007EA48A /* KDETokenizedString.m */,
 			);
 			path = Tokenizer;
 			sourceTree = "<group>";
@@ -705,6 +710,7 @@
 				20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */,
 				20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */,
 				20F4A5341B20AF53000BCECF /* KDEThemeItem.m in Sources */,
+				20F8936B1B2745C7007EA48A /* KDETokenizedString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,7 +846,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Py80/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -852,7 +857,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Py80/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
