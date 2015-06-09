@@ -68,6 +68,9 @@
 		20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */; };
 		20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */; };
 		20F8936B1B2745C7007EA48A /* KDETokenizedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8936A1B2745C7007EA48A /* KDETokenizedString.m */; };
+		20F8936F1B275F23007EA48A /* PythonTokenizerTest_Truth.txt in Resources */ = {isa = PBXBuildFile; fileRef = 20F8936D1B275F23007EA48A /* PythonTokenizerTest_Truth.txt */; };
+		20F893701B275F23007EA48A /* PythonTokenizerTest.py in Resources */ = {isa = PBXBuildFile; fileRef = 20F8936E1B275F23007EA48A /* PythonTokenizerTest.py */; };
+		20F893721B275F3A007EA48A /* KDEPyTokenizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F893711B275F3A007EA48A /* KDEPyTokenizerTests.m */; };
 		20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */; };
 		20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */; };
 		20F9B8351B25DF0F00DBBD4C /* KDETokenizePhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9B8341B25DF0F00DBBD4C /* KDETokenizePhase.m */; };
@@ -207,6 +210,9 @@
 		20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RangeUtils.m"; sourceTree = "<group>"; };
 		20F893691B2745C7007EA48A /* KDETokenizedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETokenizedString.h; sourceTree = "<group>"; };
 		20F8936A1B2745C7007EA48A /* KDETokenizedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETokenizedString.m; sourceTree = "<group>"; };
+		20F8936D1B275F23007EA48A /* PythonTokenizerTest_Truth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PythonTokenizerTest_Truth.txt; sourceTree = "<group>"; };
+		20F8936E1B275F23007EA48A /* PythonTokenizerTest.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = PythonTokenizerTest.py; sourceTree = "<group>"; };
+		20F893711B275F3A007EA48A /* KDEPyTokenizerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyTokenizerTests.m; sourceTree = "<group>"; };
 		20F8ED3A1B1B3F9F00DA11C3 /* KDEImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEImageStore.h; sourceTree = "<group>"; };
 		20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEImageStore.m; sourceTree = "<group>"; };
 		20F8ED3D1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawImageCommand.h; sourceTree = "<group>"; };
@@ -363,9 +369,11 @@
 		203D56991B0A55EE00A7779E /* Py80Tests */ = {
 			isa = PBXGroup;
 			children = (
+				20F8936C1B275EA0007EA48A /* Resources */,
 				203D569C1B0A55EE00A7779E /* Py80Tests.m */,
 				203D569A1B0A55EE00A7779E /* Supporting Files */,
 				20FAC2A41B24F072000B550D /* KDETokenizerTests.m */,
+				20F893711B275F3A007EA48A /* KDEPyTokenizerTests.m */,
 			);
 			path = Py80Tests;
 			sourceTree = "<group>";
@@ -510,6 +518,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		20F8936C1B275EA0007EA48A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				20F8936D1B275F23007EA48A /* PythonTokenizerTest_Truth.txt */,
+				20F8936E1B275F23007EA48A /* PythonTokenizerTest.py */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		20FAC29D1B24E2C0000B550D /* Tokenizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -627,6 +644,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F893701B275F23007EA48A /* PythonTokenizerTest.py in Resources */,
+				20F8936F1B275F23007EA48A /* PythonTokenizerTest_Truth.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +739,7 @@
 			files = (
 				20FAC2A51B24F072000B550D /* KDETokenizerTests.m in Sources */,
 				203D569D1B0A55EE00A7779E /* Py80Tests.m in Sources */,
+				20F893721B275F3A007EA48A /* KDEPyTokenizerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
