@@ -10,15 +10,16 @@
 
 typedef NS_ENUM( KDETokenType, KDEPyTokenType)
 {
-    KDETokenTypeComment,
-    KDETokenTypeDocString,
-    KDETokenTypeString,
-    KDETokenTypeNumber,
-    KDETokenTypeName,
-    KDETokenTypeOperator,
-    KDETokenTypeBracket,
-    KDETokenTypeSpecial,
-    KDETokenTypeTokenCount
+    KDEPyTokenTypeComment,
+    KDEPyTokenTypeDocString,
+    KDEPyTokenTypeString,
+    KDEPyTokenTypeNumber,
+    KDEPyTokenTypeName,
+    KDEPyTokenTypeKeyword,
+    KDEPyTokenTypeOperator,
+    KDEPyTokenTypeBracket,
+    KDEPyTokenTypeSpecial,
+    KDEPyTokenTypeTokenCount
 };
 
 extern NSString *NSStringFromPyTokenType( KDEPyTokenType type);

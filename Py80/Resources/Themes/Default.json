@@ -18,6 +18,13 @@
     "Red" : 0.7408866286277771,
     "FontName" : "Monaco"
   },
+  "Keyword" : {
+    "Green" : 0.7470558881759644,
+    "Blue" : 0.6707700490951538,
+    "FontSize" : 13,
+    "Red" : 0.7408866286277771,
+    "FontName" : "Monaco"
+  },
   "Bracket" : {
     "Green" : 0,
     "Blue" : 0.4443734288215637,

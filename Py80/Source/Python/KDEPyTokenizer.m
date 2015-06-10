@@ -19,35 +19,35 @@
     if( self)
     {
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"#[^\r\n]*"
-                                                              defaultTokenType:KDETokenTypeComment
+                                                              defaultTokenType:KDEPyTokenTypeComment
                                                                   tokenTypeMap:nil]];
         
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:[KDEPyTokenizer pythonDocStringPattern]
-                                                              defaultTokenType:KDETokenTypeDocString
+                                                              defaultTokenType:KDEPyTokenTypeDocString
                                                                   tokenTypeMap:nil]];
 
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"(?i)((ur|br|r|b|u)*\"[^\"]*\"|(ur|br|r|b|u)*\'[^\']*\')"
-                                                              defaultTokenType:KDETokenTypeString
+                                                              defaultTokenType:KDEPyTokenTypeString
                                                                   tokenTypeMap:nil]];
         
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:[KDEPyTokenizer pythonNumberPattern]
-                                                              defaultTokenType:KDETokenTypeNumber
+                                                              defaultTokenType:KDEPyTokenTypeNumber
                                                                   tokenTypeMap:nil]];
         
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[a-zA-Z_]\\w*"
-                                                              defaultTokenType:KDETokenTypeName
-                                                                  tokenTypeMap:nil]];
+                                                              defaultTokenType:KDEPyTokenTypeName
+                                                                  tokenTypeMap:[KDEPyTokenizer pythonNameTypeMap]]];
         
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"\\*\\*=?|>>=?|<<=?|<>|!=|//=?|[+\\-*/%&|^=<>]=?|~"
-                                                              defaultTokenType:KDETokenTypeOperator
+                                                              defaultTokenType:KDEPyTokenTypeOperator
                                                                   tokenTypeMap:nil]];
         
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[\\]\\[\\(\\)\\{\\}]"
-                                                              defaultTokenType:KDETokenTypeBracket
+                                                              defaultTokenType:KDEPyTokenTypeBracket
                                                                   tokenTypeMap:nil]];
         
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"[:;.,`@]"
-                                                              defaultTokenType:KDETokenTypeSpecial
+                                                              defaultTokenType:KDEPyTokenTypeSpecial
                                                                   tokenTypeMap:nil]];
         
     }
@@ -59,14 +59,15 @@
 {
     switch( type)
     {
-        case KDETokenTypeComment:       return @"Comment";
-        case KDETokenTypeDocString:     return @"DocString";
-        case KDETokenTypeString:        return @"String";
-        case KDETokenTypeName:          return @"Name";
-        case KDETokenTypeNumber:        return @"Number";
-        case KDETokenTypeOperator:      return @"Operator";
-        case KDETokenTypeBracket:       return @"Bracket";
-        case KDETokenTypeSpecial:       return @"Special";
+        case KDEPyTokenTypeComment:       return @"Comment";
+        case KDEPyTokenTypeDocString:     return @"DocString";
+        case KDEPyTokenTypeString:        return @"String";
+        case KDEPyTokenTypeName:          return @"Name";
+        case KDEPyTokenTypeKeyword:       return @"Keyword";
+        case KDEPyTokenTypeNumber:        return @"Number";
+        case KDEPyTokenTypeOperator:      return @"Operator";
+        case KDEPyTokenTypeBracket:       return @"Bracket";
+        case KDEPyTokenTypeSpecial:       return @"Special";
         default: return @"Unknown";
     }
 }
@@ -96,6 +97,21 @@
                                                                             [floatPattern stringByAppendingString:@"[jJ]"]]];
 
     return [NSRegularExpression groupPatternWithPatterns:@[ imagPattern, floatPattern, intPattern]];
+}
+
++ (NSDictionary *) pythonNameTypeMap
+{
+    NSArray *keywords = @[ @"and", @"del", @"from", @"not", @"while", @"as", @"elif", @"global", @"or", @"with",
+                           @"assert", @"else", @"if", @"pass", @"yield", @"break", @"except", @"import", @"print",
+                           @"class", @"exec", @"in", @"raise", @"continue", @"finally", @"is", @"return", @"def",
+                           @"for", @"lambda", @"try"];
+    NSMutableDictionary *typeMap = [NSMutableDictionary dictionary];
+    for( NSString *keyword in keywords)
+    {
+        typeMap[ keyword] = @(KDEPyTokenTypeKeyword);
+    }
+    
+    return [typeMap copy];
 }
 
 @end
