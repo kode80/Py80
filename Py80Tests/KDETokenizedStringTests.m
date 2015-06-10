@@ -17,6 +17,10 @@
 
 @property (nonatomic, readwrite, strong) NSArray *tokens;
 
+- (void) replaceTokensFromFirstToken:(KDEToken *)firstToken
+             toAndIncludingLastToken:(KDEToken *)lastToken
+                          withTokens:(NSArray *)tokens;
+
 @end
 
 
@@ -70,6 +74,80 @@
     
     subarrayRange = [tokenizedString tokensSubarrayRangeWithCharacterRange:NSMakeRange( 50, 10)];
     XCTAssert( NSEqualRanges( subarrayRange, NSMakeRange( 5, 0)), @"Subarray range incorrect");
+}
+
+- (void) testReplaceTokens
+{
+    KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
+                                                                           tokenizer:[KDETokenizer new]];
+    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    
+    NSArray *replacementTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    
+    // Test 1
+    tokenizedString.tokens = originalTokens;
+    [tokenizedString replaceTokensFromFirstToken:originalTokens.firstObject
+                         toAndIncludingLastToken:originalTokens.lastObject
+                                      withTokens:replacementTokens];
+    XCTAssertTrue( tokenizedString.tokens[ 0] == replacementTokens[0], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 1] == replacementTokens[1], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 2] == replacementTokens[2], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 3] == replacementTokens[3], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 4] == replacementTokens[4], @"token incorrect");
+    
+    XCTAssertFalse( tokenizedString.tokens[ 0] == originalTokens[0], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 1] == originalTokens[1], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 2] == originalTokens[2], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 3] == originalTokens[3], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 4] == originalTokens[4], @"token incorrect");
+    
+    // Test 2
+    tokenizedString.tokens = originalTokens;
+    [tokenizedString replaceTokensFromFirstToken:originalTokens[2]
+                         toAndIncludingLastToken:originalTokens[4]
+                                      withTokens:@[ replacementTokens[0], replacementTokens[1], replacementTokens[2]]];
+    XCTAssertTrue( tokenizedString.tokens[ 0] == originalTokens[0], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 1] == originalTokens[1], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 2] == replacementTokens[0], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 3] == replacementTokens[1], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 4] == replacementTokens[2], @"token incorrect");
+    
+    XCTAssertFalse( tokenizedString.tokens[ 0] == replacementTokens[0], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 1] == replacementTokens[1], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 2] == originalTokens[2], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 3] == originalTokens[3], @"token incorrect");
+    XCTAssertFalse( tokenizedString.tokens[ 4] == originalTokens[4], @"token incorrect");
+    
+    // Insertion Test
+    tokenizedString.tokens = originalTokens;
+    [tokenizedString replaceTokensFromFirstToken:originalTokens[3]
+                         toAndIncludingLastToken:originalTokens[4]
+                                      withTokens:replacementTokens];
+    XCTAssertTrue( tokenizedString.tokens[ 0] == originalTokens[0], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 1] == originalTokens[1], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 2] == originalTokens[2], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 3] == replacementTokens[0], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 4] == replacementTokens[1], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 5] == replacementTokens[2], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 6] == replacementTokens[3], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 7] == replacementTokens[4], @"token incorrect");
+    
+    
+    // Deletion Test
+    tokenizedString.tokens = originalTokens;
+    [tokenizedString replaceTokensFromFirstToken:originalTokens[0]
+                         toAndIncludingLastToken:originalTokens[2]
+                                      withTokens:@[]];
+    XCTAssertTrue( tokenizedString.tokens[ 0] == originalTokens[3], @"token incorrect");
+    XCTAssertTrue( tokenizedString.tokens[ 1] == originalTokens[4], @"token incorrect");
 }
 
 @end

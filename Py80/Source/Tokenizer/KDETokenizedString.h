@@ -20,8 +20,18 @@
 - (instancetype) initWithString:(NSString *)string
                       tokenizer:(KDETokenizer *)tokenizer;
 
+/**
+ Modifies the string and re-tokenizes the appropriate range, returning
+ any newly added tokens.
+ */
+- (NSArray *) replaceCharactersInRange:(NSRange)range
+                            withString:(NSString *)string;
+
 - (NSAttributedString *) attributedStringWithTheme:(KDETheme *)theme;
 
+/**
+ @brief Returns all tokens that overlap the character range provided.
+ */
 - (NSArray *) tokensForCharacterRange:(NSRange)range;
 
 /**

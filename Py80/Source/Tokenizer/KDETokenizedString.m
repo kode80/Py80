@@ -15,6 +15,7 @@
 @interface KDETokenizedString ()
 
 @property (nonatomic, readwrite, copy) NSString *string;
+@property (nonatomic, readwrite, strong) NSMutableString *internalString;
 @property (nonatomic, readwrite, strong) KDETokenizer *tokenizer;
 @property (nonatomic, readwrite, strong) NSArray *tokens;
 
@@ -29,17 +30,72 @@
     self = [super init];
     if( self)
     {
-        self.string = string;
+        self.internalString = [NSMutableString stringWithString:string ? string : @""];
         self.tokenizer = tokenizer;
         self.tokens = [tokenizer tokenizeString:string];
     }
     return self;
 }
 
+#pragma mark - Accessors
+
+- (NSString *) string
+{
+    if( _string == nil)
+    {
+        _string = [self.internalString copy];
+    }
+    return _string;
+}
+
+#pragma mark - Public
+
+- (NSArray *) replaceCharactersInRange:(NSRange)range
+                            withString:(NSString *)string
+{
+    if( range.location > self.internalString.length)
+    {
+        @throw [NSException exceptionWithName:NSRangeException
+                                       reason:@"range is out of bounds"
+                                     userInfo:nil];
+    }
+    
+    NSRange subarrayRange = [self tokensSubarrayRangeWithCharacterRange:range];
+    NSInteger leftIndex = subarrayRange.location ? subarrayRange.location - 1 : -1;
+    NSInteger rightIndex = NSMaxRange( subarrayRange) < self.tokens.count ? NSMaxRange( subarrayRange) : -1;
+    
+    KDEToken *leftToken = leftIndex > -1 ? self.tokens[ leftIndex] : nil;
+    KDEToken *rightToken = rightIndex > -1 ? self.tokens[ rightIndex] : nil;
+    
+    if( leftIndex + 1 < self.tokens.count)
+    {
+        [self updateTokenRangesFromFirstToken:self.tokens[ leftIndex + 1]
+                                       offset:string.length - range.length];
+    }
+    
+    
+    [self.internalString replaceCharactersInRange:range
+                                       withString:string];
+    [self invalidatePublicString];
+    
+    
+    NSUInteger tokenizeStart = leftToken ? leftToken.range.location : 0;
+    NSUInteger tokenizeEnd = rightToken ? NSMaxRange( rightToken.range) : self.internalString.length;
+    NSRange tokenizeRange = NSMakeRange( tokenizeStart, tokenizeEnd - tokenizeStart);
+    NSArray *newTokens = [self.tokenizer tokenizeString:[self.internalString substringWithRange:tokenizeRange]];
+    NSLog(@"newTokenString: %@", [self.internalString substringWithRange:tokenizeRange]);
+    
+    [self replaceTokensFromFirstToken:leftToken ?: self.tokens.firstObject
+              toAndIncludingLastToken:rightToken ?: self.tokens.lastObject
+                           withTokens:newTokens];
+
+    return newTokens;
+}
+
 - (NSAttributedString *) attributedStringWithTheme:(KDETheme *)theme
 {
     NSDictionary *defaultAttributes = [theme textAttributesForItemName:theme.itemNames.firstObject];
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.string
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.internalString
                                                                                          attributes:defaultAttributes];
     for( KDEToken *token in self.tokens)
     {
@@ -112,6 +168,73 @@
     }
     
     return subarrayRange;
+}
+
+#pragma mark - Private
+
+- (void) updateTokenRangesFromFirstToken:(KDEToken *)firstToken
+                                  offset:(NSInteger)offset
+{
+    NSUInteger firstTokenIndex = [self.tokens indexOfObject:firstToken];
+    if( firstTokenIndex == NSNotFound)
+    {
+        @throw [NSException exceptionWithName:NSRangeException
+                                       reason:@"firstToken doesn't exist in tokens"
+                                     userInfo:nil];
+    }
+    
+    NSUInteger count = self.tokens.count;
+    KDEToken *token;
+    NSRange range;
+    
+    for( NSInteger i=firstTokenIndex; i<count; i++)
+    {
+        token = self.tokens[ i];
+        range = token.range;
+        range.location += offset;
+        token.range = range;
+    }
+}
+
+- (void) replaceTokensFromFirstToken:(KDEToken *)firstToken
+             toAndIncludingLastToken:(KDEToken *)lastToken
+                          withTokens:(NSArray *)tokens
+{
+    NSUInteger firstIndex = [self.tokens indexOfObject:firstToken];
+    NSUInteger lastIndex = [self.tokens indexOfObject:lastToken];
+    
+    if( firstIndex == NSNotFound || lastIndex == NSNotFound)
+    {
+        @throw [NSException exceptionWithName:NSRangeException
+                                       reason:@"invalid first/last tokens"
+                                     userInfo:nil];
+    }
+    
+    if( firstIndex > lastIndex)
+    {
+        NSUInteger tmp = lastIndex; lastIndex = firstIndex; firstIndex = tmp;
+    }
+    
+    NSMutableArray *updatedTokens = [NSMutableArray arrayWithArray:self.tokens];
+    [updatedTokens replaceObjectsInRange:NSMakeRange( firstIndex, lastIndex - firstIndex + 1)
+                    withObjectsFromArray:tokens];
+    self.tokens = [NSArray arrayWithArray:updatedTokens];
+}
+
+- (void) invalidatePublicString
+{
+    // Internally we use the mutable self.internalString.
+    // Externally the string is accessed via readonly, immutable .string.
+    //
+    // To avoid [self.internalString copy] everytime  an external
+    // caller modifys the string via public methods or accesses .string,
+    // we do a lazy copy in the .string accessor.
+    //
+    // Therefore, any method that modifys self.internalString must call
+    // invalidatePublicString so that the next time .string is accessed
+    // externally it will be updated via [self.internalString copy]
+    
+    self.string = nil;
 }
 
 @end
