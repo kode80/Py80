@@ -269,6 +269,7 @@
         KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:self.string
                                                                                tokenizer:self.tokenizer];
         [self.textStorage setAttributedString:[tokenizedString attributedStringWithTheme:self.theme]];
+        self.insertionPointColor = [self.theme colorForItemName:@"CodeCursor"];
     }
 }
 
