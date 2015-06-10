@@ -13,6 +13,8 @@
 #import "KDEExceptionFormatter.h"
 #import "KDEPyException.h"
 #import "KDETheme.h"
+#import "KDEPyTokenizer.h"
+#import "KDEPy80Preferences.h"
 
 #import "KDEConsoleViewController.h"
 
@@ -44,6 +46,10 @@
     
     [self applyDefaultsToTextView:self.codeView];
     [self applyDefaultsToTextView:self.console];
+
+    self.codeView.tokenizer = [KDEPyTokenizer new];
+    KDETheme *theme = [[KDETheme alloc] initWithJSONAtPath:[KDEPy80Preferences sharedPreferences].currentThemePath];
+    [self applyTheme:theme];
     
     self.console.editable = NO;
     
@@ -104,6 +110,7 @@
 - (void) applyTheme:(KDETheme *)theme
 {
     self.codeView.backgroundColor = [theme colorForItemName:@"CodeBackground"];
+    self.codeView.theme = theme;
     self.outputView.enclosingScrollView.backgroundColor = [theme colorForItemName:@"OutputBackground"];
     [self.consoleViewController applyTheme:theme];
 }

@@ -9,6 +9,9 @@
 #import "KDECodeView.h"
 #import "KDECodeViewVKConsts.h"
 #import "KDECompletionWindowController.h"
+#import "KDETokenizer.h"
+#import "KDETokenizedString.h"
+#import "KDETheme.h"
 
 #import "NSString+RangeUtils.h"
 #import "NSString+PythonRangeUtils.h"
@@ -156,6 +159,29 @@
     }
 }
 
+#pragma mark Accessors
+
+- (void) setTokenizer:(KDETokenizer *)tokenizer
+{
+    if( _tokenizer != tokenizer)
+    {
+        _tokenizer = tokenizer;
+        [self refreshColor];
+    }
+}
+
+- (void) setTheme:(KDETheme *)theme
+{
+    _theme = theme;
+    [self refreshColor];
+}
+
+- (void) setString:(NSString *)string
+{
+    [super setString:string];
+    [self refreshColor];
+}
+
 #pragma mark Notifications
 
 - (void) windowWillClose:(NSNotification *)notification
@@ -224,6 +250,8 @@
 {
     [super didChangeText];
     
+    [self refreshColor];
+    
     if( self.didChangeTextTriggersCompletion)
     {
         self.didChangeTextTriggersCompletion = NO;
@@ -233,5 +261,15 @@
 }
 
 #pragma mark - private
+
+- (void) refreshColor
+{
+    if( self.theme && self.tokenizer)
+    {
+        KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:self.string
+                                                                               tokenizer:self.tokenizer];
+        [self.textStorage setAttributedString:[tokenizedString attributedStringWithTheme:self.theme]];
+    }
+}
 
 @end

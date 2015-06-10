@@ -1,87 +1,82 @@
 {
+  "String" : {
+    "Green" : 0.1810949295759201,
+    "Blue" : 0.1814933866262436,
+    "FontSize" : 13,
+    "Red" : 0.72801673412323,
+    "FontName" : "Monaco"
+  },
   "ConsoleBackground" : {
-    "Red" : 1,
-    "Green" : 0.9999743700027466,
-    "Blue" : 0.9999912977218628
+    "Red" : 0.0392156862745098,
+    "Green" : 0.09803921568627451,
+    "Blue" : 0.09411764705882353
+  },
+  "Name" : {
+    "Green" : 0.7470558881759644,
+    "Blue" : 0.6707700490951538,
+    "FontSize" : 13,
+    "Red" : 0.7408866286277771,
+    "FontName" : "Monaco"
+  },
+  "Bracket" : {
+    "Green" : 0,
+    "Blue" : 0.4443734288215637,
+    "FontSize" : 13,
+    "Red" : 0.7870027422904968,
+    "FontName" : "Monaco"
+  },
+  "DocString" : {
+    "Green" : 0.3840005993843079,
+    "Blue" : 0.3320346772670746,
+    "FontSize" : 13,
+    "Red" : 0.3440518975257874,
+    "FontName" : "Monaco"
   },
   "CodeBackground" : {
-    "Red" : 1,
-    "Green" : 1,
-    "Blue" : 1
+    "Red" : 0.03529815375804901,
+    "Green" : 0.1282213777303696,
+    "Blue" : 0.1258759498596191
   },
-  "Comments2" : {
+  "Number" : {
+    "Green" : 0.4966969192028046,
+    "Blue" : 0.7899681329727173,
+    "FontSize" : 13,
+    "Red" : 0.2707130610942841,
+    "FontName" : "Monaco"
+  },
+  "Comment" : {
     "Green" : 0.5215686559677124,
     "Blue" : 0,
     "FontSize" : 13,
     "Red" : 0.1607843190431595,
     "FontName" : "Monaco"
   },
-  "Identifiers" : {
-    "Green" : 0,
-    "Blue" : 0,
+  "Operator" : {
+    "Green" : 0.4351144433021545,
+    "Blue" : 0.6735183000564575,
     "FontSize" : 13,
-    "Red" : 0,
-    "FontName" : "Monaco"
-  },
-  "Identifiers2" : {
-    "Green" : 0,
-    "Blue" : 0,
-    "FontSize" : 13,
-    "Red" : 0,
+    "Red" : 0.6291275024414062,
     "FontName" : "Monaco"
   },
   "ConsoleText" : {
-    "Green" : 0,
-    "Blue" : 0,
+    "Green" : 0.7992458939552307,
+    "Blue" : 0.7636348009109497,
     "FontSize" : 13,
-    "Red" : 0,
+    "Red" : 0.4143159985542297,
     "FontName" : "Monaco"
   },
-  "Tags" : {
-    "Green" : 0.1725490242242813,
-    "Blue" : 0.6392157077789307,
+  "Special" : {
+    "Green" : 0.6159313321113586,
+    "Blue" : 0.2462151497602463,
     "FontSize" : 13,
-    "Red" : 0.729411780834198,
-    "FontName" : "Monaco"
-  },
-  "Preprocessor" : {
-    "Green" : 0.1725490242242813,
-    "Blue" : 0.6392157077789307,
-    "FontSize" : 13,
-    "Red" : 0.729411780834198,
-    "FontName" : "Monaco"
-  },
-  "UserIdentifiers" : {
-    "Green" : 0.1725490242242813,
-    "Blue" : 0.6392157077789307,
-    "FontSize" : 13,
-    "Red" : 0.729411780834198,
-    "FontName" : "Monaco"
-  },
-  "OutputBackground" : {
-    "Red" : 1,
-    "Green" : 0.9999743700027466,
-    "Blue" : 0.9999912977218628
-  },
-  "Strings" : {
-    "Green" : 0.1803921610116959,
-    "Blue" : 0.1098039224743843,
-    "FontSize" : 13,
-    "Red" : 0.8196078538894653,
-    "FontName" : "Monaco"
-  },
-  "Comments" : {
-    "Green" : 0.5215686559677124,
-    "Blue" : 0,
-    "FontSize" : 13,
-    "Red" : 0.1607843190431595,
+    "Red" : 0.7023177146911621,
     "FontName" : "Monaco"
   },
   "ConsoleTimestamp" : {
-    "Green" : 0.2897137403488159,
-    "Blue" : 0.2897137403488159,
+    "Green" : 0.4037723541259766,
+    "Blue" : 0.3526262938976288,
     "FontSize" : 13,
-    "Red" : 0.2897137403488159,
+    "Red" : 0.4938259422779083,
     "FontName" : "Monaco"
   }
 }

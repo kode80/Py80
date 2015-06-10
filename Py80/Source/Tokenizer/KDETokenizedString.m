@@ -37,10 +37,12 @@
 
 - (NSAttributedString *) attributedStringWithTheme:(KDETheme *)theme
 {
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.string];
+    NSDictionary *defaultAttributes = [theme textAttributesForItemName:theme.itemNames.firstObject];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.string
+                                                                                         attributes:defaultAttributes];
     for( KDEToken *token in self.tokens)
     {
-        [attributedString setAttributes:[theme textAttributesForItemName:nil]
+        [attributedString setAttributes:[theme textAttributesForItemName:[self.tokenizer stringForTokenType:token.type]]
                                   range:token.range];
     }
     

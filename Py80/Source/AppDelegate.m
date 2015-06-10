@@ -28,6 +28,11 @@
 #import "KDEPy80Preferences.h"
 #import "KDETheme.h"
 
+#import "KDETimer.h"
+#import "KDEPyTokenizer.h"
+#import "KDEToken.h"
+#import "KDETokenizedString.h"
+
 
 typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 {
@@ -53,6 +58,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
 @property (nonatomic, readwrite, strong) KDEProfilerViewController *profilerViewController;
 @property (nonatomic, readwrite, strong) KDEPreferencesWindowController *preferencesWindowController;
 
+@property (nonatomic, readwrite, strong) KDETokenizedString *tokenizedString;
+
 @end
 
 
@@ -65,9 +72,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
     self.window.titleVisibility = NSWindowTitleHidden;
     self.window.contentViewController = self.mainViewController;
     self.mainViewController.delegate = self;
-    
-    NSString *themePath = [KDEPy80Preferences sharedPreferences].currentThemePath;
-    [self.mainViewController applyTheme:[[KDETheme alloc] initWithJSONAtPath:themePath]];
     
     self.profilerViewController = [[KDEProfilerViewController alloc] initWithNibName:nil
                                                                               bundle:nil];
@@ -295,6 +299,26 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                                                                         encoding:NSUTF8StringEncoding
                                                                            error:NULL];
     [self updateInfoField];
+    
+    /*
+    __block NSArray *tokens = nil;
+    
+    double time = [KDETimer timeBlock:^{
+        tokens = [tokenizer tokenizeString:self.mainViewController.codeView.string];
+    }];
+    
+    NSMutableString *message = [NSMutableString stringWithString:@"\n"];
+    for( KDEToken *token in tokens)
+    {
+        [message appendFormat:@"%@ (%@) = \"%@\"\n", [tokenizer stringForTokenType:token.type], NSStringFromRange( token.range), token.value];
+    }
+    
+    [self py80ContextClearLog:nil];
+    [self py80Context:nil
+           logMessage:[NSString stringWithFormat:@"Tokens: %@    Time: %@ms", @(tokens.count), @(time)]];
+    [self py80Context:nil
+           logMessage:message];
+     //*/
 }
 
 - (BOOL) documentTrackerActiveFileNeedingSaveCanChange:(KDEDocumentTracker *)tracker
@@ -345,6 +369,8 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                       didUpdateTheme:(KDETheme *)theme
 {
     [self.mainViewController applyTheme:theme];
+    NSAttributedString *a = [self.tokenizedString attributedStringWithTheme:theme];
+    [self.mainViewController.codeView.textStorage setAttributedString:a];
 }
 
 #pragma mark - KDEProfilerViewControllerDelegate
