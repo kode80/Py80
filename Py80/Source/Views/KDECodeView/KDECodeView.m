@@ -268,7 +268,9 @@
     {
         KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:self.string
                                                                                tokenizer:self.tokenizer];
+        NSArray *oldRanges = self.selectedRanges;
         [self.textStorage setAttributedString:[tokenizedString attributedStringWithTheme:self.theme]];
+        self.selectedRanges = oldRanges;
         self.insertionPointColor = [self.theme colorForItemName:@"CodeCursor"];
     }
 }
