@@ -17,6 +17,9 @@
 
 @property (nonatomic, readwrite, strong) NSArray *tokens;
 
+- (void) updateTokenRangesFromFirstToken:(KDEToken *)firstToken
+                                  offset:(NSInteger)offset;
+
 - (void) replaceTokensFromFirstToken:(KDEToken *)firstToken
              toAndIncludingLastToken:(KDEToken *)lastToken
                           withTokens:(NSArray *)tokens;
@@ -74,6 +77,37 @@
     
     subarrayRange = [tokenizedString tokensSubarrayRangeWithCharacterRange:NSMakeRange( 50, 10)];
     XCTAssert( NSEqualRanges( subarrayRange, NSMakeRange( 5, 0)), @"Subarray range incorrect");
+}
+
+- (void) testUpdateTokenRanges
+{
+    KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
+                                                                           tokenizer:[KDETokenizer new]];
+    
+    for( int i=0; i<3; i++)
+    {
+        // Tokens are not copied, so recreate test data for each iteration...
+        NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]];
+
+        // ...and create a second identical batch to compare results
+        NSArray *originalTokens2 = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                      [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                      [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                      [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]];
+        
+        NSInteger offset = -5 + i * 5;
+        tokenizedString.tokens = originalTokens;
+        [tokenizedString updateTokenRangesFromFirstToken:originalTokens.firstObject
+                                                  offset:offset];
+        
+        XCTAssertEqual( [tokenizedString.tokens[0] range].location, [originalTokens2[0] range].location + offset, @"location incorrect");
+        XCTAssertEqual( [tokenizedString.tokens[1] range].location, [originalTokens2[1] range].location + offset, @"location incorrect");
+        XCTAssertEqual( [tokenizedString.tokens[2] range].location, [originalTokens2[2] range].location + offset, @"location incorrect");
+        XCTAssertEqual( [tokenizedString.tokens[3] range].location, [originalTokens2[3] range].location + offset, @"location incorrect");
+    }
 }
 
 - (void) testReplaceTokens
