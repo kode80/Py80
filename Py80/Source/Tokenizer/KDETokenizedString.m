@@ -184,15 +184,10 @@
     }
     
     NSUInteger count = self.tokens.count;
-    KDEToken *token;
-    NSRange range;
     
     for( NSInteger i=firstTokenIndex; i<count; i++)
     {
-        token = self.tokens[ i];
-        range = token.range;
-        range.location += offset;
-        token.range = range;
+        [self.tokens[ i] offsetRangeLocation:offset];
     }
 }
 
