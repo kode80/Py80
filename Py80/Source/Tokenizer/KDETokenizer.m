@@ -86,12 +86,11 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
                              usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop){
                                  KDEToken *token = [KDEToken new];
                                  token.value = [string substringWithRange:result.range];
-                                 token.type = [tokenTypeMap[ token.value] unsignedIntegerValue] ?: defaultTokenType;
                                  token.range = result.range;
                                  
                                  if( tokenTypeMap)
                                  {
-                                     NSNumber *typeNumber = tokenTypeMap[ @(token.type)];
+                                     NSNumber *typeNumber = tokenTypeMap[ token.value];
                                      token.type = typeNumber ? [typeNumber unsignedIntegerValue] : defaultTokenType;
                                  }
                                  else
