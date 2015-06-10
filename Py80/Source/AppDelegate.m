@@ -369,8 +369,6 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
                       didUpdateTheme:(KDETheme *)theme
 {
     [self.mainViewController applyTheme:theme];
-    NSAttributedString *a = [self.tokenizedString attributedStringWithTheme:theme];
-    [self.mainViewController.codeView.textStorage setAttributedString:a];
 }
 
 #pragma mark - KDEProfilerViewControllerDelegate
