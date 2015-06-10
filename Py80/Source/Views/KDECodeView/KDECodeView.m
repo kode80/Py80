@@ -21,6 +21,10 @@
 
 @property (nonatomic, readwrite, assign) BOOL didChangeTextTriggersCompletion;
 @property (nonatomic, readwrite, copy) NSCharacterSet *triggerCompletionCharSet;
+@property (nonatomic, readwrite, strong) KDETokenizedString *tokenizedString;
+
+@property (nonatomic, readwrite, copy) NSString *replacementString;
+@property (nonatomic, readwrite, assign) NSRange replacementRange;
 
 @end
 
@@ -166,6 +170,8 @@
     if( _tokenizer != tokenizer)
     {
         _tokenizer = tokenizer;
+        self.tokenizedString = tokenizer ? [[KDETokenizedString alloc] initWithString:self.string
+                                                                            tokenizer:tokenizer] : nil;
         [self refreshColor];
     }
 }
@@ -179,6 +185,8 @@
 - (void) setString:(NSString *)string
 {
     [super setString:string];
+    self.tokenizedString = self.tokenizer ? [[KDETokenizedString alloc] initWithString:self.string
+                                                                             tokenizer:self.tokenizer] : nil;
     [self refreshColor];
 }
 
@@ -239,6 +247,9 @@
     BOOL result = [super shouldChangeTextInRange:affectedCharRange
                                replacementString:replacementString];
     
+    self.replacementString = result ? replacementString : nil;
+    self.replacementRange = affectedCharRange;
+    
     self.didChangeTextTriggersCompletion = result &&
                                            replacementString.length == 1 &&
                                            [self.triggerCompletionCharSet characterIsMember:[replacementString characterAtIndex:0]];
@@ -250,7 +261,22 @@
 {
     [super didChangeText];
     
-    [self refreshColor];
+    if( self.replacementString)
+    {
+        NSArray *newTokens = [self.tokenizedString replaceCharactersInRange:self.replacementRange
+                                                                 withString:self.replacementString];
+        self.replacementString = nil;
+        
+        for( KDEToken *token in newTokens)
+        {
+            [self.textStorage setAttributes:[self.theme textAttributesForItemName:[self.tokenizer stringForTokenType:token.type]]
+                                      range:token.range];
+        }
+    }
+    else
+    {
+        [self refreshColor];
+    }
     
     if( self.didChangeTextTriggersCompletion)
     {
@@ -264,12 +290,10 @@
 
 - (void) refreshColor
 {
-    if( self.theme && self.tokenizer)
+    if( self.theme && self.tokenizedString)
     {
-        KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:self.string
-                                                                               tokenizer:self.tokenizer];
         NSArray *oldRanges = self.selectedRanges;
-        [self.textStorage setAttributedString:[tokenizedString attributedStringWithTheme:self.theme]];
+        [self.textStorage setAttributedString:[self.tokenizedString attributedStringWithTheme:self.theme]];
         self.selectedRanges = oldRanges;
         self.insertionPointColor = [self.theme colorForItemName:@"CodeCursor"];
     }
