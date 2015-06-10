@@ -78,12 +78,14 @@
                                        withString:string];
     [self invalidatePublicString];
     
-    
     NSUInteger tokenizeStart = leftToken ? leftToken.range.location : 0;
     NSUInteger tokenizeEnd = rightToken ? NSMaxRange( rightToken.range) : self.internalString.length;
     NSRange tokenizeRange = NSMakeRange( tokenizeStart, tokenizeEnd - tokenizeStart);
     NSArray *newTokens = [self.tokenizer tokenizeString:[self.internalString substringWithRange:tokenizeRange]];
-    NSLog(@"newTokenString: %@", [self.internalString substringWithRange:tokenizeRange]);
+    for( KDEToken *token in newTokens)
+    {
+        [token offsetRangeLocation:leftToken.range.location];
+    }
     
     [self replaceTokensFromFirstToken:leftToken ?: self.tokens.firstObject
               toAndIncludingLastToken:rightToken ?: self.tokens.lastObject
