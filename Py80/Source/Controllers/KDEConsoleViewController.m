@@ -56,13 +56,16 @@
 
 - (void) applyTheme:(KDETheme *)theme
 {
-    [self viewAsTextView].backgroundColor = [theme colorForItemName:@"ConsoleBackground"];
-    self.logTimestampAttributes = @{ NSFontAttributeName : [theme fontForItemName:@"ConsoleTimestamp"],
-                                     NSForegroundColorAttributeName : [theme colorForItemName:@"ConsoleTimestamp"]};
-    self.logMessageAttributes = @{ NSFontAttributeName : [theme fontForItemName:@"ConsoleText"],
-                                   NSForegroundColorAttributeName : [theme colorForItemName:@"ConsoleText"]};
-    
-    [[self viewAsTextView].textStorage setAttributedString:[self attributedStringForAllLogs]];
+    if( theme)
+    {
+        [self viewAsTextView].backgroundColor = [theme colorForItemName:@"ConsoleBackground"];
+        self.logTimestampAttributes = @{ NSFontAttributeName : [theme fontForItemName:@"ConsoleTimestamp"],
+                                         NSForegroundColorAttributeName : [theme colorForItemName:@"ConsoleTimestamp"]};
+        self.logMessageAttributes = @{ NSFontAttributeName : [theme fontForItemName:@"ConsoleText"],
+                                       NSForegroundColorAttributeName : [theme colorForItemName:@"ConsoleText"]};
+        
+        [[self viewAsTextView].textStorage setAttributedString:[self attributedStringForAllLogs]];
+    }
 }
 
 #pragma mark - Private
