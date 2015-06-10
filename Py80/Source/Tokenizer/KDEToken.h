@@ -22,4 +22,6 @@ typedef NSUInteger KDETokenType;
                          value:(NSString *)value
                          range:(NSRange)range;
 
+- (void) offsetRangeLocation:(NSInteger)offset;
+
 @end

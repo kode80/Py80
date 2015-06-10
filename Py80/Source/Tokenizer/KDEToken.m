@@ -21,4 +21,9 @@
     return token;
 }
 
+- (void) offsetRangeLocation:(NSInteger)offset
+{
+    _range.location += offset;
+}
+
 @end
