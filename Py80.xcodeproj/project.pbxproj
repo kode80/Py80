@@ -55,6 +55,8 @@
 		20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84E9F1B18C3F1002D8116 /* NSCharacterSet+PythonSets.m */; };
 		20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */; };
 		20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */; };
+		20F889D31B287A41006FB989 /* KDETokenizedStringTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F889D21B287A41006FB989 /* KDETokenizedStringTests.m */; };
+		20F889D61B288A25006FB989 /* NSRangeUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F889D51B288A25006FB989 /* NSRangeUtilsTests.m */; };
 		20F8936B1B2745C7007EA48A /* KDETokenizedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8936A1B2745C7007EA48A /* KDETokenizedString.m */; };
 		20F8936F1B275F23007EA48A /* PythonTokenizerTest_Truth.txt in Resources */ = {isa = PBXBuildFile; fileRef = 20F8936D1B275F23007EA48A /* PythonTokenizerTest_Truth.txt */; };
 		20F893701B275F23007EA48A /* PythonTokenizerTest.py in Resources */ = {isa = PBXBuildFile; fileRef = 20F8936E1B275F23007EA48A /* PythonTokenizerTest.py */; };
@@ -171,6 +173,9 @@
 		20F84EA61B18C427002D8116 /* NSString+CursorPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CursorPosition.m"; sourceTree = "<group>"; };
 		20F84EA71B18C427002D8116 /* NSString+RangeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RangeUtils.h"; sourceTree = "<group>"; };
 		20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RangeUtils.m"; sourceTree = "<group>"; };
+		20F889D21B287A41006FB989 /* KDETokenizedStringTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETokenizedStringTests.m; sourceTree = "<group>"; };
+		20F889D41B2889A6006FB989 /* NSRangeUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSRangeUtils.h; sourceTree = "<group>"; };
+		20F889D51B288A25006FB989 /* NSRangeUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSRangeUtilsTests.m; sourceTree = "<group>"; };
 		20F893691B2745C7007EA48A /* KDETokenizedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETokenizedString.h; sourceTree = "<group>"; };
 		20F8936A1B2745C7007EA48A /* KDETokenizedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETokenizedString.m; sourceTree = "<group>"; };
 		20F8936D1B275F23007EA48A /* PythonTokenizerTest_Truth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PythonTokenizerTest_Truth.txt; sourceTree = "<group>"; };
@@ -310,6 +315,8 @@
 				203D569A1B0A55EE00A7779E /* Supporting Files */,
 				20FAC2A41B24F072000B550D /* KDETokenizerTests.m */,
 				20F893711B275F3A007EA48A /* KDEPyTokenizerTests.m */,
+				20F889D21B287A41006FB989 /* KDETokenizedStringTests.m */,
+				20F889D51B288A25006FB989 /* NSRangeUtilsTests.m */,
 			);
 			path = Py80Tests;
 			sourceTree = "<group>";
@@ -447,6 +454,7 @@
 				20F84EA81B18C427002D8116 /* NSString+RangeUtils.m */,
 				20F9B8361B25E94E00DBBD4C /* KDETimer.h */,
 				20F9B8371B25E94E00DBBD4C /* KDETimer.m */,
+				20F889D41B2889A6006FB989 /* NSRangeUtils.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -670,8 +678,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				20FAC2A51B24F072000B550D /* KDETokenizerTests.m in Sources */,
+				20F889D61B288A25006FB989 /* NSRangeUtilsTests.m in Sources */,
 				203D569D1B0A55EE00A7779E /* Py80Tests.m in Sources */,
 				20F893721B275F3A007EA48A /* KDEPyTokenizerTests.m in Sources */,
+				20F889D31B287A41006FB989 /* KDETokenizedStringTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

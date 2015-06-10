@@ -22,4 +22,19 @@
 
 - (NSAttributedString *) attributedStringWithTheme:(KDETheme *)theme;
 
+- (NSArray *) tokensForCharacterRange:(NSRange)range;
+
+/**
+ @brief Returns the array range of tokens that overlap the character range provided.
+ If no tokens overlap, the returned array range will have a length of 0 and
+ the location will be the index of the token to the right of the character range.
+ 
+ @discussion Example: if the character range is beyond the last token then the returned
+ array range's location will be KDETokenizedString.tokens.count.
+ 
+ Example: [T:"keyword"] "untokenized parts of string" [T:"keyword"]
+ if the character range was { 10, 5 }, the array range would be { 1, 0 }
+ */
+- (NSRange) tokensSubarrayRangeWithCharacterRange:(NSRange)range;
+
 @end
