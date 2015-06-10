@@ -1,13 +1,13 @@
 //
-//  VKConsts.h
-//  KDETextView
+//  KDECodeViewVKConsts.h
+//  KDECodeView
 //
-//  Created by Benjamin S Hopkins on 5/24/15.
+//  Created by Benjamin S Hopkins on 6/9/15.
 //  Copyright (c) 2015 kode80. All rights reserved.
 //
 
-#ifndef KDETextView_VKConsts_h
-#define KDETextView_VKConsts_h
+#ifndef KDECodeView_VKConsts_h
+#define KDECodeView_VKConsts_h
 
 enum {
     kVK_ANSI_A                    = 0x00,

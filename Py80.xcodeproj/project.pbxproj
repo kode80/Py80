@@ -9,17 +9,6 @@
 /* Begin PBXBuildFile section */
 		20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E7B1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m */; };
 		20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */; };
-		20082E991B0B8B240064DDA4 /* ASKLineNumberMarker.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E821B0B8B240064DDA4 /* ASKLineNumberMarker.m */; };
-		20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E841B0B8B240064DDA4 /* ASKLineNumberView.m */; };
-		20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E861B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m */; };
-		20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E881B0B8B240064DDA4 /* ASKSyntax.m */; };
-		20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E8A1B0B8B240064DDA4 /* ASKSyntaxViewController.m */; };
-		20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E8C1B0B8B240064DDA4 /* ASKTypesetter.m */; };
-		20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E8E1B0B8B240064DDA4 /* NSArray+Color.m */; };
-		20082EA01B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E901B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m */; };
-		20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E921B0B8B240064DDA4 /* NSTextView+SyntaxKit.m */; };
-		20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E951B0B8B240064DDA4 /* SyntaxKit.m */; };
-		20082EA31B0B8B240064DDA4 /* TDBindings.m in Sources */ = {isa = PBXBuildFile; fileRef = 20082E971B0B8B240064DDA4 /* TDBindings.m */; };
 		20082EAF1B0B8B310064DDA4 /* SyntaxColorDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */; };
 		20082EB51B0B91CA0064DDA4 /* Syntax Definitions in Resources */ = {isa = PBXBuildFile; fileRef = 20082EB41B0B91CA0064DDA4 /* Syntax Definitions */; };
 		200B7C531B178765005D64B1 /* KDETypeTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 200B7C521B178765005D64B1 /* KDETypeTableCellView.m */; };
@@ -43,7 +32,6 @@
 		208D43081B1635200004898F /* KDEPyCallSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D43071B1635200004898F /* KDEPyCallSignature.m */; };
 		208D430C1B1646D80004898F /* KDECompletionWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D430B1B1646D80004898F /* KDECompletionWindowController.m */; };
 		208D430F1B1668B70004898F /* KDEWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D430E1B1668B70004898F /* KDEWindow.m */; };
-		208D43121B1688240004898F /* KDETextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 208D43111B1688240004898F /* KDETextView.m */; };
 		20A6E9801B0FC128005658C3 /* KDEExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */; };
 		20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9831B0FD886005658C3 /* KDEPy80Context.m */; };
 		20A6E9871B0FD886005658C3 /* KDEPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6E9851B0FD886005658C3 /* KDEPython.m */; };
@@ -71,6 +59,7 @@
 		20F8936F1B275F23007EA48A /* PythonTokenizerTest_Truth.txt in Resources */ = {isa = PBXBuildFile; fileRef = 20F8936D1B275F23007EA48A /* PythonTokenizerTest_Truth.txt */; };
 		20F893701B275F23007EA48A /* PythonTokenizerTest.py in Resources */ = {isa = PBXBuildFile; fileRef = 20F8936E1B275F23007EA48A /* PythonTokenizerTest.py */; };
 		20F893721B275F3A007EA48A /* KDEPyTokenizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F893711B275F3A007EA48A /* KDEPyTokenizerTests.m */; };
+		20F893761B2761BE007EA48A /* KDECodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F893751B2761BE007EA48A /* KDECodeView.m */; };
 		20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */; };
 		20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F8ED3E1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m */; };
 		20F9B8351B25DF0F00DBBD4C /* KDETokenizePhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F9B8341B25DF0F00DBBD4C /* KDETokenizePhase.m */; };
@@ -99,29 +88,6 @@
 		20082E7B1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAdaptiveSpaceItem.m; sourceTree = "<group>"; };
 		20082E7C1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAdaptiveSpaceItemView.h; sourceTree = "<group>"; };
 		20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAdaptiveSpaceItemView.m; sourceTree = "<group>"; };
-		20082E811B0B8B240064DDA4 /* ASKLineNumberMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKLineNumberMarker.h; sourceTree = "<group>"; };
-		20082E821B0B8B240064DDA4 /* ASKLineNumberMarker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKLineNumberMarker.m; sourceTree = "<group>"; };
-		20082E831B0B8B240064DDA4 /* ASKLineNumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKLineNumberView.h; sourceTree = "<group>"; };
-		20082E841B0B8B240064DDA4 /* ASKLineNumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKLineNumberView.m; sourceTree = "<group>"; };
-		20082E851B0B8B240064DDA4 /* ASKSyntax+syntaxForType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ASKSyntax+syntaxForType.h"; sourceTree = "<group>"; };
-		20082E861B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ASKSyntax+syntaxForType.m"; sourceTree = "<group>"; };
-		20082E871B0B8B240064DDA4 /* ASKSyntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKSyntax.h; sourceTree = "<group>"; };
-		20082E881B0B8B240064DDA4 /* ASKSyntax.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKSyntax.m; sourceTree = "<group>"; };
-		20082E891B0B8B240064DDA4 /* ASKSyntaxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKSyntaxViewController.h; sourceTree = "<group>"; };
-		20082E8A1B0B8B240064DDA4 /* ASKSyntaxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKSyntaxViewController.m; sourceTree = "<group>"; };
-		20082E8B1B0B8B240064DDA4 /* ASKTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASKTypesetter.h; sourceTree = "<group>"; };
-		20082E8C1B0B8B240064DDA4 /* ASKTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASKTypesetter.m; sourceTree = "<group>"; };
-		20082E8D1B0B8B240064DDA4 /* NSArray+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Color.h"; sourceTree = "<group>"; };
-		20082E8E1B0B8B240064DDA4 /* NSArray+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Color.m"; sourceTree = "<group>"; };
-		20082E8F1B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+SkipUpToCharset.h"; sourceTree = "<group>"; };
-		20082E901B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+SkipUpToCharset.m"; sourceTree = "<group>"; };
-		20082E911B0B8B240064DDA4 /* NSTextView+SyntaxKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextView+SyntaxKit.h"; sourceTree = "<group>"; };
-		20082E921B0B8B240064DDA4 /* NSTextView+SyntaxKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextView+SyntaxKit.m"; sourceTree = "<group>"; };
-		20082E941B0B8B240064DDA4 /* SyntaxKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyntaxKit.h; sourceTree = "<group>"; };
-		20082E951B0B8B240064DDA4 /* SyntaxKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyntaxKit.m; sourceTree = "<group>"; };
-		20082E961B0B8B240064DDA4 /* TDBindings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBindings.h; sourceTree = "<group>"; };
-		20082E971B0B8B240064DDA4 /* TDBindings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBindings.m; sourceTree = "<group>"; };
-		20082E981B0B8B240064DDA4 /* UKHelperMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKHelperMacros.h; sourceTree = "<group>"; };
 		20082EA91B0B8B310064DDA4 /* SyntaxColorDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SyntaxColorDefaults.plist; sourceTree = "<group>"; };
 		20082EB11B0B8D570064DDA4 /* Py80.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Py80.pch; sourceTree = "<group>"; };
 		20082EB41B0B91CA0064DDA4 /* Syntax Definitions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Syntax Definitions"; sourceTree = "<group>"; };
@@ -162,9 +128,6 @@
 		208D430B1B1646D80004898F /* KDECompletionWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECompletionWindowController.m; sourceTree = "<group>"; };
 		208D430D1B1668B70004898F /* KDEWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEWindow.h; sourceTree = "<group>"; };
 		208D430E1B1668B70004898F /* KDEWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEWindow.m; sourceTree = "<group>"; };
-		208D43101B1688240004898F /* KDETextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDETextView.h; sourceTree = "<group>"; };
-		208D43111B1688240004898F /* KDETextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDETextView.m; sourceTree = "<group>"; };
-		208D43131B168B380004898F /* VKConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VKConsts.h; sourceTree = "<group>"; };
 		20A6E97E1B0FC128005658C3 /* KDEExceptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEExceptionView.h; sourceTree = "<group>"; };
 		20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEExceptionView.m; sourceTree = "<group>"; };
 		20A6E9821B0FD886005658C3 /* KDEPy80Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEPy80Context.h; sourceTree = "<group>"; };
@@ -213,6 +176,9 @@
 		20F8936D1B275F23007EA48A /* PythonTokenizerTest_Truth.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PythonTokenizerTest_Truth.txt; sourceTree = "<group>"; };
 		20F8936E1B275F23007EA48A /* PythonTokenizerTest.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = PythonTokenizerTest.py; sourceTree = "<group>"; };
 		20F893711B275F3A007EA48A /* KDEPyTokenizerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEPyTokenizerTests.m; sourceTree = "<group>"; };
+		20F893741B2761BE007EA48A /* KDECodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECodeView.h; sourceTree = "<group>"; };
+		20F893751B2761BE007EA48A /* KDECodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDECodeView.m; sourceTree = "<group>"; };
+		20F893771B276728007EA48A /* KDECodeViewVKConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDECodeViewVKConsts.h; sourceTree = "<group>"; };
 		20F8ED3A1B1B3F9F00DA11C3 /* KDEImageStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEImageStore.h; sourceTree = "<group>"; };
 		20F8ED3B1B1B3F9F00DA11C3 /* KDEImageStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDEImageStore.m; sourceTree = "<group>"; };
 		20F8ED3D1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDEOutputDrawImageCommand.h; sourceTree = "<group>"; };
@@ -264,36 +230,6 @@
 				20082E7D1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m */,
 			);
 			path = TAAdaptiveSpaceItem;
-			sourceTree = "<group>";
-		};
-		20082E801B0B8B240064DDA4 /* SyntaxKit */ = {
-			isa = PBXGroup;
-			children = (
-				20082E811B0B8B240064DDA4 /* ASKLineNumberMarker.h */,
-				20082E821B0B8B240064DDA4 /* ASKLineNumberMarker.m */,
-				20082E831B0B8B240064DDA4 /* ASKLineNumberView.h */,
-				20082E841B0B8B240064DDA4 /* ASKLineNumberView.m */,
-				20082E851B0B8B240064DDA4 /* ASKSyntax+syntaxForType.h */,
-				20082E861B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m */,
-				20082E871B0B8B240064DDA4 /* ASKSyntax.h */,
-				20082E881B0B8B240064DDA4 /* ASKSyntax.m */,
-				20082E891B0B8B240064DDA4 /* ASKSyntaxViewController.h */,
-				20082E8A1B0B8B240064DDA4 /* ASKSyntaxViewController.m */,
-				20082E8B1B0B8B240064DDA4 /* ASKTypesetter.h */,
-				20082E8C1B0B8B240064DDA4 /* ASKTypesetter.m */,
-				20082E8D1B0B8B240064DDA4 /* NSArray+Color.h */,
-				20082E8E1B0B8B240064DDA4 /* NSArray+Color.m */,
-				20082E8F1B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.h */,
-				20082E901B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m */,
-				20082E911B0B8B240064DDA4 /* NSTextView+SyntaxKit.h */,
-				20082E921B0B8B240064DDA4 /* NSTextView+SyntaxKit.m */,
-				20082E941B0B8B240064DDA4 /* SyntaxKit.h */,
-				20082E951B0B8B240064DDA4 /* SyntaxKit.m */,
-				20082E961B0B8B240064DDA4 /* TDBindings.h */,
-				20082E971B0B8B240064DDA4 /* TDBindings.m */,
-				20082E981B0B8B240064DDA4 /* UKHelperMacros.h */,
-			);
-			path = SyntaxKit;
 			sourceTree = "<group>";
 		};
 		200CD8AB1B1A618800312847 /* KDEOutputView */ = {
@@ -393,12 +329,10 @@
 				20F4A52B1B20AEB8000BCECF /* Preferences */,
 				203D56A91B0A610D00A7779E /* AppDelegate.h */,
 				201551231B0E168B00A008F4 /* KDEDocumentTracker.h */,
-				208D43131B168B380004898F /* VKConsts.h */,
 				203D56AA1B0A610D00A7779E /* AppDelegate.m */,
 				201551241B0E168B00A008F4 /* KDEDocumentTracker.m */,
 				208D43091B1646BF0004898F /* Controllers */,
 				20A6E9811B0FD886005658C3 /* Python */,
-				20082E801B0B8B240064DDA4 /* SyntaxKit */,
 				20F84EA41B18C427002D8116 /* Utils */,
 				20F13AC71B0AD45F00C30D2A /* Views */,
 				20F8ED3A1B1B3F9F00DA11C3 /* KDEImageStore.h */,
@@ -474,14 +408,13 @@
 		20F13AC71B0AD45F00C30D2A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				20F893731B2761BE007EA48A /* KDECodeView */,
 				200CD8AB1B1A618800312847 /* KDEOutputView */,
 				20082E791B0B6F540064DDA4 /* TAAdaptiveSpaceItem */,
 				20A6E97E1B0FC128005658C3 /* KDEExceptionView.h */,
 				20A6E97F1B0FC128005658C3 /* KDEExceptionView.m */,
 				208D430D1B1668B70004898F /* KDEWindow.h */,
 				208D430E1B1668B70004898F /* KDEWindow.m */,
-				208D43101B1688240004898F /* KDETextView.h */,
-				208D43111B1688240004898F /* KDETextView.m */,
 				200B7C511B178765005D64B1 /* KDETypeTableCellView.h */,
 				200B7C521B178765005D64B1 /* KDETypeTableCellView.m */,
 				20F160A01B1790DC00398B70 /* KDECompletionTableRowView.h */,
@@ -525,6 +458,16 @@
 				20F8936E1B275F23007EA48A /* PythonTokenizerTest.py */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		20F893731B2761BE007EA48A /* KDECodeView */ = {
+			isa = PBXGroup;
+			children = (
+				20F893771B276728007EA48A /* KDECodeViewVKConsts.h */,
+				20F893741B2761BE007EA48A /* KDECodeView.h */,
+				20F893751B2761BE007EA48A /* KDECodeView.m */,
+			);
+			path = KDECodeView;
 			sourceTree = "<group>";
 		};
 		20FAC29D1B24E2C0000B550D /* Tokenizer */ = {
@@ -677,30 +620,24 @@
 				200CD8C41B1A640B00312847 /* KDEOutputDrawPathCommand.m in Sources */,
 				20F9C3071B21E1AC00694678 /* KDEConsoleLog.m in Sources */,
 				208D43051B162CB80004898F /* KDEPyCompletion.m in Sources */,
-				20082E9C1B0B8B240064DDA4 /* ASKSyntax.m in Sources */,
-				20082E9A1B0B8B240064DDA4 /* ASKLineNumberView.m in Sources */,
 				20F9B8381B25E94E00DBBD4C /* KDETimer.m in Sources */,
-				20082EA31B0B8B240064DDA4 /* TDBindings.m in Sources */,
 				20F8ED3F1B1B455A00DA11C3 /* KDEOutputDrawImageCommand.m in Sources */,
 				20E00E631B1D194600B94595 /* KDEPyException.m in Sources */,
 				20F9B83B1B26021300DBBD4C /* KDEPyTokenizer.m in Sources */,
 				20FAC2A01B24E2EB000B550D /* KDETokenizer.m in Sources */,
-				20082EA01B0B8B240064DDA4 /* NSScanner+SkipUpToCharset.m in Sources */,
 				203D568C1B0A55EE00A7779E /* main.m in Sources */,
+				20F893761B2761BE007EA48A /* KDECodeView.m in Sources */,
 				20F4A5311B20AF49000BCECF /* KDETheme.m in Sources */,
 				20F4A5221B20A847000BCECF /* KDEPreferencesWindowController.m in Sources */,
 				200CD8BF1B1A621A00312847 /* KDEOutputCommand.m in Sources */,
 				20F160A51B17938800398B70 /* KDECompletionTableCellView.m in Sources */,
 				20F9B8351B25DF0F00DBBD4C /* KDETokenizePhase.m in Sources */,
-				20082E9F1B0B8B240064DDA4 /* NSArray+Color.m in Sources */,
 				20F84EA91B18C427002D8116 /* NSString+CursorPosition.m in Sources */,
 				20F84EA31B18C3F1002D8116 /* NSCharacterSet+PythonSets.m in Sources */,
 				208D430F1B1668B70004898F /* KDEWindow.m in Sources */,
 				20FAC2A31B24E84F000B550D /* KDEToken.m in Sources */,
-				20082E991B0B8B240064DDA4 /* ASKLineNumberMarker.m in Sources */,
 				200CD8C01B1A621A00312847 /* KDEOutputDrawSettings.m in Sources */,
 				20082E7E1B0B6F540064DDA4 /* TAAdaptiveSpaceItem.m in Sources */,
-				20082E9E1B0B8B240064DDA4 /* ASKTypesetter.m in Sources */,
 				200CD8AE1B1A618800312847 /* KDEOutputView.m in Sources */,
 				208D43081B1635200004898F /* KDEPyCallSignature.m in Sources */,
 				208D430C1B1646D80004898F /* KDECompletionWindowController.m in Sources */,
@@ -711,13 +648,9 @@
 				20F160A21B1790DC00398B70 /* KDECompletionTableRowView.m in Sources */,
 				20F8ED3C1B1B3F9F00DA11C3 /* KDEImageStore.m in Sources */,
 				20F84EAA1B18C427002D8116 /* NSString+RangeUtils.m in Sources */,
-				208D43121B1688240004898F /* KDETextView.m in Sources */,
 				20F58F631B1F7150003E984C /* KDEMainViewController.m in Sources */,
-				20082E9B1B0B8B240064DDA4 /* ASKSyntax+syntaxForType.m in Sources */,
 				20F4A5291B20AB49000BCECF /* KDEPreferencesThemeViewController.m in Sources */,
 				20A6E98A1B0FD9C8005658C3 /* KDEExceptionFormatter.m in Sources */,
-				20082EA11B0B8B240064DDA4 /* NSTextView+SyntaxKit.m in Sources */,
-				20082E9D1B0B8B240064DDA4 /* ASKSyntaxViewController.m in Sources */,
 				20F84EA21B18C3F1002D8116 /* NSString+PythonRangeUtils.m in Sources */,
 				20F9B83E1B261A8200DBBD4C /* NSRegularExpression+PatternUtils.m in Sources */,
 				20F9C3041B21DF0F00694678 /* KDEConsoleViewController.m in Sources */,
@@ -726,7 +659,6 @@
 				20082E7F1B0B6F540064DDA4 /* TAAdaptiveSpaceItemView.m in Sources */,
 				20F58F5F1B1F6E41003E984C /* KDEProfilerViewController.m in Sources */,
 				201551251B0E168B00A008F4 /* KDEDocumentTracker.m in Sources */,
-				20082EA21B0B8B240064DDA4 /* SyntaxKit.m in Sources */,
 				20A6E9861B0FD886005658C3 /* KDEPy80Context.m in Sources */,
 				20F4A5341B20AF53000BCECF /* KDEThemeItem.m in Sources */,
 				20F8936B1B2745C7007EA48A /* KDETokenizedString.m in Sources */,

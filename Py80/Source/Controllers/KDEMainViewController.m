@@ -7,8 +7,8 @@
 //
 
 #import "KDEMainViewController.h"
-#import "SyntaxKit.h"
 #import "KDEExceptionView.h"
+#import "KDECodeView.h"
 #import "KDEOutputView.h"
 #import "KDEExceptionFormatter.h"
 #import "KDEPyException.h"
@@ -19,7 +19,6 @@
 
 @interface KDEMainViewController ()
 <
-    ASKSyntaxViewControllerDelegate,
     NSTextViewDelegate
 >
 
@@ -47,11 +46,6 @@
     [self applyDefaultsToTextView:self.console];
     
     self.console.editable = NO;
-    
-    self.syntaxViewController.indentsWithSpaces = NO;
-    self.syntaxViewController.showsLineNumbers = YES;
-    self.syntaxViewController.syntax = [ASKSyntax syntaxForType:@"public.python-source"];
-    self.syntaxViewController.delegate = self;
     
     self.exceptionView.hidden = YES;
     [self.exceptionView addToTextView:self.codeView];
@@ -100,8 +94,8 @@
     self.exceptionView.label.attributedStringValue = [self.exceptionFormatter attributedStringForException:exception];
     NSInteger lineNumber = exception.isExternal ? 1 : exception.lineNumber;
     
-    [self.syntaxViewController goToLine:lineNumber];
-    NSRange range = [self.syntaxViewController rangeForLine:lineNumber];
+    // TODO: re-implement goto line/range for line in KDECodeView
+    NSRange range = NSMakeRange( 0, 0);
     [self.exceptionView updateConstraintsForCharacterRange:range];
     
     self.exceptionView.hidden = NO;
@@ -111,7 +105,6 @@
 {
     self.codeView.backgroundColor = [theme colorForItemName:@"CodeBackground"];
     self.outputView.enclosingScrollView.backgroundColor = [theme colorForItemName:@"OutputBackground"];
-    [self.syntaxViewController applyTheme:theme];
     [self.consoleViewController applyTheme:theme];
 }
 
@@ -127,7 +120,7 @@
 
 #pragma mark - ASKSyntaxViewControllerDelegate
 
-- (void) syntaxViewControllerTextDidChange:(ASKSyntaxViewController *)controller
+- (void) textDidChangeInCodeView:(KDECodeView *)codeView
 {
     if( [self.delegate respondsToSelector:@selector(codeDidChangeInMainViewController:)])
     {

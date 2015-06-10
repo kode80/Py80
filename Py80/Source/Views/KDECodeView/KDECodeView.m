@@ -1,21 +1,20 @@
 //
-//  KDETextView.m
+//  KDECodeView.m
 //  Py80
 //
-//  Created by Benjamin S Hopkins on 5/27/15.
+//  Created by Benjamin S Hopkins on 6/9/15.
 //  Copyright (c) 2015 kode80. All rights reserved.
 //
 
-#import "KDETextView.h"
+#import "KDECodeView.h"
+#import "KDECodeViewVKConsts.h"
 #import "KDECompletionWindowController.h"
 
 #import "NSString+RangeUtils.h"
 #import "NSString+PythonRangeUtils.h"
 #import "NSCharacterSet+PythonSets.h"
 
-#import "VKConsts.h"
-
-@interface KDETextView ()
+@interface KDECodeView ()
 
 @property (nonatomic, readwrite, assign) BOOL didChangeTextTriggersCompletion;
 @property (nonatomic, readwrite, copy) NSCharacterSet *triggerCompletionCharSet;
@@ -23,7 +22,7 @@
 @end
 
 
-@implementation KDETextView
+@implementation KDECodeView
 
 - (void) dealloc
 {

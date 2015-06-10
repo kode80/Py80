@@ -1,8 +1,8 @@
 //
-//  KDETextView.h
+//  KDECodeView.h
 //  Py80
 //
-//  Created by Benjamin S Hopkins on 5/27/15.
+//  Created by Benjamin S Hopkins on 5/9/15.
 //  Copyright (c) 2015 kode80. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @class KDECompletionWindowController;
 
-@interface KDETextView : NSTextView
+@interface KDECodeView : NSTextView
 
 @property (nonatomic, readwrite, weak) IBOutlet KDECompletionWindowController *completionController;
 

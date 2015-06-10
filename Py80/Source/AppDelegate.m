@@ -9,13 +9,12 @@
 #import "AppDelegate.h"
 #import "KDEPython.h"
 #import "KDEPy80Context.h"
+#import "KDECodeView.h"
 #import "KDEOutputView.h"
 #import "KDEDocumentTracker.h"
 #import "KDEExceptionView.h"
 #import "KDEExceptionFormatter.h"
 #import "KDEImageStore.h"
-
-#import "SyntaxKit.h"
 
 #import "KDEPyCompletion.h"
 #import "KDEPyCallSignature.h"
@@ -361,7 +360,7 @@ typedef NS_ENUM( NSInteger, KDESaveAlertResponse)
         [self.docTracker openDocumentAtPath:stat.filename];
     }
     
-    [self.mainViewController.syntaxViewController goToLine:[stat.lineNumber integerValue]];
+    // TODO: reimplement goto line in KDECodeView
 }
 
 #pragma mark - KDEPy80ContextDelegate

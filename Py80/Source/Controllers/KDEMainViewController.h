@@ -10,8 +10,8 @@
 
 @protocol KDEMainViewControllerDelegate;
 
-@class KDEOutputView,
-       ASKSyntaxViewController,
+@class KDECodeView,
+       KDEOutputView,
        KDEExceptionView,
        KDECompletionWindowController,
        KDEConsoleViewController,
@@ -22,13 +22,12 @@
 @interface KDEMainViewController : NSViewController
 
 @property (nonatomic, readwrite, weak) IBOutlet id<KDEMainViewControllerDelegate> delegate;
-@property (nonatomic, readwrite, strong) IBOutlet NSTextView *codeView;
+@property (nonatomic, readwrite, strong) IBOutlet KDECodeView *codeView;
 @property (nonatomic, readwrite, strong) IBOutlet KDEConsoleViewController *consoleViewController;
 @property (nonatomic, readwrite, strong) IBOutlet NSTextView *console;
 @property (nonatomic, readwrite, weak) IBOutlet KDEOutputView *outputView;
 @property (nonatomic, readwrite, weak) IBOutlet NSSplitView *horizontalSplitView;
 @property (nonatomic, readwrite, weak) IBOutlet NSSplitView *verticalSplitView;
-@property (nonatomic, readwrite, strong) IBOutlet ASKSyntaxViewController *syntaxViewController;
 @property (nonatomic, readwrite, strong) IBOutlet KDEExceptionView *exceptionView;
 @property (nonatomic, readwrite, strong) IBOutlet NSWindow *completionWindow;
 @property (nonatomic, readwrite, strong) IBOutlet KDECompletionWindowController *completionWindowController;
