@@ -40,9 +40,6 @@ static NSString * const TestPythonSource1 = @"import py80\n"
 - (NSArray *) untokenizedRangesInRange:(NSRange)boundaryRange
                         existingTokens:(NSArray *)tokens;
 
-- (NSArray *) sortedTokens:(NSArray *)tokens;
-- (void) sortTokens:(NSMutableArray *)tokens;
-
 @end
 
 
@@ -119,8 +116,6 @@ static NSString * const TestPythonSource1 = @"import py80\n"
 
 - (void) testSortTokens
 {
-    KDETokenizer *tokenizer = [KDETokenizer new];
-    
     KDEToken *tokenA = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)];
     KDEToken *tokenB = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 1)];
     KDEToken *tokenC = [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 6, 10)];
@@ -133,7 +128,7 @@ static NSString * const TestPythonSource1 = @"import py80\n"
                          tokenD,
                          tokenC];
     
-    NSArray *sortedTokens = [tokenizer sortedTokens:tokens];
+    NSArray *sortedTokens = [KDETokenizer sortedTokens:tokens];
     
     XCTAssert( sortedTokens[0] == tokenA, @"sorted tokens incorrect");
     XCTAssert( sortedTokens[1] == tokenB, @"sorted tokens incorrect");

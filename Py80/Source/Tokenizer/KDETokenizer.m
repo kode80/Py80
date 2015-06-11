@@ -34,6 +34,17 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
 
 @implementation KDETokenizer
 
++ (NSArray *) sortedTokens:(NSArray *)tokens
+{
+    return [tokens sortedArrayWithOptions:0
+                          usingComparator:KDETokenComparator];
+}
+
++ (void) sortTokens:(NSMutableArray *)tokens
+{
+    [tokens sortUsingComparator:KDETokenComparator];
+}
+
 - (void) addTokenizePhase:(KDETokenizePhase *)phase
 {
     self.tokenizePhases = self.tokenizePhases ? [self.tokenizePhases arrayByAddingObject:phase] :
@@ -55,7 +66,7 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
                             defaultTokenType:phase.defaultTokenType
                                 tokenTypeMap:phase.tokenTypeMap];
         [tokens addObjectsFromArray:currentTokens];
-        [self sortTokens:tokens];
+        [KDETokenizer sortTokens:tokens];
         
         ranges = [self untokenizedRangesInRange:wholeRange
                                  existingTokens:tokens];
@@ -140,17 +151,5 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
     
     return [NSArray arrayWithArray:ranges];
 }
-
-- (NSArray *) sortedTokens:(NSArray *)tokens
-{
-    return [tokens sortedArrayWithOptions:0
-                          usingComparator:KDETokenComparator];
-}
-
-- (void) sortTokens:(NSMutableArray *)tokens
-{
-    [tokens sortUsingComparator:KDETokenComparator];
-}
-
 
 @end

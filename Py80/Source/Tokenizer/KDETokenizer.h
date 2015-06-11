@@ -14,6 +14,9 @@
 
 @property (nonatomic, readonly, strong) NSArray *tokenizePhases;
 
++ (NSArray *) sortedTokens:(NSArray *)tokens;
++ (void) sortTokens:(NSMutableArray *)tokens;
+
 - (void) addTokenizePhase:(KDETokenizePhase *)phase;
 
 - (NSArray *) tokenizeString:(NSString *)string;
