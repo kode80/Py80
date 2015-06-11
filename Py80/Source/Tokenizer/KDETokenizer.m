@@ -80,6 +80,11 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
     return @"Unknown";
 }
 
+- (BOOL) isOpenToken:(KDEToken *)token
+{
+    return NO;
+}
+
 - (NSArray *) filterOpenTokens:(NSArray *)tokens
 {
     return @[];

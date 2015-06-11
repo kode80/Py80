@@ -84,10 +84,15 @@
     }
 }
 
+- (BOOL) isOpenToken:(KDEToken *)token
+{
+    return token.type == KDEPyTokenTypeOpenString || token.type == KDEPyTokenTypeOpenDocString;
+}
+
 - (NSArray *) filterOpenTokens:(NSArray *)tokens
 {
     return [tokens filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
-        return token.type == KDEPyTokenTypeOpenDocString || token.type == KDEPyTokenTypeOpenString;
+        return [self isOpenToken:token];
     }]];
 }
 
