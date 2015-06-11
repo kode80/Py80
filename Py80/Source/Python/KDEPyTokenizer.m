@@ -22,13 +22,23 @@
                                                               defaultTokenType:KDEPyTokenTypeComment
                                                                   tokenTypeMap:nil]];
         
+        
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:[KDEPyTokenizer pythonDocStringPattern]
                                                               defaultTokenType:KDEPyTokenTypeDocString
                                                                   tokenTypeMap:nil]];
-
+        
+        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"(?i)((ur|br|r|b|u)*'''|(ur|br|r|b|u)*\"\"\")"
+                                                              defaultTokenType:KDEPyTokenTypeOpenDocString
+                                                                  tokenTypeMap:nil]];
+        
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"(?i)((ur|br|r|b|u)*\"[^\"]*\"|(ur|br|r|b|u)*\'[^\']*\')"
                                                               defaultTokenType:KDEPyTokenTypeString
                                                                   tokenTypeMap:nil]];
+        
+        [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:@"(?i)((ur|br|r|b|u)*\"|(ur|br|r|b|u)*\')"
+                                                              defaultTokenType:KDEPyTokenTypeOpenString
+                                                                  tokenTypeMap:nil]];
+        
         
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:[KDEPyTokenizer pythonNumberPattern]
                                                               defaultTokenType:KDEPyTokenTypeNumber
@@ -62,6 +72,8 @@
         case KDEPyTokenTypeComment:       return @"Comment";
         case KDEPyTokenTypeDocString:     return @"DocString";
         case KDEPyTokenTypeString:        return @"String";
+        case KDEPyTokenTypeOpenDocString: return @"OpenDocString";
+        case KDEPyTokenTypeOpenString:    return @"OpenString";
         case KDEPyTokenTypeName:          return @"Name";
         case KDEPyTokenTypeKeyword:       return @"Keyword";
         case KDEPyTokenTypeNumber:        return @"Number";
@@ -70,6 +82,13 @@
         case KDEPyTokenTypeSpecial:       return @"Special";
         default: return @"Unknown";
     }
+}
+
+- (NSArray *) filterOpenTokens:(NSArray *)tokens
+{
+    return [tokens filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
+        return token.type == KDEPyTokenTypeOpenDocString || token.type == KDEPyTokenTypeOpenString;
+    }]];
 }
 
 + (NSString *) pythonDocStringPattern

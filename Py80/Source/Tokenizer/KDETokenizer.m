@@ -69,6 +69,11 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
     return @"Unknown";
 }
 
+- (NSArray *) filterOpenTokens:(NSArray *)tokens
+{
+    return @[];
+}
+
 #pragma mark - Private
 
 - (NSArray *) tokenizeString:(NSString *)string

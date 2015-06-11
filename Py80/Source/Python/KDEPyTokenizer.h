@@ -13,6 +13,8 @@ typedef NS_ENUM( KDETokenType, KDEPyTokenType)
     KDEPyTokenTypeComment,
     KDEPyTokenTypeDocString,
     KDEPyTokenTypeString,
+    KDEPyTokenTypeOpenDocString,
+    KDEPyTokenTypeOpenString,
     KDEPyTokenTypeNumber,
     KDEPyTokenTypeName,
     KDEPyTokenTypeKeyword,

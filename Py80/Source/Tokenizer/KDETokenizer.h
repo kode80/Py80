@@ -18,5 +18,6 @@
 
 - (NSArray *) tokenizeString:(NSString *)string;
 - (NSString *) stringForTokenType:(KDETokenType)type;
+- (NSArray *) filterOpenTokens:(NSArray *)tokens;
 
 @end
