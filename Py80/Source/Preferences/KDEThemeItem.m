@@ -23,23 +23,27 @@
     self = [super init];
     if( self)
     {
-        NSNumber *red = dictionary[ @"Red"];
-        NSNumber *green = dictionary[ @"Green"];
-        NSNumber *blue = dictionary[ @"Blue"];
-        if( red && green && blue)
+        self.duplicateItemName = dictionary[ @"Duplicate"];
+        if( self.duplicateItemName == nil)
         {
-            self.color = [NSColor colorWithDeviceRed:red.floatValue
-                                               green:green.floatValue
-                                                blue:blue.floatValue
-                                               alpha:1.0f];
-        }
-        
-        NSString *fontName = dictionary[ @"FontName"];
-        NSNumber *fontSize = dictionary[ @"FontSize"];
-        if( fontName && fontSize)
-        {
-            self.font = [NSFont fontWithName:fontName
-                                        size:fontSize.floatValue];
+            NSNumber *red = dictionary[ @"Red"];
+            NSNumber *green = dictionary[ @"Green"];
+            NSNumber *blue = dictionary[ @"Blue"];
+            if( red && green && blue)
+            {
+                self.color = [NSColor colorWithDeviceRed:red.floatValue
+                                                   green:green.floatValue
+                                                    blue:blue.floatValue
+                                                   alpha:1.0f];
+            }
+            
+            NSString *fontName = dictionary[ @"FontName"];
+            NSNumber *fontSize = dictionary[ @"FontSize"];
+            if( fontName && fontSize)
+            {
+                self.font = [NSFont fontWithName:fontName
+                                            size:fontSize.floatValue];
+            }
         }
     }
     return self;
@@ -66,19 +70,33 @@
 - (NSDictionary *) dictionary
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    if( self.color)
-    {
-        dictionary[ @"Red"] = @(self.color.redComponent);
-        dictionary[ @"Green"] = @(self.color.greenComponent);
-        dictionary[ @"Blue"] = @(self.color.blueComponent);
-    }
     
-    if( self.font)
+    if( self.duplicateItemName)
     {
-        dictionary[ @"FontName"] = self.font.fontName;
-        dictionary[ @"FontSize"] = @(self.font.pointSize);
+        dictionary[ @"Duplicate"] = self.duplicateItemName;
+    }
+    else
+    {
+        if( self.color)
+        {
+            dictionary[ @"Red"] = @(self.color.redComponent);
+            dictionary[ @"Green"] = @(self.color.greenComponent);
+            dictionary[ @"Blue"] = @(self.color.blueComponent);
+        }
+        
+        if( self.font)
+        {
+            dictionary[ @"FontName"] = self.font.fontName;
+            dictionary[ @"FontSize"] = @(self.font.pointSize);
+        }
     }
     return [NSDictionary dictionaryWithDictionary:dictionary];
+}
+
+- (void) duplicateFromItem:(KDEThemeItem *)item
+{
+    self.color = item.color;
+    self.font = item.font;
 }
 
 - (void) updateTextAttributes

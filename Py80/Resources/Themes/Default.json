@@ -90,5 +90,13 @@
     "FontSize" : 13,
     "Red" : 0.4938259422779083,
     "FontName" : "Monaco"
+  },
+  "OpenDocString":
+  {
+    "Duplicate" : "DocString"
+  },
+  "OpenString":
+  {
+    "Duplicate" : "String"
   }
 }

@@ -10,11 +10,14 @@
 
 @interface KDEThemeItem : NSObject
 
+@property (nonatomic, readwrite, copy) NSString *duplicateItemName;
 @property (nonatomic, readwrite, copy) NSColor *color;
 @property (nonatomic, readwrite, copy) NSFont *font;
 @property (nonatomic, readonly, copy) NSDictionary *textAttributes;
 
 - (instancetype) initWithDictionary:(NSDictionary *)dictionary;
 - (NSDictionary *) dictionary;
+
+- (void) duplicateFromItem:(KDEThemeItem *)item;
 
 @end

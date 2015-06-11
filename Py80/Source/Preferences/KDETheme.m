@@ -13,6 +13,7 @@
 @interface KDETheme ()
 
 @property (nonatomic, readwrite, strong) NSMutableDictionary *items;
+@property (nonatomic, readwrite, strong) NSArray *itemNames;
 
 @end
 
@@ -62,13 +63,20 @@
         {
             self.items[ key] = [[KDEThemeItem alloc] initWithDictionary:dictionary[ key]];
         }
+        
+        KDEThemeItem *item;
+        for( NSString *name in self.items)
+        {
+            item = self.items[ name];
+            if( item.duplicateItemName)
+            {
+                [item duplicateFromItem:self.items[ item.duplicateItemName]];
+            }
+        }
+        
+        [self updateItemNames];
     }
     return self;
-}
-
-- (NSArray *) itemNames
-{
-    return self.items.allKeys;
 }
 
 - (NSDictionary *) dictionary
@@ -123,8 +131,22 @@
     {
         item = [KDEThemeItem new];
         self.items[ name] = item;
+        [self updateItemNames];
     }
     return item;
+}
+
+- (void) updateItemNames
+{
+    NSMutableArray *names = [NSMutableArray array];
+    for( NSString *name in self.items)
+    {
+        if( [self.items[ name] duplicateItemName] == nil)
+        {
+            [names addObject:name];
+        }
+    }
+    self.itemNames = [names copy];
 }
 
 @end
