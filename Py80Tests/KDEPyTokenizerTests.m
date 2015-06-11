@@ -49,4 +49,20 @@
     XCTAssert( [output isEqualToString:truth], @"Output did not match varified 'truth'");
 }
 
+- (void) testFilterOpenTokens
+{
+    KDEPyTokenizer *tokenizer = [KDEPyTokenizer new];
+    NSArray *tokens = @[ [KDEToken tokenWithType:KDEPyTokenTypeBracket value:@"" range:NSMakeRange( 0, 0)],
+                         [KDEToken tokenWithType:KDEPyTokenTypeOpenDocString value:@"" range:NSMakeRange( 0, 0)],
+                         [KDEToken tokenWithType:KDEPyTokenTypeString value:@"" range:NSMakeRange( 0, 0)],
+                         [KDEToken tokenWithType:KDEPyTokenTypeName value:@"" range:NSMakeRange( 0, 0)],
+                         [KDEToken tokenWithType:KDEPyTokenTypeOpenString value:@"" range:NSMakeRange( 0, 0)]];
+    
+    NSArray *openTokens = [tokenizer filterOpenTokens:tokens];
+    
+    XCTAssertEqual( openTokens.count, 2, @"should be 2 open tokens");
+    XCTAssertEqual( openTokens[ 0], tokens[1], @"open token incorrect");
+    XCTAssertEqual( openTokens[ 1], tokens[4], @"open token incorrect");
+}
+
 @end

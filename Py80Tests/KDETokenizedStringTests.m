@@ -16,6 +16,7 @@
 @interface KDETokenizedString ()
 
 @property (nonatomic, readwrite, strong) NSArray *tokens;
+@property (nonatomic, readwrite, strong) NSArray *openTokens;
 
 - (void) updateTokenRangesFromFirstToken:(KDEToken *)firstToken
                                   offset:(NSInteger)offset;
@@ -23,6 +24,9 @@
 - (void) replaceTokensFromFirstToken:(KDEToken *)firstToken
              toAndIncludingLastToken:(KDEToken *)lastToken
                           withTokens:(NSArray *)tokens;
+- (void) addNewOpenTokens:(NSArray *)newOpenTokens;
+- (KDEToken *) firstOpenTokenLeftOfToken:(KDEToken *)token;
+- (KDEToken *) firstOpenTokenRightOfToken:(KDEToken *)token;
 
 @end
 
@@ -182,6 +186,74 @@
                                       withTokens:@[]];
     XCTAssertTrue( tokenizedString.tokens[ 0] == originalTokens[3], @"token incorrect");
     XCTAssertTrue( tokenizedString.tokens[ 1] == originalTokens[4], @"token incorrect");
+}
+
+- (void) testAddNewOpenTokens
+{
+    KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
+                                                                           tokenizer:[KDETokenizer new]];
+    
+    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    NSArray *newOpenTokens = @[ originalTokens[ 3],
+                                originalTokens[ 4]];
+    
+    tokenizedString.tokens = originalTokens;
+    tokenizedString.openTokens = @[ originalTokens[ 0],
+                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]];;
+    
+    [tokenizedString addNewOpenTokens:newOpenTokens];
+    
+    XCTAssertEqual( tokenizedString.openTokens.count, 3, @"open token count incorrect");
+    XCTAssertEqual( tokenizedString.openTokens[ 0], originalTokens[ 0], @"open token incorrect");
+    XCTAssertEqual( tokenizedString.openTokens[ 1], originalTokens[ 3], @"open token incorrect");
+    XCTAssertEqual( tokenizedString.openTokens[ 2], originalTokens[ 4], @"open token incorrect");
+}
+
+- (void) testFirstOpenTokenLeft
+{
+    KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
+                                                                           tokenizer:[KDETokenizer new]];
+    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    tokenizedString.tokens = originalTokens;
+    tokenizedString.openTokens = @[ originalTokens[ 1],
+                                    originalTokens[ 2],
+                                    originalTokens[ 4]];
+    
+    XCTAssertEqual( [tokenizedString firstOpenTokenLeftOfToken:originalTokens[0]], nil, @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenLeftOfToken:originalTokens[1]], nil, @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenLeftOfToken:originalTokens[2]], originalTokens[1], @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenLeftOfToken:originalTokens[3]], originalTokens[2], @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenLeftOfToken:originalTokens[4]], originalTokens[2], @"left open token incorrect");
+}
+
+- (void) testFirstOpenTokenRight
+{
+    KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
+                                                                           tokenizer:[KDETokenizer new]];
+    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    tokenizedString.tokens = originalTokens;
+    tokenizedString.openTokens = @[ originalTokens[ 1],
+                                    originalTokens[ 2],
+                                    originalTokens[ 4]];
+    
+    XCTAssertEqual( [tokenizedString firstOpenTokenRightOfToken:originalTokens[0]], originalTokens[1], @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenRightOfToken:originalTokens[1]], originalTokens[2], @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenRightOfToken:originalTokens[2]], originalTokens[4], @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenRightOfToken:originalTokens[3]], originalTokens[4], @"left open token incorrect");
+    XCTAssertEqual( [tokenizedString firstOpenTokenRightOfToken:originalTokens[4]], nil, @"left open token incorrect");
 }
 
 @end

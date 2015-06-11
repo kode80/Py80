@@ -12,12 +12,16 @@
 #import "NSRangeUtils.h"
 
 
+#import "KDEPyTokenizer.h"
+
+
 @interface KDETokenizedString ()
 
 @property (nonatomic, readwrite, copy) NSString *string;
 @property (nonatomic, readwrite, strong) NSMutableString *internalString;
 @property (nonatomic, readwrite, strong) KDETokenizer *tokenizer;
 @property (nonatomic, readwrite, strong) NSArray *tokens;
+@property (nonatomic, readwrite, strong) NSArray *openTokens;
 
 @end
 
@@ -33,6 +37,7 @@
         self.internalString = [NSMutableString stringWithString:string ? string : @""];
         self.tokenizer = tokenizer;
         self.tokens = [tokenizer tokenizeString:string];
+        self.openTokens = [tokenizer filterOpenTokens:self.tokens];
     }
     return self;
 }
@@ -78,18 +83,17 @@
                                        withString:string];
     [self invalidatePublicString];
     
-    NSUInteger tokenizeStart = leftToken ? leftToken.range.location : 0;
-    NSUInteger tokenizeEnd = rightToken ? NSMaxRange( rightToken.range) : self.internalString.length;
-    NSRange tokenizeRange = NSMakeRange( tokenizeStart, tokenizeEnd - tokenizeStart);
-    NSArray *newTokens = [self.tokenizer tokenizeString:[self.internalString substringWithRange:tokenizeRange]];
-    for( KDEToken *token in newTokens)
-    {
-        [token offsetRangeLocation:leftToken.range.location];
-    }
+    leftToken = [self firstOpenTokenLeftOfToken:leftToken] ?: leftToken;
+    rightToken = [self firstOpenTokenRightOfToken:rightToken] ?: rightToken;
     
+    NSArray *newTokens = [self tokenizeFromToken:leftToken
+                             toAndIncludingToken:rightToken];
+     
     [self replaceTokensFromFirstToken:leftToken ?: self.tokens.firstObject
               toAndIncludingLastToken:rightToken ?: self.tokens.lastObject
                            withTokens:newTokens];
+    
+    [self addNewOpenTokens:[self.tokenizer filterOpenTokens:newTokens]];
 
     return newTokens;
 }
@@ -193,6 +197,20 @@
     }
 }
 
+- (NSArray *) tokenizeFromToken:(KDEToken *)leftToken
+            toAndIncludingToken:(KDEToken *)rightToken
+{
+    NSUInteger tokenizeStart = leftToken ? leftToken.range.location : 0;
+    NSUInteger tokenizeEnd = rightToken ? NSMaxRange( rightToken.range) : self.internalString.length;
+    NSRange tokenizeRange = NSMakeRange( tokenizeStart, tokenizeEnd - tokenizeStart);
+    NSArray *newTokens = [self.tokenizer tokenizeString:[self.internalString substringWithRange:tokenizeRange]];
+    for( KDEToken *token in newTokens)
+    {
+        [token offsetRangeLocation:leftToken.range.location];
+    }
+    return newTokens;
+}
+
 - (void) replaceTokensFromFirstToken:(KDEToken *)firstToken
              toAndIncludingLastToken:(KDEToken *)lastToken
                           withTokens:(NSArray *)tokens
@@ -216,6 +234,75 @@
     [updatedTokens replaceObjectsInRange:NSMakeRange( firstIndex, lastIndex - firstIndex + 1)
                     withObjectsFromArray:tokens];
     self.tokens = [NSArray arrayWithArray:updatedTokens];
+
+    [self removeOpenTokensNoLongerInTokens];
+}
+
+- (KDEToken *) firstOpenTokenLeftOfToken:(KDEToken *)token
+{
+    KDEToken *leftToken = nil;
+    if( token)
+    {
+        for( KDEToken *openToken in self.openTokens)
+        {
+            if( NSMaxRange( openToken.range) <= token.range.location)
+            {
+                leftToken = openToken;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    
+    return leftToken;
+}
+
+- (KDEToken *) firstOpenTokenRightOfToken:(KDEToken *)token
+{
+    KDEToken *rightToken = nil;
+    if( token)
+    {
+        NSUInteger maxRange = NSMaxRange( token.range);
+        for( KDEToken *openToken in self.openTokens.reverseObjectEnumerator)
+        {
+            if( openToken.range.location >= maxRange)
+            {
+                rightToken = openToken;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    
+    return rightToken;
+}
+
+- (void) addNewOpenTokens:(NSArray *)newOpenTokens
+{
+    if( newOpenTokens.count)
+    {
+        NSMutableArray *openTokens = [NSMutableArray arrayWithArray:self.openTokens];
+        [openTokens addObjectsFromArray:newOpenTokens];
+        [openTokens filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
+            return [self.tokens containsObject:token];
+        }]];
+        [KDETokenizer sortTokens:openTokens];
+        self.openTokens = [openTokens copy];
+    }
+}
+
+- (void) removeOpenTokensNoLongerInTokens
+{
+    if( self.openTokens.count)
+    {
+        self.openTokens = [self.openTokens filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
+            return [self.tokens containsObject:token];
+        }]];
+    }
 }
 
 - (void) invalidatePublicString
