@@ -243,11 +243,23 @@
     KDEToken *leftToken = nil;
     if( token)
     {
+        BOOL tokenIsOpen = [self.tokenizer isOpenToken:token];
+        
         for( KDEToken *openToken in self.openTokens)
         {
             if( NSMaxRange( openToken.range) <= token.range.location)
             {
-                leftToken = openToken;
+                if( tokenIsOpen)
+                {
+                    if( token.type == openToken.type)
+                    {
+                        leftToken = openToken;
+                    }
+                }
+                else
+                {
+                    leftToken = openToken;
+                }
             }
             else
             {
@@ -264,12 +276,24 @@
     KDEToken *rightToken = nil;
     if( token)
     {
+        BOOL tokenIsOpen = [self.tokenizer isOpenToken:token];
         NSUInteger maxRange = NSMaxRange( token.range);
+        
         for( KDEToken *openToken in self.openTokens.reverseObjectEnumerator)
         {
             if( openToken.range.location >= maxRange)
             {
-                rightToken = openToken;
+                if( tokenIsOpen)
+                {
+                    if( token.type == openToken.type)
+                    {
+                        rightToken = openToken;
+                    }
+                }
+                else
+                {
+                    rightToken = openToken;
+                }
             }
             else
             {
