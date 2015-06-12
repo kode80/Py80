@@ -17,6 +17,10 @@
 #import "NSString+PythonRangeUtils.h"
 #import "NSCharacterSet+PythonSets.h"
 
+
+#import "KDETimer.h"
+
+
 @interface KDECodeView ()
 
 @property (nonatomic, readwrite, assign) BOOL didChangeTextTriggersCompletion;
@@ -170,8 +174,7 @@
     if( _tokenizer != tokenizer)
     {
         _tokenizer = tokenizer;
-        self.tokenizedString = tokenizer ? [[KDETokenizedString alloc] initWithString:self.string
-                                                                            tokenizer:tokenizer] : nil;
+        [self recreateTokenizedString];
         [self refreshColor];
     }
 }
@@ -185,8 +188,7 @@
 - (void) setString:(NSString *)string
 {
     [super setString:string];
-    self.tokenizedString = self.tokenizer ? [[KDETokenizedString alloc] initWithString:self.string
-                                                                             tokenizer:self.tokenizer] : nil;
+    [self recreateTokenizedString];
     [self refreshColor];
 }
 
@@ -263,15 +265,25 @@
     
     if( self.replacementString)
     {
-        NSArray *newTokens = [self.tokenizedString replaceCharactersInRange:self.replacementRange
-                                                                 withString:self.replacementString];
+        __block NSArray *newTokens;
+        double tokenizeTime = [KDETimer timeBlock:^{
+            newTokens = [self.tokenizedString replaceCharactersInRange:self.replacementRange
+                                                            withString:self.replacementString];
+        }];
+                               
         self.replacementString = nil;
+        //NSLog(@"new token count: %@", @(newTokens.count));
+        double colorTime = [KDETimer timeBlock:^{
+            [self.textStorage beginEditing];
+            for( KDEToken *token in newTokens)
+            {
+                [self.textStorage setAttributes:[self.theme textAttributesForItemName:[self.tokenizer stringForTokenType:token.type]]
+                                          range:token.range];
+            }
+            [self.textStorage endEditing];
+        }];
         
-        for( KDEToken *token in newTokens)
-        {
-            [self.textStorage setAttributes:[self.theme textAttributesForItemName:[self.tokenizer stringForTokenType:token.type]]
-                                      range:token.range];
-        }
+        NSLog(@"\ntokenize: %@ms\ncolor: %@ms", @(tokenizeTime), @(colorTime));
     }
     else
     {
@@ -293,10 +305,22 @@
     if( self.theme && self.tokenizedString)
     {
         NSArray *oldRanges = self.selectedRanges;
-        [self.textStorage setAttributedString:[self.tokenizedString attributedStringWithTheme:self.theme]];
+        double colorTime = [KDETimer timeBlock:^{
+            [self.textStorage setAttributedString:[self.tokenizedString attributedStringWithTheme:self.theme]];
+        }];
+        NSLog(@"color: %@ms", @(colorTime));
         self.selectedRanges = oldRanges;
         self.insertionPointColor = [self.theme colorForItemName:@"CodeCursor"];
     }
+}
+
+- (void) recreateTokenizedString
+{
+    double time = [KDETimer timeBlock:^{
+        self.tokenizedString = self.tokenizer ? [[KDETokenizedString alloc] initWithString:self.string
+                                                                                 tokenizer:self.tokenizer] : nil;
+    }];
+    NSLog(@"tokenize: %@ms", @(time));
 }
 
 @end
