@@ -10,6 +10,7 @@
 
 typedef NS_ENUM( KDETokenType, KDEPyTokenType)
 {
+    KDEPyTokenTypeUnknown,
     KDEPyTokenTypeComment,
     KDEPyTokenTypeDocString,
     KDEPyTokenTypeString,

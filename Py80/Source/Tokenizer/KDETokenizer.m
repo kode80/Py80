@@ -85,9 +85,20 @@ NSComparisonResult(^KDETokenComparator)( KDEToken *, KDEToken *) = ^NSComparison
     return NO;
 }
 
+- (KDETokenType) closedTokenTypeForOpenToken:(KDEToken *)token
+{
+    return 0;
+}
+
 - (NSArray *) filterOpenTokens:(NSArray *)tokens
 {
     return @[];
+}
+
+- (BOOL) canRightToken:(KDEToken *)rightToken
+        closeLeftToken:(KDEToken *)leftToken
+{
+    return NO;
 }
 
 #pragma mark - Private

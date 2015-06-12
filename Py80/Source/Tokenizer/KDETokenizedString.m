@@ -39,39 +39,71 @@
         self.tokens = [[tokenizer tokenizeString:string] mutableCopy];
         self.openTokens = [[tokenizer filterOpenTokens:self.tokens] mutableCopy];
         
-        NSMutableArray *openTokens = [NSMutableArray array];
-        KDEToken *leftToken, *rightToken;
-        NSArray *newTokens;
-        if( self.openTokens.count > 1)
-        {
-            NSInteger i=0;
-            
-            while( i < self.openTokens.count)
-            {
-                leftToken = self.openTokens[ i];
-                rightToken = [self firstOpenTokenRightOfToken:leftToken];
-                if( rightToken == nil)
-                {
-                    break;
-                }
-                
-                NSRange range = NSMakeRange( leftToken.range.location, NSMaxRange( rightToken.range) - leftToken.range.location);
-                newTokens = @[ [KDEToken tokenWithType:KDEPyTokenTypeDocString
-                                                 value:[string substringWithRange:range]
-                                                 range:range]];
-                
-                [self replaceTokensFromFirstToken:leftToken
-                          toAndIncludingLastToken:rightToken
-                                       withTokens:newTokens];
-                [openTokens addObjectsFromArray:[self.tokenizer filterOpenTokens:newTokens]];
-                
-                i = [self.openTokens indexOfObject:rightToken] + 1;
-            }
-            
-            [self addNewOpenTokens:openTokens];
-        }
+        [self closeOpenTokens];
     }
     return self;
+}
+
+- (NSArray *) closeOpenTokens
+{
+    NSMutableArray *newTokens = [NSMutableArray array];
+    KDEToken *closedToken;
+    
+    for( KDEToken *openToken in [self.openTokens copy])
+    {
+        if( [self.openTokens containsObject:openToken])
+        {
+            closedToken = [self closeOpenToken:openToken];
+            if( closedToken)
+            {
+                [newTokens addObject:closedToken];
+            }
+        }
+    }
+    
+    return [newTokens copy];
+}
+
+- (KDEToken *) closeOpenToken:(KDEToken *)openToken
+{
+    KDEToken *closeToken = [self closeTokenForOpenToken:openToken];
+    KDEToken *newToken = nil;
+    
+    if( closeToken)
+    {
+        NSRange range = NSMakeRange( openToken.range.location, NSMaxRange( closeToken.range) - openToken.range.location);
+        newToken = [KDEToken tokenWithType:[self.tokenizer closedTokenTypeForOpenToken:openToken]
+                                     value:[self.internalString substringWithRange:range]
+                                     range:range];
+        [self replaceTokensFromFirstToken:openToken
+                  toAndIncludingLastToken:closeToken
+                               withTokens:@[ newToken]];
+    }
+    
+    return newToken;
+}
+
+- (KDEToken *) closeTokenForOpenToken:(KDEToken *)openToken
+{
+    KDEToken *closeToken = nil;
+    if( openToken && [self.tokenizer isOpenToken:openToken])
+    {
+        NSUInteger i = [self.openTokens indexOfObject:openToken] + 1;
+        NSUInteger count = self.openTokens.count;
+        KDEToken *token;
+        
+        for( ; i<count; i++)
+        {
+            token = self.openTokens[ i];
+            if( [self.tokenizer canRightToken:token
+                               closeLeftToken:openToken])
+            {
+                return token;
+            }
+        }
+    }
+    
+    return closeToken;
 }
 
 #pragma mark - Accessors
@@ -126,36 +158,9 @@
                            withTokens:newTokens];
     
     [self addNewOpenTokens:[self.tokenizer filterOpenTokens:newTokens]];
-    
-    NSMutableArray *openTokens = [NSMutableArray array];
-    if( self.openTokens.count > 1)
-    {
-        NSInteger i=0;
-        
-        while( i < openTokens.count)
-        {
-            leftToken = self.openTokens[ i];
-            rightToken = [self firstOpenTokenRightOfToken:leftToken];
-            if( rightToken == nil)
-            {
-                break;
-            }
-            
-            newTokens = [self tokenizeFromToken:leftToken
-                            toAndIncludingToken:rightToken];
-            
-            [self replaceTokensFromFirstToken:leftToken
-                      toAndIncludingLastToken:rightToken
-                                   withTokens:newTokens];
-            [openTokens addObjectsFromArray:[self.tokenizer filterOpenTokens:newTokens]];
-            
-            i = [self.openTokens indexOfObject:rightToken] + 1;
-        }
 
-        [self addNewOpenTokens:openTokens];
-    }
-
-    return newTokens;
+    NSArray *closedTokens = [self closeOpenTokens];
+    return [newTokens arrayByAddingObjectsFromArray:closedTokens];
 }
 
 - (NSAttributedString *) attributedStringWithTheme:(KDETheme *)theme
@@ -301,23 +306,11 @@
     KDEToken *leftToken = nil;
     if( token)
     {
-        BOOL tokenIsOpen = [self.tokenizer isOpenToken:token];
-        
         for( KDEToken *openToken in self.openTokens)
         {
             if( NSMaxRange( openToken.range) <= token.range.location)
             {
-                if( tokenIsOpen)
-                {
-                    if( token.type == openToken.type)
-                    {
-                        leftToken = openToken;
-                    }
-                }
-                else
-                {
-                    leftToken = openToken;
-                }
+                leftToken = openToken;
             }
             else
             {
@@ -334,24 +327,13 @@
     KDEToken *rightToken = nil;
     if( token)
     {
-        BOOL tokenIsOpen = [self.tokenizer isOpenToken:token];
         NSUInteger maxRange = NSMaxRange( token.range);
         
         for( KDEToken *openToken in self.openTokens.reverseObjectEnumerator)
         {
             if( openToken.range.location >= maxRange)
             {
-                if( tokenIsOpen)
-                {
-                    if( token.type == openToken.type)
-                    {
-                        rightToken = openToken;
-                    }
-                }
-                else
-                {
-                    rightToken = openToken;
-                }
+                rightToken = openToken;
             }
             else
             {
@@ -379,7 +361,7 @@
 {
     if( self.openTokens.count)
     {
-        [self.openTokens filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
+        [self.openTokens filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
             return [self.tokens containsObject:token];
         }]];
     }

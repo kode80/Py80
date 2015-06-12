@@ -23,6 +23,9 @@
 - (NSString *) stringForTokenType:(KDETokenType)type;
 
 - (BOOL) isOpenToken:(KDEToken *)token;
+- (KDETokenType) closedTokenTypeForOpenToken:(KDEToken *)token;
 - (NSArray *) filterOpenTokens:(NSArray *)tokens;
+- (BOOL) canRightToken:(KDEToken *)rightToken
+        closeLeftToken:(KDEToken *)leftToken;
 
 @end

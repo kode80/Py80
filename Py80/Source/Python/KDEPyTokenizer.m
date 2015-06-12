@@ -39,7 +39,6 @@
                                                               defaultTokenType:KDEPyTokenTypeOpenString
                                                                   tokenTypeMap:nil]];
         
-        
         [self addTokenizePhase:[KDETokenizePhase tokenizePhaseWithRegexPattern:[KDEPyTokenizer pythonNumberPattern]
                                                               defaultTokenType:KDEPyTokenTypeNumber
                                                                   tokenTypeMap:nil]];
@@ -69,24 +68,35 @@
 {
     switch( type)
     {
-        case KDEPyTokenTypeComment:       return @"Comment";
-        case KDEPyTokenTypeDocString:     return @"DocString";
-        case KDEPyTokenTypeString:        return @"String";
-        case KDEPyTokenTypeOpenDocString: return @"OpenDocString";
-        case KDEPyTokenTypeOpenString:    return @"OpenString";
-        case KDEPyTokenTypeName:          return @"Name";
-        case KDEPyTokenTypeKeyword:       return @"Keyword";
-        case KDEPyTokenTypeNumber:        return @"Number";
-        case KDEPyTokenTypeOperator:      return @"Operator";
-        case KDEPyTokenTypeBracket:       return @"Bracket";
-        case KDEPyTokenTypeSpecial:       return @"Special";
+        case KDEPyTokenTypeComment:                 return @"Comment";
+        case KDEPyTokenTypeDocString:               return @"DocString";
+        case KDEPyTokenTypeString:                  return @"String";
+        case KDEPyTokenTypeName:                    return @"Name";
+        case KDEPyTokenTypeKeyword:                 return @"Keyword";
+        case KDEPyTokenTypeNumber:                  return @"Number";
+        case KDEPyTokenTypeOperator:                return @"Operator";
+        case KDEPyTokenTypeBracket:                 return @"Bracket";
+        case KDEPyTokenTypeSpecial:                 return @"Special";
+        case KDEPyTokenTypeOpenDocString:           return @"OpenDocString";
+        case KDEPyTokenTypeOpenString:              return @"OpenString";
+            
         default: return @"Unknown";
     }
 }
 
 - (BOOL) isOpenToken:(KDEToken *)token
 {
-    return token.type == KDEPyTokenTypeOpenString || token.type == KDEPyTokenTypeOpenDocString;
+    return token.type == KDEPyTokenTypeOpenDocString || token.type == KDEPyTokenTypeOpenString;
+}
+
+- (KDETokenType) closedTokenTypeForOpenToken:(KDEToken *)token
+{
+    switch( token.type)
+    {
+        case KDEPyTokenTypeOpenDocString:   return KDEPyTokenTypeDocString;
+        case KDEPyTokenTypeOpenString:      return KDEPyTokenTypeString;
+        default: return KDEPyTokenTypeUnknown;
+    }
 }
 
 - (NSArray *) filterOpenTokens:(NSArray *)tokens
@@ -94,6 +104,20 @@
     return [tokens filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
         return [self isOpenToken:token];
     }]];
+}
+
+- (BOOL) canRightToken:(KDEToken *)rightToken
+        closeLeftToken:(KDEToken *)leftToken
+{
+    if( [self isOpenToken:leftToken] &&
+        leftToken.type == rightToken.type)
+    {
+        unichar leftLastChar = [leftToken.value characterAtIndex:leftToken.value.length - 1];
+        unichar rightFirstChar = [rightToken.value characterAtIndex:0];
+        return leftLastChar == rightFirstChar;
+    }
+    
+    return NO;
 }
 
 + (NSString *) pythonDocStringPattern
