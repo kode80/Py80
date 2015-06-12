@@ -112,6 +112,11 @@
     if( [self isOpenToken:leftToken] &&
         leftToken.type == rightToken.type)
     {
+        // Since docstrings and strings can use single or double
+        // quotes, make sure we're closing a matching set.
+        // They also can have various prefixes, so check the last
+        // character of the left token when comparing.
+        
         unichar leftLastChar = [leftToken.value characterAtIndex:leftToken.value.length - 1];
         unichar rightFirstChar = [rightToken.value characterAtIndex:0];
         return leftLastChar == rightFirstChar;
