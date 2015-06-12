@@ -15,8 +15,8 @@
 
 @interface KDETokenizedString ()
 
-@property (nonatomic, readwrite, strong) NSArray *tokens;
-@property (nonatomic, readwrite, strong) NSArray *openTokens;
+@property (nonatomic, readwrite, strong) NSMutableArray *tokens;
+@property (nonatomic, readwrite, strong) NSMutableArray *openTokens;
 
 - (void) updateTokenRangesFromFirstToken:(KDEToken *)firstToken
                                   offset:(NSInteger)offset;
@@ -52,11 +52,11 @@
 {
     KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
                                                                            tokenizer:[KDETokenizer new]];
-    tokenizedString.tokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
-                                [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    tokenizedString.tokens = [@[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]] mutableCopy];
 
     // Test ranges that overlap tokens
     NSRange subarrayRange = [tokenizedString tokensSubarrayRangeWithCharacterRange:NSMakeRange( 0, 50)];
@@ -91,16 +91,16 @@
     for( int i=0; i<3; i++)
     {
         // Tokens are not copied, so recreate test data for each iteration...
-        NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]];
+        NSMutableArray *originalTokens = [ @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                           [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                           [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                           [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]] mutableCopy];
 
         // ...and create a second identical batch to compare results
-        NSArray *originalTokens2 = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                      [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                      [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                      [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]];
+        NSMutableArray *originalTokens2 = [@[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                              [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                              [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                              [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]] mutableCopy];
         
         NSInteger offset = -5 + i * 5;
         tokenizedString.tokens = originalTokens;
@@ -118,20 +118,20 @@
 {
     KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
                                                                            tokenizer:[KDETokenizer new]];
-    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    NSMutableArray *originalTokens = [@[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]] mutableCopy];
     
-    NSArray *replacementTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
-                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    NSMutableArray *replacementTokens = [@[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                            [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                            [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                            [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                            [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]] mutableCopy];
     
     // Test 1
-    tokenizedString.tokens = originalTokens;
+    tokenizedString.tokens = [originalTokens mutableCopy];
     [tokenizedString replaceTokensFromFirstToken:originalTokens.firstObject
                          toAndIncludingLastToken:originalTokens.lastObject
                                       withTokens:replacementTokens];
@@ -148,7 +148,7 @@
     XCTAssertFalse( tokenizedString.tokens[ 4] == originalTokens[4], @"token incorrect");
     
     // Test 2
-    tokenizedString.tokens = originalTokens;
+    tokenizedString.tokens = [originalTokens mutableCopy];
     [tokenizedString replaceTokensFromFirstToken:originalTokens[2]
                          toAndIncludingLastToken:originalTokens[4]
                                       withTokens:@[ replacementTokens[0], replacementTokens[1], replacementTokens[2]]];
@@ -165,7 +165,7 @@
     XCTAssertFalse( tokenizedString.tokens[ 4] == originalTokens[4], @"token incorrect");
     
     // Insertion Test
-    tokenizedString.tokens = originalTokens;
+    tokenizedString.tokens = [originalTokens mutableCopy];
     [tokenizedString replaceTokensFromFirstToken:originalTokens[3]
                          toAndIncludingLastToken:originalTokens[4]
                                       withTokens:replacementTokens];
@@ -180,7 +180,7 @@
     
     
     // Deletion Test
-    tokenizedString.tokens = originalTokens;
+    tokenizedString.tokens = [originalTokens mutableCopy];
     [tokenizedString replaceTokensFromFirstToken:originalTokens[0]
                          toAndIncludingLastToken:originalTokens[2]
                                       withTokens:@[]];
@@ -193,18 +193,18 @@
     KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
                                                                            tokenizer:[KDETokenizer new]];
     
-    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
-    NSArray *newOpenTokens = @[ originalTokens[ 3],
-                                originalTokens[ 4]];
+    NSMutableArray *originalTokens = [@[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]] mutableCopy];
+    NSMutableArray *newOpenTokens = [@[ originalTokens[ 3],
+                                        originalTokens[ 4]] mutableCopy];
     
     tokenizedString.tokens = originalTokens;
-    tokenizedString.openTokens = @[ originalTokens[ 0],
-                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                    [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]];;
+    tokenizedString.openTokens = [@[ originalTokens[ 0],
+                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                     [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)]] mutableCopy];
     
     [tokenizedString addNewOpenTokens:newOpenTokens];
     
@@ -218,15 +218,15 @@
 {
     KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
                                                                            tokenizer:[KDETokenizer new]];
-    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    NSMutableArray *originalTokens = [@[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]] mutableCopy];
     tokenizedString.tokens = originalTokens;
-    tokenizedString.openTokens = @[ originalTokens[ 1],
-                                    originalTokens[ 2],
-                                    originalTokens[ 4]];
+    tokenizedString.openTokens = [@[ originalTokens[ 1],
+                                     originalTokens[ 2],
+                                     originalTokens[ 4]] mutableCopy];
     
     XCTAssertEqual( [tokenizedString firstOpenTokenLeftOfToken:originalTokens[0]], nil, @"left open token incorrect");
     XCTAssertEqual( [tokenizedString firstOpenTokenLeftOfToken:originalTokens[1]], nil, @"left open token incorrect");
@@ -239,15 +239,15 @@
 {
     KDETokenizedString *tokenizedString = [[KDETokenizedString alloc] initWithString:@""
                                                                            tokenizer:[KDETokenizer new]];
-    NSArray *originalTokens = @[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
-                                 [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]];
+    NSMutableArray *originalTokens = [@[ [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 0, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 5, 5)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 20, 2)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 30, 10)],
+                                         [KDEToken tokenWithType:0 value:nil range:NSMakeRange( 40, 10)]] mutableCopy];
     tokenizedString.tokens = originalTokens;
-    tokenizedString.openTokens = @[ originalTokens[ 1],
-                                    originalTokens[ 2],
-                                    originalTokens[ 4]];
+    tokenizedString.openTokens = [@[ originalTokens[ 1],
+                                     originalTokens[ 2],
+                                     originalTokens[ 4]] mutableCopy];
     
     XCTAssertEqual( [tokenizedString firstOpenTokenRightOfToken:originalTokens[0]], originalTokens[1], @"left open token incorrect");
     XCTAssertEqual( [tokenizedString firstOpenTokenRightOfToken:originalTokens[1]], originalTokens[2], @"left open token incorrect");

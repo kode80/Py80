@@ -20,8 +20,8 @@
 @property (nonatomic, readwrite, copy) NSString *string;
 @property (nonatomic, readwrite, strong) NSMutableString *internalString;
 @property (nonatomic, readwrite, strong) KDETokenizer *tokenizer;
-@property (nonatomic, readwrite, strong) NSArray *tokens;
-@property (nonatomic, readwrite, strong) NSArray *openTokens;
+@property (nonatomic, readwrite, strong) NSMutableArray *tokens;
+@property (nonatomic, readwrite, strong) NSMutableArray *openTokens;
 
 @end
 
@@ -36,8 +36,40 @@
     {
         self.internalString = [NSMutableString stringWithString:string ? string : @""];
         self.tokenizer = tokenizer;
-        self.tokens = [tokenizer tokenizeString:string];
-        self.openTokens = [tokenizer filterOpenTokens:self.tokens];
+        self.tokens = [[tokenizer tokenizeString:string] mutableCopy];
+        self.openTokens = [[tokenizer filterOpenTokens:self.tokens] mutableCopy];
+        
+        NSMutableArray *openTokens = [NSMutableArray array];
+        KDEToken *leftToken, *rightToken;
+        NSArray *newTokens;
+        if( self.openTokens.count > 1)
+        {
+            NSInteger i=0;
+            
+            while( i < self.openTokens.count)
+            {
+                leftToken = self.openTokens[ i];
+                rightToken = [self firstOpenTokenRightOfToken:leftToken];
+                if( rightToken == nil)
+                {
+                    break;
+                }
+                
+                NSRange range = NSMakeRange( leftToken.range.location, NSMaxRange( rightToken.range) - leftToken.range.location);
+                newTokens = @[ [KDEToken tokenWithType:KDEPyTokenTypeDocString
+                                                 value:[string substringWithRange:range]
+                                                 range:range]];
+                
+                [self replaceTokensFromFirstToken:leftToken
+                          toAndIncludingLastToken:rightToken
+                                       withTokens:newTokens];
+                [openTokens addObjectsFromArray:[self.tokenizer filterOpenTokens:newTokens]];
+                
+                i = [self.openTokens indexOfObject:rightToken] + 1;
+            }
+            
+            [self addNewOpenTokens:openTokens];
+        }
     }
     return self;
 }
@@ -94,6 +126,34 @@
                            withTokens:newTokens];
     
     [self addNewOpenTokens:[self.tokenizer filterOpenTokens:newTokens]];
+    
+    NSMutableArray *openTokens = [NSMutableArray array];
+    if( self.openTokens.count > 1)
+    {
+        NSInteger i=0;
+        
+        while( i < openTokens.count)
+        {
+            leftToken = self.openTokens[ i];
+            rightToken = [self firstOpenTokenRightOfToken:leftToken];
+            if( rightToken == nil)
+            {
+                break;
+            }
+            
+            newTokens = [self tokenizeFromToken:leftToken
+                            toAndIncludingToken:rightToken];
+            
+            [self replaceTokensFromFirstToken:leftToken
+                      toAndIncludingLastToken:rightToken
+                                   withTokens:newTokens];
+            [openTokens addObjectsFromArray:[self.tokenizer filterOpenTokens:newTokens]];
+            
+            i = [self.openTokens indexOfObject:rightToken] + 1;
+        }
+
+        [self addNewOpenTokens:openTokens];
+    }
 
     return newTokens;
 }
@@ -230,10 +290,8 @@
         NSUInteger tmp = lastIndex; lastIndex = firstIndex; firstIndex = tmp;
     }
     
-    NSMutableArray *updatedTokens = [NSMutableArray arrayWithArray:self.tokens];
-    [updatedTokens replaceObjectsInRange:NSMakeRange( firstIndex, lastIndex - firstIndex + 1)
-                    withObjectsFromArray:tokens];
-    self.tokens = [NSArray arrayWithArray:updatedTokens];
+    [self.tokens replaceObjectsInRange:NSMakeRange( firstIndex, lastIndex - firstIndex + 1)
+                  withObjectsFromArray:tokens];
 
     [self removeOpenTokensNoLongerInTokens];
 }
@@ -309,13 +367,11 @@
 {
     if( newOpenTokens.count)
     {
-        NSMutableArray *openTokens = [NSMutableArray arrayWithArray:self.openTokens];
-        [openTokens addObjectsFromArray:newOpenTokens];
-        [openTokens filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
+        [self.openTokens addObjectsFromArray:newOpenTokens];
+        [self.openTokens filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
             return [self.tokens containsObject:token];
         }]];
-        [KDETokenizer sortTokens:openTokens];
-        self.openTokens = [openTokens copy];
+        [KDETokenizer sortTokens:self.openTokens];
     }
 }
 
@@ -323,7 +379,7 @@
 {
     if( self.openTokens.count)
     {
-        self.openTokens = [self.openTokens filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
+        [self.openTokens filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL( KDEToken *token, NSDictionary *bindings){
             return [self.tokens containsObject:token];
         }]];
     }

@@ -15,7 +15,6 @@
 
 @property (nonatomic, readonly, copy) NSString *string;
 @property (nonatomic, readonly, strong) KDETokenizer *tokenizer;
-@property (nonatomic, readonly, strong) NSArray *tokens;
 
 - (instancetype) initWithString:(NSString *)string
                       tokenizer:(KDETokenizer *)tokenizer;
